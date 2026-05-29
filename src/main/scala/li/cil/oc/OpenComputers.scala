@@ -1,98 +1,47 @@
 package li.cil.oc
 
-import cpw.mods.fml.common.Mod
-import cpw.mods.fml.common.Mod.EventHandler
-import cpw.mods.fml.common.SidedProxy
-import cpw.mods.fml.common.event.FMLInterModComms.IMCEvent
-import cpw.mods.fml.common.event._
-import cpw.mods.fml.common.network.FMLEventChannel
-import li.cil.oc.common.IMC
-import li.cil.oc.common.Proxy
-import li.cil.oc.server.command.CommandHandler
-import li.cil.oc.util.ThreadPoolFactory
+import net.neoforged.bus.api.IEventBus
+import net.neoforged.fml.common.Mod
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent
+import net.neoforged.fml.event.lifecycle.FMLLoadCompleteEvent
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 
-@Mod(modid = OpenComputers.ID, name = OpenComputers.Name,
-  version = OpenComputers.Version,
-  modLanguage = "scala", useMetadata = true /*@MCVERSIONDEP@*/)
+/** NeoForge 1.21.1 entry point. Legacy init logic lives in Proxy and will be wired in later phases. */
+@Mod(OpenComputers.ID)
+class OpenComputers(modEventBus: IEventBus) {
+  OpenComputers.modEventBus = modEventBus
+  OpenComputers.logger = LogManager.getLogger(OpenComputers.Name)
+
+  modEventBus.addListener(OpenComputers.onCommonSetup(_))
+  modEventBus.addListener(OpenComputers.onLoadComplete(_))
+}
+
 object OpenComputers {
-  final val ID = "OpenComputers"
+  /** Lowercase mod id required by NeoForge; was "OpenComputers" on Forge 1.7.10. */
+  final val ID = "opencomputers"
 
   final val Name = "OpenComputers"
 
-  final val McVersion = "1.7.10-forge"
+  final val McVersion = "1.21.1-neoforge"
 
-  final val Version = "@VERSION@"
+  /** Kept in sync with mod_version in gradle.properties. */
+  final val Version = "1.8.0-snapshot"
 
-  def log = logger.getOrElse(LogManager.getLogger(Name))
+  var logger: Logger = LogManager.getLogger(Name)
 
-  var logger: Option[Logger] = None
+  var modEventBus: IEventBus = null
 
-  @SidedProxy(clientSide = "li.cil.oc.client.Proxy", serverSide = "li.cil.oc.server.Proxy")
-  var proxy: Proxy = null
+  def log: Logger = logger
 
-  var channel: FMLEventChannel = _
-
-  @EventHandler
-  def preInit(e: FMLPreInitializationEvent) {
-    logger = Option(e.getModLog)
-    proxy.preInit(e)
-    OpenComputers.log.info("Done with pre init phase.")
+  private def onCommonSetup(event: FMLCommonSetupEvent): Unit = {
+    log.info("OpenComputers common setup (NeoForge 1.21.1 port — migration in progress)")
+    // TODO Phase 2+: migrate Proxy.preInit/init (registry, config, API bootstrap)
+    event.enqueueWork(() => ())
   }
 
-  @EventHandler
-  def init(e: FMLInitializationEvent) = {
-    proxy.init(e)
-    OpenComputers.log.info("Done with init phase.")
+  private def onLoadComplete(event: FMLLoadCompleteEvent): Unit = {
+    log.info("OpenComputers load complete (NeoForge 1.21.1 port — migration in progress)")
+    // TODO Phase 2+: migrate Proxy.postInit (recipes, integrations)
   }
-
-  @EventHandler
-  def postInit(e: FMLPostInitializationEvent) = {
-    proxy.postInit(e)
-    OpenComputers.log.info("Done with post init phase.")
-  }
-
-  @EventHandler
-  def missingMappings(e: FMLMissingMappingsEvent) = proxy.missingMappings(e)
-
-  @EventHandler
-  def serverStart(e: FMLServerStartingEvent): Unit = {
-    CommandHandler.register(e)
-    ThreadPoolFactory.safePools.foreach(_.newThreadPool())
-
-    if (Settings.get.internetAccessConfigured()) {
-      if (Settings.get.internetFilteringRulesInvalid()) {
-        OpenComputers.log.warn("####################################################")
-        OpenComputers.log.warn("#                                                  #")
-        OpenComputers.log.warn("#  Could not parse Internet Card filtering rules!  #")
-        OpenComputers.log.warn("#  Review the server log and adjust the filtering  #")
-        OpenComputers.log.warn("#  list to ensure it is appropriately configured.  #")
-        OpenComputers.log.warn("#   (config/OpenComputers.cfg => filteringRules)   #")
-        OpenComputers.log.warn("# Internet access has been automatically disabled. #")
-        OpenComputers.log.warn("#                                                  #")
-        OpenComputers.log.warn("####################################################")
-      } else if (!Settings.get.internetFilteringRulesObserved && e.getServer.isDedicatedServer) {
-        OpenComputers.log.warn("####################################################")
-        OpenComputers.log.warn("#                                                  #")
-        OpenComputers.log.warn("#    It appears that you're running a dedicated    #")
-        OpenComputers.log.warn("#  server with OpenComputers installed! Make sure  #")
-        OpenComputers.log.warn("#  to review the Internet Card address filtering   #")
-        OpenComputers.log.warn("#  list to ensure it is appropriately configured.  #")
-        OpenComputers.log.warn("#   (config/OpenComputers.cfg => filteringRules)   #")
-        OpenComputers.log.warn("#                                                  #")
-        OpenComputers.log.warn("####################################################")
-      } else {
-        OpenComputers.log.info(f"Successfully applied ${Settings.get.internetFilteringRules.length} Internet Card filtering rules.")
-      }
-    }
-  }
-
-  @EventHandler
-  def serverStop(e: FMLServerStoppedEvent): Unit = {
-    ThreadPoolFactory.safePools.foreach(_.waitForCompletion())
-  }
-
-  @EventHandler
-  def imc(e: IMCEvent) = IMC.handleEvent(e)
 }
