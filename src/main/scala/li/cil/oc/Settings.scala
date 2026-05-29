@@ -4,8 +4,7 @@ import com.google.common.net.InetAddresses
 import com.mojang.authlib.GameProfile
 import com.typesafe.config._
 import com.typesafe.config.impl.OpenComputersConfigCommentManipulationHook
-import cpw.mods.fml.common.Loader
-import cpw.mods.fml.common.versioning.{DefaultArtifactVersion, VersionRange}
+import net.neoforged.fml.loading.FMLPaths
 import li.cil.oc.Settings.DebugCardAccess
 import li.cil.oc.common.Tier
 import li.cil.oc.server.component.DebugCard
@@ -19,8 +18,7 @@ import java.net.{Inet4Address, Inet6Address, InetAddress}
 import java.nio.charset.StandardCharsets
 import java.security.SecureRandom
 import java.util.UUID
-import scala.collection.JavaConverters._
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 import scala.io.{Codec, Source}
 import scala.util.matching.Regex
@@ -457,8 +455,7 @@ class Settings(val config: Config) {
     case "true" | "allow" | java.lang.Boolean.TRUE => DebugCardAccess.Allowed
     case "false" | "deny" | java.lang.Boolean.FALSE => DebugCardAccess.Forbidden
     case "whitelist" =>
-      val wlFile = new File(Loader.instance.getConfigDir + File.separator + "opencomputers" + File.separator +
-                              "debug_card_whitelist.txt")
+      val wlFile = FMLPaths.CONFIGDIR.get().resolve("opencomputers/debug_card_whitelist.txt").toFile
 
       DebugCardAccess.Whitelist(wlFile)
 
@@ -528,7 +525,7 @@ object Settings {
   def get: Settings = settings
 
   def load(file: File) = {
-    import scala.compat.Platform.EOL
+    val EOL = System.lineSeparator()
     // typesafe config's internal method for loading the reference.conf file
     // seems to fail on some systems (as does their parseResource method), so
     // we'll have to load the default config manually. This was reported on the
@@ -584,11 +581,11 @@ object Settings {
 
   private val configPatches = Array(
     // Upgrading to version 1.4.7, reduce default geolyzer noise.
-    VersionRange.createFromVersionSpec("[0.0, 1.4.7)") -> Array(
+    ConfigVersionRange.fromSpec("[0.0, 1.4.7)") -> Array(
       "misc.geolyzerNoise"
     ),
     // Upgrading to version 1.4.8, changed power value defaults.
-    VersionRange.createFromVersionSpec("[0.0, 1.4.8)") -> Array(
+    ConfigVersionRange.fromSpec("[0.0, 1.4.8)") -> Array(
       "power.value.AppliedEnergistics2",
       "power.value.Factorization",
       "power.value.Galacticraft",
@@ -597,34 +594,36 @@ object Settings {
       "power.value.RedstoneFlux"
     ),
     // Upgrading to version 1.5.20, changed relay delay default.
-    VersionRange.createFromVersionSpec("[0.0, 1.5.20)") -> Array(
+    ConfigVersionRange.fromSpec("[0.0, 1.5.20)") -> Array(
       "switch.relayDelayUpgrade"
     ),
     // Upgrading past version 1.7.1, changed wireless card stuff for t1 card.
-    VersionRange.createFromVersionSpec("[0.0, 1.7.2)") -> Array(
+    ConfigVersionRange.fromSpec("[0.0, 1.7.2)") -> Array(
       "power.cost.wirelessCostPerRange",
       "misc.maxWirelessRange",
       "misc.maxOpenPorts",
       "computer.cpuComponentCount"
     ),
     // Upgrading to version 1.8.0, changed meaning of limitFlightHeight value,
-    VersionRange.createFromVersionSpec("[0.0, 1.8.0)") -> Array(
+    ConfigVersionRange.fromSpec("[0.0, 1.8.0)") -> Array(
       "computer.robot.limitFlightHeight"
     )
   )
-  private val fileringRulesPatchVersion = VersionRange.createFromVersionSpec("[0.0, 1.8.3)")
+  private val fileringRulesPatchVersion = ConfigVersionRange.fromSpec("[0.0, 1.8.3)")
 
   // Checks the config version (i.e. the version of the mod the config was
   // created by) against the current version to see if some hard changes
   // were made. If so, the new default values are copied over.
   private def patchConfig(config: Config, defaults: Config) = {
-    val mod = Loader.instance.activeModContainer
-    val configVersion = new DefaultArtifactVersion(if (config.hasPath(prefix + "version")) config.getString(prefix + "version") else "0.0.0")
+    val configVersionStr =
+      if (config.hasPath(prefix + "version")) config.getString(prefix + "version")
+      else "0.0.0"
+    val modVersionStr = OpenComputers.Version
     var patched = config
-    if (configVersion.compareTo(mod.getProcessedVersion) != 0) {
-      OpenComputers.log.info(s"Updating config from version '${configVersion.getVersionString}' to '${defaults.getString(prefix + "version")}'.")
+    if (ConfigVersionRange.compareVersions(configVersionStr, modVersionStr) != 0) {
+      OpenComputers.log.info(s"Updating config from version '$configVersionStr' to '${defaults.getString(prefix + "version")}'.")
       patched = patched.withValue(prefix + "version", defaults.getValue(prefix + "version"))
-      for ((version, paths) <- configPatches if version.containsVersion(configVersion)) {
+      for ((version, paths) <- configPatches if version.contains(configVersionStr)) {
         for (path <- paths) {
           val fullPath = prefix + path
           OpenComputers.log.info(s"=> Updating setting '$fullPath'. ")
@@ -638,7 +637,7 @@ object Settings {
       }
 
       // Migrate filtering rules to 1.8.3+
-      if (fileringRulesPatchVersion.containsVersion(configVersion)) {
+      if (fileringRulesPatchVersion.contains(configVersionStr)) {
         OpenComputers.log.info(s"=> Migrating Internet Card filtering rules. ")
         val cidrPattern = """(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(?:/(\d{1,2}))""".r
         val httpHostWhitelist = patched.getStringList(prefix + "internet.whitelist")
@@ -788,6 +787,64 @@ object Settings {
       config.getIntList(path)
     else
       default.getOrElse(new java.util.LinkedList[Integer]())
+  }
+
+  /** Lightweight replacement for FML VersionRange used in config migration. */
+  private object ConfigVersionRange {
+    final case class Range(
+      minParts: Array[Int],
+      maxParts: Array[Int],
+      minInclusive: Boolean,
+      maxInclusive: Boolean
+    ) {
+      def contains(version: String): Boolean = {
+        val parts = parseParts(version)
+        val aboveMin = compare(parts, minParts) match {
+          case c if c > 0 => true
+          case c if c < 0 => false
+          case _ => minInclusive
+        }
+        val belowMax = compare(parts, maxParts) match {
+          case c if c < 0 => true
+          case c if c > 0 => false
+          case _ => maxInclusive
+        }
+        aboveMin && belowMax
+      }
+    }
+
+    def fromSpec(spec: String): Range = {
+      val pattern = """([\[\(])([^,]+),\s*([^)\]]+)([\)\]])""".r
+      spec match {
+        case pattern(minBracket, min, max, maxBracket) =>
+          Range(
+            parseParts(min.trim),
+            parseParts(max.trim),
+            minBracket == "[",
+            maxBracket == "]"
+          )
+        case _ =>
+          throw new IllegalArgumentException(s"Invalid version range spec: $spec")
+      }
+    }
+
+    def compareVersions(a: String, b: String): Int =
+      compare(parseParts(a), parseParts(b))
+
+    private def parseParts(version: String): Array[Int] =
+      version.split("\\.").map(s => s.replaceAll("[^0-9].*", "").toIntOption.getOrElse(0))
+
+    private def compare(a: Array[Int], b: Array[Int]): Int = {
+      val len = math.max(a.length, b.length)
+      var i = 0
+      while (i < len) {
+        val ca = if (i < a.length) a(i) else 0
+        val cb = if (i < b.length) b(i) else 0
+        if (ca != cb) return ca.compareTo(cb)
+        i += 1
+      }
+      0
+    }
   }
 }
 

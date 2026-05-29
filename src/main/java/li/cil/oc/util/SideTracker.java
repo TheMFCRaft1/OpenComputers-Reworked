@@ -1,6 +1,6 @@
 package li.cil.oc.util;
 
-import cpw.mods.fml.common.FMLCommonHandler;
+import net.neoforged.fml.util.thread.SidedThreadGroups;
 
 import java.util.Collections;
 import java.util.Set;
@@ -13,7 +13,8 @@ public final class SideTracker {
     }
 
     public static boolean isServer() {
-        return FMLCommonHandler.instance().getEffectiveSide().isServer() || serverThreads.contains(Thread.currentThread());
+        return Thread.currentThread().getThreadGroup() == SidedThreadGroups.SERVER
+            || serverThreads.contains(Thread.currentThread());
     }
 
     public static boolean isClient() {

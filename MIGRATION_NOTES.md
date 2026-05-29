@@ -45,3 +45,48 @@ JARs werden wie zuvor per `embedded`-Configuration in das Mod-JAR gepackt.
 ### Kompilierstatus Phase 1
 
 Erwartet: `./gradlew build` schlägt fehl, bis Registry/BlockEntity/API-Migration (Phasen 2–6) abgeschlossen ist. Gradle-Setup und Mod-Metadaten-Generierung sollten funktionieren.
+
+---
+
+## Phase 2 — Event-System & DeferredRegister-Skelett (2026-05-29)
+
+### Neue Dateien
+
+| Datei | Zweck |
+|-------|-------|
+| `common/init/ModRegistries.scala` | `DeferredRegister` für Blocks, Items, BlockEntityTypes, EntityTypes, MenuTypes, CreativeModeTabs |
+| `common/ModBootstrap.scala` | Lifecycle-Orchestrierung (ersetzt Proxy preInit/init/postInit) |
+| `common/ModEventHandler.scala` | `@EventBusSubscriber(GAME)` — Server start/stop, Internet-Filter-Warnungen |
+| `client/ClientModEventHandler.scala` | `@EventBusSubscriber(MOD, CLIENT)` — Client-Setup-Stub |
+| `common/network/ModNetworking.scala` | `RegisterPayloadHandlersEvent`-Stub für CustomPacketPayload |
+
+### OpenComputers.scala
+
+- Constructor: Config laden → DeferredRegister registrieren → Game-Bus-Handler
+- `FMLCommonSetupEvent` / `FMLClientSetupEvent` / `FMLLoadCompleteEvent` an `ModBootstrap` delegiert
+- `LEGACY_ID = "OpenComputers"` für alte Saves/IMC-Pfade
+
+### Settings.scala (NeoForge-kompatibel)
+
+- `Loader.instance` → `FMLPaths.CONFIGDIR`
+- FML `VersionRange` → internes `ConfigVersionRange`
+- `JavaConverters` → `scala.jdk.CollectionConverters`
+- `Platform.EOL` → `System.lineSeparator()`
+
+### SideTracker.java
+
+- `FMLCommonHandler.getEffectiveSide()` → `SidedThreadGroups.SERVER` + explizite Server-Threads
+
+### Legacy Proxy-Klassen
+
+`common/Proxy.scala`, `client/Proxy.scala`, `server/Proxy.scala` bleiben unverändert bis Phase 3 (Block/Item/BlockEntity-Migration). `@SidedProxy` entfällt zugunsten von `@EventBusSubscriber(Dist.CLIENT)`.
+
+### Bekannte TODOs (Phase 3+)
+
+- [ ] `Blocks.init()` / `Items.init()` → DeferredRegister-Supplier auf `ModRegistries`
+- [ ] `ModBootstrap.commonSetup`: API-Bootstrap, Tags, Loot, Recipes, Integrations
+- [ ] `ModNetworking`: alle Pakete als `CustomPacketPayload`-Records
+- [ ] `ModEventHandler`: CommandHandler (Brigadier), ThreadPoolFactory
+- [ ] `ClientModEventHandler`: Rendering, KeyBindings, GuiHandler
+- [ ] Legacy-Event-Handler (`ModOpenComputers.initialize`) auf NeoForge-Bus umstellen
+
