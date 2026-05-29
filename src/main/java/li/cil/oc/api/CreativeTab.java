@@ -1,6 +1,6 @@
 package li.cil.oc.api;
 
-import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.world.item.CreativeModeTab;
 
 /**
  * Allows access to the creative tab used by OpenComputers.
@@ -8,12 +8,9 @@ import net.minecraft.creativetab.CreativeTabs;
 public final class CreativeTab {
     /**
      * The creative tab used by OpenComputers.
-     * <br>
-     * Changed to the actual tab if OC is present. Preferably you do
-     * <em>not</em> try to access this anyway when OpenComputers isn't
-     * present (don't ship the API in your mod), so don't rely on this!
+     * Set at runtime when the mod loads on NeoForge 1.21+.
      */
-    public static CreativeTabs instance = CreativeTabs.tabRedstone;
+    public static CreativeModeTab instance = null;
 
     private CreativeTab() {
     }

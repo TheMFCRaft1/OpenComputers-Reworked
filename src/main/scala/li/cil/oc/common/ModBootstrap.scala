@@ -2,7 +2,8 @@ package li.cil.oc.common
 
 import li.cil.oc.OpenComputers
 import li.cil.oc.Settings
-import li.cil.oc.common.init.ModRegistries
+import li.cil.oc.api
+import li.cil.oc.common.init.ModItems
 import net.neoforged.fml.event.lifecycle.{FMLClientSetupEvent, FMLCommonSetupEvent, FMLLoadCompleteEvent}
 import net.neoforged.fml.loading.FMLPaths
 
@@ -14,33 +15,36 @@ object ModBootstrap {
     OpenComputers.log.debug("Loaded OpenComputers configuration from {}", configFile.getAbsolutePath)
   }
 
-  /** Called from the mod constructor after DeferredRegister holders are registered on the mod bus. */
-  def registerContent(): Unit = {
-    // TODO Phase 3: migrate Blocks.init() / Items.init() to DeferredRegister suppliers on ModRegistries
-    OpenComputers.log.debug(
-      "DeferredRegister holders ready ({} block entries, {} item entries registered so far)",
-      Integer.valueOf(ModRegistries.BLOCKS.getEntries.size()),
-      Integer.valueOf(ModRegistries.ITEMS.getEntries.size())
-    )
-  }
-
   def commonSetup(event: FMLCommonSetupEvent): Unit = {
     event.enqueueWork(() => {
-      // TODO Phase 3: API bootstrap (Proxy.preInit), OreDictionary → tags, Loot, Mods, Recipes
-      // TODO Phase 3: ModNetworking payload handlers
-      OpenComputers.log.info("OpenComputers common setup complete (Phase 2 bootstrap)")
+      bootstrapApi()
+      // TODO Phase 3+: OreDictionary → item/block tags
+      // TODO Phase 3+: Loot.init(), Achievement.init(), Mods.init(), Recipes.init()
+      // TODO Phase 3+: ModNetworking payload handlers
+      OpenComputers.log.info("OpenComputers common setup complete (Phase 3 — Capacitor registered)")
     })
   }
 
   def clientSetup(event: FMLClientSetupEvent): Unit = {
     event.enqueueWork(() => {
       // TODO Phase 3+: client.Proxy.init — renderers, key bindings, GuiHandler
-      OpenComputers.log.info("OpenComputers client setup complete (Phase 2 bootstrap)")
+      OpenComputers.log.info("OpenComputers client setup complete")
     })
   }
 
   def loadComplete(event: FMLLoadCompleteEvent): Unit = {
-    // TODO Phase 3: driver.Registry.locked = true (Proxy.postInit)
-    OpenComputers.log.info("OpenComputers load complete (Phase 2 bootstrap)")
+    event.enqueueWork(() => {
+      // TODO Phase 3+: driver.Registry.locked = true (Proxy.postInit)
+      OpenComputers.log.info("OpenComputers load complete")
+    })
+  }
+
+  private def bootstrapApi(): Unit = {
+    OpenComputers.log.info("Initializing OpenComputers API")
+    api.API.items = ModItems
+    api.API.config = Settings.get.config
+    api.API.isPowerEnabled = !Settings.get.ignorePower
+    // TODO Phase 3+: driver.Registry, fs.FileSystem, machine.Machine, network.Network, nanomachines
+    // TODO Phase 3+: Lua architecture registration once LuaStateFactory is migrated
   }
 }

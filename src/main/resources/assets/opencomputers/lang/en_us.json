@@ -1,0 +1,6 @@
+{
+  "block.opencomputers.capacitor": "Capacitor",
+  "item.opencomputers.capacitor": "Capacitor",
+  "itemGroup.opencomputers": "OpenComputers",
+  "oc:tooltip.Capacitor": "Stores energy for later use. Can be filled and drained very quickly."
+}

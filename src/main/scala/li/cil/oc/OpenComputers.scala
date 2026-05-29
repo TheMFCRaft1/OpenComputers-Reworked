@@ -7,7 +7,7 @@ import net.neoforged.fml.event.lifecycle.{FMLClientSetupEvent, FMLCommonSetupEve
 import net.neoforged.fml.loading.FMLEnvironment
 import net.neoforged.neoforge.common.NeoForge
 import li.cil.oc.common.{ModBootstrap, ModEventHandler}
-import li.cil.oc.common.init.ModRegistries
+import li.cil.oc.common.init.{ModRegistries, ModRegistration}
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 
@@ -18,7 +18,7 @@ class OpenComputers(modEventBus: IEventBus) {
 
   ModBootstrap.loadConfig()
   ModRegistries.register(modEventBus)
-  ModBootstrap.registerContent()
+  ModRegistration.registerContent()
 
   NeoForge.EVENT_BUS.register(ModEventHandler)
 
