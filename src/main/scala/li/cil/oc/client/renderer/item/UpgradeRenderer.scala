@@ -7,9 +7,9 @@ import li.cil.oc.api.event.RobotRenderEvent.MountPoint
 import li.cil.oc.client.Textures
 import li.cil.oc.integration.opencomputers.Item
 import li.cil.oc.util.RenderState
-import net.minecraft.client.Minecraft
+import li.cil.oc.compat.vanilla.client.Minecraft
 import net.minecraft.item.ItemStack
-import net.minecraft.util.AxisAlignedBB
+import li.cil.oc.compat.vanilla.util.AxisAlignedBB
 import org.lwjgl.opengl.GL11
 
 object UpgradeRenderer {
@@ -61,7 +61,7 @@ object UpgradeRenderer {
 
   private val bounds = AxisAlignedBB.getBoundingBox(-0.1, -0.1, -0.1, 0.1, 0.1, 0.1)
 
-  private def drawSimpleBlock(mountPoint: MountPoint, frontOffset: Float = 0) {
+  private def drawSimpleBlock(mountPoint: MountPoint, frontOffset: Float = 0): Unit = {
     GL11.glRotatef(mountPoint.rotation.getW, mountPoint.rotation.getX, mountPoint.rotation.getY, mountPoint.rotation.getZ)
     GL11.glTranslatef(mountPoint.offset.getX, mountPoint.offset.getY, mountPoint.offset.getZ)
 

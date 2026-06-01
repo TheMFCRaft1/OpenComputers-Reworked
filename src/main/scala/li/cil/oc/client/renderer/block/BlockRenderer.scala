@@ -5,11 +5,11 @@ import li.cil.oc.Settings
 import li.cil.oc.client.renderer.tileentity.RobotRenderer
 import li.cil.oc.common
 import li.cil.oc.util.RenderState
-import net.minecraft.block.Block
-import net.minecraft.client.renderer.RenderBlocks
+import li.cil.oc.compat.vanilla.block.Block
+import li.cil.oc.compat.vanilla.client.renderer.RenderBlocks
 import net.minecraft.client.renderer.Tessellator
-import net.minecraft.util.IIcon
-import net.minecraft.world.IBlockAccess
+import li.cil.oc.compat.vanilla.util.IIcon
+import li.cil.oc.compat.vanilla.world.IBlockAccess
 import net.minecraftforge.common.util.ForgeDirection
 import org.lwjgl.opengl.GL11
 

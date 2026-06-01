@@ -4,7 +4,7 @@ import li.cil.oc.Settings
 import li.cil.oc.client.renderer.font.DynamicFontRenderer.CharTexture
 import li.cil.oc.util.FontUtils
 import li.cil.oc.util.RenderState
-import net.minecraft.client.Minecraft
+import li.cil.oc.compat.vanilla.client.Minecraft
 import net.minecraft.client.resources.IReloadableResourceManager
 import net.minecraft.client.resources.IResourceManager
 import net.minecraft.client.resources.IResourceManagerReloadListener

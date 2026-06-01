@@ -26,14 +26,14 @@ import li.cil.oc.common.item.traits.SimpleItem
 import li.cil.oc.common.recipe.Recipes
 import li.cil.oc.integration.Mods
 import li.cil.oc.server.machine.luac.LuaStateFactory
-import net.minecraft.block.Block
+import li.cil.oc.compat.vanilla.block.Block
 import net.minecraft.creativetab.CreativeTabs
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.item.Item
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.item.Item
 import net.minecraft.item.ItemBlock
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.world.World
 
 import scala.collection.mutable
 

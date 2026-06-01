@@ -10,7 +10,7 @@ import li.cil.oc.api.prefab
 import li.cil.oc.server.component.result
 import lordfokas.stargatetech2.api.StargateTechAPI
 import lordfokas.stargatetech2.api.bus._
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 import scala.jdk.CollectionConverters._
 

@@ -1,9 +1,10 @@
 package li.cil.oc.api.prefab;
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer;
 
 import li.cil.oc.api.nanomachines.Behavior;
 import li.cil.oc.api.nanomachines.BehaviorProvider;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.entity.player.Player;
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound;
 
 /**
  * Example base implementation of nanomachine behavior provider.

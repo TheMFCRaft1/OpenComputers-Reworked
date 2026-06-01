@@ -2,9 +2,9 @@ package li.cil.oc.integration.rotarycraft;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import li.cil.oc.api.driver.Converter;
-import net.minecraft.item.Item;
+import li.cil.oc.compat.vanilla.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound;
 
 import java.util.HashMap;
 import java.util.Map;

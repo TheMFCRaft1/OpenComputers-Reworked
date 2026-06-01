@@ -1,10 +1,11 @@
 package li.cil.oc.api;
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer;
 
 import cpw.mods.fml.common.event.FMLInterModComms;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.nbt.NBTTagString;
+import net.minecraft.world.item.ItemStack;
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound;
+import li.cil.oc.compat.vanilla.nbt.NBTTagList;
+import li.cil.oc.compat.vanilla.nbt.NBTTagString;
 import org.apache.commons.lang3.tuple.Pair;
 
 /**

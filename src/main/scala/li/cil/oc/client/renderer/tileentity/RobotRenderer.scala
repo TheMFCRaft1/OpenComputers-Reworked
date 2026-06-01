@@ -10,20 +10,20 @@ import li.cil.oc.client.Textures
 import li.cil.oc.common.EventHandler
 import li.cil.oc.common.tileentity
 import li.cil.oc.util.RenderState
-import net.minecraft.block.Block
-import net.minecraft.client.Minecraft
+import li.cil.oc.compat.vanilla.block.Block
+import li.cil.oc.compat.vanilla.client.Minecraft
 import net.minecraft.client.renderer.GLAllocation
-import net.minecraft.client.renderer.RenderBlocks
+import li.cil.oc.compat.vanilla.client.renderer.RenderBlocks
 import net.minecraft.client.renderer.Tessellator
 import net.minecraft.client.renderer.entity.RenderManager
 import net.minecraft.client.renderer.entity.RendererLivingEntity
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer
-import net.minecraft.init.Items
+import li.cil.oc.compat.vanilla.init.Items
 import net.minecraft.item.ItemBlock
 import net.minecraft.item.ItemStack
-import net.minecraft.tileentity.TileEntity
+import li.cil.oc.compat.vanilla.tileentity.TileEntity
 import net.minecraft.util.EnumChatFormatting
-import net.minecraft.util.Vec3
+import li.cil.oc.compat.vanilla.util.Vec3
 import net.minecraftforge.client.IItemRenderer.ItemRenderType._
 import net.minecraftforge.client.IItemRenderer.ItemRendererHelper._
 import net.minecraftforge.client.MinecraftForgeClient
@@ -202,7 +202,7 @@ object RobotRenderer extends TileEntitySpecialRenderer {
     mountPoints(6).rotation.setW(0)
   }
 
-  def renderChassis(robot: tileentity.Robot = null, offset: Double = 0, isRunningOverride: Boolean = false) {
+  def renderChassis(robot: tileentity.Robot = null, offset: Double = 0, isRunningOverride: Boolean = false): Unit = {
     val isRunning = if (robot == null) isRunningOverride else robot.isRunning
 
     val size = 0.3f

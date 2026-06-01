@@ -2,7 +2,7 @@ package li.cil.oc.api.event;
 
 import cpw.mods.fml.common.eventhandler.Cancelable;
 import li.cil.oc.api.internal.Agent;
-import net.minecraft.world.World;
+import li.cil.oc.compat.vanilla.world.World;
 
 public abstract class RobotBreakBlockEvent extends RobotEvent {
     protected RobotBreakBlockEvent(Agent agent) {

@@ -6,11 +6,11 @@ import li.cil.oc.api.Items
 import li.cil.oc.common.block
 import li.cil.oc.common.item.data.PrintData
 import li.cil.oc.util.ExtendedAABB._
-import net.minecraft.block.Block
-import net.minecraft.client.Minecraft
-import net.minecraft.client.renderer.RenderBlocks
+import li.cil.oc.compat.vanilla.block.Block
+import li.cil.oc.compat.vanilla.client.Minecraft
+import li.cil.oc.compat.vanilla.client.renderer.RenderBlocks
 import net.minecraft.client.renderer.texture.TextureMap
-import net.minecraft.util.IIcon
+import li.cil.oc.compat.vanilla.util.IIcon
 import net.minecraftforge.common.util.ForgeDirection
 
 object Print {

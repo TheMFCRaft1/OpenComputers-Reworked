@@ -6,7 +6,7 @@ import li.cil.oc.client.gui.Icons
 import li.cil.oc.common
 import li.cil.oc.common.entity
 import net.minecraft.entity.player.InventoryPlayer
-import net.minecraft.inventory.IInventory
+import li.cil.oc.compat.vanilla.inventory.IInventory
 
 class Drone(playerInventory: InventoryPlayer, val drone: entity.Drone) extends Player(playerInventory, drone.mainInventory) {
   val deltaY = 0

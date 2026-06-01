@@ -9,10 +9,10 @@ import li.cil.oc.common.tileentity
 import li.cil.oc.integration.coloredlights.ModColoredLights
 import li.cil.oc.util.Rarity
 import li.cil.oc.util.Tooltip
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
-import net.minecraft.world.IBlockAccess
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.IBlockAccess
+import li.cil.oc.compat.vanilla.world.World
 import net.minecraftforge.common.util.ForgeDirection
 
 class Hologram(val tier: Int) extends SimpleBlock with traits.SpecialBlock {

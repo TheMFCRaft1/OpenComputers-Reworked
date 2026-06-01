@@ -16,11 +16,11 @@ import li.cil.oc.common.item.traits.Delegate
 import li.cil.oc.common.item.traits.SimpleItem
 import li.cil.oc.integration.util.NEI
 import li.cil.oc.util.Color
-import net.minecraft.block.Block
-import net.minecraft.item.Item
+import li.cil.oc.compat.vanilla.block.Block
+import li.cil.oc.compat.vanilla.item.Item
 import net.minecraft.item.ItemBlock
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 import net.minecraft.util.RegistryNamespaced
 import net.minecraftforge.fluids.FluidRegistry
 import net.minecraftforge.fluids.FluidStack
@@ -215,7 +215,7 @@ object Recipes {
       // Navigation upgrade recrafting.
       GameRegistry.addRecipe(new ExtendedShapelessOreRecipe(
         navigationUpgrade.createItemStack(1),
-        navigationUpgrade.createItemStack(1), new ItemStack(net.minecraft.init.Items.filled_map, 1, OreDictionary.WILDCARD_VALUE)))
+        navigationUpgrade.createItemStack(1), new ItemStack(li.cil.oc.compat.vanilla.init.Items.filled_map, 1, OreDictionary.WILDCARD_VALUE)))
 
       // Floppy disk coloring.
       for (dye <- Color.dyes) {
@@ -277,10 +277,10 @@ object Recipes {
       }
 
       for (block <- Array(
-        net.minecraft.init.Blocks.iron_block,
-        net.minecraft.init.Blocks.gold_block,
-        net.minecraft.init.Blocks.emerald_block,
-        net.minecraft.init.Blocks.diamond_block
+        li.cil.oc.compat.vanilla.init.Blocks.iron_block,
+        li.cil.oc.compat.vanilla.init.Blocks.gold_block,
+        li.cil.oc.compat.vanilla.init.Blocks.emerald_block,
+        li.cil.oc.compat.vanilla.init.Blocks.diamond_block
       )) {
         GameRegistry.addRecipe(new ExtendedShapelessOreRecipe(
           beaconPrint,
@@ -315,7 +315,7 @@ object Recipes {
 
       GameRegistry.addRecipe(new ExtendedShapelessOreRecipe(
         lightPrint,
-        print.createItemStack(1), new ItemStack(net.minecraft.init.Items.glowstone_dust)))
+        print.createItemStack(1), new ItemStack(li.cil.oc.compat.vanilla.init.Items.glowstone_dust)))
 
       {
         val printData = new PrintData(lightPrint)
@@ -325,7 +325,7 @@ object Recipes {
 
       GameRegistry.addRecipe(new ExtendedShapelessOreRecipe(
         lightPrint,
-        print.createItemStack(1), new ItemStack(net.minecraft.init.Blocks.glowstone)))
+        print.createItemStack(1), new ItemStack(li.cil.oc.compat.vanilla.init.Blocks.glowstone)))
 
       // Switch/AccessPoint -> Relay conversion
       GameRegistry.addShapelessRecipe(relay.createItemStack(1), accessPoint.createItemStack(1))

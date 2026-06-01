@@ -30,12 +30,12 @@ import li.cil.oc.util.BlockPosition
 import li.cil.oc.util.ExtendedNBT._
 import li.cil.oc.util.ExtendedWorld._
 import li.cil.oc.util.InventoryUtils
-import net.minecraft.block.Block
-import net.minecraft.block.BlockLiquid
-import net.minecraft.client.Minecraft
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.block.Block
+import li.cil.oc.compat.vanilla.block.BlockLiquid
+import li.cil.oc.compat.vanilla.client.Minecraft
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.common.util.ForgeDirection
 import net.minecraftforge.fluids._
@@ -215,7 +215,7 @@ class Robot extends traits.Computer with traits.PowerInformation with IFluidHand
         world.getTileEntity(newPosition) == proxy
       if (created) {
         assert(BlockPosition(this) == newPosition)
-        world.setBlock(oldPosition, net.minecraft.init.Blocks.air, 0, 1)
+        world.setBlock(oldPosition, li.cil.oc.compat.vanilla.init.Blocks.air, 0, 1)
         world.setBlock(oldPosition, blockRobotAfterImage, 0, 1)
         assert(world.getBlock(oldPosition) == blockRobotAfterImage)
         // Here instead of Lua callback so that it gets called on client, too.

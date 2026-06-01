@@ -5,7 +5,7 @@ import com.bluepowermod.api.connect.ConnectionType
 import com.bluepowermod.api.connect.IConnectionCache
 import com.bluepowermod.api.wire.redstone.IRedstoneDevice
 import li.cil.oc.common.tileentity.traits.RedstoneAware
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 import net.minecraftforge.common.util.ForgeDirection
 
 class RedstoneDevice(val tileEntity: RedstoneAware) extends IRedstoneDevice {

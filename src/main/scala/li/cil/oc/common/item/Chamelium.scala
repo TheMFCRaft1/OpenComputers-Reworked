@@ -1,12 +1,12 @@
 package li.cil.oc.common.item
 
 import li.cil.oc.Settings
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.EnumAction
 import net.minecraft.item.ItemStack
 import net.minecraft.potion.Potion
 import net.minecraft.potion.PotionEffect
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 
 class Chamelium(val parent: Delegator) extends traits.Delegate {
   override def onItemRightClick(stack: ItemStack, world: World, player: EntityPlayer): ItemStack = {

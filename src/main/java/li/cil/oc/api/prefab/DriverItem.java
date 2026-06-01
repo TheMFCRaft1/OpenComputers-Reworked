@@ -1,8 +1,8 @@
 package li.cil.oc.api.prefab;
 
 import li.cil.oc.api.network.EnvironmentHost;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.item.ItemStack;
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound;
 
 /**
  * If you wish to create item components such as the network card or hard drives

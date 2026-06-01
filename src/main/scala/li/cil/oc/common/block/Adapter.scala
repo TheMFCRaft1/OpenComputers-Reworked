@@ -8,11 +8,11 @@ import li.cil.oc.common.GuiType
 import li.cil.oc.common.tileentity
 import li.cil.oc.integration.util.Wrench
 import li.cil.oc.util.BlockPosition
-import net.minecraft.block.Block
+import li.cil.oc.compat.vanilla.block.Block
 import net.minecraft.client.renderer.texture.IIconRegister
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.world.IBlockAccess
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.world.IBlockAccess
+import li.cil.oc.compat.vanilla.world.World
 import net.minecraftforge.common.util.ForgeDirection
 
 class Adapter extends SimpleBlock with traits.GUI {

@@ -31,13 +31,13 @@ import li.cil.oc.util.ExtendedAABB
 import li.cil.oc.util.ExtendedAABB._
 import li.cil.oc.util.ExtendedNBT._
 import net.minecraft.client.renderer.OpenGlHelper
-import net.minecraft.client.renderer.RenderBlocks
+import li.cil.oc.compat.vanilla.client.renderer.RenderBlocks
 import net.minecraft.client.renderer.RenderGlobal
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 import net.minecraft.util.MovingObjectPosition
-import net.minecraft.util.Vec3
+import li.cil.oc.compat.vanilla.util.Vec3
 import net.minecraftforge.common.util.ForgeDirection
 import org.lwjgl.opengl.GL11
 

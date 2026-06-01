@@ -3,7 +3,7 @@ package li.cil.oc.client.renderer.block
 import li.cil.oc.api.event.RackMountableRenderEvent
 import li.cil.oc.client.Textures
 import li.cil.oc.common
-import net.minecraft.client.renderer.RenderBlocks
+import li.cil.oc.compat.vanilla.client.renderer.RenderBlocks
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.common.util.ForgeDirection
 

@@ -13,7 +13,7 @@ import li.cil.oc.client.Textures
 import li.cil.oc.common.container
 import li.cil.oc.common.tileentity
 import li.cil.oc.integration.Mods
-import net.minecraft.client.Minecraft
+import li.cil.oc.compat.vanilla.client.Minecraft
 import net.minecraft.client.gui.inventory.GuiContainer
 import net.minecraft.client.renderer.Tessellator
 import net.minecraft.entity.player.InventoryPlayer

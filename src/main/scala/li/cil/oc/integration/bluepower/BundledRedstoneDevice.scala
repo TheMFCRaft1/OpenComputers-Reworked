@@ -6,7 +6,7 @@ import com.bluepowermod.api.connect.IConnectionCache
 import com.bluepowermod.api.misc.MinecraftColor
 import com.bluepowermod.api.wire.redstone.IBundledDevice
 import li.cil.oc.common.tileentity.traits.BundledRedstoneAware
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 import net.minecraftforge.common.util.ForgeDirection
 
 class BundledRedstoneDevice(val tileEntity: BundledRedstoneAware) extends IBundledDevice {

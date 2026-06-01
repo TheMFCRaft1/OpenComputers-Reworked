@@ -9,10 +9,10 @@ import li.cil.oc.api.network.ManagedEnvironment
 import li.cil.oc.api.prefab.DriverSidedTileEntity
 import li.cil.oc.integration.ManagedTileEntityEnvironment
 import li.cil.oc.util.ResultWrapper.result
-import net.minecraft.init.Items
+import li.cil.oc.compat.vanilla.init.Items
 import net.minecraft.item.ItemStack
-import net.minecraft.tileentity.TileEntityBrewingStand
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.tileentity.TileEntityBrewingStand
+import li.cil.oc.compat.vanilla.world.World
 import net.minecraftforge.common.util.ForgeDirection
 
 object DriverBrewingStand extends DriverSidedTileEntity {

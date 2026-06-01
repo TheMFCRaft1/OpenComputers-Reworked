@@ -3,10 +3,10 @@ package li.cil.oc.common.container
 import cpw.mods.fml.relauncher.Side
 import cpw.mods.fml.relauncher.SideOnly
 import li.cil.oc.common
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.inventory.Slot
 import net.minecraft.item.ItemStack
-import net.minecraft.util.IIcon
+import li.cil.oc.compat.vanilla.util.IIcon
 
 import scala.jdk.CollectionConverters._
 

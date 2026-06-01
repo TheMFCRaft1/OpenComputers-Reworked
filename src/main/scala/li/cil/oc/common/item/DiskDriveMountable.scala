@@ -5,9 +5,9 @@ import java.util
 import li.cil.oc.client.KeyBindings
 import li.cil.oc.{OpenComputers, Settings}
 import li.cil.oc.common.GuiType
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 
 import scala.collection.mutable
 

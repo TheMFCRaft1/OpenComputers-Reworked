@@ -11,7 +11,7 @@ import li.cil.oc.Settings
 import li.cil.oc.api.Items
 import li.cil.oc.client.PacketSender
 import li.cil.oc.common.block.SimpleBlock
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemBlock
 import net.minecraft.network.play.client.C08PacketPlayerBlockPlacement
 import net.minecraft.util.MovingObjectPosition

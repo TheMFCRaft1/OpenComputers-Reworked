@@ -5,7 +5,7 @@ import java.util.UUID
 import li.cil.oc.Settings
 import li.cil.oc.util.ExtendedLuaState._
 import li.cil.repack.com.naef.jnlua.LuaState
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 import scala.collection.mutable
 

@@ -15,7 +15,7 @@ import scala.jdk.CollectionConverters._
 
 /** NeoForge 1.21.1 capacitor block entity (Phase 3 PoC). OC network node wiring follows in Phase 3+. */
 class CapacitorBlockEntity(
-  beType: BlockEntityType[_],
+  beType: BlockEntityType[?],
   pos: BlockPos,
   state: BlockState
 ) extends OCBlockEntity(beType, pos, state) with DeviceInfo {

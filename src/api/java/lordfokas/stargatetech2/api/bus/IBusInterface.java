@@ -1,6 +1,6 @@
 package lordfokas.stargatetech2.api.bus;
 
-import net.minecraft.nbt.NBTTagCompound;
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound;
 
 /**
  * <b>DO NOT IMPLEMENT THIS INTERFACE!</b> To get an instance use

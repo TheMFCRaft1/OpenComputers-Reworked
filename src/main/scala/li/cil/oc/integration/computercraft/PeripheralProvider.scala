@@ -3,7 +3,7 @@ package li.cil.oc.integration.computercraft
 import dan200.computercraft.api.ComputerCraftAPI
 import dan200.computercraft.api.peripheral.IPeripheralProvider
 import li.cil.oc.common.tileentity.traits.SwitchLike
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 
 object PeripheralProvider extends IPeripheralProvider {
   def init(): Unit = {

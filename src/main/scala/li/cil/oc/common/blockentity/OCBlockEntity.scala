@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.state.BlockState
 
 /** NeoForge base block entity — replaces `tileentity.traits.TileEntity` for new registrations. */
 abstract class OCBlockEntity(
-  beType: BlockEntityType[_],
+  beType: BlockEntityType[?],
   pos: BlockPos,
   state: BlockState
 ) extends BlockEntity(beType, pos, state) {

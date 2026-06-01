@@ -11,7 +11,7 @@ import li.cil.oc.util.ExtendedAABB._
 import li.cil.oc.util.ExtendedBlock._
 import li.cil.oc.util.ExtendedWorld._
 import li.cil.oc.util.RenderState
-import net.minecraft.client.Minecraft
+import li.cil.oc.compat.vanilla.client.Minecraft
 import net.minecraft.client.renderer.OpenGlHelper
 import net.minecraft.client.renderer.RenderGlobal
 import net.minecraft.client.renderer.Tessellator

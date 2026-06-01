@@ -30,9 +30,9 @@ import li.cil.oc.util
 import li.cil.oc.util.BlockPosition
 import li.cil.oc.util.PackedColor
 import li.cil.oc.util.SideTracker
-import net.minecraft.client.Minecraft
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.client.Minecraft
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 import net.minecraftforge.event.world.ChunkEvent
 import net.minecraftforge.event.world.WorldEvent
 

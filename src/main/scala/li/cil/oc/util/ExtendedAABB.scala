@@ -1,7 +1,7 @@
 package li.cil.oc.util
 
-import net.minecraft.util.AxisAlignedBB
-import net.minecraft.util.Vec3
+import li.cil.oc.compat.vanilla.util.AxisAlignedBB
+import li.cil.oc.compat.vanilla.util.Vec3
 import net.minecraftforge.common.util.ForgeDirection
 
 import scala.language.implicitConversions

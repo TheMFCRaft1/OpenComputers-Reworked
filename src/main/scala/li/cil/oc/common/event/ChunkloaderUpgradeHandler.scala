@@ -7,13 +7,13 @@ import li.cil.oc.OpenComputers
 import li.cil.oc.api.event.RobotMoveEvent
 import li.cil.oc.server.component.UpgradeChunkloader
 import li.cil.oc.util.BlockPosition
-import net.minecraft.world.ChunkCoordIntPair
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.ChunkCoordIntPair
+import li.cil.oc.compat.vanilla.world.World
 import net.minecraftforge.common.ForgeChunkManager
 import net.minecraftforge.common.ForgeChunkManager.LoadingCallback
 import net.minecraftforge.common.ForgeChunkManager.Ticket
 import net.minecraftforge.event.world.WorldEvent
-import net.minecraft.entity.Entity
+import li.cil.oc.compat.vanilla.entity.Entity
 
 import scala.jdk.CollectionConverters._
 import scala.collection.mutable

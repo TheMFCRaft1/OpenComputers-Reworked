@@ -2,7 +2,7 @@ package li.cil.oc.common.asm.template;
 
 import li.cil.oc.api.network.Environment;
 import li.cil.oc.api.network.SimpleComponent;
-import net.minecraft.nbt.NBTTagCompound;
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound;
 
 /**
  * This interface defines the names to which existing or placeholders for

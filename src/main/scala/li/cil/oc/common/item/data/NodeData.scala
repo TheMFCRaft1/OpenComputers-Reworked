@@ -3,7 +3,7 @@ package li.cil.oc.common.item.data
 import li.cil.oc.Settings
 import li.cil.oc.api.network.Visibility
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 // Generic one for items that are used as components; gets the items node info.
 class NodeData extends ItemData(null) {

@@ -7,7 +7,7 @@ import li.cil.oc.api.machine.Context
 import li.cil.oc.api.network.Visibility
 import li.cil.oc.api.prefab
 import li.cil.oc.common.tileentity.traits.RedstoneChangedEventArgs
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 import net.minecraftforge.common.util.ForgeDirection
 
 import scala.collection.mutable.ArrayBuffer

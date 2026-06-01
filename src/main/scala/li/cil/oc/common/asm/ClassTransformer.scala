@@ -276,7 +276,7 @@ class ClassTransformer extends IClassTransformer {
       throw new InjectionFailedException("Could not find SimpleComponent template!")
     }
 
-    def inject(methodName: String, signature: String, required: Boolean = false) {
+    def inject(methodName: String, signature: String, required: Boolean = false): Unit = {
       def filter(method: MethodNode) = method.name == methodName && method.desc == signature
       if (classNode.methods.exists(filter)) {
         if (required) {

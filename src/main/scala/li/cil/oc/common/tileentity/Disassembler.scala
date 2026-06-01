@@ -17,9 +17,9 @@ import li.cil.oc.util.BlockPosition
 import li.cil.oc.util.ExtendedNBT._
 import li.cil.oc.util.InventoryUtils
 import li.cil.oc.util.ItemUtils
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 import net.minecraftforge.common.util.Constants.NBT
 import net.minecraftforge.common.util.ForgeDirection
 
@@ -108,7 +108,7 @@ class Disassembler extends traits.Environment with traits.PowerAcceptor with tra
     }
   }
 
-  def disassemble(stack: ItemStack, instant: Boolean = false) {
+  def disassemble(stack: ItemStack, instant: Boolean = false): Unit = {
     // Validate the item, never trust Minecraft / other Mods on anything!
     if (isItemValidForSlot(0, stack)) {
       val ingredients = ItemUtils.getIngredients(stack)

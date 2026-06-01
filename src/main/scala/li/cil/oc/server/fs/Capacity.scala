@@ -4,7 +4,7 @@ import java.io
 
 import li.cil.oc.Settings
 import li.cil.oc.api.fs.Mode
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 trait Capacity extends OutputStreamFileSystem {
   private var used = computeSize("/")

@@ -1,6 +1,6 @@
 package li.cil.oc.common.inventory
 
-import net.minecraft.inventory.IInventory
+import li.cil.oc.compat.vanilla.inventory.IInventory
 import net.minecraft.item.ItemStack
 
 trait SimpleInventory extends IInventory {

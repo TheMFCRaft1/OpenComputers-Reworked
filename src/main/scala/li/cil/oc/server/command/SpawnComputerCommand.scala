@@ -10,10 +10,10 @@ import li.cil.oc.util.ExtendedWorld._
 import li.cil.oc.util.InventoryUtils
 import net.minecraft.command.ICommandSender
 import net.minecraft.command.WrongUsageException
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.util.ChatComponentText
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.util.ChatComponentText
 import net.minecraft.util.MovingObjectPosition
-import net.minecraft.util.Vec3
+import li.cil.oc.compat.vanilla.util.Vec3
 import net.minecraftforge.common.util.ForgeDirection
 
 object SpawnComputerCommand extends SimpleCommand("oc_spawnComputer") {

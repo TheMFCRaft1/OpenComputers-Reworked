@@ -20,10 +20,10 @@ import li.cil.oc.integration.util.ItemCharge
 import li.cil.oc.server.{PacketSender => ServerPacketSender}
 import li.cil.oc.util.BlockPosition
 import li.cil.oc.util.ExtendedWorld._
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.util.Vec3
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.util.Vec3
 import net.minecraftforge.common.util.ForgeDirection
 
 import scala.jdk.CollectionConverters._

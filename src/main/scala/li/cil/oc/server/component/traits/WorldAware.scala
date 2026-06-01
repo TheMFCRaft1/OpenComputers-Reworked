@@ -6,12 +6,12 @@ import li.cil.oc.Settings
 import li.cil.oc.util.BlockPosition
 import li.cil.oc.util.ExtendedBlock._
 import li.cil.oc.util.ExtendedWorld._
-import net.minecraft.entity.Entity
+import li.cil.oc.compat.vanilla.entity.Entity
 import net.minecraft.entity.EntityLivingBase
 import net.minecraft.entity.item.EntityMinecart
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.util.AxisAlignedBB
-import net.minecraft.world.WorldServer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.util.AxisAlignedBB
+import li.cil.oc.compat.vanilla.world.WorldServer
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.common.util.FakePlayerFactory
 import net.minecraftforge.common.util.ForgeDirection

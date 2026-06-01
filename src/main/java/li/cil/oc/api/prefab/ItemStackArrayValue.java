@@ -3,10 +3,10 @@ package li.cil.oc.api.prefab;
 import li.cil.oc.api.machine.Arguments;
 import li.cil.oc.api.machine.Callback;
 import li.cil.oc.api.machine.Context;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTBase;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
+import net.minecraft.world.item.ItemStack;
+import li.cil.oc.compat.vanilla.nbt.NBTBase;
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound;
+import li.cil.oc.compat.vanilla.nbt.NBTTagList;
 
 import java.util.HashMap;
 import java.util.TreeMap;

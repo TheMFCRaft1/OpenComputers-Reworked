@@ -1,6 +1,6 @@
 package li.cil.oc.util
 
-import net.minecraft.block.Block
+import li.cil.oc.compat.vanilla.block.Block
 import net.minecraftforge.common.util.ForgeDirection
 import net.minecraftforge.fluids.IFluidBlock
 

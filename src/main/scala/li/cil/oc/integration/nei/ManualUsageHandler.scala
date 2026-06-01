@@ -10,7 +10,7 @@ import codechicken.nei.recipe.GuiRecipe
 import codechicken.nei.recipe.IUsageHandler
 import li.cil.oc.Localization
 import li.cil.oc.api
-import net.minecraft.client.Minecraft
+import li.cil.oc.compat.vanilla.client.Minecraft
 import net.minecraft.client.gui.GuiButton
 import net.minecraft.client.gui.inventory.GuiContainer
 import net.minecraft.inventory.Container

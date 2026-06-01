@@ -1,9 +1,10 @@
 package li.cil.oc.common.inventory
 
+import li.cil.oc._
 import li.cil.oc.Settings
 import li.cil.oc.util.ExtendedNBT._
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 import net.minecraftforge.common.util.Constants.NBT
 
 trait Inventory extends SimpleInventory {

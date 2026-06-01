@@ -9,8 +9,8 @@ import li.cil.oc.server.component.result
 import li.cil.oc.util.{BlockInventorySource, BlockPosition, DatabaseAccess, EntityInventorySource, InventorySource, InventoryUtils}
 import li.cil.oc.util.ExtendedWorld._
 import li.cil.oc.util.ExtendedArguments._
-import net.minecraft.inventory.IInventory
-import net.minecraft.block.Block
+import li.cil.oc.compat.vanilla.inventory.IInventory
+import li.cil.oc.compat.vanilla.block.Block
 import net.minecraft.entity.EntityList
 import net.minecraft.item.ItemStack
 import net.minecraftforge.common.util.ForgeDirection

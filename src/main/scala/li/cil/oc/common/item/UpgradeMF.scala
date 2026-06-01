@@ -4,9 +4,9 @@ import java.util
 
 import li.cil.oc.util.BlockPosition
 import li.cil.oc.{Localization, Settings}
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 class UpgradeMF(val parent: Delegator) extends traits.Delegate with traits.ItemTier {
 

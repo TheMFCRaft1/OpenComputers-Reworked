@@ -16,10 +16,10 @@ import li.cil.oc.api.network.Visibility
 import li.cil.oc.api.prefab
 import li.cil.oc.util.SideTracker
 import net.minecraft.entity.EntityLivingBase
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 import net.minecraft.potion.Potion
-import net.minecraft.util.AxisAlignedBB
-import net.minecraft.util.Vec3
+import li.cil.oc.compat.vanilla.util.AxisAlignedBB
+import li.cil.oc.compat.vanilla.util.Vec3
 
 import scala.jdk.CollectionConverters._
 import scala.jdk.CollectionConverters._

@@ -12,7 +12,7 @@ import li.cil.oc.integration.opencomputers.Item
 import li.cil.oc.server.fs.ComputerCraftFileSystem
 import li.cil.oc.server.fs.ComputerCraftWritableFileSystem
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 object DriverComputerCraftMedia extends Item {
   override def worksWith(stack: ItemStack) = stack.getItem.isInstanceOf[IMedia]

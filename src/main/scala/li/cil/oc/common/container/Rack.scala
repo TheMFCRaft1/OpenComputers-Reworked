@@ -5,8 +5,8 @@ import li.cil.oc.common.Slot
 import li.cil.oc.common.tileentity
 import li.cil.oc.util.ExtendedNBT._
 import net.minecraft.entity.player.InventoryPlayer
-import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.nbt.NBTTagIntArray
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagIntArray
 import net.minecraftforge.common.util.Constants.NBT
 import net.minecraftforge.common.util.ForgeDirection
 

@@ -4,8 +4,8 @@ import java.io.InvalidObjectException
 import java.security.InvalidParameterException
 
 import li.cil.oc.api.network.{Environment, Message, Node}
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 import li.cil.oc.api.internal.TextBuffer.ColorDepth
 import li.cil.oc.api
 import li.cil.oc.common.component.traits.{TextBufferProxy, VideoRamDevice, VideoRamRasterizer}

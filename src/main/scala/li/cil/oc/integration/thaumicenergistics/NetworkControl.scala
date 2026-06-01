@@ -6,7 +6,7 @@ import li.cil.oc.api.machine.Arguments
 import li.cil.oc.api.machine.Callback
 import li.cil.oc.api.machine.Context
 import li.cil.oc.util.ResultWrapper._
-import net.minecraft.tileentity.TileEntity
+import li.cil.oc.compat.vanilla.tileentity.TileEntity
 import thaumicenergistics.api.IThEEssentiaGas
 
 import scala.jdk.CollectionConverters._

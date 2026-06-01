@@ -14,10 +14,10 @@ import li.cil.oc.api.network.Analyzable
 import li.cil.oc.api.network._
 import li.cil.oc.common.Slot
 import li.cil.oc.server.{PacketSender => ServerPacketSender}
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.nbt.NBTTagList
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagList
 import net.minecraftforge.common.util.Constants.NBT
 import net.minecraftforge.common.util.ForgeDirection
 

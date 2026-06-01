@@ -1,10 +1,10 @@
 package li.cil.oc.integration.util
 
 import net.minecraft.entity.EntityLivingBase
-import net.minecraft.util.ChatComponentTranslation
+import li.cil.oc.compat.vanilla.util.ChatComponentTranslation
 import net.minecraft.util.DamageSource
 import net.minecraft.util.IChatComponent
-import net.minecraft.util.StatCollector
+import li.cil.oc.compat.vanilla.util.StatCollector
 
 class DamageSourceWithRandomCause(name: String, numCauses: Int) extends DamageSource(name) {
   override def func_151519_b(damagee: EntityLivingBase): IChatComponent = {

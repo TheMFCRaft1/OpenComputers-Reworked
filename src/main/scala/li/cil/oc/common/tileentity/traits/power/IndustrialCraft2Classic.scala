@@ -9,8 +9,8 @@ import li.cil.oc.common.EventHandler
 import li.cil.oc.common.asm.Injectable
 import li.cil.oc.integration.Mods
 import li.cil.oc.integration.util.Power
-import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.tileentity.TileEntity
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.tileentity.TileEntity
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.common.util.ForgeDirection
 

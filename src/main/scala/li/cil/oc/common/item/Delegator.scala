@@ -16,15 +16,15 @@ import li.cil.oc.integration.opencomputers.{Item => OpenComputersItem}
 import li.cil.oc.util.BlockPosition
 import net.minecraft.client.renderer.texture.IIconRegister
 import net.minecraft.creativetab.CreativeTabs
-import net.minecraft.entity.Entity
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.Entity
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.EnumAction
 import net.minecraft.item.EnumRarity
-import net.minecraft.item.Item
+import li.cil.oc.compat.vanilla.item.Item
 import net.minecraft.item.ItemStack
-import net.minecraft.util.IIcon
+import li.cil.oc.compat.vanilla.util.IIcon
 import net.minecraft.util.WeightedRandomChestContent
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 import net.minecraftforge.common.ChestGenHooks
 
 import scala.collection.mutable

@@ -24,9 +24,9 @@ import li.cil.oc.util.DatabaseAccess
 import li.cil.oc.util.ExtendedArguments._
 import li.cil.oc.util.ExtendedNBT._
 import li.cil.oc.util.ResultWrapper._
-import net.minecraft.item.Item
-import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.tileentity.TileEntity
+import li.cil.oc.compat.vanilla.item.Item
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.tileentity.TileEntity
 import net.minecraftforge.common.DimensionManager
 import net.minecraftforge.common.util.Constants.NBT
 import net.minecraftforge.common.util.ForgeDirection

@@ -4,26 +4,28 @@ import net.minecraft.core.Direction;
 
 /** Forge 1.7.10 facing compatibility for OpenComputers port. */
 public enum ForgeDirection {
-    DOWN(Direction.DOWN, 0, -1, 0),
-    UP(Direction.UP, 0, 1, 0),
-    NORTH(Direction.NORTH, 0, 0, -1),
-    SOUTH(Direction.SOUTH, 0, 0, 1),
-    WEST(Direction.WEST, -1, 0, 0),
-    EAST(Direction.EAST, 1, 0, 0),
-    UNKNOWN(null, 0, 0, 0);
+    DOWN(Direction.DOWN, 0, -1, 0, 1 << 0),
+    UP(Direction.UP, 0, 1, 0, 1 << 1),
+    NORTH(Direction.NORTH, 0, 0, -1, 1 << 2),
+    SOUTH(Direction.SOUTH, 0, 0, 1, 1 << 3),
+    WEST(Direction.WEST, -1, 0, 0, 1 << 4),
+    EAST(Direction.EAST, 1, 0, 0, 1 << 5),
+    UNKNOWN(null, 0, 0, 0, 0);
 
     public static final ForgeDirection[] VALID_DIRECTIONS = {DOWN, UP, NORTH, SOUTH, WEST, EAST};
 
     public final int offsetX;
     public final int offsetY;
     public final int offsetZ;
+    public final int flag;
     private final Direction mc;
 
-    ForgeDirection(Direction mc, int offsetX, int offsetY, int offsetZ) {
+    ForgeDirection(Direction mc, int offsetX, int offsetY, int offsetZ, int flag) {
         this.mc = mc;
         this.offsetX = offsetX;
         this.offsetY = offsetY;
         this.offsetZ = offsetZ;
+        this.flag = flag;
     }
 
     public Direction toDirection() {

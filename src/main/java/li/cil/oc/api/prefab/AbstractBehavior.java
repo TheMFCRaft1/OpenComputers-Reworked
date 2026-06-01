@@ -1,8 +1,9 @@
 package li.cil.oc.api.prefab;
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer;
 
 import li.cil.oc.api.nanomachines.Behavior;
 import li.cil.oc.api.nanomachines.DisableReason;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.entity.player.Player;
 
 /**
  * Base class for behaviors, mostly useful to have less cluttered classes when

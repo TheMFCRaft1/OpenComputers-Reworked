@@ -1,7 +1,7 @@
 package li.cil.oc.common.tileentity
 
 import li.cil.oc.server.component
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 class Transposer extends traits.Environment {
   val transposer = new component.Transposer.Block(this)

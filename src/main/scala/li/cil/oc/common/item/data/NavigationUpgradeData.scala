@@ -5,8 +5,8 @@ import li.cil.oc.Settings
 import li.cil.oc.util.ExtendedNBT._
 import net.minecraft.item.ItemMap
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.world.World
 
 class NavigationUpgradeData extends ItemData(Constants.ItemName.NavigationUpgrade) {
   def this(stack: ItemStack): Unit = {
@@ -14,7 +14,7 @@ class NavigationUpgradeData extends ItemData(Constants.ItemName.NavigationUpgrad
     load(stack)
   }
 
-  var map = new ItemStack(net.minecraft.init.Items.filled_map)
+  var map = new ItemStack(li.cil.oc.compat.vanilla.init.Items.filled_map)
 
   def mapData(world: World) = try map.getItem.asInstanceOf[ItemMap].getMapData(map, world) catch {
     case _: Throwable => throw new Exception("invalid map")

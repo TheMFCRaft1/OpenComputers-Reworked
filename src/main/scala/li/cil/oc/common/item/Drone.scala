@@ -11,7 +11,7 @@ import li.cil.oc.integration.util.NEI
 import li.cil.oc.server.agent
 import li.cil.oc.util.BlockPosition
 import li.cil.oc.util.Rarity
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
 
 class Drone(val parent: Delegator) extends traits.Delegate {

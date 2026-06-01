@@ -23,9 +23,9 @@ import li.cil.oc.api.prefab.AbstractValue
 import li.cil.oc.common.SaveHandler
 import li.cil.oc.server.{PacketSender => ServerPacketSender}
 import li.cil.oc.util.ExtendedNBT._
-import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.nbt.NBTTagIntArray
-import net.minecraft.nbt.NBTTagList
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagIntArray
+import li.cil.oc.compat.vanilla.nbt.NBTTagList
 import net.minecraftforge.common.util.Constants.NBT
 
 import scala.jdk.CollectionConverters._

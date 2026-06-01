@@ -1,7 +1,7 @@
 package li.cil.oc.common.inventory
 
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 trait ItemStackInventory extends Inventory {
   // The item stack that provides the inventory.

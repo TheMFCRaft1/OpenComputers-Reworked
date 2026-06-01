@@ -13,8 +13,8 @@ import li.cil.oc.util.ExtendedWorld._
 import mods.immibis.redlogic.api.wiring.IBundledEmitter
 import mods.immibis.redlogic.api.wiring.IBundledUpdatable
 import mrtjp.projectred.api.IBundledTile
-import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.nbt.NBTTagIntArray
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagIntArray
 import net.minecraftforge.common.util.Constants.NBT
 import net.minecraftforge.common.util.ForgeDirection
 import powercrystals.minefactoryreloaded.api.rednet.IRedNetNetworkContainer

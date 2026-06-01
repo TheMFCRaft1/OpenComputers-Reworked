@@ -3,8 +3,8 @@ package li.cil.oc.common.block.traits
 import li.cil.oc.OpenComputers
 import li.cil.oc.common.GuiType
 import li.cil.oc.common.block.SimpleBlock
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.world.World
 import net.minecraftforge.common.util.ForgeDirection
 
 trait GUI extends SimpleBlock {

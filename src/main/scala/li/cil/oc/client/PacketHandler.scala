@@ -21,10 +21,10 @@ import li.cil.oc.common.tileentity.traits._
 import li.cil.oc.common.{PacketHandler => CommonPacketHandler}
 import li.cil.oc.util.Audio
 import li.cil.oc.util.ExtendedWorld._
-import net.minecraft.client.Minecraft
+import li.cil.oc.compat.vanilla.client.Minecraft
 import net.minecraft.client.gui.GuiScreen
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.nbt.CompressedStreamTools
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.nbt.CompressedStreamTools
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.common.util.ForgeDirection
 import org.lwjgl.input.Keyboard
@@ -183,7 +183,7 @@ object PacketHandler extends CommonPacketHandler {
   def onFileSystemActivity(p: PacketParser) = {
     val sound = p.readUTF()
     val data = CompressedStreamTools.read(p)
-    if (p.readBoolean()) p.readTileEntity[net.minecraft.tileentity.TileEntity]() match {
+    if (p.readBoolean()) p.readTileEntity[li.cil.oc.compat.vanilla.tileentity.TileEntity]() match {
       case Some(t) =>
         MinecraftForge.EVENT_BUS.post(new FileSystemAccessEvent.Client(sound, t, data))
       case _ => // Invalid packet.
@@ -200,7 +200,7 @@ object PacketHandler extends CommonPacketHandler {
 
   def onNetworkActivity(p: PacketParser) = {
     val data = CompressedStreamTools.read(p)
-    if (p.readBoolean()) p.readTileEntity[net.minecraft.tileentity.TileEntity]() match {
+    if (p.readBoolean()) p.readTileEntity[li.cil.oc.compat.vanilla.tileentity.TileEntity]() match {
       case Some(t) =>
         MinecraftForge.EVENT_BUS.post(new NetworkActivityEvent.Client(t, data))
       case _ => // Invalid packet.

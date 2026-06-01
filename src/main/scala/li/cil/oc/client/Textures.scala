@@ -2,7 +2,7 @@ package li.cil.oc.client
 
 import li.cil.oc.Settings
 import net.minecraft.client.renderer.texture.TextureManager
-import net.minecraft.util.IIcon
+import li.cil.oc.compat.vanilla.util.IIcon
 import net.minecraft.util.ResourceLocation
 
 object Textures {

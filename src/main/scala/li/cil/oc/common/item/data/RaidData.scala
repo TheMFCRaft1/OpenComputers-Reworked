@@ -4,7 +4,7 @@ import li.cil.oc.Constants
 import li.cil.oc.Settings
 import li.cil.oc.util.ExtendedNBT._
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 import net.minecraftforge.common.util.Constants.NBT
 
 class RaidData extends ItemData(Constants.BlockName.Raid) {

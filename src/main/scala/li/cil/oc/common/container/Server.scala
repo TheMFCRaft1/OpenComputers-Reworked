@@ -3,9 +3,9 @@ package li.cil.oc.common.container
 import li.cil.oc.common.InventorySlots
 import li.cil.oc.common.inventory.ServerInventory
 import li.cil.oc.server.component
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.entity.player.InventoryPlayer
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 class Server(playerInventory: InventoryPlayer, serverInventory: ServerInventory, val server: Option[component.Server] = None) extends Player(playerInventory, serverInventory) {
   for (i <- 0 to 1) {

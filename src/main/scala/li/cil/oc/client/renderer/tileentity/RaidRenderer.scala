@@ -5,7 +5,7 @@ import li.cil.oc.common.tileentity.Raid
 import li.cil.oc.util.RenderState
 import net.minecraft.client.renderer.Tessellator
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer
-import net.minecraft.tileentity.TileEntity
+import li.cil.oc.compat.vanilla.tileentity.TileEntity
 import net.minecraftforge.common.util.ForgeDirection
 import org.lwjgl.opengl.GL11
 

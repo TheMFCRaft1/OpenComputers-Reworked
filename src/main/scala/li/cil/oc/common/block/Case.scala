@@ -11,11 +11,11 @@ import li.cil.oc.util.Color
 import li.cil.oc.util.Rarity
 import li.cil.oc.util.Tooltip
 import net.minecraft.client.renderer.texture.IIconRegister
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
-import net.minecraft.util.IIcon
-import net.minecraft.world.IBlockAccess
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.util.IIcon
+import li.cil.oc.compat.vanilla.world.IBlockAccess
+import li.cil.oc.compat.vanilla.world.World
 import net.minecraftforge.common.util.ForgeDirection
 
 class Case(val tier: Int) extends RedstoneAware with traits.PowerAcceptor with traits.StateAware with traits.GUI {

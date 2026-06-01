@@ -2,7 +2,7 @@ package li.cil.oc.api.event;
 
 import cpw.mods.fml.common.eventhandler.Cancelable;
 import cpw.mods.fml.common.eventhandler.Event;
-import net.minecraft.tileentity.TileEntitySign;
+import li.cil.oc.compat.vanilla.tileentity.TileEntitySign;
 
 /**
  * A bit more specific sign change event that holds information about new text of the sign. Used in the sign upgrade.

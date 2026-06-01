@@ -19,9 +19,9 @@ import li.cil.oc.common.tileentity._
 import li.cil.oc.common.tileentity.traits.Computer
 import li.cil.oc.common.{PacketHandler => CommonPacketHandler}
 import li.cil.oc.integration.fmp.EventHandler
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.entity.player.EntityPlayerMP
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayerMP
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 import net.minecraft.network.NetHandlerPlayServer
 import net.minecraftforge.common.DimensionManager
 import org.apache.logging.log4j.MarkerManager

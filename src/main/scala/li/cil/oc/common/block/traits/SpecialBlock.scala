@@ -1,7 +1,7 @@
 package li.cil.oc.common.block.traits
 
 import li.cil.oc.common.block.SimpleBlock
-import net.minecraft.world.IBlockAccess
+import li.cil.oc.compat.vanilla.world.IBlockAccess
 import net.minecraftforge.common.util.ForgeDirection
 
 trait SpecialBlock extends SimpleBlock {

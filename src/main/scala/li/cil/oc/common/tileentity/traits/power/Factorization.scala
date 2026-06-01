@@ -9,7 +9,7 @@ import li.cil.oc.Settings
 import li.cil.oc.common.asm.Injectable
 import li.cil.oc.integration.Mods
 import li.cil.oc.integration.util.Power
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 @Injectable.Interface(value = "factorization.api.IChargeConductor", modid = Mods.IDs.Factorization)
 trait Factorization extends Common {

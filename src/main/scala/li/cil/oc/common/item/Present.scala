@@ -7,9 +7,9 @@ import li.cil.oc.OpenComputers
 import li.cil.oc.api
 import li.cil.oc.util.InventoryUtils
 import li.cil.oc.util.ItemUtils
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 
 import scala.collection.mutable
 

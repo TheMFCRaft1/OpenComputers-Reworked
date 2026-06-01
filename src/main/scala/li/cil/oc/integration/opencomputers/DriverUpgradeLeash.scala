@@ -8,7 +8,7 @@ import li.cil.oc.api.network.EnvironmentHost
 import li.cil.oc.common.Slot
 import li.cil.oc.common.Tier
 import li.cil.oc.server.component
-import net.minecraft.entity.Entity
+import li.cil.oc.compat.vanilla.entity.Entity
 import net.minecraft.item.ItemStack
 
 object DriverUpgradeLeash extends Item with HostAware {

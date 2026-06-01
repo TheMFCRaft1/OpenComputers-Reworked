@@ -1,8 +1,10 @@
 package li.cil.oc.compat
 
+import net.minecraft.core.component.DataComponents
 import net.minecraft.core.HolderLookup
-import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
+import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.component.CustomData
 
 object ItemStackCompat {
   implicit class Ops(val stack: ItemStack) {
@@ -10,22 +12,27 @@ object ItemStackCompat {
 
     def stackSize_=(count: Int): Unit = stack.setCount(count)
 
-    def hasTagCompound: Boolean = stack.hasTag
+    def hasTagCompound: Boolean = stack.has(DataComponents.CUSTOM_DATA)
 
     def getTagCompound: NBTTagCompound =
-      if (stack.hasTag) new NBTTagCompound(stack.getTag) else null
+      if (hasTagCompound) new NBTTagCompound(stack.get(DataComponents.CUSTOM_DATA).copyTag())
+      else null
 
     def setTagCompound(tag: NBTTagCompound): Unit =
-      stack.setTag(if (tag == null) null else tag.unwrap())
+      if (tag == null) stack.remove(DataComponents.CUSTOM_DATA)
+      else stack.set(DataComponents.CUSTOM_DATA, CustomData.of(tag.unwrap()))
 
     def writeToNBT(tag: NBTTagCompound)(implicit registries: HolderLookup.Provider): Unit =
       stack.save(registries, tag.unwrap())
 
-    def readFromNBT(tag: NBTTagCompound)(implicit registries: HolderLookup.Provider): Unit = {
-      val copy = stack.copy()
-      copy.load(registries, tag.unwrap())
-      stack.setCount(copy.getCount)
-      stack.setTag(copy.getTag)
-    }
+    def readFromNBT(tag: NBTTagCompound)(implicit registries: HolderLookup.Provider): Unit =
+      ItemStack.parse(registries, tag.unwrap()).ifPresent { parsed =>
+        stack.setCount(parsed.getCount)
+        if (parsed.has(DataComponents.CUSTOM_DATA)) {
+          stack.set(DataComponents.CUSTOM_DATA, parsed.get(DataComponents.CUSTOM_DATA))
+        } else {
+          stack.remove(DataComponents.CUSTOM_DATA)
+        }
+      }
   }
 }

@@ -10,18 +10,18 @@ import li.cil.oc.util.ItemColorizer
 import net.minecraft.client.model.ModelBiped
 import net.minecraft.client.renderer.texture.IIconRegister
 import net.minecraft.entity.item.EntityItem
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.entity.Entity
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.Entity
 import net.minecraft.entity.EntityLivingBase
-import net.minecraft.init.Blocks
+import li.cil.oc.compat.vanilla.init.Blocks
 import net.minecraft.item.EnumRarity
 import net.minecraft.item.ItemArmor
 import net.minecraft.item.ItemStack
 import net.minecraft.potion.Potion
 import net.minecraft.potion.PotionEffect
-import net.minecraft.util.IIcon
+import li.cil.oc.compat.vanilla.util.IIcon
 import net.minecraft.util.MathHelper
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 
 class HoverBoots extends ItemArmor(ItemArmor.ArmorMaterial.DIAMOND, 0, 3) with traits.SimpleItem with traits.Chargeable {
   setNoRepair()

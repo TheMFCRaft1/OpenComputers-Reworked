@@ -18,8 +18,8 @@ import li.cil.oc.api.prefab
 import li.cil.oc.util.ExtendedNBT._
 import net.minecraft.entity.item.EntityItem
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.tileentity.TileEntityFurnace
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.tileentity.TileEntityFurnace
 
 import scala.jdk.CollectionConverters._
 

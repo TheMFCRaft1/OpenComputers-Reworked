@@ -5,8 +5,8 @@ import li.cil.oc.api
 import li.cil.oc.api.nanomachines.Behavior
 import li.cil.oc.api.nanomachines.DisableReason
 import li.cil.oc.api.prefab.AbstractBehavior
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 import net.minecraft.potion.Potion
 import net.minecraft.potion.PotionEffect
 

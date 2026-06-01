@@ -17,9 +17,9 @@ import li.cil.oc.api.network._
 import li.cil.oc.api.prefab
 import li.cil.oc.server.agent.Player
 import li.cil.oc.util.InventoryUtils
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.inventory
-import net.minecraft.inventory.IInventory
+import li.cil.oc.compat.vanilla.inventory.IInventory
 import net.minecraft.item.ItemStack
 import net.minecraft.item.crafting.CraftingManager
 import net.minecraftforge.common.MinecraftForge

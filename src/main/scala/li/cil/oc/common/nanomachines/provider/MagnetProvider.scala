@@ -4,9 +4,9 @@ import li.cil.oc.Settings
 import li.cil.oc.api
 import li.cil.oc.api.prefab.AbstractBehavior
 import net.minecraft.entity.item.EntityItem
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.util.Vec3
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.util.Vec3
 
 import scala.jdk.CollectionConverters._
 

@@ -1,6 +1,5 @@
 package li.cil.oc.compat;
 
-import li.cil.oc.OpenComputers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -27,7 +26,7 @@ public final class CompatRegistry {
     }
 
     public static ResourceLocation id(String path) {
-        return ResourceLocation.fromNamespaceAndPath(OpenComputers.ID, path);
+        return ResourceLocation.fromNamespaceAndPath("opencomputers", path);
     }
 
     public static Block block(String path) {

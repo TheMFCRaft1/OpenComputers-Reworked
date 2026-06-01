@@ -18,8 +18,8 @@ import li.cil.oc.api.network.EnvironmentHost
 import li.cil.oc.util.BlockPosition
 import li.cil.oc.util.SafeThreadPool
 import li.cil.oc.util.ThreadPoolFactory
-import net.minecraft.nbt.CompressedStreamTools
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.CompressedStreamTools
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 import net.minecraft.world.{ChunkCoordIntPair, World, WorldServer}
 import net.minecraftforge.common.DimensionManager
 import net.minecraftforge.event.world.WorldEvent
@@ -81,11 +81,11 @@ object SaveHandler {
     scheduleSave(BlockPosition(host), nbt, name, data)
   }
 
-  def scheduleSave(host: MachineHost, nbt: NBTTagCompound, name: String, save: NBTTagCompound => Unit) {
+  def scheduleSave(host: MachineHost, nbt: NBTTagCompound, name: String, save: NBTTagCompound => Unit): Unit = {
     scheduleSave(host, nbt, name, writeNBT(save))
   }
 
-  def scheduleSave(host: EnvironmentHost, nbt: NBTTagCompound, name: String, save: NBTTagCompound => Unit) {
+  def scheduleSave(host: EnvironmentHost, nbt: NBTTagCompound, name: String, save: NBTTagCompound => Unit): Unit = {
     scheduleSave(BlockPosition(host), nbt, name, writeNBT(save))
   }
 
@@ -93,7 +93,7 @@ object SaveHandler {
     scheduleSave(BlockPosition(x, 0, z, world), nbt, name, data)
   }
 
-  def scheduleSave(world: World, x: Double, z: Double, nbt: NBTTagCompound, name: String, save: NBTTagCompound => Unit) {
+  def scheduleSave(world: World, x: Double, z: Double, nbt: NBTTagCompound, name: String, save: NBTTagCompound => Unit): Unit = {
     scheduleSave(world, x, z, nbt, name, writeNBT(save))
   }
 
@@ -184,13 +184,13 @@ object SaveHandler {
       val bis = new io.BufferedInputStream(new io.FileInputStream(file))
       val bos = new io.ByteArrayOutputStream
       val buffer = new Array[Byte](8 * 1024)
-      var read = 0
-      do {
-        read = bis.read(buffer)
+      var read = bis.read(buffer)
+      while (read >= 0) do {
         if (read > 0) {
           bos.write(buffer, 0, read)
         }
-      } while (read >= 0)
+        read = bis.read(buffer)
+      }
       bis.close()
       bos.toByteArray
     }

@@ -3,7 +3,7 @@ package li.cil.oc.integration.util
 import codechicken.nei.LayoutManager
 import li.cil.oc.common.item.traits.Delegate
 import li.cil.oc.integration.Mods
-import net.minecraft.block.Block
+import li.cil.oc.compat.vanilla.block.Block
 import net.minecraft.client.gui.inventory.GuiContainer
 import net.minecraft.item.ItemStack
 

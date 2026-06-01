@@ -9,7 +9,7 @@ import li.cil.oc.api.internal
 import li.cil.oc.common.Tier
 import li.cil.oc.server.driver.Registry
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 import scala.annotation.tailrec
 

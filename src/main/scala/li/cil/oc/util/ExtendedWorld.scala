@@ -1,11 +1,11 @@
 package li.cil.oc.util
 
 import li.cil.oc.api.network.EnvironmentHost
-import net.minecraft.block.Block
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.tileentity.TileEntity
-import net.minecraft.world.IBlockAccess
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.block.Block
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.tileentity.TileEntity
+import li.cil.oc.compat.vanilla.world.IBlockAccess
+import li.cil.oc.compat.vanilla.world.World
 import net.minecraftforge.common.util.ForgeDirection
 
 import scala.language.implicitConversions

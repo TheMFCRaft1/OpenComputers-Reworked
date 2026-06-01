@@ -3,11 +3,10 @@ package li.cil.oc.common.tileentity.traits
 import cpw.mods.fml.relauncher.Side
 import cpw.mods.fml.relauncher.SideOnly
 import li.cil.oc.Settings
-import li.cil.oc.api.internal
 import li.cil.oc.server.PacketSender
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
-trait Colored extends TileEntity with internal.Colored {
+trait Colored extends TileEntity {
   private var _color = 0
 
   def color = _color
@@ -19,9 +18,9 @@ trait Colored extends TileEntity with internal.Colored {
 
   def consumesDye = false
 
-  override def getColor = color
+  def getColor = color
 
-  override def setColor(value: Int) = color = value
+  def setColor(value: Int): Unit = color = value
 
   protected def onColorChanged(): Unit = {
     if (world != null && isServer) {

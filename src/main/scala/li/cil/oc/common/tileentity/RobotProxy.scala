@@ -12,11 +12,11 @@ import li.cil.oc.api.network._
 import li.cil.oc.integration.Mods
 import li.cil.oc.server.{PacketSender => ServerPacketSender}
 import mods.immibis.redlogic.api.wiring.IWire
-import net.minecraft.entity.Entity
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.inventory.ISidedInventory
+import li.cil.oc.compat.vanilla.entity.Entity
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.inventory.ISidedInventory
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 import net.minecraftforge.common.util.ForgeDirection
 import net.minecraftforge.fluids.Fluid
 import net.minecraftforge.fluids.FluidStack

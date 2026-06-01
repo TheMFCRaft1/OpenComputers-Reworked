@@ -12,7 +12,7 @@ import li.cil.oc.common.item.data.PrintData
 import li.cil.oc.util.Color
 import li.cil.oc.util.ExtendedAABB
 import li.cil.oc.util.RenderState
-import net.minecraft.client.Minecraft
+import li.cil.oc.compat.vanilla.client.Minecraft
 import net.minecraft.client.gui.ScaledResolution
 import net.minecraft.client.renderer.{RenderBlocks, Tessellator}
 import net.minecraft.client.renderer.entity.RenderItem

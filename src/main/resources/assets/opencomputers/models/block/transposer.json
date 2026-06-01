@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "opencomputers:block/transposer_top",
+    "up": "opencomputers:block/transposer_top",
+    "north": "opencomputers:block/transposer_side",
+    "south": "opencomputers:block/transposer_side",
+    "west": "opencomputers:block/transposer_side",
+    "east": "opencomputers:block/transposer_side"
+  }
+}

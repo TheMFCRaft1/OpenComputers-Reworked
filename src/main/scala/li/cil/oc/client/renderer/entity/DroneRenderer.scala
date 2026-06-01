@@ -1,7 +1,7 @@
 package li.cil.oc.client.renderer.entity
 
 import net.minecraft.client.renderer.entity.Render
-import net.minecraft.entity.Entity
+import li.cil.oc.compat.vanilla.entity.Entity
 import org.lwjgl.opengl.GL11
 
 object DroneRenderer extends Render {

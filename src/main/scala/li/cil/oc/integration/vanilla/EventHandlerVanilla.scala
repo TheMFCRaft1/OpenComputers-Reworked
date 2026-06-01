@@ -5,9 +5,9 @@ import li.cil.oc.Settings
 import li.cil.oc.api.event.GeolyzerEvent
 import li.cil.oc.util.BlockPosition
 import li.cil.oc.util.ExtendedWorld._
-import net.minecraft.block.Block
-import net.minecraft.block.BlockCrops
-import net.minecraft.init.Blocks
+import li.cil.oc.compat.vanilla.block.Block
+import li.cil.oc.compat.vanilla.block.BlockCrops
+import li.cil.oc.compat.vanilla.init.Blocks
 import net.minecraftforge.fluids.FluidRegistry
 
 import scala.jdk.CollectionConverters._

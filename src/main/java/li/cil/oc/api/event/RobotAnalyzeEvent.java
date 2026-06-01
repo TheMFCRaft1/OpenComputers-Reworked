@@ -1,7 +1,8 @@
 package li.cil.oc.api.event;
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer;
 
 import li.cil.oc.api.internal.Agent;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.entity.player.Player;
 
 /**
  * Fired when an analyzer is used on a robot.

@@ -17,9 +17,9 @@ import li.cil.tis3d.api.prefab.manual.ResourceContentProvider
 import li.cil.tis3d.api.serial.SerialInterface
 import li.cil.tis3d.api.serial.SerialInterfaceProvider
 import li.cil.tis3d.api.serial.SerialProtocolDocumentationReference
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 import net.minecraft.util.EnumFacing
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 
 import scala.collection.mutable
 

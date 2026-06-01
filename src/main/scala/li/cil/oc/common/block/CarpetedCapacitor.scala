@@ -1,7 +1,7 @@
 package li.cil.oc.common.block
 
 import li.cil.oc.common.tileentity
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 
 class CarpetedCapacitor extends Capacitor {
   override def createTileEntity(world: World, metadata: Int) = new tileentity.CarpetedCapacitor()

@@ -15,7 +15,7 @@ import li.cil.oc.api.driver.DeviceInfo
 import li.cil.oc.api.prefab
 import li.cil.oc.common.Tier
 import li.cil.oc.server.network.QuantumNetwork
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 import scala.jdk.CollectionConverters._
 import scala.jdk.CollectionConverters._

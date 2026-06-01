@@ -8,13 +8,13 @@ import li.cil.oc.client.Textures
 import li.cil.oc.common.GuiType
 import li.cil.oc.common.tileentity
 import net.minecraft.client.renderer.texture.IIconRegister
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.util.AxisAlignedBB
-import net.minecraft.util.IIcon
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.util.AxisAlignedBB
+import li.cil.oc.compat.vanilla.util.IIcon
 import net.minecraft.util.MovingObjectPosition
-import net.minecraft.util.Vec3
-import net.minecraft.world.IBlockAccess
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.util.Vec3
+import li.cil.oc.compat.vanilla.world.IBlockAccess
+import li.cil.oc.compat.vanilla.world.World
 import net.minecraftforge.common.util.ForgeDirection
 
 class Rack extends RedstoneAware with traits.SpecialBlock with traits.PowerAcceptor with traits.StateAware with traits.GUI {

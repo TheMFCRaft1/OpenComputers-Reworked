@@ -13,12 +13,12 @@ import li.cil.oc.api.nanomachines.Controller
 import li.cil.oc.client.Textures
 import li.cil.oc.common.EventHandler
 import li.cil.oc.common.nanomachines.ControllerImpl
-import net.minecraft.client.Minecraft
+import li.cil.oc.compat.vanilla.client.Minecraft
 import net.minecraft.client.gui.ScaledResolution
 import net.minecraft.client.renderer.Tessellator
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.nbt.CompressedStreamTools
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.nbt.CompressedStreamTools
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 import net.minecraftforge.client.event.RenderGameOverlayEvent
 import net.minecraftforge.event.entity.living.LivingEvent
 import net.minecraftforge.event.entity.player.PlayerEvent
@@ -58,7 +58,7 @@ object NanomachinesHandler {
       }
     }
 
-    private def drawRect(x: Int, y: Int, w: Int, h: Int, tw: Int, th: Int, fill: Double = 1) {
+    private def drawRect(x: Int, y: Int, w: Int, h: Int, tw: Int, th: Int, fill: Double = 1): Unit = {
       val sx = 1f / tw
       val sy = 1f / th
       val t = Tessellator.instance

@@ -2,8 +2,8 @@ package li.cil.oc.common.block
 
 import li.cil.oc.common.GuiType
 import li.cil.oc.common.tileentity
-import net.minecraft.world.IBlockAccess
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.IBlockAccess
+import li.cil.oc.compat.vanilla.world.World
 import net.minecraftforge.common.util.ForgeDirection
 
 class Printer extends SimpleBlock with traits.SpecialBlock with traits.StateAware with traits.GUI {

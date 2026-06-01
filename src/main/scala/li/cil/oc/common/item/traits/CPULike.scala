@@ -7,10 +7,10 @@ import li.cil.oc.api
 import li.cil.oc.api.driver.item.MutableProcessor
 import li.cil.oc.integration.opencomputers.DriverCPU
 import li.cil.oc.util.Tooltip
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
-import net.minecraft.util.ChatComponentTranslation
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.util.ChatComponentTranslation
+import li.cil.oc.compat.vanilla.world.World
 
 import scala.jdk.CollectionConverters._
 import scala.language.existentials

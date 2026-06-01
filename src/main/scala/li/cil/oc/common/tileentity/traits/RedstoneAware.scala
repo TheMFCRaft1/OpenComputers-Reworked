@@ -15,7 +15,7 @@ import mods.immibis.redlogic.api.wiring.IConnectable
 import mods.immibis.redlogic.api.wiring.IRedstoneEmitter
 import mods.immibis.redlogic.api.wiring.IRedstoneUpdatable
 import mods.immibis.redlogic.api.wiring.IWire
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 import net.minecraftforge.common.util.ForgeDirection
 
 case class RedstoneChangedEventArgs (side: ForgeDirection, oldValue: Int, newValue: Int, color: Int = -1)

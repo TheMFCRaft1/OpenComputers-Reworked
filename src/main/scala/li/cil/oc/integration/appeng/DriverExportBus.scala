@@ -20,7 +20,7 @@ import li.cil.oc.util.ExtendedArguments._
 import li.cil.oc.util.InventoryUtils
 import li.cil.oc.util.ResultWrapper._
 import net.minecraft.item.ItemStack
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 import net.minecraftforge.common.util.ForgeDirection
 
 import scala.jdk.CollectionConverters._

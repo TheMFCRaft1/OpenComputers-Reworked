@@ -1,7 +1,7 @@
 package li.cil.oc.api.prefab;
 
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
+import li.cil.oc.compat.vanilla.tileentity.TileEntity;
+import li.cil.oc.compat.vanilla.world.World;
 
 /**
  * @deprecated Use {@link DriverSidedTileEntity} instead.

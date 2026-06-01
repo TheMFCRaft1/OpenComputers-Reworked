@@ -4,10 +4,10 @@ import java.util
 
 import li.cil.oc.common.block.SimpleBlock
 import net.minecraft.entity.EntityLivingBase
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
-import net.minecraft.tileentity.TileEntity
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.tileentity.TileEntity
+import li.cil.oc.compat.vanilla.world.World
 
 import scala.reflect.ClassTag
 

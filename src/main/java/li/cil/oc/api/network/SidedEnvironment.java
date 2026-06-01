@@ -2,12 +2,12 @@ package li.cil.oc.api.network;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.tileentity.TileEntity;
+import li.cil.oc.compat.vanilla.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
 /**
- * This interface is like {@link net.minecraft.inventory.ISidedInventory} is to
- * {@link net.minecraft.inventory.IInventory}, it allows an environment to
+ * This interface is like {@link li.cil.oc.compat.vanilla.inventory.ISidedInventory} is to
+ * {@link li.cil.oc.compat.vanilla.inventory.IInventory}, it allows an environment to
  * specify different node access for its different sides.
  * <br>
  * This interface is intended to be used on tile entities that are environments.

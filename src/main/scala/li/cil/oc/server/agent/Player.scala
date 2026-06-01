@@ -17,18 +17,18 @@ import li.cil.oc.integration.tcon.ModTinkersConstruct
 import li.cil.oc.integration.util.PortalGun
 import li.cil.oc.util.BlockPosition
 import li.cil.oc.util.InventoryUtils
-import net.minecraft.block.Block
-import net.minecraft.block.BlockPistonBase
-import net.minecraft.entity.Entity
+import li.cil.oc.compat.vanilla.block.Block
+import li.cil.oc.compat.vanilla.block.BlockPistonBase
+import li.cil.oc.compat.vanilla.entity.Entity
 import net.minecraft.entity.EntityLivingBase
 import net.minecraft.entity.IMerchant
 import net.minecraft.entity.item.EntityItem
 import net.minecraft.entity.item.EntityMinecartHopper
 import net.minecraft.entity.passive.EntityHorse
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.entity.player.EntityPlayer.EnumStatus
-import net.minecraft.init.Blocks
-import net.minecraft.init.Items
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer.EnumStatus
+import li.cil.oc.compat.vanilla.init.Blocks
+import li.cil.oc.compat.vanilla.init.Items
 import net.minecraft.inventory.{IInventory, ContainerPlayer}
 import net.minecraft.item.ItemBlock
 import net.minecraft.item.ItemStack
@@ -36,9 +36,9 @@ import net.minecraft.network.NetHandlerPlayServer
 import net.minecraft.potion.PotionEffect
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.management.UserListOpsEntry
-import net.minecraft.tileentity._
+import li.cil.oc.compat.vanilla.tileentity._
 import net.minecraft.util._
-import net.minecraft.world.WorldServer
+import li.cil.oc.compat.vanilla.world.WorldServer
 import net.minecraftforge.common.ForgeHooks
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.common.util.FakePlayer

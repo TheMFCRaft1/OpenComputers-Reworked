@@ -5,8 +5,8 @@ import li.cil.oc.common.command.SimpleCommand
 import li.cil.oc.common.nanomachines.ControllerImpl
 import net.minecraft.command.ICommandSender
 import net.minecraft.command.WrongUsageException
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.util.ChatComponentText
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.util.ChatComponentText
 
 object DebugNanomachinesCommand extends SimpleCommand("oc_debugNanomachines") {
   aliases += "oc_dn"

@@ -3,7 +3,7 @@ package li.cil.oc.util
 import li.cil.oc.Localization
 import li.cil.oc.Settings
 import li.cil.oc.client.KeyBindings
-import net.minecraft.client.Minecraft
+import li.cil.oc.compat.vanilla.client.Minecraft
 
 import scala.jdk.CollectionConverters._
 import scala.jdk.CollectionConverters._

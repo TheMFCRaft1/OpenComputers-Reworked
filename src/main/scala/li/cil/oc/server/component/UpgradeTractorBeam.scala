@@ -18,7 +18,7 @@ import li.cil.oc.api.prefab
 import li.cil.oc.util.BlockPosition
 import li.cil.oc.util.InventoryUtils
 import net.minecraft.entity.item.EntityItem
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 
 import scala.jdk.CollectionConverters._
 import scala.jdk.CollectionConverters._

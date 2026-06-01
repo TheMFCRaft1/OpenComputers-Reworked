@@ -13,14 +13,14 @@ import li.cil.oc.util.BlockPosition
 import li.cil.oc.util.ItemCosts
 import li.cil.oc.util.Rarity
 import li.cil.oc.util.Tooltip
-import net.minecraft.entity.Entity
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.Entity
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.EnumAction
 import net.minecraft.item.ItemStack
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 
 trait Delegate {
-  type Icon = net.minecraft.util.IIcon
+  type Icon = li.cil.oc.compat.vanilla.util.IIcon
   type IconRegister = net.minecraft.client.renderer.texture.IIconRegister
 
   def parent: Delegator

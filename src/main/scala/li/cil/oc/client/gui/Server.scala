@@ -6,7 +6,7 @@ import li.cil.oc.client.{PacketSender => ClientPacketSender}
 import li.cil.oc.common.container
 import li.cil.oc.common.inventory.ServerInventory
 import li.cil.oc.common.tileentity
-import net.minecraft.client.Minecraft
+import li.cil.oc.compat.vanilla.client.Minecraft
 import net.minecraft.client.gui.GuiButton
 import net.minecraft.entity.player.InventoryPlayer
 import org.lwjgl.opengl.GL11

@@ -2,9 +2,9 @@ package li.cil.oc.common.item.data
 
 import li.cil.oc.Settings
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 import li.cil.oc.server.fs
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 
 class DriveData extends ItemData(null) {
   def this(stack: ItemStack): Unit = {

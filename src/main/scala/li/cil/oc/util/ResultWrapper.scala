@@ -8,6 +8,6 @@ object ResultWrapper {
       case x: ScalaNumber => x.underlying
       case x => x.asInstanceOf[AnyRef]
     }
-    Array(args map unwrap: _*)
+    Array(args map unwrap*)
   }
 }

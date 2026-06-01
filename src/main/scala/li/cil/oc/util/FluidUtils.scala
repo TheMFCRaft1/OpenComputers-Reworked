@@ -2,11 +2,11 @@ package li.cil.oc.util
 
 import li.cil.oc.util.ExtendedBlock._
 import li.cil.oc.util.ExtendedWorld._
-import net.minecraft.block.Block
-import net.minecraft.block.BlockDynamicLiquid
-import net.minecraft.block.BlockLiquid
-import net.minecraft.block.BlockStaticLiquid
-import net.minecraft.init.Blocks
+import li.cil.oc.compat.vanilla.block.Block
+import li.cil.oc.compat.vanilla.block.BlockDynamicLiquid
+import li.cil.oc.compat.vanilla.block.BlockLiquid
+import li.cil.oc.compat.vanilla.block.BlockStaticLiquid
+import li.cil.oc.compat.vanilla.init.Blocks
 import net.minecraftforge.common.util.ForgeDirection
 import net.minecraftforge.fluids.Fluid
 import net.minecraftforge.fluids.FluidContainerRegistry

@@ -57,7 +57,7 @@ class Capacitor extends traits.Environment with DeviceInfo {
 
   // ----------------------------------------------------------------------- //
 
-  def recomputeCapacity(updateSecondGradeNeighbors: Boolean = false) {
+  def recomputeCapacity(updateSecondGradeNeighbors: Boolean = false): Unit = {
     node.setLocalBufferSize(
       Settings.get.bufferCapacitor +
         Settings.get.bufferCapacitorAdjacencyBonus * ForgeDirection.VALID_DIRECTIONS.count(side => {

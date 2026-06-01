@@ -1,13 +1,14 @@
 package li.cil.oc.api.detail;
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer;
 
 import li.cil.oc.api.manual.ContentProvider;
 import li.cil.oc.api.manual.ImageProvider;
 import li.cil.oc.api.manual.ImageRenderer;
 import li.cil.oc.api.manual.PathProvider;
 import li.cil.oc.api.manual.TabIconRenderer;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import li.cil.oc.compat.vanilla.world.World;
 
 public interface ManualAPI {
     /**

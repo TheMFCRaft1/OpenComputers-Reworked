@@ -42,14 +42,14 @@ import li.cil.oc.util.ExtendedNBT._
 import li.cil.oc.util.Rarity
 import li.cil.oc.util.RotationHelper
 import li.cil.oc.util.Tooltip
-import net.minecraft.client.Minecraft
-import net.minecraft.entity.Entity
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.client.Minecraft
+import li.cil.oc.compat.vanilla.entity.Entity
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.integrated.IntegratedServer
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 import net.minecraftforge.common.util.ForgeDirection
 import net.minecraftforge.event.world.WorldEvent
 
@@ -263,7 +263,7 @@ class TabletWrapper(var stack: ItemStack, var player: EntityPlayer) extends Comp
     }
   }
 
-  def writeToNBT(clearState: Boolean = true) {
+  def writeToNBT(clearState: Boolean = true): Unit = {
     if (!stack.hasTagCompound) {
       stack.setTagCompound(new NBTTagCompound())
     }

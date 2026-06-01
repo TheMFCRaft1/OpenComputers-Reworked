@@ -1,6 +1,6 @@
 package li.cil.oc.integration.mfr
 
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
 import powercrystals.minefactoryreloaded.api.IMFRHammer
 

@@ -6,7 +6,7 @@ import li.cil.oc.integration.util.Wrench
 import net.minecraft.inventory.InventoryCrafting
 import net.minecraft.item.ItemStack
 import net.minecraft.item.crafting.IRecipe
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 
 class LootDiskCyclingRecipe extends IRecipe {
   override def matches(crafting: InventoryCrafting, world: World): Boolean = {

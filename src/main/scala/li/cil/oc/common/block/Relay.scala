@@ -5,7 +5,7 @@ import li.cil.oc.client.Textures
 import li.cil.oc.common.GuiType
 import li.cil.oc.common.tileentity
 import net.minecraft.client.renderer.texture.IIconRegister
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 
 class Relay extends SimpleBlock with traits.GUI with traits.PowerAcceptor {
   override protected def customTextures = Array(

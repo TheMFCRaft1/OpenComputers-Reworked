@@ -1,9 +1,9 @@
 package li.cil.oc.api.prefab;
 
-import net.minecraft.block.Block;
+import li.cil.oc.compat.vanilla.block.Block;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import net.minecraft.world.item.ItemStack;
+import li.cil.oc.compat.vanilla.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.oredict.OreDictionary;
 

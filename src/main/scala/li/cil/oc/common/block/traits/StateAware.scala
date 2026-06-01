@@ -1,8 +1,8 @@
 package li.cil.oc.common.block.traits
 
 import li.cil.oc.api
-import net.minecraft.block.Block
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.block.Block
+import li.cil.oc.compat.vanilla.world.World
 
 trait StateAware extends Block {
   override def hasComparatorInputOverride = true

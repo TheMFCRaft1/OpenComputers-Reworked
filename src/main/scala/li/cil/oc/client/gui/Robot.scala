@@ -12,7 +12,7 @@ import li.cil.oc.common.container
 import li.cil.oc.common.tileentity
 import li.cil.oc.integration.opencomputers
 import li.cil.oc.util.RenderState
-import net.minecraft.client.Minecraft
+import li.cil.oc.compat.vanilla.client.Minecraft
 import net.minecraft.client.gui.GuiButton
 import net.minecraft.client.renderer.Tessellator
 import net.minecraft.entity.player.InventoryPlayer

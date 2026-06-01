@@ -1,15 +1,11 @@
 package li.cil.oc.util
 
-import appeng.api.util.DimensionalCoord
 import com.google.common.hash.Hashing
-import cpw.mods.fml.common.Optional
 import li.cil.oc.api.network.EnvironmentHost
-import li.cil.oc.integration.Mods
-import net.minecraft.entity.Entity
-import net.minecraft.util.AxisAlignedBB
-import net.minecraft.util.ChunkCoordinates
-import net.minecraft.util.Vec3
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.util.AxisAlignedBB
+import li.cil.oc.compat.vanilla.util.ChunkCoordinates
+import li.cil.oc.compat.vanilla.util.Vec3
+import li.cil.oc.compat.vanilla.world.World
 import net.minecraftforge.common.util.ForgeDirection
 
 class BlockPosition(val x: Int, val y: Int, val z: Int, val world: Option[World]) {
@@ -70,8 +66,4 @@ object BlockPosition {
 
   def apply(host: EnvironmentHost): BlockPosition = BlockPosition(host.xPosition, host.yPosition, host.zPosition, host.world)
 
-  def apply(entity: Entity): BlockPosition = BlockPosition(entity.posX, entity.posY, entity.posZ, entity.worldObj)
-
-  @Optional.Method(modid = Mods.IDs.AppliedEnergistics2)
-  def apply(coord: DimensionalCoord): BlockPosition = BlockPosition(coord.x, coord.y, coord.z, coord.getWorld)
 }

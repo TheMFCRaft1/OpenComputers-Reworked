@@ -1,6 +1,6 @@
 package li.cil.oc.api.network;
 
-import net.minecraft.world.World;
+import li.cil.oc.compat.vanilla.world.World;
 
 /**
  * Interface for wireless endpoints that can be registered with the internal

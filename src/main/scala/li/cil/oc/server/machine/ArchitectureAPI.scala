@@ -1,7 +1,7 @@
 package li.cil.oc.server.machine
 
 import li.cil.oc.api
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 abstract class ArchitectureAPI(val machine: api.machine.Machine) {
   protected def node = machine.node

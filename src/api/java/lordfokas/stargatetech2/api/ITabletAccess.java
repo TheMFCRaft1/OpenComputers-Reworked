@@ -1,7 +1,7 @@
 package lordfokas.stargatetech2.api;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer;
+import li.cil.oc.compat.vanilla.world.World;
 
 /**
  * Implemented by blocks that run special actions when clicked with a TabletPC in hand.

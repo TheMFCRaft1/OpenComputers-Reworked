@@ -2,7 +2,7 @@ package li.cil.oc.client.gui.traits
 
 import li.cil.oc.client.renderer.gui.BufferRenderer
 import li.cil.oc.util.RenderState
-import net.minecraft.client.Minecraft
+import li.cil.oc.compat.vanilla.client.Minecraft
 import net.minecraft.client.gui.GuiScreen
 import org.lwjgl.opengl.GL11
 

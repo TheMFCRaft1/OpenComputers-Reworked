@@ -16,9 +16,9 @@ import li.cil.oc.api.network.EnvironmentHost
 import li.cil.oc.api.network.Visibility
 import li.cil.oc.api.prefab
 import li.cil.oc.util.BlockPosition
-import net.minecraft.entity.Entity
+import li.cil.oc.compat.vanilla.entity.Entity
 import net.minecraft.entity.IMerchant
-import net.minecraft.util.Vec3
+import li.cil.oc.compat.vanilla.util.Vec3
 
 import scala.jdk.CollectionConverters._
 import scala.jdk.CollectionConverters._

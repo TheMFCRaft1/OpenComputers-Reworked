@@ -4,7 +4,7 @@ import cpw.mods.fml.common.eventhandler.Cancelable;
 import li.cil.oc.api.driver.item.UpgradeRenderer;
 import li.cil.oc.api.internal.Agent;
 import li.cil.oc.api.internal.Robot;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import org.lwjgl.util.vector.Vector3f;
 import org.lwjgl.util.vector.Vector4f;
 

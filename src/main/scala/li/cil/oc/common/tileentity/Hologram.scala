@@ -16,10 +16,10 @@ import li.cil.oc.api.network._
 import li.cil.oc.common.SaveHandler
 import li.cil.oc.integration.util.Waila
 import li.cil.oc.server.{PacketSender => ServerPacketSender}
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.util.AxisAlignedBB
-import net.minecraft.util.Vec3
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.util.AxisAlignedBB
+import li.cil.oc.compat.vanilla.util.Vec3
 import net.minecraftforge.common.util.ForgeDirection
 
 import scala.jdk.CollectionConverters._

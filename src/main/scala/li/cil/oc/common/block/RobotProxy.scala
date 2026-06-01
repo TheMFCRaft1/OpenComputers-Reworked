@@ -18,16 +18,16 @@ import li.cil.oc.server.agent
 import li.cil.oc.util.Rarity
 import li.cil.oc.util.Tooltip
 import net.minecraft.client.renderer.texture.IIconRegister
-import net.minecraft.entity.Entity
+import li.cil.oc.compat.vanilla.entity.Entity
 import net.minecraft.entity.EntityLivingBase
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
-import net.minecraft.util.AxisAlignedBB
-import net.minecraft.util.IIcon
+import li.cil.oc.compat.vanilla.util.AxisAlignedBB
+import li.cil.oc.compat.vanilla.util.IIcon
 import net.minecraft.util.MovingObjectPosition
-import net.minecraft.util.Vec3
-import net.minecraft.world.IBlockAccess
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.util.Vec3
+import li.cil.oc.compat.vanilla.world.IBlockAccess
+import li.cil.oc.compat.vanilla.world.World
 import net.minecraftforge.common.util.ForgeDirection
 
 class RobotProxy extends RedstoneAware with traits.SpecialBlock with traits.StateAware {
@@ -257,7 +257,7 @@ class RobotProxy extends RedstoneAware with traits.SpecialBlock with traits.Stat
           dropBlockAsItem(world, x, y, z, robot.info.createItemStack())
         }
         if (world.getBlock(robot.moveFromX, robot.moveFromY, robot.moveFromZ) == api.Items.get(Constants.BlockName.RobotAfterimage).block) {
-          world.setBlock(robot.moveFromX, robot.moveFromY, robot.moveFromZ, net.minecraft.init.Blocks.air, 0, 1)
+          world.setBlock(robot.moveFromX, robot.moveFromY, robot.moveFromZ, li.cil.oc.compat.vanilla.init.Blocks.air, 0, 1)
         }
       case _ =>
     }

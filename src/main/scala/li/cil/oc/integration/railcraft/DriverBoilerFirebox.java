@@ -8,7 +8,7 @@ import li.cil.oc.api.network.ManagedEnvironment;
 import li.cil.oc.api.prefab.DriverSidedTileEntity;
 import li.cil.oc.integration.ManagedTileEntityEnvironment;
 import mods.railcraft.common.blocks.machine.beta.TileBoilerFirebox;
-import net.minecraft.world.World;
+import li.cil.oc.compat.vanilla.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public class DriverBoilerFirebox extends DriverSidedTileEntity {

@@ -18,7 +18,7 @@ import li.cil.oc.api.prefab
 import li.cil.oc.util.BlockPosition
 import li.cil.oc.util.ExtendedArguments._
 import li.cil.oc.util.ExtendedWorld._
-import net.minecraft.init.Blocks
+import li.cil.oc.compat.vanilla.init.Blocks
 import net.minecraftforge.common.util.ForgeDirection
 
 import scala.jdk.CollectionConverters._

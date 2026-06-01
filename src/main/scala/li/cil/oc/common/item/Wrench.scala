@@ -3,14 +3,14 @@ package li.cil.oc.common.item
 import li.cil.oc.api
 import li.cil.oc.common.asm.Injectable
 import li.cil.oc.integration.Mods
-import net.minecraft.block.Block
-import net.minecraft.entity.Entity
+import li.cil.oc.compat.vanilla.block.Block
+import li.cil.oc.compat.vanilla.entity.Entity
 import net.minecraft.entity.EntityLivingBase
 import net.minecraft.entity.item.EntityMinecart
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.init.Blocks
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.init.Blocks
 import net.minecraft.item.ItemStack
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 import net.minecraftforge.common.util.ForgeDirection
 
 @Injectable.InterfaceList(Array(

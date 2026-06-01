@@ -7,9 +7,9 @@ import li.cil.oc.OpenComputers
 import li.cil.oc.Settings
 import li.cil.oc.common.GuiType
 import li.cil.oc.common.item.data.DriveData
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 
 trait FileSystemLike extends Delegate {
   override protected def tooltipName = None

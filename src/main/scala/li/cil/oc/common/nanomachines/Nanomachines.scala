@@ -6,7 +6,7 @@ import li.cil.oc.api.nanomachines.BehaviorProvider
 import li.cil.oc.api.nanomachines.Controller
 import li.cil.oc.server.PacketSender
 import li.cil.oc.util.PlayerUtils
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 
 import scala.jdk.CollectionConverters._
 import scala.collection.mutable

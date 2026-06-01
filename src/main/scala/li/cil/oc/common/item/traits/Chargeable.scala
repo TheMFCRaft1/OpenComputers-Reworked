@@ -9,7 +9,7 @@ import li.cil.oc.common.asm.Injectable
 import li.cil.oc.integration.Mods
 import li.cil.oc.integration.ic2.ElectricItemManager
 import li.cil.oc.integration.util.Power
-import net.minecraft.item.Item
+import li.cil.oc.compat.vanilla.item.Item
 import net.minecraft.item.ItemStack
 
 @Injectable.InterfaceList(Array(

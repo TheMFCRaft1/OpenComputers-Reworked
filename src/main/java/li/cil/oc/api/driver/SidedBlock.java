@@ -1,7 +1,7 @@
 package li.cil.oc.api.driver;
 
 import li.cil.oc.api.network.ManagedEnvironment;
-import net.minecraft.world.World;
+import li.cil.oc.compat.vanilla.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 /**
@@ -9,7 +9,7 @@ import net.minecraftforge.common.util.ForgeDirection;
  * <br>
  * This driver type is used for components that are blocks, i.e. that can be
  * placed in the world, but cannot be modified to or don't want to have their
- * {@link net.minecraft.tileentity.TileEntity} implement one of the interfaces
+ * {@link li.cil.oc.compat.vanilla.tileentity.TileEntity} implement one of the interfaces
  * for environments ({@link li.cil.oc.api.network.Environment} or
  * {@link li.cil.oc.api.network.SidedEnvironment}).
  * <br>

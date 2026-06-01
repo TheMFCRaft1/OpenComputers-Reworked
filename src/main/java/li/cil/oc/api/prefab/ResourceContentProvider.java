@@ -2,7 +2,7 @@ package li.cil.oc.api.prefab;
 
 import com.google.common.base.Charsets;
 import li.cil.oc.api.manual.ContentProvider;
-import net.minecraft.client.Minecraft;
+import li.cil.oc.compat.vanilla.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 
 import java.io.BufferedReader;

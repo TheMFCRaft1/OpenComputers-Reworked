@@ -1,8 +1,9 @@
 package li.cil.oc.api.driver;
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
+import li.cil.oc.compat.vanilla.inventory.IInventory;
+import net.minecraft.world.item.ItemStack;
 
 /**
  * Inventory providers are used to access contents of item inventories.

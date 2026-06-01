@@ -7,8 +7,8 @@ import li.cil.oc.OpenComputers
 import li.cil.oc.Settings
 import li.cil.oc.api
 import li.cil.oc.common.Tier
-import net.minecraft.block.Block
-import net.minecraft.item.Item
+import li.cil.oc.compat.vanilla.block.Block
+import li.cil.oc.compat.vanilla.item.Item
 import net.minecraft.item.ItemBlock
 import net.minecraft.item.ItemBucket
 import net.minecraft.item.ItemStack

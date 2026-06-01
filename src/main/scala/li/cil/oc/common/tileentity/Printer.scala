@@ -17,10 +17,10 @@ import li.cil.oc.api.network._
 import li.cil.oc.common.item.data.PrintData
 import li.cil.oc.server.{PacketSender => ServerPacketSender}
 import li.cil.oc.util.ExtendedNBT._
-import net.minecraft.inventory.ISidedInventory
+import li.cil.oc.compat.vanilla.inventory.ISidedInventory
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.util.AxisAlignedBB
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.util.AxisAlignedBB
 import net.minecraftforge.common.util.ForgeDirection
 
 import scala.jdk.CollectionConverters._

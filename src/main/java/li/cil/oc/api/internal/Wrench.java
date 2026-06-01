@@ -1,7 +1,8 @@
 package li.cil.oc.api.internal;
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.player.Player;
+import li.cil.oc.compat.vanilla.world.World;
 
 /**
  * Implemented on items that are wrench-like tools.

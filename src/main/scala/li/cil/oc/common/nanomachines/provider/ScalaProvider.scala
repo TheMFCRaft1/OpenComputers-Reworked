@@ -2,7 +2,7 @@ package li.cil.oc.common.nanomachines.provider
 
 import li.cil.oc.api.nanomachines.Behavior
 import li.cil.oc.api.prefab.AbstractProvider
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 
 import scala.jdk.CollectionConverters._
 

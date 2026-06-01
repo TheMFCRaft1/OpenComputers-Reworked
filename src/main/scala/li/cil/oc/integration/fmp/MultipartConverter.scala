@@ -9,7 +9,7 @@ import li.cil.oc.Constants
 import li.cil.oc.api.Items
 import li.cil.oc.common.tileentity.Cable
 import li.cil.oc.common.tileentity.Print
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 
 object MultipartConverter extends IPartConverter {
   def init(): Unit = {

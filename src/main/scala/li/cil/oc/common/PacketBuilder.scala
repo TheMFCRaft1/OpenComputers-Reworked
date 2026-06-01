@@ -11,12 +11,12 @@ import cpw.mods.fml.common.network.internal.FMLProxyPacket
 import io.netty.buffer.Unpooled
 import li.cil.oc.{OpenComputers, Settings}
 import li.cil.oc.api.network.EnvironmentHost
-import net.minecraft.entity.Entity
-import net.minecraft.entity.player.EntityPlayerMP
+import li.cil.oc.compat.vanilla.entity.Entity
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayerMP
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.CompressedStreamTools
-import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.tileentity.TileEntity
+import li.cil.oc.compat.vanilla.nbt.CompressedStreamTools
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.tileentity.TileEntity
 import net.minecraft.world.{World, WorldServer}
 import net.minecraftforge.common.util.ForgeDirection
 import org.apache.logging.log4j.LogManager
@@ -76,7 +76,7 @@ abstract class PacketBuilder(stream: OutputStream) extends DataOutputStream(stre
     }
   }
 
-  def sendToPlayersNearTileEntity(t: TileEntity, range: Option[Double] = None) {
+  def sendToPlayersNearTileEntity(t: TileEntity, range: Option[Double] = None): Unit = {
     t.getWorldObj match {
       case w: WorldServer =>
         val chunkX = t.xCoord >> 4

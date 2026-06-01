@@ -1,7 +1,8 @@
 package li.cil.oc.api.nanomachines;
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.entity.player.Player;
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound;
 
 /**
  * Implemented by providers for behaviors.

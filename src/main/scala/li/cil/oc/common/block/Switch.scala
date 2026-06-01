@@ -6,7 +6,7 @@ import li.cil.oc.common.GuiType
 import li.cil.oc.common.tileentity
 import li.cil.oc.integration.util.NEI
 import net.minecraft.client.renderer.texture.IIconRegister
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 
 // TODO Remove in 1.7
 class Switch extends SimpleBlock with traits.GUI {

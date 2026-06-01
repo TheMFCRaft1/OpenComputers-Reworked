@@ -1,10 +1,11 @@
 package li.cil.oc.api.internal;
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import li.cil.oc.api.Persistable;
 import li.cil.oc.api.network.ManagedEnvironment;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.entity.player.Player;
 
 /**
  * This interface implements functionality for displaying and manipulating

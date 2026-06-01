@@ -1,7 +1,8 @@
 package li.cil.oc.util
 
-import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.ItemStackCompat.Ops
+import net.minecraft.world.item.ItemStack
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 /**
   * @author asie, Vexatos
@@ -16,7 +17,7 @@ object ItemColorizer {
     * Return the color for the specified armor ItemStack.
     */
   def getColor(stack: ItemStack): Int = {
-    val tag = stack.getTagCompound
+    val tag = new Ops(stack).getTagCompound
     if (tag != null) {
       val displayTag = tag.getCompoundTag("display")
       if (displayTag == null) -1 else if (displayTag.hasKey("color")) displayTag.getInteger("color") else -1
@@ -25,7 +26,7 @@ object ItemColorizer {
   }
 
   def removeColor(stack: ItemStack): Unit = {
-    val tag = stack.getTagCompound
+    val tag = new Ops(stack).getTagCompound
     if (tag != null) {
       val displayTag = tag.getCompoundTag("display")
       if (displayTag.hasKey("color")) displayTag.removeTag("color")
@@ -33,10 +34,11 @@ object ItemColorizer {
   }
 
   def setColor(stack: ItemStack, color: Int): Unit = {
-    var tag = stack.getTagCompound
+    val ops = new Ops(stack)
+    var tag = ops.getTagCompound
     if (tag == null) {
       tag = new NBTTagCompound
-      stack.setTagCompound(tag)
+      ops.setTagCompound(tag)
     }
     val displayTag = tag.getCompoundTag("display")
     if (!tag.hasKey("display")) {

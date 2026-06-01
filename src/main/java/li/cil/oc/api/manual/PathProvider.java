@@ -1,7 +1,7 @@
 package li.cil.oc.api.manual;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import net.minecraft.world.item.ItemStack;
+import li.cil.oc.compat.vanilla.world.World;
 
 /**
  * Allows providing paths for item stacks and blocks in the world.

@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "opencomputers:block/generic_top",
+    "up": "opencomputers:block/carpet_capacitor_top",
+    "north": "opencomputers:block/capacitor_side",
+    "south": "opencomputers:block/capacitor_side",
+    "west": "opencomputers:block/capacitor_side",
+    "east": "opencomputers:block/capacitor_side"
+  }
+}

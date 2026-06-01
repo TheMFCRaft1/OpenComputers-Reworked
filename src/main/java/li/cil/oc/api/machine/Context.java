@@ -1,4 +1,5 @@
 package li.cil.oc.api.machine;
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer;
 
 import li.cil.oc.api.network.Node;
 

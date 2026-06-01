@@ -1,7 +1,7 @@
 package lordfokas.stargatetech2.api.bus;
 
 import cpw.mods.fml.common.eventhandler.Event;
-import net.minecraft.world.World;
+import li.cil.oc.compat.vanilla.world.World;
 
 public class BusEvent extends Event{
 	public final World world;

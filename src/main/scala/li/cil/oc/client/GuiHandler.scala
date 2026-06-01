@@ -7,11 +7,11 @@ import li.cil.oc.api
 import li.cil.oc.common.{GuiType, component, entity, item, tileentity, GuiHandler => CommonGuiHandler}
 import li.cil.oc.common.inventory.{DatabaseInventory, DiskDriveMountableInventory, ServerInventory}
 import li.cil.oc.common.item.Delegator
-import net.minecraft.client.Minecraft
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.client.Minecraft
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
-import net.minecraft.tileentity.TileEntity
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.tileentity.TileEntity
+import li.cil.oc.compat.vanilla.world.World
 
 object GuiHandler extends CommonGuiHandler {
   override def getClientGuiElement(id: Int, player: EntityPlayer, world: World, x: Int, y: Int, z: Int): AnyRef = {

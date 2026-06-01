@@ -1,7 +1,7 @@
 package li.cil.oc.common.component.traits
 
 import li.cil.oc.common.component
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 import scala.collection.mutable
 
 trait VideoRamDevice {

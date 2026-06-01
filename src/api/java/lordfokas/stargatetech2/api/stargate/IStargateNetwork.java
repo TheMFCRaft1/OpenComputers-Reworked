@@ -1,6 +1,6 @@
 package lordfokas.stargatetech2.api.stargate;
 
-import net.minecraft.world.World;
+import li.cil.oc.compat.vanilla.world.World;
 
 public interface IStargateNetwork {
 	/**

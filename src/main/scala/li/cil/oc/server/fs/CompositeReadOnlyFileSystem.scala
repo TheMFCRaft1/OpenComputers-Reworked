@@ -6,7 +6,7 @@ import java.util.concurrent.Callable
 import li.cil.oc.api
 import li.cil.oc.api.fs.Mode
 import li.cil.oc.util.ExtendedNBT._
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 import scala.collection.mutable
 

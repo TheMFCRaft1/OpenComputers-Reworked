@@ -2,8 +2,8 @@ package li.cil.oc.common.asm.template;
 
 import li.cil.oc.api.network.Message;
 import li.cil.oc.api.network.Node;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound;
+import li.cil.oc.compat.vanilla.tileentity.TileEntity;
 
 // This is a template implementation of methods injected into classes that are
 // marked for component functionality. These methods will be copied into tile

@@ -3,7 +3,7 @@ package li.cil.oc.common.block
 import li.cil.oc.Settings
 import li.cil.oc.common.tileentity
 import li.cil.oc.integration.util.NEI
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 
 // TODO Remove in 1.7
 class AccessPoint extends Switch with traits.PowerAcceptor {

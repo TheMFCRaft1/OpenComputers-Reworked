@@ -8,10 +8,10 @@ import li.cil.oc.api.nanomachines.Behavior
 import li.cil.oc.api.nanomachines.BehaviorProvider
 import li.cil.oc.server.PacketSender
 import li.cil.oc.util.ExtendedNBT._
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.entity.player.EntityPlayerMP
-import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.util.ChatComponentText
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayerMP
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.util.ChatComponentText
 import net.minecraft.util.EnumChatFormatting
 import net.minecraftforge.common.util.Constants.NBT
 

@@ -8,7 +8,7 @@ import li.cil.oc.api.prefab.DriverSidedTileEntity
 import li.cil.oc.integration.ManagedTileEntityEnvironment
 import li.cil.oc.util.ResultWrapper.result
 import mods.railcraft.common.blocks.machine.alpha.{EnumMachineAlpha, TileAnchorWorld}
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 import net.minecraftforge.common.util.ForgeDirection
 
 import java.util.Objects

@@ -2,8 +2,8 @@ package li.cil.oc.api.event;
 
 import cpw.mods.fml.common.eventhandler.Cancelable;
 import li.cil.oc.api.internal.Agent;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import net.minecraft.world.item.ItemStack;
+import li.cil.oc.compat.vanilla.world.World;
 
 public abstract class RobotPlaceBlockEvent extends RobotEvent {
     /**

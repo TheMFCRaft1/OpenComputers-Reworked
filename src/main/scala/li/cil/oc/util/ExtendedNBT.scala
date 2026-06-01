@@ -3,7 +3,7 @@ package li.cil.oc.util
 import com.google.common.base.Charsets
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt._
-import net.minecraft.tileentity.TileEntity
+import li.cil.oc.compat.vanilla.tileentity.TileEntity
 import net.minecraftforge.common.util.Constants.NBT
 import net.minecraftforge.common.util.ForgeDirection
 
@@ -253,7 +253,7 @@ object ExtendedNBT {
   }
 
   class ExtendedNBTTagList(val nbt: NBTTagList) {
-    def appendNewCompoundTag(f: (NBTTagCompound) => Unit) {
+    def appendNewCompoundTag(f: (NBTTagCompound) => Unit): Unit = {
       val t = new NBTTagCompound()
       f(t)
       nbt.appendTag(t)
@@ -267,7 +267,7 @@ object ExtendedNBT {
 
     def append(values: NBTBase*): Unit = append(values)
 
-    def foreach[Tag <: NBTBase](f: Tag => Unit) {
+    def foreach[Tag <: NBTBase](f: Tag => Unit): Unit = {
       val iterable = nbt.copy.asInstanceOf[NBTTagList]
       while (iterable.tagCount > 0) {
         f(iterable.removeTag(0).asInstanceOf[Tag])

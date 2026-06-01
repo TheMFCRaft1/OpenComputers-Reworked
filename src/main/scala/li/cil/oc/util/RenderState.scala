@@ -2,7 +2,7 @@ package li.cil.oc.util
 
 import li.cil.oc.OpenComputers
 import li.cil.oc.Settings
-import net.minecraft.client.Minecraft
+import li.cil.oc.compat.vanilla.client.Minecraft
 import net.minecraft.client.renderer.RenderHelper
 import org.lwjgl.opengl._
 import org.lwjgl.util.glu.GLU

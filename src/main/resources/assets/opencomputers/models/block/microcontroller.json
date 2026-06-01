@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "opencomputers:block/microcontroller_top",
+    "up": "opencomputers:block/microcontroller_top",
+    "north": "opencomputers:block/microcontroller_side",
+    "south": "opencomputers:block/microcontroller_front",
+    "west": "opencomputers:block/microcontroller_side",
+    "east": "opencomputers:block/microcontroller_side"
+  }
+}

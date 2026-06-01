@@ -17,9 +17,9 @@ import li.cil.oc.api.prefab
 import li.cil.oc.util.DatabaseAccess
 import li.cil.oc.util.ExtendedArguments._
 import li.cil.oc.util.ExtendedNBT._
-import net.minecraft.inventory.IInventory
+import li.cil.oc.compat.vanilla.inventory.IInventory
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.CompressedStreamTools
+import li.cil.oc.compat.vanilla.nbt.CompressedStreamTools
 
 import scala.jdk.CollectionConverters._
 

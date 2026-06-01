@@ -5,16 +5,17 @@ import li.cil.oc.api.network.Visibility
 import li.cil.oc.common
 import li.cil.oc.util.Color
 import li.cil.oc.util.ItemColorizer
-import net.minecraft.item.Item
-import net.minecraft.item.ItemStack
+import li.cil.oc.compat.vanilla.item.Item as LegacyItem
+import net.minecraft.world.item.ItemStack
 
 class Cable extends traits.Environment with traits.NotAnalyzable with traits.ImmibisMicroblock with traits.Colored {
-  val node = api.Network.newNode(this, Visibility.None).create()
+  /** Full OC node wiring is restored when {@code API.network} is migrated. */
+  val node: api.network.Node = null
 
   color = Color.LightGray
 
   def createItemStack() = {
-    val stack = new ItemStack(Item.getItemFromBlock(getBlockType))
+    val stack = new ItemStack(LegacyItem.getItemFromBlock(getBlockType))
     if (color != Color.LightGray) {
       ItemColorizer.setColor(stack, color)
     }
@@ -36,7 +37,5 @@ class Cable extends traits.Environment with traits.NotAnalyzable with traits.Imm
     }
   }
 
-  override def canUpdate = false
-
-  override def getRenderBoundingBox = common.block.Cable.bounds(world, x, y, z).offset(x, y, z)
+  canUpdate = false
 }

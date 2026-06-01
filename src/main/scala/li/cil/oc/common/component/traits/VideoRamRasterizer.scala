@@ -2,7 +2,7 @@ package li.cil.oc.common.component.traits
 
 import li.cil.oc.common.component
 import li.cil.oc.common.component.GpuTextBuffer
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 import net.minecraft.village.VillageDoorInfo
 
 import scala.collection.mutable

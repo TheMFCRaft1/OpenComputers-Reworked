@@ -3,7 +3,7 @@ package li.cil.oc.server.network
 import li.cil.oc.Settings
 import li.cil.oc.api.network
 import li.cil.oc.api.network.{Node => ImmutableNode}
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 trait Connector extends network.Connector with Node {
   var localBufferSize = 0.0

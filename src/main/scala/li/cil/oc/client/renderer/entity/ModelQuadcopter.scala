@@ -5,9 +5,9 @@ import li.cil.oc.common.entity.Drone
 import li.cil.oc.util.RenderState
 import net.minecraft.client.model.ModelBase
 import net.minecraft.client.model.ModelRenderer
-import net.minecraft.entity.Entity
+import li.cil.oc.compat.vanilla.entity.Entity
 import net.minecraft.util.ResourceLocation
-import net.minecraft.util.Vec3
+import li.cil.oc.compat.vanilla.util.Vec3
 import org.lwjgl.opengl.GL11
 
 final class ModelQuadcopter extends ModelBase {

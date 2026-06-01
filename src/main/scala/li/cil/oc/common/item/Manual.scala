@@ -7,10 +7,10 @@ import cpw.mods.fml.relauncher.SideOnly
 import li.cil.oc.OpenComputers
 import li.cil.oc.api
 import li.cil.oc.util.BlockPosition
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
 import net.minecraft.util.EnumChatFormatting
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 
 class Manual(val parent: Delegator) extends traits.Delegate {
   @SideOnly(Side.CLIENT)

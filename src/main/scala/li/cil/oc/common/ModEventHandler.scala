@@ -3,12 +3,11 @@ package li.cil.oc.common
 import li.cil.oc.OpenComputers
 import li.cil.oc.Settings
 import net.neoforged.bus.api.SubscribeEvent
-import net.neoforged.fml.common.EventBusSubscriber
 import net.neoforged.neoforge.event.server.ServerStartingEvent
 import net.neoforged.neoforge.event.server.ServerStoppingEvent
+import net.neoforged.neoforge.event.tick.ServerTickEvent
 
 /** Game-bus event handlers (replaces FMLServerStartingEvent / FMLServerStoppedEvent on legacy Proxy). */
-@EventBusSubscriber(modid = OpenComputers.ID, bus = EventBusSubscriber.Bus.GAME)
 object ModEventHandler {
   @SubscribeEvent
   def onServerStarting(event: ServerStartingEvent): Unit = {
@@ -21,6 +20,9 @@ object ModEventHandler {
   def onServerStopping(event: ServerStoppingEvent): Unit = {
     // TODO Phase 3: ThreadPoolFactory.safePools.foreach(_.waitForCompletion())
   }
+
+  @SubscribeEvent
+  def onServerTick(event: ServerTickEvent.Post): Unit = EventHandler.onServerTick()
 
   private def logInternetFilteringWarnings(isDedicated: Boolean): Unit = {
     if (!Settings.get.internetAccessConfigured()) return

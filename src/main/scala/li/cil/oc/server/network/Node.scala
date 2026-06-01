@@ -6,7 +6,7 @@ import li.cil.oc.api
 import li.cil.oc.api.network.Environment
 import li.cil.oc.api.network.Visibility
 import li.cil.oc.api.network.{Node => ImmutableNode}
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 import scala.jdk.CollectionConverters._
 import scala.jdk.CollectionConverters._

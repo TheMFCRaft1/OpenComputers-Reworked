@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "opencomputers:block/generic_top",
+    "up": "opencomputers:block/access_point_top",
+    "north": "opencomputers:block/switch_side",
+    "south": "opencomputers:block/switch_side",
+    "west": "opencomputers:block/switch_side",
+    "east": "opencomputers:block/switch_side"
+  }
+}

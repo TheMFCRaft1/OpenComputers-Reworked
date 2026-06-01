@@ -3,7 +3,7 @@ package li.cil.oc.common.template
 import li.cil.oc.OpenComputers
 import li.cil.oc.Settings
 import li.cil.oc.api
-import net.minecraft.item.Item
+import li.cil.oc.compat.vanilla.item.Item
 import net.minecraft.item.ItemStack
 
 import scala.jdk.CollectionConverters._

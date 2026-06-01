@@ -17,7 +17,7 @@ import li.cil.oc.integration.Mods
 import li.cil.oc.integration.computercraft.DriverComputerCraftMedia
 import li.cil.oc.server.component
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 import net.minecraftforge.common.DimensionManager
 
 import scala.util.Try

@@ -7,9 +7,9 @@ import li.cil.oc.common.GuiType
 import li.cil.oc.common.item.data.RaidData
 import li.cil.oc.common.tileentity
 import net.minecraft.entity.EntityLivingBase
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 
 import scala.reflect.ClassTag
 

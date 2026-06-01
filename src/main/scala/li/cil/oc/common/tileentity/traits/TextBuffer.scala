@@ -5,7 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly
 import li.cil.oc.Constants
 import li.cil.oc.Settings
 import li.cil.oc.api
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 trait TextBuffer extends Environment {
   lazy val buffer = {

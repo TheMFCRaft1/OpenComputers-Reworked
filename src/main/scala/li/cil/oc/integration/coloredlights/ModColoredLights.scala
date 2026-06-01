@@ -2,7 +2,7 @@ package li.cil.oc.integration.coloredlights
 
 import coloredlightscore.src.api.CLApi
 import li.cil.oc.integration.Mods
-import net.minecraft.block.Block
+import li.cil.oc.compat.vanilla.block.Block
 
 // Doesn't need initialization, just a thin wrapper for block light value initialization.
 object ModColoredLights {

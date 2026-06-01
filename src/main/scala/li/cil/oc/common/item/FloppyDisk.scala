@@ -5,7 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly
 import li.cil.oc.Settings
 import li.cil.oc.util.BlockPosition
 import li.cil.oc.util.Color
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
 
 class FloppyDisk(val parent: Delegator) extends traits.Delegate with traits.FileSystemLike {

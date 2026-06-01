@@ -11,8 +11,7 @@ import li.cil.oc.common.asm.Injectable
 import li.cil.oc.integration.Mods
 import li.cil.oc.server.network.Network
 import li.cil.oc.util.ExtendedNBT._
-import li.cil.oc.util.ExtendedWorld._
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 import net.minecraftforge.common.util.ForgeDirection
 
 @Injectable.Interface(value = "appeng.api.movable.IMovableTile", modid = Mods.IDs.AppliedEnergistics2)
@@ -54,7 +53,7 @@ trait Environment extends TileEntity with network.Environment with network.Envir
           case env: SidedEnvironment =>
             for (side <- ForgeDirection.VALID_DIRECTIONS) {
               val npos = position.offset(side)
-              Network.getNetworkNode(world.getTileEntity(npos), side.getOpposite) match {
+              Network.getNetworkNode(world.getTileEntity(npos.x, npos.y, npos.z), side.getOpposite) match {
                 case neighbor: Node if env.sidedNode(side) != null => env.sidedNode(side).disconnect(neighbor)
                 case _ => // No neighbor node.
               }
@@ -62,7 +61,7 @@ trait Environment extends TileEntity with network.Environment with network.Envir
           case env =>
             for (side <- ForgeDirection.VALID_DIRECTIONS) {
               val npos = position.offset(side)
-              Network.getNetworkNode(world.getTileEntity(npos), side.getOpposite) match {
+              Network.getNetworkNode(world.getTileEntity(npos.x, npos.y, npos.z), side.getOpposite) match {
                 case neighbor: Node if env.node != null => env.node.disconnect(neighbor)
                 case _ => // No neighbor node.
               }
@@ -93,7 +92,11 @@ trait Environment extends TileEntity with network.Environment with network.Envir
   override def writeToNBTForServer(nbt: NBTTagCompound): Unit = {
     super.writeToNBTForServer(nbt)
     if (node != null && node.host == this) {
-      nbt.setNewCompoundTag(Settings.namespace + "node", node.save)
+      nbt.setNewCompoundTag(Settings.namespace + "node", {
+        val nodeTag = new NBTTagCompound()
+        node.save(nodeTag)
+        nodeTag
+      })
     }
   }
 
@@ -129,5 +132,5 @@ trait Environment extends TileEntity with network.Environment with network.Envir
 
   // ----------------------------------------------------------------------- //
 
-  protected def result(args: Any*) = li.cil.oc.util.ResultWrapper.result(args: _*)
+  protected def result(args: Any*) = li.cil.oc.util.ResultWrapper.result(args*)
 }

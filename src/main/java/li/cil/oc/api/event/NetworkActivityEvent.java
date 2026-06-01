@@ -2,9 +2,9 @@ package li.cil.oc.api.event;
 
 import cpw.mods.fml.common.eventhandler.Event;
 import li.cil.oc.api.network.Node;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound;
+import li.cil.oc.compat.vanilla.tileentity.TileEntity;
+import li.cil.oc.compat.vanilla.world.World;
 
 /**
  * Events for handling network activity and representing it on the client.

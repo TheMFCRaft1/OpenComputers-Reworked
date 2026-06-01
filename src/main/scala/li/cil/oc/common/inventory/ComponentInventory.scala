@@ -11,7 +11,7 @@ import li.cil.oc.api.network.Node
 import li.cil.oc.api.util.Lifecycle
 import li.cil.oc.integration.opencomputers.Item
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 import scala.jdk.CollectionConverters._
 import scala.collection.mutable

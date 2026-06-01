@@ -19,13 +19,13 @@ object ModRegistries {
   val ITEMS: DeferredRegister[Item] =
     DeferredRegister.create(Registries.ITEM, OpenComputers.ID)
 
-  val BLOCK_ENTITY_TYPES: DeferredRegister[BlockEntityType[_]] =
+  val BLOCK_ENTITY_TYPES: DeferredRegister[BlockEntityType[?]] =
     DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, OpenComputers.ID)
 
-  val ENTITY_TYPES: DeferredRegister[EntityType[_]] =
+  val ENTITY_TYPES: DeferredRegister[EntityType[?]] =
     DeferredRegister.create(Registries.ENTITY_TYPE, OpenComputers.ID)
 
-  val MENU_TYPES: DeferredRegister[MenuType[_]] =
+  val MENU_TYPES: DeferredRegister[MenuType[?]] =
     DeferredRegister.create(Registries.MENU, OpenComputers.ID)
 
   val CREATIVE_MODE_TABS: DeferredRegister[CreativeModeTab] =

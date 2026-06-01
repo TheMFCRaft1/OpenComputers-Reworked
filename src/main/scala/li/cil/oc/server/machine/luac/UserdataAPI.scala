@@ -11,8 +11,8 @@ import li.cil.oc.api.machine.Value
 import li.cil.oc.server.driver.Registry
 import li.cil.oc.server.machine.ArgumentsImpl
 import li.cil.oc.util.ExtendedLuaState.extendLuaState
-import net.minecraft.nbt.CompressedStreamTools
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.CompressedStreamTools
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 import scala.jdk.CollectionConverters._
 

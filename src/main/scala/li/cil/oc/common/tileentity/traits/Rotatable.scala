@@ -7,8 +7,8 @@ import li.cil.oc.api.internal
 import li.cil.oc.server.{PacketSender => ServerPacketSender}
 import li.cil.oc.util.ExtendedWorld._
 import li.cil.oc.util.RotationHelper
-import net.minecraft.entity.Entity
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.entity.Entity
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 import net.minecraftforge.common.util.ForgeDirection
 
 /** TileEntity base class for rotatable blocks. */

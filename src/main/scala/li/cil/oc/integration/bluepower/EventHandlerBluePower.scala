@@ -1,7 +1,7 @@
 package li.cil.oc.integration.bluepower
 
 import com.bluepowermod.api.misc.IScrewdriver
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
 
 object EventHandlerBluePower {

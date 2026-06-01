@@ -5,16 +5,16 @@ import li.cil.oc.common.InventorySlots.InventorySlot
 import li.cil.oc.common.Tier
 import li.cil.oc.server.{PacketSender => ServerPacketSender}
 import li.cil.oc.util.SideTracker
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.entity.player.EntityPlayerMP
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayerMP
 import net.minecraft.entity.player.InventoryPlayer
 import net.minecraft.inventory.Container
 import net.minecraft.inventory.ICrafting
-import net.minecraft.inventory.IInventory
+import li.cil.oc.compat.vanilla.inventory.IInventory
 import net.minecraft.inventory.Slot
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTBase
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTBase
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 import net.minecraftforge.common.util.FakePlayer
 
 import scala.jdk.CollectionConverters._
@@ -115,7 +115,7 @@ abstract class Player(val playerInventory: InventoryPlayer, val otherInventory: 
     }
   }
 
-  def addSlotToContainer(x: Int, y: Int, slot: String = common.Slot.Any, tier: Int = common.Tier.Any) {
+  def addSlotToContainer(x: Int, y: Int, slot: String = common.Slot.Any, tier: Int = common.Tier.Any): Unit = {
     val index = inventorySlots.size
     addSlotToContainer(new StaticComponentSlot(this, otherInventory, index, x, y, slot, tier))
   }
@@ -125,7 +125,7 @@ abstract class Player(val playerInventory: InventoryPlayer, val otherInventory: 
     addSlotToContainer(new DynamicComponentSlot(this, otherInventory, index, x, y, slot => info(slot.containerTierGetter())(slot.getSlotIndex), containerTierGetter))
   }
 
-  def addSlotToContainer(x: Int, y: Int, info: DynamicComponentSlot => InventorySlot) {
+  def addSlotToContainer(x: Int, y: Int, info: DynamicComponentSlot => InventorySlot): Unit = {
     val index = inventorySlots.size
     addSlotToContainer(new DynamicComponentSlot(this, otherInventory, index, x, y, info, () => Tier.One))
   }

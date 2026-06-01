@@ -18,7 +18,7 @@ import li.cil.oc.api.prefab
 import li.cil.oc.common.event.ChunkloaderUpgradeHandler
 import net.minecraftforge.common.ForgeChunkManager
 import net.minecraftforge.common.ForgeChunkManager.Ticket
-import net.minecraft.entity.Entity
+import li.cil.oc.compat.vanilla.entity.Entity
 
 import scala.jdk.CollectionConverters._
 

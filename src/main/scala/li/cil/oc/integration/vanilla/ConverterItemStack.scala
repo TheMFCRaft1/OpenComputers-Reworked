@@ -8,9 +8,9 @@ import li.cil.oc.util.ExtendedNBT._
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.item
-import net.minecraft.item.Item
-import net.minecraft.nbt.CompressedStreamTools
-import net.minecraft.nbt.NBTTagString
+import li.cil.oc.compat.vanilla.item.Item
+import li.cil.oc.compat.vanilla.nbt.CompressedStreamTools
+import li.cil.oc.compat.vanilla.nbt.NBTTagString
 import net.minecraftforge.common.util.Constants.NBT
 import net.minecraftforge.oredict.OreDictionary
 

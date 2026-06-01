@@ -1,8 +1,9 @@
 package li.cil.oc.api.internal;
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer;
 
 import li.cil.oc.api.Persistable;
 import li.cil.oc.api.network.Environment;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.entity.player.Player;
 
 /**
  * This interface is implemented by the keyboard component, to allow more

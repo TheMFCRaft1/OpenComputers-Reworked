@@ -18,8 +18,8 @@ import li.cil.oc.api.network.ManagedEnvironment;
 import li.cil.oc.api.network.Node;
 import li.cil.oc.api.network.Visibility;
 import li.cil.oc.util.Reflection;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
+import li.cil.oc.compat.vanilla.tileentity.TileEntity;
+import li.cil.oc.compat.vanilla.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.HashMap;

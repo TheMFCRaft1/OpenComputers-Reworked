@@ -2,8 +2,8 @@ package li.cil.oc.integration.opencomputers
 
 import li.cil.oc.api.driver.InventoryProvider
 import li.cil.oc.common.inventory.DatabaseInventory
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.inventory.IInventory
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.inventory.IInventory
 import net.minecraft.item.ItemStack
 
 object InventoryProviderDatabase extends InventoryProvider {

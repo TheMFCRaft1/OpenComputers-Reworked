@@ -6,7 +6,7 @@ import li.cil.oc.Settings
 import li.cil.oc.api
 import li.cil.oc.common.Slot
 import li.cil.oc.common.Tier
-import net.minecraft.inventory.IInventory
+import li.cil.oc.compat.vanilla.inventory.IInventory
 import net.minecraft.item.ItemStack
 import net.minecraft.util.IChatComponent
 import org.apache.commons.lang3.tuple

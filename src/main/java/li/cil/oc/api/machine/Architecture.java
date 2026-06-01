@@ -1,7 +1,7 @@
 package li.cil.oc.api.machine;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.item.ItemStack;
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound;
 
 import java.lang.annotation.*;
 

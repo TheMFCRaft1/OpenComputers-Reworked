@@ -1,7 +1,7 @@
 package li.cil.oc.util
 
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 object PlayerUtils {
   def persistedData(player: EntityPlayer): NBTTagCompound = {

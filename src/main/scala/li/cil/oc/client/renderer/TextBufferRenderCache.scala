@@ -12,7 +12,7 @@ import li.cil.oc.Settings
 import li.cil.oc.client.renderer.font.TextBufferRenderData
 import li.cil.oc.util.RenderState
 import net.minecraft.client.renderer.GLAllocation
-import net.minecraft.tileentity.TileEntity
+import li.cil.oc.compat.vanilla.tileentity.TileEntity
 import org.lwjgl.opengl.GL11
 
 object TextBufferRenderCache extends Callable[Int] with RemovalListener[TileEntity, Int] {

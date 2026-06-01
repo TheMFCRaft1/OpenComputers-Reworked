@@ -2,8 +2,8 @@ package li.cil.oc.client.renderer.block
 
 import li.cil.oc.client.Textures
 import li.cil.oc.util.RenderState
-import net.minecraft.block.Block
-import net.minecraft.client.renderer.RenderBlocks
+import li.cil.oc.compat.vanilla.block.Block
+import li.cil.oc.compat.vanilla.client.renderer.RenderBlocks
 import net.minecraft.client.renderer.RenderHelper
 import org.lwjgl.opengl.GL11
 

@@ -1,8 +1,9 @@
 package li.cil.oc.api.internal;
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer;
 
 import li.cil.oc.api.machine.MachineHost;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.world.entity.player.Player;
+import li.cil.oc.compat.vanilla.inventory.IInventory;
 
 import java.util.UUID;
 

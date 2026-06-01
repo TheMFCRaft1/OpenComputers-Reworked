@@ -10,7 +10,7 @@ import li.cil.oc.common.item
 import li.cil.oc.common.item.Delegator
 import li.cil.oc.integration.Mods
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 import net.minecraftforge.common.util.ForgeDirection
 
 // TODO Remove in 1.7

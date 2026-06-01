@@ -8,9 +8,9 @@ import li.cil.oc.common.tileentity
 import li.cil.oc.integration.Mods
 import li.cil.oc.integration.util.NEI
 import li.cil.oc.util.Tooltip
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 
 class PowerConverter extends SimpleBlock with traits.PowerAcceptor {
   if (Settings.get.ignorePower) {

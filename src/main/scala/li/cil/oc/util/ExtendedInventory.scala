@@ -1,6 +1,6 @@
 package li.cil.oc.util
 
-import net.minecraft.inventory.IInventory
+import li.cil.oc.compat.vanilla.inventory.IInventory
 import net.minecraft.item.ItemStack
 
 import scala.collection.mutable

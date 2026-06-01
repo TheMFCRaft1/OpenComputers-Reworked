@@ -16,11 +16,11 @@ import li.cil.oc.server.machine.luac.LuaStateFactory
 import li.cil.oc.util.Color
 import li.cil.oc.util.ExtendedNBT._
 import li.cil.oc.util.SideTracker
-import net.minecraft.init.Blocks
+import li.cil.oc.compat.vanilla.init.Blocks
 import net.minecraft.inventory.InventoryCrafting
 import net.minecraft.item.ItemStack
 import net.minecraft.item.crafting.IRecipe
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 import scala.jdk.CollectionConverters._
 import scala.util.control.Breaks._
@@ -62,7 +62,7 @@ object ExtendedRecipe {
     if (craftedItemName == navigationUpgrade) {
       Option(api.Driver.driverFor(craftedStack)).foreach(driver =>
         for (stack <- getItems(inventory)) {
-          if (stack.getItem == net.minecraft.init.Items.filled_map) {
+          if (stack.getItem == li.cil.oc.compat.vanilla.init.Items.filled_map) {
             // Store information of the map used for crafting in the result.
             val nbt = driver.dataTag(craftedStack)
             nbt.setNewCompoundTag(Settings.namespace + "map", stack.writeToNBT)
@@ -132,14 +132,14 @@ object ExtendedRecipe {
 
       // Then apply new data.
       val beaconBlocks = Array(
-        new ItemStack(net.minecraft.init.Blocks.iron_block),
-        new ItemStack(net.minecraft.init.Blocks.gold_block),
-        new ItemStack(net.minecraft.init.Blocks.emerald_block),
-        new ItemStack(net.minecraft.init.Blocks.diamond_block)
+        new ItemStack(li.cil.oc.compat.vanilla.init.Blocks.iron_block),
+        new ItemStack(li.cil.oc.compat.vanilla.init.Blocks.gold_block),
+        new ItemStack(li.cil.oc.compat.vanilla.init.Blocks.emerald_block),
+        new ItemStack(li.cil.oc.compat.vanilla.init.Blocks.diamond_block)
       )
 
-      val glowstoneDust = new ItemStack(net.minecraft.init.Items.glowstone_dust)
-      val glowstone = new ItemStack(net.minecraft.init.Blocks.glowstone)
+      val glowstoneDust = new ItemStack(li.cil.oc.compat.vanilla.init.Items.glowstone_dust)
+      val glowstone = new ItemStack(li.cil.oc.compat.vanilla.init.Blocks.glowstone)
       for (stack <- inputs) {
         if (beaconBlocks.exists(_.isItemEqual(stack))) {
           if (data.isBeaconBase) {

@@ -8,12 +8,12 @@ import li.cil.oc.api.network.EnvironmentHost
 import li.cil.oc.api.prefab.AbstractValue
 import li.cil.oc.common.EventHandler
 import li.cil.oc.util.InventoryUtils
-import net.minecraft.entity.Entity
+import li.cil.oc.compat.vanilla.entity.Entity
 import net.minecraft.entity.IMerchant
-import net.minecraft.inventory.IInventory
+import li.cil.oc.compat.vanilla.inventory.IInventory
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.tileentity.TileEntity
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.tileentity.TileEntity
 import net.minecraft.village.MerchantRecipe
 import net.minecraftforge.common.DimensionManager
 import net.minecraftforge.common.util.ForgeDirection

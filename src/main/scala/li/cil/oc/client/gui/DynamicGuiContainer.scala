@@ -17,7 +17,7 @@ import net.minecraft.client.renderer.texture.TextureMap
 import net.minecraft.inventory.Container
 import net.minecraft.inventory.Slot
 import net.minecraft.item.ItemStack
-import net.minecraft.util.IIcon
+import li.cil.oc.compat.vanilla.util.IIcon
 import org.lwjgl.opengl.GL11
 
 import scala.jdk.CollectionConverters._

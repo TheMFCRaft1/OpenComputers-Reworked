@@ -5,8 +5,8 @@ import li.cil.oc.api
 import li.cil.oc.api.network._
 import li.cil.oc.util.BlockPosition
 import li.cil.oc.util.ExtendedWorld._
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.entity.player.EntityPlayerMP
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayerMP
 import net.minecraft.item.ItemStack
 import net.minecraftforge.common.util.FakePlayer
 import net.minecraftforge.common.util.ForgeDirection

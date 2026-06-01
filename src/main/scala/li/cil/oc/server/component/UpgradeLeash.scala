@@ -19,10 +19,10 @@ import li.cil.oc.common.EventHandler
 import li.cil.oc.util.BlockPosition
 import li.cil.oc.util.ExtendedArguments._
 import li.cil.oc.util.ExtendedNBT._
-import net.minecraft.entity.Entity
+import li.cil.oc.compat.vanilla.entity.Entity
 import net.minecraft.entity.EntityLiving
-import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.nbt.NBTTagString
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagString
 import net.minecraftforge.common.util.Constants.NBT
 
 import scala.jdk.CollectionConverters._

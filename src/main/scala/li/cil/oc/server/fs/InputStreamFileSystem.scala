@@ -7,8 +7,8 @@ import java.nio.channels.ReadableByteChannel
 
 import li.cil.oc.api
 import li.cil.oc.api.fs.Mode
-import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.nbt.NBTTagList
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagList
 import net.minecraftforge.common.util.Constants.NBT
 
 import scala.collection.mutable
@@ -89,7 +89,7 @@ trait InputStreamFileSystem extends api.fs.FileSystem {
   protected trait InputChannel extends ReadableByteChannel {
     def isOpen: Boolean
 
-    def close()
+    def close(): Unit
 
     def position: Long
 

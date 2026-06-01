@@ -1,8 +1,8 @@
 package li.cil.oc
 
-import li.cil.oc.util.ItemUtils
-
 object Constants {
+
+  private def caseNameWithTierSuffix(prefix: String, tier: Int): String = s"$prefix$tier"
 
   object BlockName {
     final val AccessPoint = "accessPoint"
@@ -44,7 +44,7 @@ object Constants {
     final val Transposer = "transposer"
     final val Waypoint = "waypoint"
 
-    def Case(tier: Int) = ItemUtils.caseNameWithTierSuffix("case", tier)
+    def Case(tier: Int) = caseNameWithTierSuffix("case", tier)
   }
 
   object ItemName {
@@ -168,11 +168,11 @@ object Constants {
     final val WorldSensorCard = "worldSensorCard"
     final val Wrench = "wrench"
 
-    def DroneCase(tier: Int) = ItemUtils.caseNameWithTierSuffix("droneCase", tier)
+    def DroneCase(tier: Int) = caseNameWithTierSuffix("droneCase", tier)
 
-    def MicrocontrollerCase(tier: Int) = ItemUtils.caseNameWithTierSuffix("microcontrollerCase", tier)
+    def MicrocontrollerCase(tier: Int) = caseNameWithTierSuffix("microcontrollerCase", tier)
 
-    def TabletCase(tier: Int) = ItemUtils.caseNameWithTierSuffix("tabletCase", tier)
+    def TabletCase(tier: Int) = caseNameWithTierSuffix("tabletCase", tier)
   }
 
   object DeviceInfo {

@@ -5,7 +5,7 @@ import li.cil.oc.api.manual.ImageProvider
 import li.cil.oc.api.manual.ImageRenderer
 import li.cil.oc.api.manual.InteractiveImageRenderer
 import li.cil.oc.client.Textures
-import net.minecraft.item.Item
+import li.cil.oc.compat.vanilla.item.Item
 import net.minecraft.item.ItemStack
 
 object ItemImageProvider extends ImageProvider {

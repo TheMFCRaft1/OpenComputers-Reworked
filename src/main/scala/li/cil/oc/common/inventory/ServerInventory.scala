@@ -4,7 +4,7 @@ import li.cil.oc.api.Driver
 import li.cil.oc.api.internal
 import li.cil.oc.common.InventorySlots
 import li.cil.oc.util.ItemUtils
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
 
 trait ServerInventory extends ItemStackInventory {

@@ -2,7 +2,7 @@ package lordfokas.stargatetech2.api.stargate;
 
 import cpw.mods.fml.common.eventhandler.Cancelable;
 import cpw.mods.fml.common.eventhandler.Event;
-import net.minecraft.world.World;
+import li.cil.oc.compat.vanilla.world.World;
 
 public abstract class StargateEvent extends Event {
 

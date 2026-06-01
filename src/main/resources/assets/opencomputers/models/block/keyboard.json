@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "opencomputers:block/keyboard",
+    "up": "opencomputers:block/keyboard",
+    "north": "opencomputers:block/keyboard",
+    "south": "opencomputers:block/keyboard",
+    "west": "opencomputers:block/keyboard",
+    "east": "opencomputers:block/keyboard"
+  }
+}

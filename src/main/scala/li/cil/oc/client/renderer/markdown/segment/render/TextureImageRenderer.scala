@@ -4,7 +4,7 @@ import java.io.InputStream
 import javax.imageio.ImageIO
 
 import li.cil.oc.api.manual.ImageRenderer
-import net.minecraft.client.Minecraft
+import li.cil.oc.compat.vanilla.client.Minecraft
 import net.minecraft.client.renderer.texture.AbstractTexture
 import net.minecraft.client.renderer.texture.TextureUtil
 import net.minecraft.client.resources.IResourceManager

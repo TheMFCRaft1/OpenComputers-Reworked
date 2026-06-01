@@ -11,12 +11,12 @@ import li.cil.oc.api.network._
 import li.cil.oc.api.prefab
 import li.cil.oc.util.BlockPosition
 import li.cil.oc.util.ExtendedWorld._
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.nbt.NBTTagList
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagList
 import net.minecraft.util.EnumFacing
-import net.minecraft.world.WorldServer
+import li.cil.oc.compat.vanilla.world.WorldServer
 import net.minecraftforge.common.util.ForgeDirection
 
 import scala.jdk.CollectionConverters._

@@ -5,7 +5,7 @@ import li.cil.oc.OpenComputers
 import li.cil.oc.integration.ModProxy
 import li.cil.oc.integration.Mods
 import li.cil.oc.util.UpdateCheck
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 import scala.concurrent.ExecutionContext.Implicits.global
 

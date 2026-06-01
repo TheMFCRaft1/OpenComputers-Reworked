@@ -1,7 +1,6 @@
 package li.cil.oc.common
 
-import li.cil.oc.OpenComputers
-import li.cil.oc.Settings
+import li.cil.oc.{ModCreativeTabs, OpenComputers, Settings}
 import li.cil.oc.api
 import li.cil.oc.common.init.ModItems
 import net.neoforged.fml.event.lifecycle.{FMLClientSetupEvent, FMLCommonSetupEvent, FMLLoadCompleteEvent}
@@ -16,27 +15,29 @@ object ModBootstrap {
   }
 
   def commonSetup(event: FMLCommonSetupEvent): Unit = {
-    event.enqueueWork(() => {
+    event.enqueueWork((() => {
+      ModItems.bindNames()
+      ModCreativeTabs.bindApi()
       bootstrapApi()
       // TODO Phase 3+: OreDictionary → item/block tags
       // TODO Phase 3+: Loot.init(), Achievement.init(), Mods.init(), Recipes.init()
       // TODO Phase 3+: ModNetworking payload handlers
       OpenComputers.log.info("OpenComputers common setup complete (Phase 3 — Capacitor registered)")
-    })
+    }): Runnable)
   }
 
   def clientSetup(event: FMLClientSetupEvent): Unit = {
-    event.enqueueWork(() => {
+    event.enqueueWork((() => {
       // TODO Phase 3+: client.Proxy.init — renderers, key bindings, GuiHandler
       OpenComputers.log.info("OpenComputers client setup complete")
-    })
+    }): Runnable)
   }
 
   def loadComplete(event: FMLLoadCompleteEvent): Unit = {
-    event.enqueueWork(() => {
+    event.enqueueWork((() => {
       // TODO Phase 3+: driver.Registry.locked = true (Proxy.postInit)
       OpenComputers.log.info("OpenComputers load complete")
-    })
+    }): Runnable)
   }
 
   private def bootstrapApi(): Unit = {

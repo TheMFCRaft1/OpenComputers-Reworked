@@ -1,7 +1,7 @@
 package li.cil.oc.client.renderer.block
 
-import net.minecraft.block.Block
-import net.minecraft.client.renderer.RenderBlocks
+import li.cil.oc.compat.vanilla.block.Block
+import li.cil.oc.compat.vanilla.client.renderer.RenderBlocks
 
 object Printer {
   def render(block: Block, x: Int, y: Int, z: Int, renderer: RenderBlocks): Unit = {

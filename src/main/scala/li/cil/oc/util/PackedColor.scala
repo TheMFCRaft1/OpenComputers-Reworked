@@ -3,7 +3,7 @@ package li.cil.oc.util
 import li.cil.oc.Settings
 import li.cil.oc.api
 import li.cil.oc.api.Persistable
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 object PackedColor {
 

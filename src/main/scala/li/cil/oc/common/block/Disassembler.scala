@@ -6,9 +6,9 @@ import li.cil.oc.common.GuiType
 import li.cil.oc.common.tileentity
 import li.cil.oc.util.Tooltip
 import net.minecraft.client.renderer.texture.IIconRegister
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 
 class Disassembler extends SimpleBlock with traits.PowerAcceptor with traits.StateAware with traits.GUI {
   override protected def customTextures = Array(

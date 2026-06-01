@@ -10,12 +10,12 @@ import li.cil.oc.common.component.TextBuffer
 import li.cil.oc.common.tileentity.traits.RedstoneChangedEventArgs
 import li.cil.oc.util.Color
 import li.cil.oc.util.ExtendedWorld._
-import net.minecraft.client.Minecraft
-import net.minecraft.entity.Entity
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.entity.projectile.EntityArrow
-import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.util.AxisAlignedBB
+import li.cil.oc.compat.vanilla.client.Minecraft
+import li.cil.oc.compat.vanilla.entity.Entity
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.projectile.EntityArrow
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.util.AxisAlignedBB
 import net.minecraftforge.common.util.ForgeDirection
 
 import scala.collection.mutable

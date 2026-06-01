@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "opencomputers:block/adapter_top",
+    "up": "opencomputers:block/adapter_top",
+    "north": "opencomputers:block/adapter_side",
+    "south": "opencomputers:block/adapter_side",
+    "west": "opencomputers:block/adapter_side",
+    "east": "opencomputers:block/adapter_side"
+  }
+}

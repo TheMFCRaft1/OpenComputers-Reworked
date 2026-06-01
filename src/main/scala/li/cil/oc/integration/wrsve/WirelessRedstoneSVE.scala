@@ -3,7 +3,7 @@ package li.cil.oc.integration.wrsve
 import li.cil.oc.integration.util.WirelessRedstone.WirelessRedstoneSystem
 import li.cil.oc.server.component.RedstoneWireless
 import li.cil.oc.util.BlockPosition
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 
 import scala.language.reflectiveCalls
 

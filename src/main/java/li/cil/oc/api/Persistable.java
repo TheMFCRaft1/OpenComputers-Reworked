@@ -1,6 +1,6 @@
 package li.cil.oc.api;
 
-import net.minecraft.nbt.NBTTagCompound;
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound;
 
 /**
  * An object that can be persisted to an NBT tag and restored back from it.

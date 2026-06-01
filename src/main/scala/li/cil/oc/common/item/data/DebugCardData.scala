@@ -3,7 +3,7 @@ package li.cil.oc.common.item.data
 import li.cil.oc.{Constants, Settings}
 import li.cil.oc.server.component.DebugCard.AccessContext
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 class DebugCardData extends ItemData(Constants.ItemName.DebugCard) {
   def this(stack: ItemStack): Unit = {

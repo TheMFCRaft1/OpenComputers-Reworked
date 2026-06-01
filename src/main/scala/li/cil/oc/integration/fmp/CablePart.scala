@@ -22,11 +22,11 @@ import li.cil.oc.common.block.Cable
 import li.cil.oc.common.tileentity
 import li.cil.oc.util.Color
 import li.cil.oc.util.ExtendedNBT._
-import net.minecraft.client.renderer.RenderBlocks
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.client.renderer.RenderBlocks
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.util.AxisAlignedBB
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.util.AxisAlignedBB
 import net.minecraft.util.MovingObjectPosition
 
 import scala.collection.convert.WrapAsJava

@@ -4,7 +4,7 @@ import java.util
 
 import li.cil.oc.common.block.SimpleBlock
 import li.cil.oc.util.Tooltip
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
 
 trait PowerAcceptor extends SimpleBlock {

@@ -1,8 +1,8 @@
 package li.cil.oc.api.driver;
 
 import li.cil.oc.api.network.ManagedEnvironment;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.item.ItemStack;
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound;
 
 /**
  * Interface for item component drivers.

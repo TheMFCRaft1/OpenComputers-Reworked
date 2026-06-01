@@ -5,8 +5,8 @@ import li.cil.oc.common.command.SimpleCommand
 import net.minecraft.command.CommandBase
 import net.minecraft.command.ICommandSender
 import net.minecraft.command.WrongUsageException
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 object NonDisassemblyAgreementCommand extends SimpleCommand("oc_preventDisassembling") {
   aliases += "oc_nodis"

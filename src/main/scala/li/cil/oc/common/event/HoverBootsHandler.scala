@@ -3,7 +3,7 @@ package li.cil.oc.common.event
 import cpw.mods.fml.common.eventhandler.SubscribeEvent
 import li.cil.oc.Settings
 import li.cil.oc.common.item.HoverBoots
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraftforge.common.util.FakePlayer
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent

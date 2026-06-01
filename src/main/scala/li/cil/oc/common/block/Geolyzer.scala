@@ -7,7 +7,7 @@ import li.cil.oc.client.Textures
 import li.cil.oc.common.tileentity
 import li.cil.oc.integration.coloredlights.ModColoredLights
 import net.minecraft.client.renderer.texture.IIconRegister
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 
 class Geolyzer extends SimpleBlock {
   ModColoredLights.setLightLevel(this, 3, 1, 1)

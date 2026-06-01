@@ -3,7 +3,6 @@ package li.cil.oc
 import com.google.common.net.InetAddresses
 import com.mojang.authlib.GameProfile
 import com.typesafe.config._
-import com.typesafe.config.impl.OpenComputersConfigCommentManipulationHook
 import net.neoforged.fml.loading.FMLPaths
 import li.cil.oc.Settings.DebugCardAccess
 import li.cil.oc.common.Tier
@@ -19,6 +18,7 @@ import java.nio.charset.StandardCharsets
 import java.security.SecureRandom
 import java.util.UUID
 import scala.jdk.CollectionConverters._
+import scala.jdk.StreamConverters._
 import scala.collection.mutable
 import scala.io.{Codec, Source}
 import scala.util.matching.Regex
@@ -41,7 +41,7 @@ class Settings(val config: Config) {
   val beepSampleRate = config.getInt("client.beepSampleRate")
   val beepAmplitude = config.getInt("client.beepVolume") max 0 min Byte.MaxValue
   val beepRadius = config.getDouble("client.beepRadius").toFloat max 1 min 32
-  val nanomachineHudPos = Array(config.getDoubleList("client.nanomachineHudPos"): _*) match {
+  val nanomachineHudPos = config.getDoubleList("client.nanomachineHudPos").asScala.toArray match {
     case Array(x, y) =>
       (x: Double, y: Double)
     case _ =>
@@ -58,16 +58,16 @@ class Settings(val config: Config) {
   val startupDelay = config.getDouble("computer.startupDelay") max 0.05
   val eepromSize = config.getInt("computer.eepromSize") max 0
   val eepromDataSize = config.getInt("computer.eepromDataSize") max 0
-  val cpuComponentSupport = Array(config.getIntList("computer.cpuComponentCount"): _*) match {
-    case Array(tier1, tier2, tier3, tierCreative) =>
-      Array(tier1: Int, tier2: Int, tier3: Int, tierCreative: Int)
+  val cpuComponentSupport = config.getIntList("computer.cpuComponentCount").asScala.toArray match {
+    case Array(t1, t2, t3, tCreative) =>
+      Array(t1: Int, t2: Int, t3: Int, tCreative: Int)
     case _ =>
       OpenComputers.log.warn("Bad number of CPU component counts, ignoring.")
       Array(8, 12, 16, 1024)
   }
-  val callBudgets = Array(config.getDoubleList("computer.callBudgets"): _*) match {
-    case Array(tier1, tier2, tier3) =>
-      Array(tier1: Double, tier2: Double, tier3: Double)
+  val callBudgets = config.getDoubleList("computer.callBudgets").asScala.toArray match {
+    case Array(t1, t2, t3) =>
+      Array(t1: Double, t2: Double, t3: Double)
     case _ =>
       OpenComputers.log.warn("Bad number of call budgets, ignoring.")
       Array(0.5, 1.0, 1.5)
@@ -84,9 +84,9 @@ class Settings(val config: Config) {
   val enableLua53 = config.getBoolean("computer.lua.enableLua53")
   val defaultLua53 = config.getBoolean("computer.lua.defaultLua53")
   val enableLua54 = config.getBoolean("computer.lua.enableLua54")
-  val ramSizes = Array(config.getIntList("computer.lua.ramSizes"): _*) match {
-    case Array(tier1, tier2, tier3, tier4, tier5, tier6) =>
-      Array(tier1: Int, tier2: Int, tier3: Int, tier4: Int, tier5: Int, tier6: Int)
+  val ramSizes = config.getIntList("computer.lua.ramSizes").asScala.toArray match {
+    case Array(t1, t2, t3, t4, t5, t6) =>
+      Array(t1: Int, t2: Int, t3: Int, t4: Int, t5: Int, t6: Int)
     case _ =>
       OpenComputers.log.warn("Bad number of RAM sizes, ignoring.")
       Array(192, 256, 384, 512, 768, 1024)
@@ -106,9 +106,9 @@ class Settings(val config: Config) {
   val itemDamageRate = config.getDouble("robot.itemDamageRate") max 0 min 1
   val nameFormat = config.getString("robot.nameFormat")
   val uuidFormat = config.getString("robot.uuidFormat")
-  val upgradeFlightHeight = Array(config.getIntList("robot.upgradeFlightHeight"): _*) match {
-    case Array(tier1, tier2) =>
-      Array(tier1: Int, tier2: Int)
+  val upgradeFlightHeight = config.getIntList("robot.upgradeFlightHeight").asScala.toArray match {
+    case Array(t1, t2) =>
+      Array(t1: Int, t2: Int)
     case _ =>
       OpenComputers.log.warn("Bad number of hover flight height counts, ignoring.")
       Array(64, 256)
@@ -164,9 +164,9 @@ class Settings(val config: Config) {
   val bufferRobot = config.getDouble("power.buffer.robot") max 0
   val bufferConverter = config.getDouble("power.buffer.converter") max 0
   val bufferDistributor = config.getDouble("power.buffer.distributor") max 0
-  val bufferCapacitorUpgrades = Array(config.getDoubleList("power.buffer.batteryUpgrades"): _*) match {
-    case Array(tier1, tier2, tier3) =>
-      Array(tier1: Double, tier2: Double, tier3: Double)
+  val bufferCapacitorUpgrades = config.getDoubleList("power.buffer.batteryUpgrades").asScala.toArray match {
+    case Array(t1, t2, t3) =>
+      Array(t1: Double, t2: Double, t3: Double)
     case _ =>
       OpenComputers.log.warn("Bad number of battery upgrade buffer sizes, ignoring.")
       Array(10000.0, 15000.0, 20000.0)
@@ -195,9 +195,9 @@ class Settings(val config: Config) {
   val robotTurnCost = config.getDouble("power.cost.robotTurn") max 0
   val robotMoveCost = config.getDouble("power.cost.robotMove") max 0
   val robotExhaustionCost = config.getDouble("power.cost.robotExhaustion") max 0
-  val wirelessCostPerRange = Array(config.getDoubleList("power.cost.wirelessCostPerRange"): _*) match {
-    case Array(tier1, tier2) =>
-      Array((tier1: Double) max 0.0, (tier2: Double) max 0.0)
+  val wirelessCostPerRange = config.getDoubleList("power.cost.wirelessCostPerRange").asScala.toArray match {
+    case Array(t1, t2) =>
+      Array((t1: Double) max 0.0, (t2: Double) max 0.0)
     case _ =>
       OpenComputers.log.warn("Bad number of wireless card energy costs, ignoring.")
       Array(0.05, 0.05)
@@ -235,9 +235,9 @@ class Settings(val config: Config) {
   // power.rate
   val accessPointRate = config.getDouble("power.rate.accessPoint") max 0
   val assemblerRate = config.getDouble("power.rate.assembler") max 0
-  val caseRate = (Array(config.getDoubleList("power.rate.case"): _*) match {
-    case Array(tier1, tier2, tier3) =>
-      Array(tier1: Double, tier2: Double, tier3: Double)
+  val caseRate = (config.getDoubleList("power.rate.case").asScala.toArray match {
+    case Array(t1, t2, t3) =>
+      Array(t1: Double, t2: Double, t3: Double)
     case _ =>
       OpenComputers.log.warn("Bad number of computer case conversion rates, ignoring.")
       Array(5.0, 10.0, 20.0)
@@ -271,16 +271,16 @@ class Settings(val config: Config) {
   // filesystem
   val fileCost = config.getInt("filesystem.fileCost") max 0
   val bufferChanges = config.getBoolean("filesystem.bufferChanges")
-  val hddSizes = Array(config.getIntList("filesystem.hddSizes"): _*) match {
-    case Array(tier1, tier2, tier3) =>
-      Array(tier1: Int, tier2: Int, tier3: Int)
+  val hddSizes = config.getIntList("filesystem.hddSizes").asScala.toArray match {
+    case Array(t1, t2, t3) =>
+      Array(t1: Int, t2: Int, t3: Int)
     case _ =>
       OpenComputers.log.warn("Bad number of HDD sizes, ignoring.")
       Array(1024, 2048, 4096)
   }
-  val hddPlatterCounts = Array(config.getIntList("filesystem.hddPlatterCounts"): _*) match {
-    case Array(tier1, tier2, tier3) =>
-      Array(tier1: Int, tier2: Int, tier3: Int)
+  val hddPlatterCounts = config.getIntList("filesystem.hddPlatterCounts").asScala.toArray match {
+    case Array(t1, t2, t3) =>
+      Array(t1: Int, t2: Int, t3: Int)
     case _ =>
       OpenComputers.log.warn("Bad number of HDD platter counts, ignoring.")
       Array(2, 4, 6)
@@ -297,10 +297,11 @@ class Settings(val config: Config) {
   val httpEnabled = config.getBoolean("internet.enableHttp")
   val httpHeadersEnabled = config.getBoolean("internet.enableHttpHeaders")
   val tcpEnabled = config.getBoolean("internet.enableTcp")
-  val internetFilteringRules = Array(config.getStringList("internet.filteringRules")
-    .filter(p => !p.equals("removeme"))
-    .map(new InternetFilteringRule(_)): _*)
-  val internetFilteringRulesObserved = !config.getStringList("internet.filteringRules")
+  val internetFilteringRules = config.getStringList("internet.filteringRules").asScala
+    .filterNot(_.equals("removeme"))
+    .map(new InternetFilteringRule(_))
+    .toArray
+  val internetFilteringRulesObserved = !config.getStringList("internet.filteringRules").asScala
     .contains("removeme")
   val httpTimeout = (config.getInt("internet.requestTimeout") max 0) * 1000
   val maxConnections = config.getInt("internet.maxTcpConnections") max 0
@@ -317,16 +318,16 @@ class Settings(val config: Config) {
 
   // ----------------------------------------------------------------------- //
   // hologram
-  val hologramMaxScaleByTier = Array(config.getDoubleList("hologram.maxScale"): _*) match {
-    case Array(tier1, tier2) =>
-      Array((tier1: Double) max 1.0, (tier2: Double) max 1.0)
+  val hologramMaxScaleByTier = config.getDoubleList("hologram.maxScale").asScala.toArray match {
+    case Array(t1, t2) =>
+      Array((t1: Double) max 1.0, (t2: Double) max 1.0)
     case _ =>
       OpenComputers.log.warn("Bad number of hologram max scales, ignoring.")
       Array(3.0, 4.0)
   }
-  val hologramMaxTranslationByTier = Array(config.getDoubleList("hologram.maxTranslation"): _*) match {
-    case Array(tier1, tier2) =>
-      Array((tier1: Double) max 0.0, (tier2: Double) max 0.0)
+  val hologramMaxTranslationByTier = config.getDoubleList("hologram.maxTranslation").asScala.toArray match {
+    case Array(t1, t2) =>
+      Array((t1: Double) max 0.0, (t2: Double) max 0.0)
     case _ =>
       OpenComputers.log.warn("Bad number of hologram max translations, ignoring.")
       Array(0.25, 0.5)
@@ -343,16 +344,16 @@ class Settings(val config: Config) {
   val maxNetworkPacketSize = config.getInt("misc.maxNetworkPacketSize") max 0
   // Need at least 4 for nanomachine protocol. Because I can!
   val maxNetworkPacketParts = config.getInt("misc.maxNetworkPacketParts") max 4
-  val maxOpenPorts = Array(config.getIntList("misc.maxOpenPorts"): _*) match {
-    case Array(wired, tier1, tier2) =>
-      Array((wired: Int) max 0, (tier1: Int) max 0, (tier2: Int) max 0)
+  val maxOpenPorts = config.getIntList("misc.maxOpenPorts").asScala.toArray match {
+    case Array(wired, t1, t2) =>
+      Array((wired: Int) max 0, (t1: Int) max 0, (t2: Int) max 0)
     case _ =>
       OpenComputers.log.warn("Bad number of max open ports, ignoring.")
       Array(16, 1, 16)
   }
-  val maxWirelessRange = Array(config.getDoubleList("misc.maxWirelessRange"): _*) match {
-    case Array(tier1, tier2) =>
-      Array((tier1: Double) max 0.0, (tier2: Double) max 0.0)
+  val maxWirelessRange = config.getDoubleList("misc.maxWirelessRange").asScala.toArray match {
+    case Array(t1, t2) =>
+      Array((t1: Double) max 0.0, (t2: Double) max 0.0)
     case _ =>
       OpenComputers.log.warn("Bad number of wireless card max ranges, ignoring.")
       Array(16.0, 400.0)
@@ -471,8 +472,8 @@ class Settings(val config: Config) {
   val maxSignalQueueSize: Int = (if (config.hasPath("computer.maxSignalQueueSize")) config.getInt("computer.maxSignalQueueSize") else 256) max 256
 
   // >= 1.7.6
-  val vramSizes: Array[Double] = Array(config.getDoubleList("gpu.vramSizes"): _*) match {
-    case Array(tier1, tier2, tier3) => Array(tier1: Double, tier2: Double, tier3: Double)
+  val vramSizes: Array[Double] = config.getDoubleList("gpu.vramSizes").asScala.toArray match {
+    case Array(t1, t2, t3) => Array(t1: Double, t2: Double, t3: Double)
     case _ =>
       OpenComputers.log.warn("Bad number of VRAM sizes (expected 3), ignoring.")
       Array(1, 2, 3)
@@ -508,7 +509,8 @@ object Settings {
   val savePath = "opencomputers/"
   val scriptPath: String = "/assets/" + resourceDomain + "/lua/"
   val screenResolutionsByTier: Array[(Int, Int)] = Array((50, 16), (80, 25), (160, 50))
-  val screenDepthsByTier: Array[api.internal.TextBuffer.ColorDepth] = Array(api.internal.TextBuffer.ColorDepth.OneBit, api.internal.TextBuffer.ColorDepth.FourBit, api.internal.TextBuffer.ColorDepth.EightBit)
+  // TextBuffer.ColorDepth excluded during port — tier depths kept as bit counts for config parity.
+  val screenDepthsByTier: Array[Int] = Array(1, 4, 8)
   val deviceComplexityByTier: Array[Int] = Array(12, 24, 32, 9001)
   var rTreeDebugRenderer = false
   var blockRenderId: Int = -1
@@ -520,7 +522,7 @@ object Settings {
 
   def basicScreenPixels: Int = screenResolutionsByTier(0)._1 * screenResolutionsByTier(0)._2
 
-  private var settings: Settings = _
+  private var settings: Settings = scala.compiletime.uninitialized
 
   def get: Settings = settings
 
@@ -564,7 +566,7 @@ object Settings {
       val nl = sys.props("line.separator")
       val nle = StringEscapeUtils.escapeJava(nl)
       val out = new PrintWriter(file)
-      out.write(config.root.render(renderSettings).lines.
+      out.write(config.root.render(renderSettings).lines().toScala(List).
         // Indent two spaces instead of four.
         map(line => """^(\s*)""".r.replaceAllIn(line, m => Regex.quoteReplacement(m.group(1).replace("  ", " ")))).
         // Finalize the string.
@@ -642,15 +644,15 @@ object Settings {
         val cidrPattern = """(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(?:/(\d{1,2}))""".r
         val httpHostWhitelist = patched.getStringList(prefix + "internet.whitelist")
         val httpHostBlacklist = patched.getStringList(prefix + "internet.blacklist")
-        val internetFilteringRules = mutable.MutableList[String]()
-        for (blockedAddress <- httpHostBlacklist) {
+        val internetFilteringRules = mutable.ListBuffer[String]()
+        for (blockedAddress <- httpHostBlacklist.asScala) {
           if (cidrPattern.findFirstIn(blockedAddress).isDefined) {
             internetFilteringRules += "deny ip:" + blockedAddress
           } else {
             internetFilteringRules += "deny domain:" + blockedAddress
           }
         }
-        for (allowedAddress <- httpHostWhitelist) {
+        for (allowedAddress <- httpHostWhitelist.asScala) {
           if (cidrPattern.findFirstIn(allowedAddress).isDefined) {
             internetFilteringRules += "allow ip:" + allowedAddress
           } else {
@@ -660,7 +662,7 @@ object Settings {
         if (!httpHostWhitelist.isEmpty) {
           internetFilteringRules += "deny all"
         }
-        for (defaultRule <- defaults.getStringList(prefix + "internet.filteringRules")) {
+        for (defaultRule <- defaults.getStringList(prefix + "internet.filteringRules").asScala) {
           internetFilteringRules += defaultRule
         }
         var patchedRules: ConfigValue = ConfigValueFactory.fromIterable(internetFilteringRules.asJava)
@@ -670,8 +672,8 @@ object Settings {
             if (patched.hasPath(prefix + key)) {
               val originalValue = patched.getValue(prefix + key)
               var deprecatedValue: ConfigValue = ConfigValueFactory.fromIterable(new java.util.ArrayList[String](), originalValue.origin().description())
-              val comments = mutable.MutableList("No longer used! See internet.filteringRules.", "", "Previous contents:")
-              for (value <- patched.getStringList(prefix + key)) {
+              val comments = mutable.ListBuffer("No longer used! See internet.filteringRules.", "", "Previous contents:")
+              for (value <- patched.getStringList(prefix + key).asScala) {
                 comments += "\"" + value + "\""
               }
               deprecatedValue = OpenComputersConfigCommentManipulationHook.setComments(deprecatedValue, comments.asJava)
@@ -846,5 +848,9 @@ object Settings {
       0
     }
   }
+}
+
+private object OpenComputersConfigCommentManipulationHook {
+  def setComments(value: ConfigValue, comments: java.util.List[String]): ConfigValue = value
 }
 

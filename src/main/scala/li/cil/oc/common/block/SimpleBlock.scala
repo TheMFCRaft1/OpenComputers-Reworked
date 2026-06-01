@@ -10,19 +10,19 @@ import li.cil.oc.common.tileentity.traits.Inventory
 import li.cil.oc.common.tileentity.traits.Rotatable
 import li.cil.oc.util.Color
 import li.cil.oc.util.Tooltip
-import net.minecraft.block.Block
-import net.minecraft.block.material.Material
+import li.cil.oc.compat.vanilla.block.Block
+import li.cil.oc.compat.vanilla.block.material.Material
 import net.minecraft.client.renderer.texture.IIconRegister
-import net.minecraft.entity.Entity
+import li.cil.oc.compat.vanilla.entity.Entity
 import net.minecraft.entity.EnumCreatureType
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.EnumRarity
 import net.minecraft.item.ItemStack
-import net.minecraft.util.AxisAlignedBB
-import net.minecraft.util.IIcon
-import net.minecraft.util.Vec3
-import net.minecraft.world.IBlockAccess
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.util.AxisAlignedBB
+import li.cil.oc.compat.vanilla.util.IIcon
+import li.cil.oc.compat.vanilla.util.Vec3
+import li.cil.oc.compat.vanilla.world.IBlockAccess
+import li.cil.oc.compat.vanilla.world.World
 import net.minecraftforge.common.util.ForgeDirection
 
 class SimpleBlock(material: Material = Material.iron) extends Block(material) {

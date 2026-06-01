@@ -4,8 +4,8 @@ import java.util.Random
 
 import li.cil.oc.common.tileentity
 import li.cil.oc.integration.coloredlights.ModColoredLights
-import net.minecraft.block.Block
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.block.Block
+import li.cil.oc.compat.vanilla.world.World
 
 class Capacitor extends SimpleBlock {
   ModColoredLights.setLightLevel(this, 5, 5, 5)

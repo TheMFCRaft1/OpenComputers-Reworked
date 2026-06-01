@@ -3,7 +3,7 @@ package li.cil.oc.common.item.data
 import li.cil.oc.api
 import li.cil.oc.api.Persistable
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 abstract class ItemData(val itemName: String) extends Persistable {
   def load(stack: ItemStack): Unit = {

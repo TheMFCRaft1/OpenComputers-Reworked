@@ -14,7 +14,7 @@ import li.cil.oc.server.{PacketSender => ServerPacketSender}
 import lordfokas.stargatetech2.api.StargateTechAPI
 import lordfokas.stargatetech2.api.bus.IBusDevice
 import lordfokas.stargatetech2.api.bus.IBusInterface
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 @Injectable.Interface(value = "lordfokas.stargatetech2.api.bus.IBusDevice", modid = Mods.IDs.StargateTech2)
 trait AbstractBusAware extends TileEntity with network.Environment {

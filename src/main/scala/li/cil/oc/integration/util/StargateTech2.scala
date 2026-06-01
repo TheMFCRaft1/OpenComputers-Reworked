@@ -2,7 +2,7 @@ package li.cil.oc.integration.util
 
 import lordfokas.stargatetech2.api.bus.BusEvent.AddToNetwork
 import lordfokas.stargatetech2.api.bus.BusEvent.RemoveFromNetwork
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 import net.minecraftforge.common.MinecraftForge
 
 object StargateTech2 {

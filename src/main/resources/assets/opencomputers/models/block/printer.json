@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "opencomputers:block/generic_top",
+    "up": "opencomputers:block/printer_top",
+    "north": "opencomputers:block/printer_side",
+    "south": "opencomputers:block/printer_side",
+    "west": "opencomputers:block/printer_side",
+    "east": "opencomputers:block/printer_side"
+  }
+}

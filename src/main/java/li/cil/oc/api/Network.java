@@ -6,8 +6,8 @@ import li.cil.oc.api.network.Node;
 import li.cil.oc.api.network.Packet;
 import li.cil.oc.api.network.Visibility;
 import li.cil.oc.api.network.WirelessEndpoint;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound;
+import li.cil.oc.compat.vanilla.tileentity.TileEntity;
 
 /**
  * This class provides factories for networks and nodes.

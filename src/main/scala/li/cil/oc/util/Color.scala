@@ -1,10 +1,5 @@
 package li.cil.oc.util
 
-import net.minecraft.item.ItemStack
-import net.minecraftforge.oredict.OreDictionary
-
-import scala.jdk.CollectionConverters._
-
 object Color {
   val Black = 0x444444
   // 0x1E1B1B
@@ -31,49 +26,5 @@ object Color {
   val Orange = 0xEB8844
   val White = 0xF0F0F0
 
-  val dyes = Array(
-    "dyeBlack",
-    "dyeRed",
-    "dyeGreen",
-    "dyeBrown",
-    "dyeBlue",
-    "dyePurple",
-    "dyeCyan",
-    "dyeLightGray",
-    "dyeGray",
-    "dyePink",
-    "dyeLime",
-    "dyeYellow",
-    "dyeLightBlue",
-    "dyeMagenta",
-    "dyeOrange",
-    "dyeWhite")
-
-  val byOreName = Map(
-    "dyeBlack" -> Black,
-    "dyeRed" -> Red,
-    "dyeGreen" -> Green,
-    "dyeBrown" -> Brown,
-    "dyeBlue" -> Blue,
-    "dyePurple" -> Purple,
-    "dyeCyan" -> Cyan,
-    "dyeLightGray" -> LightGray,
-    "dyeGray" -> Gray,
-    "dyePink" -> Pink,
-    "dyeLime" -> Lime,
-    "dyeYellow" -> Yellow,
-    "dyeLightBlue" -> LightBlue,
-    "dyeMagenta" -> Magenta,
-    "dyeOrange" -> Orange,
-    "dyeWhite" -> White)
-
   val byTier = Array(LightGray, Yellow, Cyan, Magenta)
-
-  def byMeta(meta: Int) = byOreName(dyes(15 - meta))
-
-  def findDye(stack: ItemStack) = byOreName.keys.find(OreDictionary.getOres(_).exists(oreStack => OreDictionary.itemMatches(stack, oreStack, false)))
-
-  def isDye(stack: ItemStack) = findDye(stack).isDefined
-
-  def dyeColor(stack: ItemStack) = findDye(stack).fold(0xFF00FF)(byOreName(_))
 }

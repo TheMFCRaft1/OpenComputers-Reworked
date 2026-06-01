@@ -3,8 +3,8 @@ package li.cil.oc.api.internal;
 import li.cil.oc.api.component.RackMountable;
 import li.cil.oc.api.network.EnvironmentHost;
 import li.cil.oc.api.network.SidedEnvironment;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.nbt.NBTTagCompound;
+import li.cil.oc.compat.vanilla.inventory.IInventory;
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound;
 
 /**
  * This interface is implemented by the rack tile entity.

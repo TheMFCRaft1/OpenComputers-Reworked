@@ -2,17 +2,13 @@ package li.cil.oc.common.tileentity.traits
 
 import cpw.mods.fml.relauncher.Side
 import cpw.mods.fml.relauncher.SideOnly
-import li.cil.oc.OpenComputers
 import li.cil.oc.Settings
 import li.cil.oc.client.Sound
-import li.cil.oc.common.SaveHandler
 import li.cil.oc.util.BlockPosition
 import li.cil.oc.util.SideTracker
-import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.network.NetworkManager
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
-trait TileEntity extends net.minecraft.tileentity.TileEntity {
+trait TileEntity extends li.cil.oc.compat.vanilla.tileentity.TileEntity {
   def world = getWorldObj
 
   def x = xCoord
@@ -33,7 +29,7 @@ trait TileEntity extends net.minecraft.tileentity.TileEntity {
 
   override def updateEntity(): Unit = {
     super.updateEntity()
-    if (Settings.get.periodicallyForceLightUpdate && world.getTotalWorldTime % 40 == 0 && block.getLightValue(world, x, y, z) > 0) {
+    if (Settings.get.periodicallyForceLightUpdate && world != null && world.getTotalWorldTime % 40 == 0) {
       world.markBlockForUpdate(x, y, z)
     }
   }
@@ -48,8 +44,8 @@ trait TileEntity extends net.minecraft.tileentity.TileEntity {
     dispose()
   }
 
-  override def onChunkUnload(): Unit = {
-    super.onChunkUnload()
+  override def onChunkUnloaded(): Unit = {
+    super.onChunkUnloaded()
     dispose()
   }
 
@@ -87,24 +83,4 @@ trait TileEntity extends net.minecraft.tileentity.TileEntity {
     }
   }
 
-  override def getDescriptionPacket = {
-    val nbt = new NBTTagCompound()
-
-    // See comment on savingForClients variable.
-    SaveHandler.savingForClients = true
-    try {
-      try writeToNBTForClient(nbt) catch {
-        case e: Throwable => OpenComputers.log.warn("There was a problem writing a TileEntity description packet. Please report this if you see it!", e)
-      }
-      if (nbt.hasNoTags) null else new S35PacketUpdateTileEntity(x, y, z, -1, nbt)
-    } finally {
-      SaveHandler.savingForClients = false
-    }
-  }
-
-  override def onDataPacket(manager: NetworkManager, packet: S35PacketUpdateTileEntity): Unit = {
-    try readFromNBTForClient(packet.func_148857_g()) catch {
-      case e: Throwable => OpenComputers.log.warn("There was a problem reading a TileEntity description packet. Please report this if you see it!", e)
-    }
-  }
 }

@@ -10,10 +10,10 @@ import li.cil.oc.api.manual.ImageRenderer
 import li.cil.oc.api.manual.PathProvider
 import li.cil.oc.api.manual.TabIconRenderer
 import li.cil.oc.common.GuiType
-import net.minecraft.client.Minecraft
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.client.Minecraft
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 
 import scala.annotation.tailrec
 import scala.jdk.CollectionConverters._

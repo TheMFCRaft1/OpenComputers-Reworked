@@ -4,11 +4,11 @@ import cpw.mods.fml.common.eventhandler.Cancelable;
 import cpw.mods.fml.common.eventhandler.Event;
 import li.cil.oc.api.component.RackMountable;
 import li.cil.oc.api.internal.Rack;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.RenderBlocks;
+import li.cil.oc.compat.vanilla.client.Minecraft;
+import li.cil.oc.compat.vanilla.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.IIcon;
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound;
+import li.cil.oc.compat.vanilla.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.ForgeDirection;
 

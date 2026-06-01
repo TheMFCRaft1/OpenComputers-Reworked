@@ -4,7 +4,7 @@ import li.cil.oc.Constants
 import li.cil.oc.OpenComputers
 import li.cil.oc.api.detail.ItemInfo
 import li.cil.oc.common.init.Items
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
 import net.minecraft.stats.StatBase
 import net.minecraft.stats.{Achievement => MCAchievement}

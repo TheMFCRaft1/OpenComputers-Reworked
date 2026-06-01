@@ -35,8 +35,8 @@ import li.cil.oc.server.fs.FileSystem
 import li.cil.oc.util.ExtendedNBT._
 import li.cil.oc.util.ResultWrapper.result
 import li.cil.oc.util.ThreadPoolFactory
-import net.minecraft.client.Minecraft
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.client.Minecraft
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt._
 import net.minecraft.server.MinecraftServer

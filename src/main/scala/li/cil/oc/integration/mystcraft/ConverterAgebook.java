@@ -2,7 +2,7 @@ package li.cil.oc.integration.mystcraft;
 
 import li.cil.oc.api.driver.Converter;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound;
 
 import java.util.HashMap;
 import java.util.Map;

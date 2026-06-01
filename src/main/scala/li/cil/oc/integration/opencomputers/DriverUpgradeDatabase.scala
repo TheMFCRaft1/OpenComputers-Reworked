@@ -9,7 +9,7 @@ import li.cil.oc.common.inventory.DatabaseInventory
 import li.cil.oc.common.item
 import li.cil.oc.common.item.Delegator
 import li.cil.oc.server.component
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
 
 object DriverUpgradeDatabase extends Item with api.driver.item.HostAware {

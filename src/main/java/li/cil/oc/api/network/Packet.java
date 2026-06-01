@@ -1,6 +1,6 @@
 package li.cil.oc.api.network;
 
-import net.minecraft.nbt.NBTTagCompound;
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound;
 
 /**
  * These packets represent messages sent using a network card or wireless

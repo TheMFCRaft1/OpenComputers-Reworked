@@ -9,8 +9,8 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent
 import cpw.mods.fml.common.gameevent.TickEvent.ClientTickEvent
 import li.cil.oc.api.event.RobotRenderEvent
 import li.cil.oc.client.renderer.tileentity.RobotRenderer
-import net.minecraft.client.Minecraft
-import net.minecraft.entity.Entity
+import li.cil.oc.compat.vanilla.client.Minecraft
+import li.cil.oc.compat.vanilla.entity.Entity
 import net.minecraftforge.client.event.RenderPlayerEvent
 import org.lwjgl.opengl.GL11
 import org.lwjgl.opengl.GL12

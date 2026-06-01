@@ -5,7 +5,7 @@ import gnu.trove.map.hash.TIntObjectHashMap;
 import li.cil.oc.OpenComputers;
 import li.cil.oc.Settings;
 import li.cil.oc.util.FontUtils;
-import net.minecraft.client.Minecraft;
+import li.cil.oc.compat.vanilla.client.Minecraft;
 import net.minecraft.client.resources.IResource;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.BufferUtils;

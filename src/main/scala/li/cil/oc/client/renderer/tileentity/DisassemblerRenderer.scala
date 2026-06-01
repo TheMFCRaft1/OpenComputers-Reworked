@@ -6,7 +6,7 @@ import li.cil.oc.util.RenderState
 import net.minecraft.client.renderer.Tessellator
 import net.minecraft.client.renderer.texture.TextureMap
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer
-import net.minecraft.tileentity.TileEntity
+import li.cil.oc.compat.vanilla.tileentity.TileEntity
 import org.lwjgl.opengl.GL11
 
 object DisassemblerRenderer extends TileEntitySpecialRenderer {

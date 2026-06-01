@@ -2,13 +2,13 @@ package li.cil.oc.common.recipe
 
 import li.cil.oc.util.Color
 import li.cil.oc.util.ItemColorizer
-import net.minecraft.block.Block
+import li.cil.oc.compat.vanilla.block.Block
 import net.minecraft.entity.passive.EntitySheep
 import net.minecraft.inventory.InventoryCrafting
 import net.minecraft.item.crafting.IRecipe
-import net.minecraft.item.Item
+import li.cil.oc.compat.vanilla.item.Item
 import net.minecraft.item.ItemStack
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 
 /**
   * @author asie, Vexatos

@@ -9,7 +9,7 @@ import li.cil.oc.common.EventHandler
 import li.cil.oc.common.inventory
 import li.cil.oc.util.ExtendedInventory._
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 import scala.collection.mutable
 

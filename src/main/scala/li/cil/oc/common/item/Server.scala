@@ -8,9 +8,9 @@ import li.cil.oc.common.GuiType
 import li.cil.oc.common.inventory.ServerInventory
 import li.cil.oc.util.Rarity
 import li.cil.oc.util.Tooltip
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 
 import scala.collection.mutable
 

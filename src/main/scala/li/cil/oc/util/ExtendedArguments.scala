@@ -2,7 +2,7 @@ package li.cil.oc.util
 
 import li.cil.oc.api.internal.MultiTank
 import li.cil.oc.api.machine.Arguments
-import net.minecraft.inventory.IInventory
+import li.cil.oc.compat.vanilla.inventory.IInventory
 import net.minecraftforge.common.util.ForgeDirection
 import net.minecraftforge.fluids.FluidContainerRegistry
 import net.minecraftforge.fluids.FluidTankInfo

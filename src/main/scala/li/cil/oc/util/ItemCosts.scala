@@ -6,10 +6,10 @@ import li.cil.oc.Constants
 import li.cil.oc.Localization
 import li.cil.oc.api
 import li.cil.oc.integration.Mods
-import net.minecraft.block.Block
-import net.minecraft.init.Blocks
-import net.minecraft.init.Items
-import net.minecraft.item.Item
+import li.cil.oc.compat.vanilla.block.Block
+import li.cil.oc.compat.vanilla.init.Blocks
+import li.cil.oc.compat.vanilla.init.Items
+import li.cil.oc.compat.vanilla.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.item.crafting._
 import net.minecraftforge.oredict.OreDictionary

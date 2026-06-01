@@ -4,7 +4,7 @@ import java.util.logging.Level
 
 import cpw.mods.fml.common.FMLLog
 import net.minecraft.command.ICommandSender
-import net.minecraft.entity.player.EntityPlayerMP
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayerMP
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.management.UserListOpsEntry
 import net.minecraft.util.{ChatComponentText, IChatComponent}

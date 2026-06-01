@@ -18,7 +18,7 @@ import li.cil.oc.integration.Mods
 import li.cil.oc.server._
 import li.cil.oc.server.machine.luac.{LuaStateFactory, NativeLua52Architecture, NativeLua53Architecture, NativeLua54Architecture}
 import li.cil.oc.server.machine.luaj.LuaJLuaArchitecture
-import net.minecraft.item.Item
+import li.cil.oc.compat.vanilla.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraftforge.oredict.OreDictionary
 
@@ -38,26 +38,26 @@ class Proxy {
 
     OpenComputers.log.debug("Initializing additional OreDict entries.")
 
-    OreDictionary.registerOre("craftingPiston", net.minecraft.init.Blocks.piston)
-    OreDictionary.registerOre("craftingPiston", net.minecraft.init.Blocks.sticky_piston)
-    OreDictionary.registerOre("torchRedstoneActive", net.minecraft.init.Blocks.redstone_torch)
-    OreDictionary.registerOre("materialEnderPearl", net.minecraft.init.Items.ender_pearl)
-    OreDictionary.registerOre("nuggetGold", net.minecraft.init.Items.gold_nugget)
-    OreDictionary.registerOre("chest", net.minecraft.init.Blocks.chest)
-    OreDictionary.registerOre("chest", net.minecraft.init.Blocks.trapped_chest)
+    OreDictionary.registerOre("craftingPiston", li.cil.oc.compat.vanilla.init.Blocks.piston)
+    OreDictionary.registerOre("craftingPiston", li.cil.oc.compat.vanilla.init.Blocks.sticky_piston)
+    OreDictionary.registerOre("torchRedstoneActive", li.cil.oc.compat.vanilla.init.Blocks.redstone_torch)
+    OreDictionary.registerOre("materialEnderPearl", li.cil.oc.compat.vanilla.init.Items.ender_pearl)
+    OreDictionary.registerOre("nuggetGold", li.cil.oc.compat.vanilla.init.Items.gold_nugget)
+    OreDictionary.registerOre("chest", li.cil.oc.compat.vanilla.init.Blocks.chest)
+    OreDictionary.registerOre("chest", li.cil.oc.compat.vanilla.init.Blocks.trapped_chest)
     
     // Make mods that use old wireless card name not have broken recipes
     OreDictionary.registerOre("oc:wlanCard", Items.get(Constants.ItemName.WirelessNetworkCardTier2).createItemStack(1))
 
-    tryRegisterNugget[item.IronNugget](Constants.ItemName.IronNugget, "nuggetIron", net.minecraft.init.Items.iron_ingot, "ingotIron")
-    tryRegisterNugget[item.DiamondChip](Constants.ItemName.DiamondChip, "chipDiamond", net.minecraft.init.Items.diamond, "gemDiamond")
+    tryRegisterNugget[item.IronNugget](Constants.ItemName.IronNugget, "nuggetIron", li.cil.oc.compat.vanilla.init.Items.iron_ingot, "ingotIron")
+    tryRegisterNugget[item.DiamondChip](Constants.ItemName.DiamondChip, "chipDiamond", li.cil.oc.compat.vanilla.init.Items.diamond, "gemDiamond")
 
     // Avoid issues with Extra Utilities registering colored obsidian as `obsidian`
     // oredict entry, but not normal obsidian, breaking some recipes.
-    OreDictionary.registerOre("obsidian", net.minecraft.init.Blocks.obsidian)
+    OreDictionary.registerOre("obsidian", li.cil.oc.compat.vanilla.init.Blocks.obsidian)
 
     // To still allow using normal endstone for crafting drones.
-    OreDictionary.registerOre("oc:stoneEndstone", net.minecraft.init.Blocks.end_stone)
+    OreDictionary.registerOre("oc:stoneEndstone", li.cil.oc.compat.vanilla.init.Blocks.end_stone)
 
     OpenComputers.log.info("Initializing OpenComputers API.")
 

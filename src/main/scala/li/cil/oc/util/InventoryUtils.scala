@@ -1,15 +1,15 @@
 package li.cil.oc.util
 
 import li.cil.oc.util.ExtendedWorld._
-import net.minecraft.block.BlockChest
-import net.minecraft.entity.Entity
+import li.cil.oc.compat.vanilla.block.BlockChest
+import li.cil.oc.compat.vanilla.entity.Entity
 import net.minecraft.entity.item.EntityItem
 import net.minecraft.entity.item.EntityMinecartContainer
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.inventory.IInventory
-import net.minecraft.inventory.ISidedInventory
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.inventory.IInventory
+import li.cil.oc.compat.vanilla.inventory.ISidedInventory
 import net.minecraft.item.ItemStack
-import net.minecraft.tileentity.TileEntityChest
+import li.cil.oc.compat.vanilla.tileentity.TileEntityChest
 import net.minecraftforge.common.util.ForgeDirection
 
 import scala.jdk.CollectionConverters._

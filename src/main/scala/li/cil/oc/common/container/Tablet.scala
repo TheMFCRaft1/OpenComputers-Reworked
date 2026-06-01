@@ -1,7 +1,7 @@
 package li.cil.oc.common.container
 
 import li.cil.oc.common.item.TabletWrapper
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.entity.player.InventoryPlayer
 
 class Tablet(playerInventory: InventoryPlayer, tablet: TabletWrapper) extends Player(playerInventory, tablet) {

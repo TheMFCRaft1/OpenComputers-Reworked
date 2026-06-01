@@ -3,7 +3,7 @@ package li.cil.oc.server.fs
 import java.io
 import java.io.RandomAccessFile
 import li.cil.oc.api.fs.Mode
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 import java.nio.file.{Files, StandardCopyOption}
 

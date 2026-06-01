@@ -3,8 +3,8 @@ package li.cil.oc.common.item
 import li.cil.oc.Localization
 import li.cil.oc.util.BlockPosition
 import li.cil.oc.util.ExtendedWorld._
-import net.minecraft.block.Block
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.block.Block
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
 
 class TexturePicker(val parent: Delegator) extends traits.Delegate {

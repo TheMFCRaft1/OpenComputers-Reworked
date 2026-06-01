@@ -13,16 +13,16 @@ import li.cil.oc.common.tileentity
 import li.cil.oc.integration.coloredlights.ModColoredLights
 import li.cil.oc.integration.util.Wrench
 import li.cil.oc.util._
-import net.minecraft.client.Minecraft
+import li.cil.oc.compat.vanilla.client.Minecraft
 import net.minecraft.client.renderer.texture.IIconRegister
-import net.minecraft.entity.Entity
+import li.cil.oc.compat.vanilla.entity.Entity
 import net.minecraft.entity.EntityLivingBase
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.entity.projectile.EntityArrow
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.projectile.EntityArrow
 import net.minecraft.item.ItemStack
-import net.minecraft.util.IIcon
-import net.minecraft.world.IBlockAccess
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.util.IIcon
+import li.cil.oc.compat.vanilla.world.IBlockAccess
+import li.cil.oc.compat.vanilla.world.World
 import net.minecraftforge.common.util.ForgeDirection
 
 class Screen(val tier: Int) extends RedstoneAware {

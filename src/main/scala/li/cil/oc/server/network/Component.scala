@@ -12,7 +12,7 @@ import li.cil.oc.server.machine.Callbacks.ComponentCallback
 import li.cil.oc.server.machine.Callbacks.PeripheralCallback
 import li.cil.oc.server.machine.Machine
 import li.cil.oc.util.SideTracker
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 import scala.jdk.CollectionConverters._
 import scala.jdk.CollectionConverters._

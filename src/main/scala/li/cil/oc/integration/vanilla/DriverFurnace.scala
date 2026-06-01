@@ -9,11 +9,11 @@ import li.cil.oc.api.network.ManagedEnvironment
 import li.cil.oc.api.prefab.DriverSidedTileEntity
 import li.cil.oc.integration.ManagedTileEntityEnvironment
 import li.cil.oc.util.ResultWrapper.result
-import net.minecraft.block.Block
-import net.minecraft.init.Blocks
+import li.cil.oc.compat.vanilla.block.Block
+import li.cil.oc.compat.vanilla.init.Blocks
 import net.minecraft.item.ItemStack
-import net.minecraft.tileentity.TileEntityFurnace
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.tileentity.TileEntityFurnace
+import li.cil.oc.compat.vanilla.world.World
 import net.minecraftforge.common.util.ForgeDirection
 
 object DriverFurnace extends DriverSidedTileEntity {

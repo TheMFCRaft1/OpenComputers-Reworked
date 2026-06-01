@@ -4,7 +4,7 @@ import com.google.common.base.Charsets
 import li.cil.oc.OpenComputers
 import li.cil.oc.Settings
 import li.cil.oc.client.Textures
-import net.minecraft.client.Minecraft
+import li.cil.oc.compat.vanilla.client.Minecraft
 import net.minecraft.util.ResourceLocation
 import org.lwjgl.opengl.GL11
 

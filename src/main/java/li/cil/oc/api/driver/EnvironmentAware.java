@@ -1,7 +1,7 @@
 package li.cil.oc.api.driver;
 
 import li.cil.oc.api.network.Environment;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 
 /**
  * This interface can be added to either item or block drivers.
@@ -28,7 +28,7 @@ public interface EnvironmentAware {
      * <br>
      * Note that for block drivers this is called for any type of item stack.
      * <br>
-     * For item drivers this is only called if {@link Item#worksWith(net.minecraft.item.ItemStack)}
+     * For item drivers this is only called if {@link Item#worksWith(net.minecraft.world.item.ItemStack)}
      * returns <tt>true</tt>.
      *
      * @param stack the item stack representing a block or item to get the

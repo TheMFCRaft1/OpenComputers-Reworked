@@ -17,8 +17,8 @@ import li.cil.oc.api.network.Visibility
 import li.cil.oc.api.prefab
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.enchantment.EnchantmentHelper
-import net.minecraft.init.Items
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.init.Items
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 import scala.jdk.CollectionConverters._
 import scala.jdk.CollectionConverters._

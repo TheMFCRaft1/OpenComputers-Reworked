@@ -1,7 +1,7 @@
 package li.cil.oc.client.gui.widget
 
 import li.cil.oc.client.Textures
-import net.minecraft.client.Minecraft
+import li.cil.oc.compat.vanilla.client.Minecraft
 import net.minecraft.client.renderer.Tessellator
 
 class ProgressBar(val x: Int, val y: Int) extends Widget {

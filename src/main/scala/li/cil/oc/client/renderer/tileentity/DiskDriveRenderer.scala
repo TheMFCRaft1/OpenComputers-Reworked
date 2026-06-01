@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.entity.RenderItem
 import net.minecraft.client.renderer.entity.RenderManager
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer
 import net.minecraft.entity.item.EntityItem
-import net.minecraft.tileentity.TileEntity
+import li.cil.oc.compat.vanilla.tileentity.TileEntity
 import net.minecraftforge.common.util.ForgeDirection
 import org.lwjgl.opengl.GL11
 

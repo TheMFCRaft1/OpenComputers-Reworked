@@ -8,7 +8,7 @@ import li.cil.oc.server.component.result
 import li.cil.oc.util.BlockPosition
 import li.cil.oc.util.ExtendedArguments._
 import li.cil.oc.util.InventoryUtils
-import net.minecraft.inventory.IInventory
+import li.cil.oc.compat.vanilla.inventory.IInventory
 import net.minecraftforge.common.util.ForgeDirection
 
 trait InventoryWorldControlMk2 extends InventoryAware with WorldAware with SideRestricted {

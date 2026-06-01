@@ -27,16 +27,16 @@ import li.cil.oc.util.ExtendedBlock._
 import li.cil.oc.util.ExtendedNBT._
 import li.cil.oc.util.ExtendedWorld._
 import li.cil.oc.util.InventoryUtils
-import net.minecraft.block.Block
+import li.cil.oc.compat.vanilla.block.Block
 import net.minecraft.entity.item.EntityMinecart
 import net.minecraft.entity.{Entity, EntityLivingBase}
-import net.minecraft.entity.player.EntityPlayerMP
-import net.minecraft.item.Item
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayerMP
+import li.cil.oc.compat.vanilla.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt._
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.management.UserListOpsEntry
-import net.minecraft.tileentity.TileEntity
+import li.cil.oc.compat.vanilla.tileentity.TileEntity
 import net.minecraft.util.IChatComponent
 import net.minecraft.world.{World, WorldServer, WorldSettings}
 import net.minecraft.world.WorldSettings.GameType

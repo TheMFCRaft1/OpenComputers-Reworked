@@ -1,9 +1,9 @@
 package li.cil.oc.client.renderer.tileentity
 
 import li.cil.oc.util.RenderState
-import net.minecraft.client.Minecraft
+import li.cil.oc.compat.vanilla.client.Minecraft
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer
-import net.minecraft.tileentity.TileEntity
+import li.cil.oc.compat.vanilla.tileentity.TileEntity
 import org.lwjgl.opengl.GL11
 
 object HologramRendererFallback extends TileEntitySpecialRenderer {

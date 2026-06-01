@@ -4,12 +4,12 @@ import codechicken.multipart.TileMultipart
 import li.cil.oc.client.Textures
 import li.cil.oc.common
 import li.cil.oc.integration.Mods
-import net.minecraft.block.Block
+import li.cil.oc.compat.vanilla.block.Block
 import net.minecraft.client.renderer.{RenderBlocks, Tessellator}
 import net.minecraft.item.{ItemBlock, ItemStack}
-import net.minecraft.tileentity.TileEntity
-import net.minecraft.util.AxisAlignedBB
-import net.minecraft.world.IBlockAccess
+import li.cil.oc.compat.vanilla.tileentity.TileEntity
+import li.cil.oc.compat.vanilla.util.AxisAlignedBB
+import li.cil.oc.compat.vanilla.world.IBlockAccess
 import net.minecraftforge.common.util.ForgeDirection
 
 object Cable {

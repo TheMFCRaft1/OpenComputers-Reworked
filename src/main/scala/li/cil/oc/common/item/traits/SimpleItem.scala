@@ -12,11 +12,11 @@ import li.cil.oc.client.KeyBindings
 import li.cil.oc.common.tileentity
 import li.cil.oc.util.ItemCosts
 import li.cil.oc.util.Tooltip
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.item.Item
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.util.WeightedRandomChestContent
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 import net.minecraftforge.common.ChestGenHooks
 
 trait SimpleItem extends Item {

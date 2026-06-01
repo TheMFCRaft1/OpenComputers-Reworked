@@ -5,8 +5,8 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent
 import li.cil.oc.Settings
 import li.cil.oc.server.network.WirelessNetwork
 import li.cil.oc.util.RenderState
-import net.minecraft.client.Minecraft
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.client.Minecraft
+import li.cil.oc.compat.vanilla.world.World
 import net.minecraftforge.client.event.RenderWorldLastEvent
 import org.lwjgl.opengl.GL11
 

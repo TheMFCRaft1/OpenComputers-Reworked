@@ -1,7 +1,7 @@
 package li.cil.oc.api.internal;
 
 import li.cil.oc.api.network.EnvironmentHost;
-import net.minecraft.util.Vec3;
+import li.cil.oc.compat.vanilla.util.Vec3;
 
 /**
  * This interface is implemented as a marker by drones.
@@ -35,7 +35,7 @@ public interface Drone extends Agent, EnvironmentHost, Rotatable, Tiered {
      * Get the drones velocity vector.
      * <br>
      * Note that this is really just the underlying entity's <tt>motionX/Y/Z</tt>,
-     * so you can cast this to {@link net.minecraft.entity.Entity} and use that
+     * so you can cast this to {@link li.cil.oc.compat.vanilla.entity.Entity} and use that
      * instead, if you'd like.
      */
     Vec3 getVelocity();

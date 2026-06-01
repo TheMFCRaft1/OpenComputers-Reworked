@@ -24,7 +24,7 @@ object ExtendedLuaState {
       override def invoke(state: LuaState) = f(state)
     })
 
-    def pushValue(value: Any, memo: util.IdentityHashMap[Any, Int] = new util.IdentityHashMap()) {
+    def pushValue(value: Any, memo: util.IdentityHashMap[Any, Int] = new util.IdentityHashMap()): Unit = {
       val recursive = memo.size > 0
       val oldTop = lua.getTop
       if (memo.containsKey(value)) {

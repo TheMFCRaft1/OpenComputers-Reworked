@@ -1,12 +1,8 @@
 package li.cil.oc.api;
 
 import com.typesafe.config.Config;
-import li.cil.oc.api.detail.DriverAPI;
 import li.cil.oc.api.detail.FileSystemAPI;
 import li.cil.oc.api.detail.ItemAPI;
-import li.cil.oc.api.detail.MachineAPI;
-import li.cil.oc.api.detail.ManualAPI;
-import li.cil.oc.api.detail.NanomachinesAPI;
 import li.cil.oc.api.detail.NetworkAPI;
 
 /**
@@ -38,12 +34,8 @@ public class API {
     // Prefer using the static methods in the respective classes in this package
     // over accessing these instances directly.
 
-    public static DriverAPI driver = null;
     public static FileSystemAPI fileSystem = null;
     public static ItemAPI items = null;
-    public static MachineAPI machine = null;
-    public static ManualAPI manual = null;
-    public static NanomachinesAPI nanomachines = null;
     public static NetworkAPI network = null;
 
     // ----------------------------------------------------------------------- //

@@ -1,6 +1,6 @@
 package lordfokas.stargatetech2.api.world;
 
-import net.minecraft.world.World;
+import li.cil.oc.compat.vanilla.world.World;
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.Event.HasResult;
 

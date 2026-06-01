@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "opencomputers:block/generic_top",
+    "up": "opencomputers:block/geolyzer_top",
+    "north": "opencomputers:block/geolyzer_side",
+    "south": "opencomputers:block/geolyzer_side",
+    "west": "opencomputers:block/geolyzer_side",
+    "east": "opencomputers:block/geolyzer_side"
+  }
+}

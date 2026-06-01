@@ -2,12 +2,12 @@ package li.cil.oc.server.agent
 
 import li.cil.oc.api.internal
 import li.cil.oc.util.InventoryUtils
-import net.minecraft.block.Block
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.block.Block
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.entity.player.InventoryPlayer
-import net.minecraft.item.Item
+import li.cil.oc.compat.vanilla.item.Item
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagList
+import li.cil.oc.compat.vanilla.nbt.NBTTagList
 import li.cil.oc.util.ExtendedInventory._
 
 class Inventory(val agent: internal.Agent) extends InventoryPlayer(null) {

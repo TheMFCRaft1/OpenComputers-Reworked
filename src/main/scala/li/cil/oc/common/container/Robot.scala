@@ -8,7 +8,7 @@ import li.cil.oc.common
 import li.cil.oc.common.tileentity
 import li.cil.oc.util.SideTracker
 import net.minecraft.entity.player.InventoryPlayer
-import net.minecraft.inventory.IInventory
+import li.cil.oc.compat.vanilla.inventory.IInventory
 
 class Robot(playerInventory: InventoryPlayer, robot: tileentity.Robot) extends Player(playerInventory, robot) {
   val hasScreen = robot.components.exists {

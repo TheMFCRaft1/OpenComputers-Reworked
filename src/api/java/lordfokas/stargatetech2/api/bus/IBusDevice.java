@@ -1,6 +1,6 @@
 package lordfokas.stargatetech2.api.bus;
 
-import net.minecraft.world.World;
+import li.cil.oc.compat.vanilla.world.World;
 
 /**
  * To be implemented by Tile Entities that wish

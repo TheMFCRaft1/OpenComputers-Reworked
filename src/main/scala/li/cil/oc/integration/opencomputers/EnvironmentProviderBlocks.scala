@@ -9,7 +9,7 @@ import li.cil.oc.common.tileentity
 import li.cil.oc.integration.util.BundledRedstone
 import li.cil.oc.server.component
 import li.cil.oc.server.machine.Machine
-import net.minecraft.block.Block
+import li.cil.oc.compat.vanilla.block.Block
 import net.minecraft.item.ItemBlock
 import net.minecraft.item.ItemStack
 

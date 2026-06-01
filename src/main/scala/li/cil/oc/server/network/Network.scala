@@ -19,7 +19,7 @@ import li.cil.oc.server.network.{Node => MutableNode}
 import li.cil.oc.util.Color
 import li.cil.oc.util.SideTracker
 import net.minecraft.nbt._
-import net.minecraft.tileentity.TileEntity
+import li.cil.oc.compat.vanilla.tileentity.TileEntity
 import net.minecraftforge.common.util.ForgeDirection
 
 import scala.jdk.CollectionConverters._
@@ -280,10 +280,10 @@ private class Network private(private val data: mutable.Map[String, Network.Vert
           val node = vertex.data
           val neighbors = vertex.edges.map(_.other(vertex).data).toArray
 
-          var newAddress = ""
-          do {
+          var newAddress = java.util.UUID.randomUUID().toString
+          while (data.contains(newAddress) || otherNetwork.data.contains(newAddress)) do {
             newAddress = java.util.UUID.randomUUID().toString
-          } while (data.contains(newAddress) || otherNetwork.data.contains(newAddress))
+          }
 
           // This may lead to splits, which is the whole reason we have to
           // check the network of the other nodes after the readdressing.

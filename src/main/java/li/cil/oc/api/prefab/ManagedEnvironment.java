@@ -2,7 +2,7 @@ package li.cil.oc.api.prefab;
 
 import li.cil.oc.api.network.Message;
 import li.cil.oc.api.network.Node;
-import net.minecraft.nbt.NBTTagCompound;
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound;
 
 /**
  * Simple base implementation of the <tt>ManagedEnvironment</tt> interface, so

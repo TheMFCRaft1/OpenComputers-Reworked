@@ -3,8 +3,8 @@ package li.cil.oc.common.event
 import cpw.mods.fml.common.eventhandler.SubscribeEvent
 import li.cil.oc.common.EventHandler
 import li.cil.oc.util.BlockPosition
-import net.minecraft.entity.Entity
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.Entity
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.world.{IWorldAccess, World}
 import net.minecraftforge.event.world.WorldEvent
 

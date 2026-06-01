@@ -1,7 +1,7 @@
 package li.cil.oc.client.renderer.markdown.segment.render
 
 import li.cil.oc.api.manual.ImageRenderer
-import net.minecraft.client.Minecraft
+import li.cil.oc.compat.vanilla.client.Minecraft
 import net.minecraft.client.renderer.OpenGlHelper
 import net.minecraft.client.renderer.RenderHelper
 import net.minecraft.client.renderer.entity.RenderItem

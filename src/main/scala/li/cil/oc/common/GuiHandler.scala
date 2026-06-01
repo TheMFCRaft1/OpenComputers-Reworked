@@ -4,9 +4,9 @@ import cpw.mods.fml.common.network.IGuiHandler
 import li.cil.oc.common.inventory.{DatabaseInventory, DiskDriveMountableInventory, ServerInventory}
 import li.cil.oc.common.item.Delegator
 import li.cil.oc.server.component.{DiskDriveMountable, Server}
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 
 abstract class GuiHandler extends IGuiHandler {
   override def getServerGuiElement(id: Int, player: EntityPlayer, world: World, x: Int, y: Int, z: Int): AnyRef = {

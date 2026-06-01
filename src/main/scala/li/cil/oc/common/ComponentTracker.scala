@@ -4,7 +4,7 @@ import com.google.common.cache.Cache
 import com.google.common.cache.CacheBuilder
 import cpw.mods.fml.common.eventhandler.SubscribeEvent
 import li.cil.oc.api.network.ManagedEnvironment
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 import net.minecraftforge.event.world.WorldEvent
 
 import scala.jdk.CollectionConverters._

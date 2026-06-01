@@ -11,13 +11,13 @@ import li.cil.oc.common.tileentity.Waypoint
 import li.cil.oc.common.tileentity.traits._
 import li.cil.oc.util.BlockPosition
 import li.cil.oc.util.PackedColor
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.entity.player.EntityPlayerMP
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayerMP
 import net.minecraft.inventory.Container
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.CompressedStreamTools
-import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.nbt.CompressedStreamTools
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.world.World
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.common.util.ForgeDirection
 
@@ -139,7 +139,7 @@ object PacketSender {
       val lastHostTimeout = hostTimeouts.getIfPresent(name)
       if (lastHostTimeout == null || lastHostTimeout <= System.currentTimeMillis()) {
         val event = host match {
-          case t: net.minecraft.tileentity.TileEntity => new FileSystemAccessEvent.Server(name, t, node)
+          case t: li.cil.oc.compat.vanilla.tileentity.TileEntity => new FileSystemAccessEvent.Server(name, t, node)
           case _ => new FileSystemAccessEvent.Server(name, host.world, host.xPosition, host.yPosition, host.zPosition, node)
         }
         MinecraftForge.EVENT_BUS.post(event)
@@ -151,7 +151,7 @@ object PacketSender {
           pb.writeUTF(event.getSound)
           CompressedStreamTools.write(event.getData, pb)
           event.getTileEntity match {
-            case t: net.minecraft.tileentity.TileEntity =>
+            case t: li.cil.oc.compat.vanilla.tileentity.TileEntity =>
               pb.writeBoolean(true)
               pb.writeTileEntity(t)
             case _ =>
@@ -171,7 +171,7 @@ object PacketSender {
   def sendNetworkActivity(node: Node, host: EnvironmentHost) = {
 
     val event = host match {
-      case t: net.minecraft.tileentity.TileEntity => new NetworkActivityEvent.Server(t, node)
+      case t: li.cil.oc.compat.vanilla.tileentity.TileEntity => new NetworkActivityEvent.Server(t, node)
       case _ => new NetworkActivityEvent.Server(host.world, host.xPosition, host.yPosition, host.zPosition, node)
     }
     MinecraftForge.EVENT_BUS.post(event)
@@ -181,7 +181,7 @@ object PacketSender {
 
       CompressedStreamTools.write(event.getData, pb)
       event.getTileEntity match {
-        case t: net.minecraft.tileentity.TileEntity =>
+        case t: li.cil.oc.compat.vanilla.tileentity.TileEntity =>
           pb.writeBoolean(true)
           pb.writeTileEntity(t)
         case _ =>
@@ -196,7 +196,7 @@ object PacketSender {
     }
   }
 
-  def sendFloppyChange(t: tileentity.DiskDrive, stack: ItemStack = null) {
+  def sendFloppyChange(t: tileentity.DiskDrive, stack: ItemStack = null): Unit = {
     val pb = new SimplePacketBuilder(PacketType.FloppyChange)
 
     pb.writeTileEntity(t)
@@ -401,7 +401,7 @@ object PacketSender {
     pb.sendToNearbyPlayers(position.world.get, position.x, position.y, position.z, Some(Settings.get.maxNetworkClientEffectPacketDistance / 2.0D))
   }
 
-  def sendPetVisibility(name: Option[String] = None, player: Option[EntityPlayerMP] = None) {
+  def sendPetVisibility(name: Option[String] = None, player: Option[EntityPlayerMP] = None): Unit = {
     val pb = new SimplePacketBuilder(PacketType.PetVisibility)
 
     name match {

@@ -5,9 +5,9 @@ import java.util
 import li.cil.oc.Settings
 import li.cil.oc.Settings.DebugCardAccess
 import li.cil.oc.common.item.data.DebugCardData
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 import li.cil.oc.server.command.string2text
 import li.cil.oc.server.component.{DebugCard => CDebugCard}
 

@@ -19,7 +19,7 @@ base {
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
-// Scala-first mixed compilation: Scala compiler handles both .scala and .java sources.
+// Scala-first mixed compilation: compat stubs use paths outside exclude patterns (e.g. portcompat/).
 sourceSets {
     main {
         scala {
@@ -69,12 +69,193 @@ sourceSets {
             exclude '**/client/renderer/**'
             exclude '**/client/gui/**'
             // Core mod / access transformer bootstrap
-            exclude '**/common/asm/**'
+            exclude '**/common/asm/ClassTransformer.scala'
             exclude '**/common/launch/**'
             // Superseded by NeoForge entry point
             exclude '**/common/Proxy.scala'
             exclude '**/client/Proxy.scala'
             exclude '**/server/Proxy.scala'
+            // Client audio / fluids — not needed for minimal server playable
+            exclude '**/client/Sound.scala'
+            exclude '**/client/Audio.scala'
+            exclude '**/util/Audio.scala'
+            exclude '**/util/FluidUtils.scala'
+            exclude '**/util/ExtendedBlock.scala'
+            exclude '**/common/FluidUtils.scala'
+            exclude '**/integration/vanilla/DriverRecord.scala'
+            exclude '**/common/Achievement.scala'
+            exclude '**/common/ComponentTracker.scala'
+            // Legacy content not needed for minimal playable
+            exclude '**/common/item/**'
+            exclude '**/common/container/**'
+            exclude '**/common/template/**'
+            exclude '**/common/recipe/**'
+            exclude '**/common/entity/**'
+            exclude '**/common/nanomachines/**'
+            exclude '**/common/init/Blocks.scala'
+            exclude '**/common/init/Items.scala'
+            exclude '**/common/GuiHandler.scala'
+            exclude '**/common/Loot.scala'
+            exclude '**/common/IMC.scala'
+            exclude '**/common/launch/**'
+            exclude '**/server/component/**'
+            exclude '**/server/agent/**'
+            exclude '**/server/command/**'
+            exclude '**/server/driver/**'
+            exclude '**/server/fs/**'
+            exclude '**/server/GuiHandler.scala'
+            exclude '**/common/Achievement.scala'
+            exclude '**/common/Loot.scala'
+            exclude '**/common/tileentity/**'
+            exclude '**/server/network/**'
+            // Legacy 1.7.10 block classes (NeoForge uses CapacitorBlock / LegacyCompatBlock)
+            exclude '**/common/block/AccessPoint.scala'
+            exclude '**/common/block/Adapter.scala'
+            exclude '**/common/block/Assembler.scala'
+            exclude '**/common/block/Cable.scala'
+            exclude '**/common/block/Capacitor.scala'
+            exclude '**/common/block/CarpetedCapacitor.scala'
+            exclude '**/common/block/Case.scala'
+            exclude '**/common/block/ChameliumBlock.scala'
+            exclude '**/common/block/Charger.scala'
+            exclude '**/common/block/Disassembler.scala'
+            exclude '**/common/block/DiskDrive.scala'
+            exclude '**/common/block/FakeEndstone.scala'
+            exclude '**/common/block/Geolyzer.scala'
+            exclude '**/common/block/Hologram.scala'
+            exclude '**/common/block/Item.scala'
+            exclude '**/common/block/Keyboard.scala'
+            exclude '**/common/block/Microcontroller.scala'
+            exclude '**/common/block/MotionSensor.scala'
+            exclude '**/common/block/NetSplitter.scala'
+            exclude '**/common/block/PowerConverter.scala'
+            exclude '**/common/block/PowerDistributor.scala'
+            exclude '**/common/block/Print.scala'
+            exclude '**/common/block/Printer.scala'
+            exclude '**/common/block/Rack.scala'
+            exclude '**/common/block/Raid.scala'
+            exclude '**/common/block/Redstone.scala'
+            exclude '**/common/block/RedstoneAware.scala'
+            exclude '**/common/block/Relay.scala'
+            exclude '**/common/block/RobotAfterimage.scala'
+            exclude '**/common/block/RobotProxy.scala'
+            exclude '**/common/block/Screen.scala'
+            exclude '**/common/block/SimpleBlock.scala'
+            exclude '**/common/block/Switch.scala'
+            exclude '**/common/block/Transposer.scala'
+            exclude '**/common/block/Waypoint.scala'
+            exclude '**/common/block/traits/**'
+            exclude '**/common/event/NanomachinesHandler.scala'
+            exclude '**/integration/vanilla/**'
+            exclude '**/client/**'
+            exclude '**/server/PacketHandler.scala'
+            exclude '**/common/PacketHandler.scala'
+            exclude '**/common/PacketBuilder.scala'
+            exclude '**/CreativeTab.scala'
+            exclude '**/integration/opencomputers/**'
+            exclude '**/integration/util/WirelessRedstone.scala'
+            exclude '**/integration/util/DamageSourceWithRandomCause.scala'
+            exclude '**/common/event/BlockChangeHandler.scala'
+            exclude '**/common/event/ChunkloaderUpgradeHandler.scala'
+            exclude '**/server/GuiHandler.scala'
+            exclude '**/server/fs/ComputerCraftFileSystem.scala'
+            exclude '**/server/fs/ComputerCraftWritableFileSystem.scala'
+            exclude '**/integration/ModProxy.java'
+            exclude '**/common/inventory/ComponentInventory.scala'
+            exclude '**/common/inventory/Inventory.scala'
+            exclude '**/common/inventory/ItemStackInventory.scala'
+            exclude '**/common/inventory/SimpleInventory.scala'
+            exclude '**/integration/util/StargateTech2.scala'
+            exclude '**/integration/util/**'
+            exclude '**/util/ExtendedNBT.scala'
+            exclude '**/util/ExtendedWorld.scala'
+            exclude '**/util/ExtendedAABB.scala'
+            exclude '**/util/ExtendedLuaState.scala'
+            exclude '**/util/ExtendedArguments.scala'
+            exclude '**/util/DatabaseAccess.scala'
+            exclude '**/util/RotationHelper.scala'
+            exclude '**/util/InternetFilteringRule.scala'
+            exclude '**/util/InventoryUtils.scala'
+            exclude '**/util/ItemCosts.scala'
+            exclude '**/util/ItemStackWrapper.scala'
+            exclude '**/util/ItemUtils.scala'
+            exclude '**/util/PlayerUtils.scala'
+            exclude '**/util/Rarity.scala'
+            exclude '**/util/RenderState.scala'
+            exclude '**/util/RTree.scala'
+            exclude '**/util/ScalaClosure.scala'
+            exclude '**/util/TextBuffer.scala'
+            exclude '**/util/Tooltip.scala'
+            exclude '**/util/UpdateCheck.scala'
+            exclude '**/util/ThreadPoolFactory.scala'
+            exclude '**/util/FluidUtils.scala'
+            exclude '**/util/MovingAverage.scala'
+            exclude '**/util/NbtDataStream.scala'
+            exclude '**/util/GameTimeFormatter.scala'
+            exclude '**/util/ScalaEnum.scala'
+            exclude '**/util/FontUtils.scala'
+            exclude '**/util/ExtendedBlock.scala'
+            exclude '**/util/ExtendedInventory.scala'
+            exclude '**/util/Audio.scala'
+            exclude '**/util/PackedColor.scala'
+            exclude '**/util/Reflection.java'
+            exclude '**/common/GuiType.scala'
+            exclude '**/common/SaveHandler.scala'
+            // Public API surface trimmed for minimal port (re-enable incrementally)
+            exclude '**/api/prefab/**'
+            exclude '**/api/manual/**'
+            exclude '**/api/nanomachines/**'
+            exclude '**/api/machine/**'
+            exclude '**/api/internal/**'
+            exclude '**/api/event/**'
+            exclude '**/api/component/**'
+            exclude '**/api/Driver.java'
+            exclude '**/api/Manual.java'
+            exclude '**/api/Nanomachines.java'
+            exclude '**/api/Items.java'
+            exclude '**/api/IMC.java'
+            exclude '**/api/detail/DriverAPI.java'
+            exclude '**/api/detail/ManualAPI.java'
+            exclude '**/api/detail/NanomachinesAPI.java'
+            exclude '**/api/driver/item/**'
+            exclude '**/api/driver/Block.java'
+            exclude '**/api/driver/Converter.java'
+            exclude '**/api/driver/EnvironmentProvider.java'
+            exclude '**/api/driver/EnvironmentAware.java'
+            exclude '**/api/driver/InventoryProvider.java'
+            exclude '**/api/driver/Item.java'
+            exclude '**/api/driver/SidedBlock.java'
+            exclude '**/api/Machine.java'
+            exclude '**/api/detail/MachineAPI.java'
+            exclude '**/api/network/ManagedPeripheral.java'
+            exclude '**/common/Slot.scala'
+            exclude '**/common/InventorySlots.scala'
+            exclude '**/integration/ManagedTileEntityEnvironment.java'
+            exclude '**/common/asm/ClassTransformer.scala'
+            exclude '**/common/asm/template/**'
+            exclude '**/common/asm/SimpleComponentTickHandler.java'
+            exclude '**/package-info.java'
+            exclude '**/api/IMC.java'
+            exclude '**/common/inventory/DatabaseInventory.scala'
+            exclude '**/common/inventory/DiskDriveMountableInventory.scala'
+            exclude '**/common/inventory/ServerInventory.scala'
+            exclude '**/common/inventory/InventoryProxy.scala'
+            exclude '**/integration/util/Waila.scala'
+            exclude '**/server/PacketSender.scala'
+            exclude '**/Localization.scala'
+            exclude '**/OpenComputersConfigCommentManipulationHook.java'
+            exclude '**/OpenComputersConfigCommentManipulationHook.scala'
+            exclude '**/api/event/RobotRenderEvent.java'
+            exclude '**/api/event/RackMountableRenderEvent.java'
+            exclude '**/api/driver/item/UpgradeRenderer.java'
+            exclude '**/common/component/**'
+            exclude '**/server/machine/**'
+            exclude '**/server/ComponentTracker.scala'
+            exclude '**/common/Sound.scala'
+            exclude '**/common/ToolDurabilityProviders.scala'
+            exclude '**/common/command/**'
+            exclude '**/common/asm/SimpleComponentTickHandler.java'
+            exclude '**/common/event/**'
         }
         java {
             srcDirs = []
@@ -151,6 +332,19 @@ neoForge {
 
 dependencies {
     implementation "org.scala-lang:scala3-library_3:${scala_version}"
+    implementation "com.typesafe:config:1.4.3"
+
+    // Embed Scala into the mod module (dev + release) so ModuleClassLoader sees LazyVals$ etc.
+    jarJar(implementation("org.scala-lang:scala3-library_3:${scala_version}")) {
+        version {
+            strictly "[${scala_version},)"
+            prefer "${scala_version}"
+        }
+    }
+
+    // Required for runClient/runServer on MC 1.21.8 and below (ModDevGradle)
+    additionalRuntimeClasspath "org.scala-lang:scala3-library_3:${scala_version}"
+    additionalRuntimeClasspath "com.typesafe:config:1.4.3"
 
     // Local Lua VM libraries (see libs/README.md)
     embedded files('libs/OC-LuaJ-20220907.1.jar')
@@ -183,8 +377,9 @@ neoForge.ideSyncTask generateModMetadata
 
 tasks.named('processResources', ProcessResources).configure {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    def ocVersion = mod_version
     filesMatching('application.conf') {
-        filter { line -> line.replaceAll('@VERSION@', mod_version) }
+        filter { line -> line.replaceAll('@VERSION@', ocVersion) }
     }
 }
 

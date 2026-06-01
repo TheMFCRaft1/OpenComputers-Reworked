@@ -14,13 +14,13 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent
 import cpw.mods.fml.common.gameevent.TickEvent.ClientTickEvent
 import li.cil.oc.OpenComputers
 import li.cil.oc.Settings
-import net.minecraft.client.Minecraft
+import li.cil.oc.compat.vanilla.client.Minecraft
 import net.minecraft.client.audio.SoundCategory
 import net.minecraft.client.audio.SoundManager
 import net.minecraft.client.audio.SoundPoolEntry
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.integrated.IntegratedServer
-import net.minecraft.tileentity.TileEntity
+import li.cil.oc.compat.vanilla.tileentity.TileEntity
 import net.minecraft.util.ResourceLocation
 import net.minecraftforge.client.event.sound.SoundLoadEvent
 import net.minecraftforge.event.world.WorldEvent
@@ -86,7 +86,7 @@ object Sound {
     }
   }
 
-  def startLoop(tileEntity: TileEntity, name: String, volume: Float = 1f, delay: Long = 0) {
+  def startLoop(tileEntity: TileEntity, name: String, volume: Float = 1f, delay: Long = 0): Unit = {
     if (Settings.get.soundVolume > 0) {
       commandQueue.synchronized {
         commandQueue += new StartCommand(System.currentTimeMillis() + delay, tileEntity, name, volume)

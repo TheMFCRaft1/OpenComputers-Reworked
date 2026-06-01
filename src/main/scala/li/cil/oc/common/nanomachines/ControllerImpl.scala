@@ -21,12 +21,12 @@ import li.cil.oc.util.BlockPosition
 import li.cil.oc.util.ExtendedNBT._
 import li.cil.oc.util.InventoryUtils
 import li.cil.oc.util.PlayerUtils
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.entity.player.EntityPlayerMP
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayerMP
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 import net.minecraft.potion.Potion
 import net.minecraft.potion.PotionEffect
-import net.minecraft.world.World
+import li.cil.oc.compat.vanilla.world.World
 
 import scala.jdk.CollectionConverters._
 import scala.jdk.CollectionConverters._

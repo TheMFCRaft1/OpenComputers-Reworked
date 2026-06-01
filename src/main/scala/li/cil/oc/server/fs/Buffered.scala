@@ -12,7 +12,7 @@ import li.cil.oc.OpenComputers
 import li.cil.oc.api.fs.Mode
 import li.cil.oc.util.ThreadPoolFactory
 import li.cil.oc.util.SafeThreadPool
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 import org.apache.commons.io.FileUtils
 
 import scala.collection.mutable
@@ -74,14 +74,14 @@ trait Buffered extends OutputStreamFileSystem {
               try {
                 val in = new io.FileInputStream(childFile)
                 val buffer = new Array[Byte](8 * 1024)
-                var read = 0
-                do {
-                  read = in.read(buffer)
+                var read = in.read(buffer)
+                while (read >= 0) do {
                   if (read > 0) {
                     if (read == buffer.length) stream.write(buffer)
                     else stream.write(buffer.view(0, read).toArray)
                   }
-                } while (read >= 0)
+                  read = in.read(buffer)
+                }
                 in.close()
               }
               catch {

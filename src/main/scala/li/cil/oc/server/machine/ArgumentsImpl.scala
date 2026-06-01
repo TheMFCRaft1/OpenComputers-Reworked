@@ -4,11 +4,11 @@ import java.util
 
 import com.google.common.base.Charsets
 import li.cil.oc.api.machine.Arguments
-import net.minecraft.item.Item
+import li.cil.oc.compat.vanilla.item.Item
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.CompressedStreamTools
+import li.cil.oc.compat.vanilla.nbt.CompressedStreamTools
 import net.minecraft.nbt.NBTSizeTracker
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 import scala.jdk.CollectionConverters._
 import scala.collection.mutable

@@ -6,7 +6,7 @@ import li.cil.oc.api.machine.Callback
 import li.cil.oc.api.machine.Context
 import li.cil.oc.api.network.{EnvironmentHost, Packet}
 import li.cil.oc.server.component._
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 trait WakeMessageAware extends traits.NetworkAware {
   protected var wakeMessage: Option[String] = None

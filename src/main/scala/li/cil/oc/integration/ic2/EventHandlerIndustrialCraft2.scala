@@ -7,7 +7,7 @@ import ic2.api.item.ISpecialElectricItem
 import ic2.core.item.tool.ItemToolWrench
 import li.cil.oc.api.event.RobotUsedToolEvent
 import li.cil.oc.integration.util.Power
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
 
 object EventHandlerIndustrialCraft2 {

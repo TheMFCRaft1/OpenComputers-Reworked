@@ -1,6 +1,6 @@
 package li.cil.oc.common.block
 
-import net.minecraft.block.material.Material
+import li.cil.oc.compat.vanilla.block.material.Material
 
 class FakeEndstone extends SimpleBlock(Material.rock) {
   setHardness(3)

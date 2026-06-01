@@ -3,7 +3,7 @@ package li.cil.oc.common.container
 import li.cil.oc.common.Slot
 import li.cil.oc.common.tileentity
 import net.minecraft.entity.player.InventoryPlayer
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 class Relay(playerInventory: InventoryPlayer, relay: tileentity.Relay) extends Player(playerInventory, relay) {
   addSlotToContainer(151, 15, Slot.CPU)

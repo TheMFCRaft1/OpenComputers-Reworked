@@ -1,4 +1,5 @@
 package li.cil.oc.api;
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer;
 
 import li.cil.oc.api.driver.Block;
 import li.cil.oc.api.driver.Converter;
@@ -7,10 +8,10 @@ import li.cil.oc.api.driver.InventoryProvider;
 import li.cil.oc.api.driver.Item;
 import li.cil.oc.api.driver.SidedBlock;
 import li.cil.oc.api.network.EnvironmentHost;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.player.Player;
+import li.cil.oc.compat.vanilla.inventory.IInventory;
+import net.minecraft.world.item.ItemStack;
+import li.cil.oc.compat.vanilla.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.Collection;

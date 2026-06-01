@@ -4,7 +4,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import li.cil.oc.api.Network;
 import li.cil.oc.util.SideTracker;
-import net.minecraft.tileentity.TileEntity;
+import li.cil.oc.compat.vanilla.tileentity.TileEntity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

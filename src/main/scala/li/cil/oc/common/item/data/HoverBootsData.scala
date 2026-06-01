@@ -3,7 +3,7 @@ package li.cil.oc.common.item.data
 import li.cil.oc.Constants
 import li.cil.oc.Settings
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 class HoverBootsData extends ItemData(Constants.ItemName.HoverBoots) {
   def this(stack: ItemStack): Unit = {

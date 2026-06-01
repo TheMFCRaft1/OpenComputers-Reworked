@@ -1,6 +1,6 @@
 package li.cil.oc.util
 
-import net.minecraft.nbt.NBTTagCompound
+import li.cil.oc.compat.vanilla.nbt.NBTTagCompound
 
 object NbtDataStream {
   def getShortArray(nbt: NBTTagCompound, key: String, array2d: Array[Array[Short]], w: Int, h: Int) : Boolean = {

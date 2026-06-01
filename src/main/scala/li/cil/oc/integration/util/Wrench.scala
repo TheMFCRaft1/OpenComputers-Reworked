@@ -4,7 +4,7 @@ import java.lang.reflect.Method
 
 import li.cil.oc.common.IMC
 import li.cil.oc.util.BlockPosition
-import net.minecraft.entity.player.EntityPlayer
+import li.cil.oc.compat.vanilla.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
 
 import scala.collection.mutable
