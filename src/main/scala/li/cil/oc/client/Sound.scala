@@ -39,7 +39,7 @@ object Sound {
   private val updateTimer = new Timer("OpenComputers-SoundUpdater", true)
   if (Settings.get.soundVolume > 0) {
     updateTimer.scheduleAtFixedRate(new TimerTask {
-      override def run() {
+      override def run(): Unit = {
         sources.synchronized(updateCallable = Some(() => {
           updateVolume()
           processQueue()
@@ -55,7 +55,7 @@ object Sound {
 
   def soundSystem = if (manager != null) manager.sndSystem else null
 
-  private def updateVolume() {
+  private def updateVolume(): Unit = {
     val volume =
       if (isGamePaused) 0f
       else FMLClientHandler.instance.getClient.gameSettings.getSoundLevel(SoundCategory.BLOCKS)
@@ -74,7 +74,7 @@ object Sound {
     case _ => false
   })
 
-  private def processQueue() {
+  private def processQueue(): Unit = {
     if (commandQueue.nonEmpty) {
       commandQueue.synchronized {
         while (commandQueue.nonEmpty && commandQueue.head.when < System.currentTimeMillis()) {
@@ -94,7 +94,7 @@ object Sound {
     }
   }
 
-  def stopLoop(tileEntity: TileEntity) {
+  def stopLoop(tileEntity: TileEntity): Unit = {
     if (Settings.get.soundVolume > 0) {
       commandQueue.synchronized {
         commandQueue += new StopCommand(tileEntity)
@@ -102,7 +102,7 @@ object Sound {
     }
   }
 
-  def updatePosition(tileEntity: TileEntity) {
+  def updatePosition(tileEntity: TileEntity): Unit = {
     if (Settings.get.soundVolume > 0) {
       commandQueue.synchronized {
         commandQueue += new UpdatePositionCommand(tileEntity)
@@ -111,14 +111,14 @@ object Sound {
   }
 
   @SubscribeEvent
-  def onSoundLoad(event: SoundLoadEvent) {
+  def onSoundLoad(event: SoundLoadEvent): Unit = {
     manager = event.manager
   }
 
   private var hasPreloaded = Settings.get.soundVolume <= 0
 
   @SubscribeEvent
-  def onTick(e: ClientTickEvent) {
+  def onTick(e: ClientTickEvent): Unit = {
     if (soundSystem != null) {
       if (!hasPreloaded) {
         hasPreloaded = true
@@ -150,7 +150,7 @@ object Sound {
   }
 
   @SubscribeEvent
-  def onWorldUnload(event: WorldEvent.Unload) {
+  def onWorldUnload(event: WorldEvent.Unload): Unit = {
     commandQueue.synchronized(commandQueue.clear())
     sources.synchronized(try sources.foreach(_._2.stop()) catch {
       case _: Throwable => // Ignore.
@@ -165,7 +165,7 @@ object Sound {
   }
 
   private class StartCommand(when: Long, tileEntity: TileEntity, val name: String, val volume: Float) extends Command(when, tileEntity) {
-    override def apply() {
+    override def apply(): Unit = {
       sources.synchronized {
         sources.getOrElseUpdate(tileEntity, new PseudoLoopingStream(tileEntity, volume)).play(name)
       }
@@ -173,7 +173,7 @@ object Sound {
   }
 
   private class StopCommand(tileEntity: TileEntity) extends Command(System.currentTimeMillis() + 1, tileEntity) {
-    override def apply() {
+    override def apply(): Unit = {
       sources.synchronized {
         sources.remove(tileEntity) match {
           case Some(sound) => sound.stop()
@@ -190,7 +190,7 @@ object Sound {
   }
 
   private class UpdatePositionCommand(tileEntity: TileEntity) extends Command(System.currentTimeMillis(), tileEntity) {
-    override def apply() {
+    override def apply(): Unit = {
       sources.synchronized {
         sources.get(tileEntity) match {
           case Some(sound) => sound.updatePosition()
@@ -203,16 +203,16 @@ object Sound {
   private class PseudoLoopingStream(val tileEntity: TileEntity, val volume: Float, val source: String = UUID.randomUUID.toString) {
     var initialized = false
 
-    def updateVolume() {
+    def updateVolume(): Unit = {
       soundSystem.setVolume(source, lastVolume * volume * Settings.get.soundVolume)
     }
 
-    def updatePosition() {
+    def updatePosition(): Unit = {
       if (tileEntity != null) soundSystem.setPosition(source, tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord)
       else soundSystem.setPosition(source, 0, 0, 0)
     }
 
-    def play(name: String) {
+    def play(name: String): Unit = {
       val resourceName = s"${Settings.resourceDomain}:$name"
       val sound = Minecraft.getMinecraft.getSoundHandler.getSound(new ResourceLocation(resourceName))
       val resource = (sound.func_148720_g: SoundPoolEntry).getSoundPoolEntryLocation
@@ -226,7 +226,7 @@ object Sound {
       soundSystem.play(source)
     }
 
-    def stop() {
+    def stop(): Unit = {
       if (soundSystem != null) try {
         soundSystem.stop(source)
         soundSystem.removeSource(source)
@@ -243,7 +243,7 @@ object Sound {
     try {
       new URL(null, name, new URLStreamHandler {
         protected def openConnection(url: URL): URLConnection = new URLConnection(url) {
-          def connect() {
+          def connect(): Unit = {
           }
 
           override def getInputStream = Minecraft.getMinecraft.getResourceManager.getResource(resource).getInputStream

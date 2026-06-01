@@ -33,7 +33,7 @@ class RobotAfterimage extends SimpleBlock with traits.SpecialBlock {
   override def getIcon(side: ForgeDirection, metadata: Int) = icon
 
   @SideOnly(Side.CLIENT)
-  override def registerBlockIcons(iconRegister: IIconRegister) {
+  override def registerBlockIcons(iconRegister: IIconRegister): Unit = {
     super.registerBlockIcons(iconRegister)
     icon = iconRegister.registerIcon(Settings.resourceDomain + ":GenericTop")
   }
@@ -63,11 +63,11 @@ class RobotAfterimage extends SimpleBlock with traits.SpecialBlock {
 
   // ----------------------------------------------------------------------- //
 
-  override def onBlockAdded(world: World, x: Int, y: Int, z: Int) {
+  override def onBlockAdded(world: World, x: Int, y: Int, z: Int): Unit = {
     world.scheduleBlockUpdate(x, y, z, this, math.max((Settings.get.moveDelay * 20).toInt, 1) - 1)
   }
 
-  override def updateTick(world: World, x: Int, y: Int, z: Int, rng: Random) {
+  override def updateTick(world: World, x: Int, y: Int, z: Int, rng: Random): Unit = {
     world.setBlockToAir(x, y, z)
   }
 
@@ -82,7 +82,7 @@ class RobotAfterimage extends SimpleBlock with traits.SpecialBlock {
     }
   }
 
-  override protected def doSetBlockBoundsBasedOnState(world: IBlockAccess, x: Int, y: Int, z: Int) {
+  override protected def doSetBlockBoundsBasedOnState(world: IBlockAccess, x: Int, y: Int, z: Int): Unit = {
     findMovingRobot(world, x, y, z) match {
       case Some(robot) =>
         val block = robot.getBlockType

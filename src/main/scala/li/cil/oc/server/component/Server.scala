@@ -32,7 +32,7 @@ import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 
 class Server(val rack: api.internal.Rack, val slot: Int) extends Environment with MachineHost with ServerInventory with ComponentInventory with Analyzable with internal.Server with DeviceInfo {
   lazy val machine = Machine.create(this)
@@ -57,29 +57,29 @@ class Server(val rack: api.internal.Rack, val slot: Int) extends Environment wit
   // ----------------------------------------------------------------------- //
   // Environment
 
-  override def onConnect(node: Node) {
+  override def onConnect(node: Node): Unit = {
     if (node == this.node) {
       connectComponents()
     }
   }
 
-  override def onDisconnect(node: Node) {
+  override def onDisconnect(node: Node): Unit = {
     if (node == this.node) {
       disconnectComponents()
     }
   }
 
-  override def onMessage(message: Message) {
+  override def onMessage(message: Message): Unit = {
   }
 
-  override def load(nbt: NBTTagCompound) {
+  override def load(nbt: NBTTagCompound): Unit = {
     super.load(nbt)
     if (!rack.world.isRemote) {
       machine.load(nbt.getCompoundTag("machine"))
     }
   }
 
-  override def save(nbt: NBTTagCompound) {
+  override def save(nbt: NBTTagCompound): Unit = {
     super.save(nbt)
     if (!rack.world.isRemote) {
       nbt.setNewCompoundTag("machine", machine.save)
@@ -132,7 +132,7 @@ class Server(val rack: api.internal.Rack, val slot: Int) extends Environment wit
 
   override def container = rack.getStackInSlot(slot)
 
-  override protected def connectItemNode(node: Node) {
+  override protected def connectItemNode(node: Node): Unit = {
     if (node != null) {
       api.Network.joinNewNetwork(machine.node)
       machine.node.connect(node)

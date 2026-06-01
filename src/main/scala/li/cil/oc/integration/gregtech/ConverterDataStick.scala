@@ -8,7 +8,7 @@ import net.minecraft.nbt.{NBTTagCompound, NBTTagList, NBTTagString}
 import li.cil.oc.util.ExtendedNBT._
 import net.minecraftforge.common.util.Constants.NBT
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 class ConverterDataStick extends Converter {
   override def convert(value: Any, output: util.Map[AnyRef, AnyRef]): Unit = if (value.isInstanceOf[ItemStack]) {

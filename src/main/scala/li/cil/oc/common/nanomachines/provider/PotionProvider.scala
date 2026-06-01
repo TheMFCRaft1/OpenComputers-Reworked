@@ -10,7 +10,7 @@ import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.potion.Potion
 import net.minecraft.potion.PotionEffect
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 object PotionProvider extends ScalaProvider("c29e4eec-5a46-479a-9b3d-ad0f06da784a") {
   // Lazy to give other mods a chance to register their potions.

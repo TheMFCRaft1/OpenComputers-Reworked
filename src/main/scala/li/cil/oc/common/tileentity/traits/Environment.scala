@@ -31,14 +31,14 @@ trait Environment extends TileEntity with network.Environment with network.Envir
 
   // ----------------------------------------------------------------------- //
 
-  override protected def initialize() {
+  override protected def initialize(): Unit = {
     super.initialize()
     if (isServer) {
       EventHandler.scheduleServer(this)
     }
   }
 
-  override def updateEntity() {
+  override def updateEntity(): Unit = {
     super.updateEntity()
     if (isChangeScheduled) {
       world.markTileEntityChunkModified(x, y, z, this)
@@ -46,7 +46,7 @@ trait Environment extends TileEntity with network.Environment with network.Envir
     }
   }
 
-  override def dispose() {
+  override def dispose(): Unit = {
     super.dispose()
     if (isServer) {
       if (moving && this.isInstanceOf[Computer]) {
@@ -83,14 +83,14 @@ trait Environment extends TileEntity with network.Environment with network.Envir
 
   // ----------------------------------------------------------------------- //
 
-  override def readFromNBTForServer(nbt: NBTTagCompound) {
+  override def readFromNBTForServer(nbt: NBTTagCompound): Unit = {
     super.readFromNBTForServer(nbt)
     if (node != null && node.host == this) {
       node.load(nbt.getCompoundTag(Settings.namespace + "node"))
     }
   }
 
-  override def writeToNBTForServer(nbt: NBTTagCompound) {
+  override def writeToNBTForServer(nbt: NBTTagCompound): Unit = {
     super.writeToNBTForServer(nbt)
     if (node != null && node.host == this) {
       nbt.setNewCompoundTag(Settings.namespace + "node", node.save)
@@ -99,11 +99,11 @@ trait Environment extends TileEntity with network.Environment with network.Envir
 
   // ----------------------------------------------------------------------- //
 
-  override def onMessage(message: network.Message) {}
+  override def onMessage(message: network.Message): Unit = {}
 
-  override def onConnect(node: network.Node) {}
+  override def onConnect(node: network.Node): Unit = {}
 
-  override def onDisconnect(node: network.Node) {
+  override def onDisconnect(node: network.Node): Unit = {
     if (node == this.node) node match {
       case connector: Connector => connector.setLocalBufferSize(0)
       case _ =>

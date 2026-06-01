@@ -9,7 +9,7 @@ import li.cil.oc.common.recipe.Recipes
 import li.cil.oc.common.tileentity
 
 object Blocks {
-  def init() {
+  def init(): Unit = {
     GameRegistry.registerTileEntity(classOf[tileentity.AccessPoint], Settings.namespace + "access_point")
     GameRegistry.registerTileEntity(classOf[tileentity.Adapter], Settings.namespace + "adapter")
     GameRegistry.registerTileEntityWithAlternatives(classOf[tileentity.Assembler], Settings.namespace + "assembler", Settings.namespace + "robotAssembler")

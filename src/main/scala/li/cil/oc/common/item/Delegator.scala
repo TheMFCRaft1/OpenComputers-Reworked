@@ -78,7 +78,7 @@ class Delegator extends Item with driver.item.UpgradeRenderer with Chargeable {
       case _ => None
     }
 
-  override def getSubItems(item: Item, tab: CreativeTabs, list: util.List[_]) {
+  override def getSubItems(item: Item, tab: CreativeTabs, list: util.List[_]): Unit = {
     // Workaround for MC's untyped lists...
     def add[T](list: util.List[T], value: Any) = list.add(value.asInstanceOf[T])
     subItems.indices.filter(subItems(_).showInItemList).
@@ -189,7 +189,7 @@ class Delegator extends Item with driver.item.UpgradeRenderer with Chargeable {
     }
 
   @SideOnly(Side.CLIENT)
-  override def addInformation(stack: ItemStack, player: EntityPlayer, tooltip: util.List[_], advanced: Boolean) {
+  override def addInformation(stack: ItemStack, player: EntityPlayer, tooltip: util.List[_], advanced: Boolean): Unit = {
     super.addInformation(stack, player, tooltip, advanced)
     Delegator.subItem(stack) match {
       case Some(subItem) => try subItem.tooltipLines(stack, player, tooltip.asInstanceOf[util.List[String]], advanced) catch {
@@ -247,7 +247,7 @@ class Delegator extends Item with driver.item.UpgradeRenderer with Chargeable {
     }
 
   @SideOnly(Side.CLIENT)
-  override def registerIcons(iconRegister: IIconRegister) {
+  override def registerIcons(iconRegister: IIconRegister): Unit = {
     super.registerIcons(iconRegister)
     subItems.foreach(_.registerIcons(iconRegister))
   }

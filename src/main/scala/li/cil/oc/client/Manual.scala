@@ -16,8 +16,8 @@ import net.minecraft.item.ItemStack
 import net.minecraft.world.World
 
 import scala.annotation.tailrec
-import scala.collection.convert.WrapAsJava._
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 
 object Manual extends ManualAPI {

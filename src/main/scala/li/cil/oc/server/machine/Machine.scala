@@ -44,8 +44,8 @@ import net.minecraft.server.integrated.IntegratedServer
 import net.minecraftforge.common.util.Constants.NBT
 
 import scala.Array.canBuildFrom
-import scala.collection.convert.WrapAsJava._
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 
 class Machine(val host: MachineHost) extends prefab.ManagedEnvironment with machine.Machine with Runnable with DeviceInfo {
@@ -292,7 +292,7 @@ class Machine(val host: MachineHost) extends prefab.ManagedEnvironment with mach
     PacketSender.sendSound(host.world, host.xPosition, host.yPosition, host.zPosition, frequency, duration)
   }
 
-  override def beep(pattern: String) {
+  override def beep(pattern: String): Unit = {
     PacketSender.sendSound(host.world, host.xPosition, host.yPosition, host.zPosition, pattern)
   }
 
@@ -402,7 +402,7 @@ class Machine(val host: MachineHost) extends prefab.ManagedEnvironment with mach
     }
   }
 
-  override def addUser(name: String) {
+  override def addUser(name: String): Unit = {
     if (_users.size >= Settings.get.maxUsers)
       throw new Exception("too many users")
 
@@ -627,7 +627,7 @@ class Machine(val host: MachineHost) extends prefab.ManagedEnvironment with mach
 
   // ----------------------------------------------------------------------- //
 
-  override def onMessage(message: Message) {
+  override def onMessage(message: Message): Unit = {
     message.data match {
       case Array(name: String, args@_*) if message.name == "computer.signal" =>
         signal(name, Seq(message.source.address) ++ args: _*)
@@ -640,7 +640,7 @@ class Machine(val host: MachineHost) extends prefab.ManagedEnvironment with mach
     }
   }
 
-  override def onConnect(node: Node) {
+  override def onConnect(node: Node): Unit = {
     if (node == this.node) {
       _components += this.node.address -> this.node.name
       tmp.foreach(fs => node.connect(fs.node))
@@ -656,7 +656,7 @@ class Machine(val host: MachineHost) extends prefab.ManagedEnvironment with mach
     host.onMachineConnect(node)
   }
 
-  override def onDisconnect(node: Node) {
+  override def onDisconnect(node: Node): Unit = {
     if (node == this.node) {
       close()
       tmp.foreach(_.node.remove())
@@ -673,13 +673,13 @@ class Machine(val host: MachineHost) extends prefab.ManagedEnvironment with mach
 
   // ----------------------------------------------------------------------- //
 
-  def addComponent(component: Component) {
+  def addComponent(component: Component): Unit = {
     if (!_components.contains(component.address)) {
       addedComponents += component
     }
   }
 
-  def removeComponent(component: Component) {
+  def removeComponent(component: Component): Unit = {
     if (_components.contains(component.address)) {
       _components.synchronized(_components -= component.address)
       signal("component_removed", component.address, component.name)
@@ -687,7 +687,7 @@ class Machine(val host: MachineHost) extends prefab.ManagedEnvironment with mach
     addedComponents -= component
   }
 
-  private def processAddedComponents() {
+  private def processAddedComponents(): Unit = {
     if (addedComponents.nonEmpty) {
       for (component <- addedComponents) {
         if (component.canBeSeenFrom(node)) {
@@ -703,7 +703,7 @@ class Machine(val host: MachineHost) extends prefab.ManagedEnvironment with mach
     }
   }
 
-  private def verifyComponents() {
+  private def verifyComponents(): Unit = {
     val invalid = mutable.Set.empty[String]
     for ((address, name) <- _components) {
       node.network.node(address) match {
@@ -1048,7 +1048,7 @@ object Machine extends MachineAPI {
   // Keep registration order, to allow deterministic iteration of the architectures.
   val checked = mutable.LinkedHashSet.empty[Class[_ <: Architecture]]
 
-  override def add(architecture: Class[_ <: Architecture]) {
+  override def add(architecture: Class[_ <: Architecture]): Unit = {
     if (!checked.contains(architecture)) {
       try {
         architecture.getConstructor(classOf[machine.Machine])

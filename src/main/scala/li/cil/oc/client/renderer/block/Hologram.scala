@@ -4,7 +4,7 @@ import net.minecraft.block.Block
 import net.minecraft.client.renderer.RenderBlocks
 
 object Hologram {
-  def render(block: Block, metadata: Int, x: Int, y: Int, z: Int, renderer: RenderBlocks) {
+  def render(block: Block, metadata: Int, x: Int, y: Int, z: Int, renderer: RenderBlocks): Unit = {
     // Center.
     renderer.setRenderBounds(4 / 16f, 0, 4 / 16f, 12 / 16f, 3 / 16f, 12 / 16f)
     renderer.renderStandardBlock(block, x, y, z)
@@ -41,7 +41,7 @@ object Hologram {
     renderer.renderAllFaces = previousRenderAllFaces
   }
 
-  def render(block: Block, metadata: Int, renderer: RenderBlocks) {
+  def render(block: Block, metadata: Int, renderer: RenderBlocks): Unit = {
     val previousRenderAllFaces = renderer.renderAllFaces
     renderer.renderAllFaces = true
 

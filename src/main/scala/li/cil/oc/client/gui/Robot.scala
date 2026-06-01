@@ -20,7 +20,7 @@ import org.lwjgl.input.Keyboard
 import org.lwjgl.input.Mouse
 import org.lwjgl.opengl.GL11
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 
 class Robot(playerInventory: InventoryPlayer, val robot: tileentity.Robot) extends DynamicGuiContainer(new container.Robot(playerInventory, robot)) with traits.InputBuffer {
   override protected val buffer = robot.components.collect {
@@ -76,13 +76,13 @@ class Robot(playerInventory: InventoryPlayer, val robot: tileentity.Robot) exten
   private val selectionsStates = 17
   private val selectionStepV = 1 / selectionsStates.toDouble
 
-  protected override def actionPerformed(button: GuiButton) {
+  protected override def actionPerformed(button: GuiButton): Unit = {
     if (button.id == 0) {
       ClientPacketSender.sendComputerPower(robot, !robot.isRunning)
     }
   }
 
-  override def drawScreen(mouseX: Int, mouseY: Int, dt: Float) {
+  override def drawScreen(mouseX: Int, mouseY: Int, dt: Float): Unit = {
     powerButton.toggled = robot.isRunning
     scrollButton.enabled = canScroll
     scrollButton.hoverOverride = isDragging
@@ -92,7 +92,7 @@ class Robot(playerInventory: InventoryPlayer, val robot: tileentity.Robot) exten
     super.drawScreen(mouseX, mouseY, dt)
   }
 
-  override def initGui() {
+  override def initGui(): Unit = {
     super.initGui()
     powerButton = new ImageButton(0, guiLeft + 5, guiTop + 153 - deltaY, 18, 18, Textures.guiButtonPower, canToggle = true)
     scrollButton = new ImageButton(1, guiLeft + scrollX + 1, guiTop + scrollY + 1, 6, 13, Textures.guiButtonScroll)
@@ -100,7 +100,7 @@ class Robot(playerInventory: InventoryPlayer, val robot: tileentity.Robot) exten
     add(buttonList, scrollButton)
   }
 
-  override def drawBuffer() {
+  override def drawBuffer(): Unit = {
     if (buffer != null) {
       GL11.glTranslatef(bufferX, bufferY, 0)
       RenderState.disableLighting()
@@ -125,7 +125,7 @@ class Robot(playerInventory: InventoryPlayer, val robot: tileentity.Robot) exten
     }
   }
 
-  override protected def drawSecondaryForegroundLayer(mouseX: Int, mouseY: Int) {
+  override protected def drawSecondaryForegroundLayer(mouseX: Int, mouseY: Int): Unit = {
     drawBufferLayer()
     GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS) // Me lazy... prevents NEI render glitch.
     if (func_146978_c(power.x, power.y, power.width, power.height, mouseX, mouseY)) {
@@ -145,7 +145,7 @@ class Robot(playerInventory: InventoryPlayer, val robot: tileentity.Robot) exten
     GL11.glPopAttrib()
   }
 
-  override protected def drawGuiContainerBackgroundLayer(dt: Float, mouseX: Int, mouseY: Int) {
+  override protected def drawGuiContainerBackgroundLayer(dt: Float, mouseX: Int, mouseY: Int): Unit = {
     GL11.glColor3f(1, 1, 1) // Required under Linux.
     if (buffer != null) mc.renderEngine.bindTexture(Textures.guiRobot)
     else mc.renderEngine.bindTexture(Textures.guiRobotNoScreen)
@@ -159,21 +159,21 @@ class Robot(playerInventory: InventoryPlayer, val robot: tileentity.Robot) exten
     drawInventorySlots()
   }
 
-  protected override def drawGradientRect(par1: Int, par2: Int, par3: Int, par4: Int, par5: Int, par6: Int) {
+  protected override def drawGradientRect(par1: Int, par2: Int, par3: Int, par4: Int, par5: Int, par6: Int): Unit = {
     super.drawGradientRect(par1, par2, par3, par4, par5, par6)
     RenderState.makeItBlend()
   }
 
   // No custom slots, we just extend DynamicGuiContainer for the highlighting.
-  override protected def drawSlotBackground(x: Int, y: Int) {}
+  override protected def drawSlotBackground(x: Int, y: Int): Unit = {}
 
-  override protected def keyTyped(char: Char, code: Int) {
+  override protected def keyTyped(char: Char, code: Int): Unit = {
     if (code == Keyboard.KEY_ESCAPE) {
       super.keyTyped(char, code)
     }
   }
 
-  override protected def mouseClicked(mouseX: Int, mouseY: Int, button: Int) {
+  override protected def mouseClicked(mouseX: Int, mouseY: Int, button: Int): Unit = {
     super.mouseClicked(mouseX, mouseY, button)
     if (canScroll && button == 0 && isCoordinateOverScrollBar(mouseX - guiLeft, mouseY - guiTop)) {
       isDragging = true
@@ -181,25 +181,25 @@ class Robot(playerInventory: InventoryPlayer, val robot: tileentity.Robot) exten
     }
   }
 
-  override protected def mouseMovedOrUp(mouseX: Int, mouseY: Int, button: Int) {
+  override protected def mouseMovedOrUp(mouseX: Int, mouseY: Int, button: Int): Unit = {
     super.mouseMovedOrUp(mouseX, mouseY, button)
     if (button == 0) {
       isDragging = false
     }
   }
 
-  override protected def mouseClickMove(mouseX: Int, mouseY: Int, lastButtonClicked: Int, timeSinceMouseClick: Long) {
+  override protected def mouseClickMove(mouseX: Int, mouseY: Int, lastButtonClicked: Int, timeSinceMouseClick: Long): Unit = {
     super.mouseClickMove(mouseX, mouseY, lastButtonClicked, timeSinceMouseClick)
     if (isDragging) {
       scrollMouse(mouseY)
     }
   }
 
-  private def scrollMouse(mouseY: Int) {
+  private def scrollMouse(mouseY: Int): Unit = {
     scrollTo(math.round((mouseY - guiTop - scrollY + 1 - 6.5) * maxOffset / (scrollHeight - 13.0)).toInt)
   }
 
-  override def handleMouseInput() {
+  override def handleMouseInput(): Unit = {
     super.handleMouseInput()
     if (Mouse.hasWheel && Mouse.getEventDWheel != 0) {
       val mouseX = Mouse.getEventX * width / mc.displayWidth - guiLeft
@@ -223,7 +223,7 @@ class Robot(playerInventory: InventoryPlayer, val robot: tileentity.Robot) exten
 
   private def scrollDown() = scrollTo(inventoryOffset + 1)
 
-  private def scrollTo(row: Int) {
+  private def scrollTo(row: Int): Unit = {
     inventoryOffset = math.max(0, math.min(maxOffset, row))
     for (index <- 4 until 68) {
       val slot = inventorySlots.getSlot(index)
@@ -258,7 +258,7 @@ class Robot(playerInventory: InventoryPlayer, val robot: tileentity.Robot) exten
     math.min(scaleX, scaleY)
   }
 
-  private def drawSelection() {
+  private def drawSelection(): Unit = {
     val slot = robot.selectedSlot - inventoryOffset * 4
     if (slot >= 0 && slot < 16) {
       RenderState.makeItBlend()

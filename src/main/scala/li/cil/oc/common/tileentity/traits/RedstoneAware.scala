@@ -117,13 +117,13 @@ trait RedstoneAware extends RotationAware with IConnectable with IRedstoneEmitte
     changed
   }
 
-  def checkRedstoneInputChanged() {
+  def checkRedstoneInputChanged(): Unit = {
     shouldUpdateInput = isServer
   }
 
   // ----------------------------------------------------------------------- //
 
-  override def updateEntity() {
+  override def updateEntity(): Unit = {
     super.updateEntity()
     if (isServer) {
       if (shouldUpdateInput) {
@@ -161,13 +161,13 @@ trait RedstoneAware extends RotationAware with IConnectable with IRedstoneEmitte
   }
 
   @SideOnly(Side.CLIENT)
-  override def readFromNBTForClient(nbt: NBTTagCompound) {
+  override def readFromNBTForClient(nbt: NBTTagCompound): Unit = {
     super.readFromNBTForClient(nbt)
     _isOutputEnabled = nbt.getBoolean("isOutputEnabled")
     nbt.getIntArray("output").copyToArray(_output)
   }
 
-  override def writeToNBTForClient(nbt: NBTTagCompound) {
+  override def writeToNBTForClient(nbt: NBTTagCompound): Unit = {
     super.writeToNBTForClient(nbt)
     nbt.setBoolean("isOutputEnabled", _isOutputEnabled)
     nbt.setIntArray("output", _output)
@@ -175,15 +175,15 @@ trait RedstoneAware extends RotationAware with IConnectable with IRedstoneEmitte
 
   // ----------------------------------------------------------------------- //
 
-  protected def onRedstoneInputChanged(args: RedstoneChangedEventArgs) {}
+  protected def onRedstoneInputChanged(args: RedstoneChangedEventArgs): Unit = {}
 
-  protected def onRedstoneOutputEnabledChanged() {
+  protected def onRedstoneOutputEnabledChanged(): Unit = {
     world.notifyBlocksOfNeighborChange(position, block)
     if (isServer) ServerPacketSender.sendRedstoneState(this)
     else world.markBlockForUpdate(position)
   }
 
-  protected def onRedstoneOutputChanged(side: ForgeDirection) {
+  protected def onRedstoneOutputChanged(side: ForgeDirection): Unit = {
     val blockPos = position.offset(side)
     world.notifyBlockOfNeighborChange(blockPos, block)
     world.notifyBlocksOfNeighborChange(blockPos, world.getBlock(blockPos), side.getOpposite)

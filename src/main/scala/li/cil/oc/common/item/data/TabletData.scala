@@ -9,7 +9,7 @@ import net.minecraft.nbt.NBTTagCompound
 import net.minecraftforge.common.util.Constants.NBT
 
 class TabletData extends ItemData(Constants.ItemName.Tablet) {
-  def this(stack: ItemStack) {
+  def this(stack: ItemStack): Unit = {
     this()
     load(stack)
   }
@@ -21,7 +21,7 @@ class TabletData extends ItemData(Constants.ItemName.Tablet) {
   var tier = Tier.One
   var container: Option[ItemStack] = None
 
-  override def load(nbt: NBTTagCompound) {
+  override def load(nbt: NBTTagCompound): Unit = {
     nbt.getTagList(Settings.namespace + "items", NBT.TAG_COMPOUND).foreach((slotNbt: NBTTagCompound) => {
       val slot = slotNbt.getByte("slot")
       if (slot >= 0 && slot < items.length) {
@@ -37,7 +37,7 @@ class TabletData extends ItemData(Constants.ItemName.Tablet) {
     }
   }
 
-  override def save(nbt: NBTTagCompound) {
+  override def save(nbt: NBTTagCompound): Unit = {
     nbt.setNewTagList(Settings.namespace + "items",
       items.zipWithIndex collect {
         case (Some(stack), slot) => (stack, slot)

@@ -8,7 +8,7 @@ import li.cil.oc.integration.Mods
 object ModMineFactoryReloaded extends ModProxy {
   override def getMod = Mods.MineFactoryReloaded
 
-  override def initialize() {
+  override def initialize(): Unit = {
     api.IMC.registerWrenchTool("li.cil.oc.integration.mfr.EventHandlerMFR.useWrench")
     api.IMC.registerWrenchToolCheck("li.cil.oc.integration.mfr.EventHandlerMFR.isWrench")
 

@@ -35,7 +35,7 @@ abstract class RedstoneAware extends SimpleBlock with IRedNetOmniNode {
 
   // ----------------------------------------------------------------------- //
 
-  override def onNeighborBlockChange(world: World, x: Int, y: Int, z: Int, block: Block) {
+  override def onNeighborBlockChange(world: World, x: Int, y: Int, z: Int, block: Block): Unit = {
     if (Mods.MineFactoryReloaded.isAvailable) {
       val position = BlockPosition(x, y, z)
       world.getTileEntity(position) match {
@@ -76,7 +76,7 @@ abstract class RedstoneAware extends SimpleBlock with IRedNetOmniNode {
       case _ => Array.fill(16)(0)
     }
 
-  override def onInputChanged(world: World, x: Int, y: Int, z: Int, side: ForgeDirection, inputValue: Int) {}
+  override def onInputChanged(world: World, x: Int, y: Int, z: Int, side: ForgeDirection, inputValue: Int): Unit = {}
 
   override def onInputsChanged(world: World, x: Int, y: Int, z: Int, side: ForgeDirection, inputValues: Array[Int]) =
     world.getTileEntity(x, y, z) match {

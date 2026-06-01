@@ -23,7 +23,7 @@ import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.util.AxisAlignedBB
 import net.minecraftforge.common.util.ForgeDirection
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 
 class Printer extends traits.Environment with traits.Inventory with traits.Rotatable with SidedEnvironment with traits.StateAware with ISidedInventory with DeviceInfo {
   val node = api.Network.newNode(this, Visibility.Network).
@@ -226,7 +226,7 @@ class Printer extends traits.Environment with traits.Inventory with traits.Rotat
 
   override def canUpdate = isServer
 
-  override def updateEntity() {
+  override def updateEntity(): Unit = {
     super.updateEntity()
 
     def canMergeOutput = {
@@ -297,7 +297,7 @@ class Printer extends traits.Environment with traits.Inventory with traits.Rotat
     }
   }
 
-  override def readFromNBTForServer(nbt: NBTTagCompound) {
+  override def readFromNBTForServer(nbt: NBTTagCompound): Unit = {
     super.readFromNBTForServer(nbt)
     amountMaterial = nbt.getInteger(Settings.namespace + "amountMaterial")
     amountInk = nbt.getInteger(Settings.namespace + "amountInk")
@@ -311,7 +311,7 @@ class Printer extends traits.Environment with traits.Inventory with traits.Rotat
     requiredEnergy = nbt.getDouble(Settings.namespace + "remaining")
   }
 
-  override def writeToNBTForServer(nbt: NBTTagCompound) {
+  override def writeToNBTForServer(nbt: NBTTagCompound): Unit = {
     super.writeToNBTForServer(nbt)
     nbt.setInteger(Settings.namespace + "amountMaterial", amountMaterial)
     nbt.setInteger(Settings.namespace + "amountInk", amountInk)
@@ -324,13 +324,13 @@ class Printer extends traits.Environment with traits.Inventory with traits.Rotat
   }
 
   @SideOnly(Side.CLIENT) override
-  def readFromNBTForClient(nbt: NBTTagCompound) {
+  def readFromNBTForClient(nbt: NBTTagCompound): Unit = {
     super.readFromNBTForClient(nbt)
     data.load(nbt.getCompoundTag(Settings.namespace + "data"))
     requiredEnergy = nbt.getDouble("remaining")
   }
 
-  override def writeToNBTForClient(nbt: NBTTagCompound) {
+  override def writeToNBTForClient(nbt: NBTTagCompound): Unit = {
     super.writeToNBTForClient(nbt)
     nbt.setNewCompoundTag(Settings.namespace + "data", data.save)
     nbt.setDouble("remaining", requiredEnergy)

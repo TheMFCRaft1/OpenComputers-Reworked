@@ -7,7 +7,7 @@ import net.minecraft.tileentity.TileEntity
 import net.minecraftforge.common.util.Constants.NBT
 import net.minecraftforge.common.util.ForgeDirection
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 import scala.language.implicitConversions
 import scala.language.reflectiveCalls
@@ -259,7 +259,7 @@ object ExtendedNBT {
       nbt.appendTag(t)
     }
 
-    def append(values: Iterable[NBTBase]) {
+    def append(values: Iterable[NBTBase]): Unit = {
       for (value <- values) {
         nbt.appendTag(value)
       }

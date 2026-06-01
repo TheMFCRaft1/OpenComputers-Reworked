@@ -21,7 +21,7 @@ import net.minecraft.nbt.NBTTagList
 import net.minecraftforge.common.util.Constants.NBT
 import net.minecraftforge.common.util.ForgeDirection
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 
 class Adapter extends traits.Environment with traits.ComponentInventory with traits.OpenSides with Analyzable with internal.Adapter with DeviceInfo {
@@ -46,7 +46,7 @@ class Adapter extends traits.Environment with traits.ComponentInventory with tra
 
   override protected def defaultState = true
 
-  override def setSideOpen(side: ForgeDirection, value: Boolean) {
+  override def setSideOpen(side: ForgeDirection, value: Boolean): Unit = {
     super.setSideOpen(side, value)
     if (isServer) {
       ServerPacketSender.sendAdapterState(this)
@@ -73,7 +73,7 @@ class Adapter extends traits.Environment with traits.ComponentInventory with tra
 
   override def canUpdate = isServer
 
-  override def updateEntity() {
+  override def updateEntity(): Unit = {
     super.updateEntity()
     if (updatingBlocks.nonEmpty) {
       for (block <- updatingBlocks) {
@@ -82,7 +82,7 @@ class Adapter extends traits.Environment with traits.ComponentInventory with tra
     }
   }
 
-  def neighborChanged(d: ForgeDirection) {
+  def neighborChanged(d: ForgeDirection): Unit = {
     if (node != null && node.network != null) {
       val (x, y, z) = (this.x + d.offsetX, this.y + d.offsetY, this.z + d.offsetZ)
       world.getTileEntity(x, y, z) match {
@@ -149,7 +149,7 @@ class Adapter extends traits.Environment with traits.ComponentInventory with tra
     }
   }
 
-  def neighborChanged() {
+  def neighborChanged(): Unit = {
     if (node != null && node.network != null) {
       for (d <- ForgeDirection.VALID_DIRECTIONS) {
         neighborChanged(d)
@@ -159,14 +159,14 @@ class Adapter extends traits.Environment with traits.ComponentInventory with tra
 
   // ----------------------------------------------------------------------- //
 
-  override def onConnect(node: Node) {
+  override def onConnect(node: Node): Unit = {
     super.onConnect(node)
     if (node == this.node) {
       neighborChanged()
     }
   }
 
-  override def onDisconnect(node: Node) {
+  override def onDisconnect(node: Node): Unit = {
     super.onDisconnect(node)
     if (node == this.node) {
       updatingBlocks.clear()
@@ -184,7 +184,7 @@ class Adapter extends traits.Environment with traits.ComponentInventory with tra
 
   // ----------------------------------------------------------------------- //
 
-  override def readFromNBTForServer(nbt: NBTTagCompound) {
+  override def readFromNBTForServer(nbt: NBTTagCompound): Unit = {
     super.readFromNBTForServer(nbt)
 
     val blocksNbt = nbt.getTagList(Settings.namespace + "adapter.blocks", NBT.TAG_COMPOUND)
@@ -199,7 +199,7 @@ class Adapter extends traits.Environment with traits.ComponentInventory with tra
     }
   }
 
-  override def writeToNBTForServer(nbt: NBTTagCompound) {
+  override def writeToNBTForServer(nbt: NBTTagCompound): Unit = {
     super.writeToNBTForServer(nbt)
 
     val blocksNbt = new NBTTagList()

@@ -50,7 +50,7 @@ class Cable(protected implicit val tileTag: ClassTag[tileentity.Cable]) extends 
   )
 
   @SideOnly(Side.CLIENT)
-  override def registerBlockIcons(iconRegister: IIconRegister) {
+  override def registerBlockIcons(iconRegister: IIconRegister): Unit = {
     super.registerBlockIcons(iconRegister)
     Textures.Cable.iconCap = iconRegister.registerIcon(Settings.resourceDomain + ":CableCap")
   }
@@ -78,7 +78,7 @@ class Cable(protected implicit val tileTag: ClassTag[tileentity.Cable]) extends 
 
   // ----------------------------------------------------------------------- //
 
-  override def onNeighborBlockChange(world: World, x: Int, y: Int, z: Int, block: Block) {
+  override def onNeighborBlockChange(world: World, x: Int, y: Int, z: Int, block: Block): Unit = {
     world.markBlockForUpdate(x, y, z)
     super.onNeighborBlockChange(world, x, y, z, block)
   }
@@ -216,7 +216,7 @@ object Cable {
       case host: TileMultipart =>
         host.partList.forall {
           case part: JNormalOcclusion if !part.isInstanceOf[CablePart] =>
-            import scala.collection.convert.WrapAsScala._
+            import scala.jdk.CollectionConverters._
             val ownBounds = Iterable(new Cuboid6(cachedBounds(side.flag)))
             val otherBounds = part.getOcclusionBoxes
             NormalOcclusionTest(ownBounds, otherBounds)

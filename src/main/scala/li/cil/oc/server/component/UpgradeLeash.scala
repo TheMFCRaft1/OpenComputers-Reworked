@@ -25,7 +25,7 @@ import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.nbt.NBTTagString
 import net.minecraftforge.common.util.Constants.NBT
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 
 class UpgradeLeash(val host: Entity) extends prefab.ManagedEnvironment with traits.WorldAware with DeviceInfo {
@@ -72,14 +72,14 @@ class UpgradeLeash(val host: Entity) extends prefab.ManagedEnvironment with trai
     null
   }
 
-  override def onDisconnect(node: Node) {
+  override def onDisconnect(node: Node): Unit = {
     super.onDisconnect(node)
     if (node == this.node) {
       unleashAll()
     }
   }
 
-  private def unleashAll() {
+  private def unleashAll(): Unit = {
     entitiesInBounds[EntityLiving](position.bounds.expand(5, 5, 5)).foreach(entity => {
       if (leashedEntities.contains(entity.getUniqueID) && entity.getLeashedToEntity == host) {
         entity.clearLeashed(true, false)
@@ -88,7 +88,7 @@ class UpgradeLeash(val host: Entity) extends prefab.ManagedEnvironment with trai
     leashedEntities.clear()
   }
 
-  override def load(nbt: NBTTagCompound) {
+  override def load(nbt: NBTTagCompound): Unit = {
     super.load(nbt)
     leashedEntities ++= nbt.getTagList("leashedEntities", NBT.TAG_STRING).
       map((s: NBTTagString) => UUID.fromString(s.func_150285_a_()))
@@ -110,7 +110,7 @@ class UpgradeLeash(val host: Entity) extends prefab.ManagedEnvironment with trai
     })
   }
 
-  override def save(nbt: NBTTagCompound) {
+  override def save(nbt: NBTTagCompound): Unit = {
     super.save(nbt)
     nbt.setNewTagList("leashedEntities", leashedEntities.map(_.toString))
   }

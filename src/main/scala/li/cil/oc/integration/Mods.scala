@@ -151,7 +151,7 @@ object Mods {
     }
   }
 
-  private def tryInit(mod: ModProxy) {
+  private def tryInit(mod: ModProxy): Unit = {
     val isBlacklisted = Settings.get.modBlacklist.contains(mod.getMod.id)
     val alwaysEnabled = mod.getMod == null || mod.getMod == Mods.Minecraft
     if (!isBlacklisted && (alwaysEnabled || mod.getMod.isModAvailable) && handlers.add(mod)) {

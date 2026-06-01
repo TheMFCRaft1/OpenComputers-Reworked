@@ -20,8 +20,8 @@ import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.init.Items
 import net.minecraft.nbt.NBTTagCompound
 
-import scala.collection.convert.WrapAsJava._
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
+import scala.jdk.CollectionConverters._
 
 class UpgradeExperience(val host: EnvironmentHost with internal.Agent) extends prefab.ManagedEnvironment with DeviceInfo {
   final val MaxLevel = 30
@@ -51,7 +51,7 @@ class UpgradeExperience(val host: EnvironmentHost with internal.Agent) extends p
 
   def xpForNextLevel = xpForLevel(level + 1)
 
-  def addExperience(value: Double) {
+  def addExperience(value: Double): Unit = {
     if (level < MaxLevel) {
       experience = experience + value
       if (experience >= xpForNextLevel) {
@@ -60,7 +60,7 @@ class UpgradeExperience(val host: EnvironmentHost with internal.Agent) extends p
     }
   }
 
-  def updateXpInfo() {
+  def updateXpInfo(): Unit = {
     // xp(level) = base + (level * const) ^ exp
     // pow(xp(level) - base, 1/exp) / const = level
     level = math.min((Math.pow(experience - Settings.get.baseXpToLevel, 1 / Settings.get.exponentialXpGrowth) / Settings.get.constantXpGrowth).toInt, 30)
@@ -108,12 +108,12 @@ class UpgradeExperience(val host: EnvironmentHost with internal.Agent) extends p
     result(true)
   }
 
-  override def save(nbt: NBTTagCompound) {
+  override def save(nbt: NBTTagCompound): Unit = {
     super.save(nbt)
     nbt.setDouble(Settings.namespace + "xp", experience)
   }
 
-  override def load(nbt: NBTTagCompound) {
+  override def load(nbt: NBTTagCompound): Unit = {
     super.load(nbt)
     experience = nbt.getDouble(Settings.namespace + "xp") max 0
     updateXpInfo()

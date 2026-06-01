@@ -47,7 +47,7 @@ import net.minecraftforge.event.world.BlockEvent
 import net.minecraftforge.event.world.ChunkEvent
 import net.minecraftforge.event.world.WorldEvent
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
@@ -73,7 +73,7 @@ object EventHandler {
 
   def unscheduleClose(machine: Machine): Unit = machines -= machine
 
-  def scheduleServer(tileEntity: TileEntity) {
+  def scheduleServer(tileEntity: TileEntity): Unit = {
     if (SideTracker.isServer) pendingServer.synchronized {
       pendingServer += (() => Network.joinOrCreateNetwork(tileEntity))
     }
@@ -99,7 +99,7 @@ object EventHandler {
   }
 
   @Optional.Method(modid = Mods.IDs.AppliedEnergistics2)
-  def scheduleAE2Add(tileEntity: power.AppliedEnergistics2) {
+  def scheduleAE2Add(tileEntity: power.AppliedEnergistics2): Unit = {
     if (SideTracker.isServer) pendingServer.synchronized {
       pendingServer += (() => if (!tileEntity.isInvalid) {
         tileEntity.getGridNode(ForgeDirection.UNKNOWN).updateState()
@@ -108,7 +108,7 @@ object EventHandler {
   }
 
   @Optional.Method(modid = Mods.IDs.IndustrialCraft2)
-  def scheduleIC2Add(tileEntity: power.IndustrialCraft2Experimental) {
+  def scheduleIC2Add(tileEntity: power.IndustrialCraft2Experimental): Unit = {
     if (SideTracker.isServer) pendingServer.synchronized {
       tileEntity match {
         case tile: ic2.api.energy.tile.IEnergyTile =>
@@ -122,7 +122,7 @@ object EventHandler {
   }
 
   @Optional.Method(modid = Mods.IDs.IndustrialCraft2Classic)
-  def scheduleIC2Add(tileEntity: power.IndustrialCraft2Classic) {
+  def scheduleIC2Add(tileEntity: power.IndustrialCraft2Classic): Unit = {
     if (SideTracker.isServer) pendingServer.synchronized {
       tileEntity match {
         case tile: ic2classic.api.energy.tile.IEnergyTile =>
@@ -135,7 +135,7 @@ object EventHandler {
     }
   }
 
-  def scheduleWirelessRedstone(rs: server.component.RedstoneWireless) {
+  def scheduleWirelessRedstone(rs: server.component.RedstoneWireless): Unit = {
     if (SideTracker.isServer) pendingServer.synchronized {
       pendingServer += (() => if (rs.node.network != null) {
         util.WirelessRedstone.addReceiver(rs)
@@ -189,7 +189,7 @@ object EventHandler {
   }
 
   @SubscribeEvent
-  def playerLoggedIn(e: PlayerLoggedInEvent) {
+  def playerLoggedIn(e: PlayerLoggedInEvent): Unit = {
     if (SideTracker.isServer) e.player match {
       case _: FakePlayer => // Nope
       case player: EntityPlayerMP =>
@@ -220,7 +220,7 @@ object EventHandler {
   }
 
   @SubscribeEvent
-  def clientLoggedIn(e: ClientConnectedToServerEvent) {
+  def clientLoggedIn(e: ClientConnectedToServerEvent): Unit = {
     PetRenderer.isInitialized = false
     PetRenderer.hidden.clear()
     Loot.disksForClient.clear()
@@ -247,17 +247,17 @@ object EventHandler {
   }
 
   @SubscribeEvent
-  def onPlayerRespawn(e: PlayerRespawnEvent) {
+  def onPlayerRespawn(e: PlayerRespawnEvent): Unit = {
     keyboards.foreach(_.releasePressedKeys(e.player))
   }
 
   @SubscribeEvent
-  def onPlayerChangedDimension(e: PlayerChangedDimensionEvent) {
+  def onPlayerChangedDimension(e: PlayerChangedDimensionEvent): Unit = {
     keyboards.foreach(_.releasePressedKeys(e.player))
   }
 
   @SubscribeEvent
-  def onPlayerLogout(e: PlayerLoggedOutEvent) {
+  def onPlayerLogout(e: PlayerLoggedOutEvent): Unit = {
     keyboards.foreach(_.releasePressedKeys(e.player))
   }
 

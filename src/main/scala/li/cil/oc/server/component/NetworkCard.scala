@@ -22,8 +22,8 @@ import li.cil.oc.api.prefab
 import li.cil.oc.server.{PacketSender => ServerPacketSender}
 import net.minecraft.nbt._
 
-import scala.collection.convert.WrapAsJava._
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 
 class NetworkCard(val host: EnvironmentHost) extends prefab.ManagedEnvironment with RackBusConnectable with DeviceInfo with traits.WakeMessageAware {
@@ -130,7 +130,7 @@ class NetworkCard(val host: EnvironmentHost) extends prefab.ManagedEnvironment w
 
   // ----------------------------------------------------------------------- //
 
-  override def onDisconnect(node: Node) {
+  override def onDisconnect(node: Node): Unit = {
     super.onDisconnect(node)
     if (node == this.node) {
       openPorts.clear()
@@ -161,14 +161,14 @@ class NetworkCard(val host: EnvironmentHost) extends prefab.ManagedEnvironment w
 
   // ----------------------------------------------------------------------- //
 
-  override def load(nbt: NBTTagCompound) {
+  override def load(nbt: NBTTagCompound): Unit = {
     super.load(nbt)
     assert(openPorts.isEmpty)
     openPorts ++= nbt.getIntArray("openPorts")
     loadWakeMessage(nbt)
   }
 
-  override def save(nbt: NBTTagCompound) {
+  override def save(nbt: NBTTagCompound): Unit = {
     super.save(nbt)
     nbt.setIntArray("openPorts", openPorts.toArray)
     saveWakeMessage(nbt)
@@ -180,7 +180,7 @@ class NetworkCard(val host: EnvironmentHost) extends prefab.ManagedEnvironment w
     if (port < 1 || port > 0xFFFF) throw new IllegalArgumentException("invalid port number")
     else port
 
-  private def networkActivity() {
+  private def networkActivity(): Unit = {
     host match {
       case h: EnvironmentHost => ServerPacketSender.sendNetworkActivity(node, h)
       case _ =>

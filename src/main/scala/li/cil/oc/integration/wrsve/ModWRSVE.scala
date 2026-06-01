@@ -7,7 +7,7 @@ import li.cil.oc.integration.util.WirelessRedstone
 object ModWRSVE extends ModProxy {
   override def getMod = Mods.WirelessRedstoneSVE
 
-  override def initialize() {
+  override def initialize(): Unit = {
     WirelessRedstone.systems += WirelessRedstoneSVE
   }
 }

@@ -149,12 +149,12 @@ trait VirtualFileSystem extends OutputStreamFileSystem {
 
     var lastModified = System.currentTimeMillis()
 
-    def load(nbt: NBTTagCompound) {
+    def load(nbt: NBTTagCompound): Unit = {
       if (nbt.hasKey("lastModified"))
         lastModified = nbt.getLong("lastModified")
     }
 
-    def save(nbt: NBTTagCompound) {
+    def save(nbt: NBTTagCompound): Unit = {
       nbt.setLong("lastModified", lastModified)
     }
 
@@ -188,13 +188,13 @@ trait VirtualFileSystem extends OutputStreamFileSystem {
         handle
       }
 
-    override def load(nbt: NBTTagCompound) {
+    override def load(nbt: NBTTagCompound): Unit = {
       super.load(nbt)
       data.clear()
       data ++= nbt.getByteArray("data")
     }
 
-    override def save(nbt: NBTTagCompound) {
+    override def save(nbt: NBTTagCompound): Unit = {
       super.save(nbt)
       nbt.setByteArray("data", data.toArray)
     }
@@ -244,7 +244,7 @@ trait VirtualFileSystem extends OutputStreamFileSystem {
         case _ => None // Directory.
       }
 
-    override def load(nbt: NBTTagCompound) {
+    override def load(nbt: NBTTagCompound): Unit = {
       super.load(nbt)
       val childrenNbt = nbt.getTagList("children", NBT.TAG_COMPOUND)
       (0 until childrenNbt.tagCount).map(childrenNbt.getCompoundTagAt).foreach(childNbt => {
@@ -256,7 +256,7 @@ trait VirtualFileSystem extends OutputStreamFileSystem {
       })
     }
 
-    override def save(nbt: NBTTagCompound) {
+    override def save(nbt: NBTTagCompound): Unit = {
       super.save(nbt)
       val childrenNbt = new NBTTagList()
       for ((childName, child) <- children) {

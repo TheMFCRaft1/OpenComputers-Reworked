@@ -33,8 +33,8 @@ import net.minecraft.world.biome.BiomeGenDesert
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.common.util.ForgeDirection
 
-import scala.collection.convert.WrapAsJava._
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
+import scala.jdk.CollectionConverters._
 import scala.language.existentials
 
 class Geolyzer(val host: EnvironmentHost) extends prefab.ManagedEnvironment with traits.WorldControl with DeviceInfo {

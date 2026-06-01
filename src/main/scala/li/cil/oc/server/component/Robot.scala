@@ -23,7 +23,7 @@ import li.cil.oc.util.ExtendedNBT._
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraftforge.common.util.ForgeDirection
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 
 class Robot(val agent: tileentity.Robot) extends prefab.ManagedEnvironment with Agent with DeviceInfo {
   override val node = api.Network.newNode(this, Visibility.Network).
@@ -131,7 +131,7 @@ class Robot(val agent: tileentity.Robot) extends prefab.ManagedEnvironment with 
 
   // ----------------------------------------------------------------------- //
 
-  override def onConnect(node: Node) {
+  override def onConnect(node: Node): Unit = {
     super.onConnect(node)
     if (node == this.node) {
       romRobot.foreach(fs => {
@@ -141,7 +141,7 @@ class Robot(val agent: tileentity.Robot) extends prefab.ManagedEnvironment with 
     }
   }
 
-  override def onMessage(message: Message) {
+  override def onMessage(message: Message): Unit = {
     super.onMessage(message)
     if (message.name == "network.message" && message.source != agent.node) message.data match {
       case Array(packet: Packet) => agent.proxy.node.sendToReachable(message.name, packet)
@@ -151,12 +151,12 @@ class Robot(val agent: tileentity.Robot) extends prefab.ManagedEnvironment with 
 
   // ----------------------------------------------------------------------- //
 
-  override def load(nbt: NBTTagCompound) {
+  override def load(nbt: NBTTagCompound): Unit = {
     super.load(nbt)
     romRobot.foreach(_.load(nbt.getCompoundTag("romRobot")))
   }
 
-  override def save(nbt: NBTTagCompound) {
+  override def save(nbt: NBTTagCompound): Unit = {
     super.save(nbt)
     romRobot.foreach(fs => nbt.setNewCompoundTag("romRobot", fs.save))
   }

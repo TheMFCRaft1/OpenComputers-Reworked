@@ -19,13 +19,13 @@ trait RotaryCraft extends Common {
 
   // ----------------------------------------------------------------------- //
 
-  override def updateEntity() {
+  override def updateEntity(): Unit = {
     if (useRotaryCraftPower()) updateEnergy()
     super.updateEntity()
   }
 
   @Optional.Method(modid = Mods.IDs.RotaryCraft)
-  private def updateEnergy() {
+  private def updateEnergy(): Unit = {
     if (world.getTotalWorldTime % Settings.get.tickFrequency == 0) {
       tryAllSides((demand, _) => {
         val consumed = demand.toLong min power

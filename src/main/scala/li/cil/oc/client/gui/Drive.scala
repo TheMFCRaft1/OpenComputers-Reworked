@@ -18,7 +18,7 @@ class Drive(playerInventory: InventoryPlayer, val driveStack: () => ItemStack) e
   protected var unmanagedButton: ImageButton = _
   protected var lockedButton: ImageButton = _
 
-  protected override def actionPerformed(button: GuiButton) {
+  protected override def actionPerformed(button: GuiButton): Unit = {
     if (button.id == 0) {
       ClientPacketSender.sendDriveMode(unmanaged = false)
       DriveData.setUnmanaged(driveStack(), unmanaged = false)

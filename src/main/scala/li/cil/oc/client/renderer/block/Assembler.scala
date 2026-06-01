@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.RenderHelper
 import org.lwjgl.opengl.GL11
 
 object Assembler {
-  def render(block: Block, metadata: Int, x: Int, y: Int, z: Int, renderer: RenderBlocks) {
+  def render(block: Block, metadata: Int, x: Int, y: Int, z: Int, renderer: RenderBlocks): Unit = {
     val previousRenderAllFaces = renderer.renderAllFaces
     renderer.renderAllFaces = true
 
@@ -25,7 +25,7 @@ object Assembler {
     renderer.renderAllFaces = previousRenderAllFaces
   }
 
-  def render(block: Block, metadata: Int, renderer: RenderBlocks) {
+  def render(block: Block, metadata: Int, renderer: RenderBlocks): Unit = {
     // Bottom.
     renderer.setRenderBounds(0, 0, 0, 1, 7 / 16f, 1)
     BlockRenderer.renderFaceYPos(block, metadata, renderer)

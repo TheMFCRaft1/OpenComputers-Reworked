@@ -71,7 +71,7 @@ class AccessPoint extends Switch with WirelessEndpoint with traits.PowerAcceptor
 
   // ----------------------------------------------------------------------- //
 
-  override def receivePacket(packet: Packet, source: WirelessEndpoint) {
+  override def receivePacket(packet: Packet, source: WirelessEndpoint): Unit = {
     tryEnqueuePacket(None, packet)
     if (Mods.ComputerCraft.isAvailable) {
       packet.data.headOption match {
@@ -81,7 +81,7 @@ class AccessPoint extends Switch with WirelessEndpoint with traits.PowerAcceptor
     }
   }
 
-  override protected def relayPacket(sourceSide: Option[ForgeDirection], packet: Packet) {
+  override protected def relayPacket(sourceSide: Option[ForgeDirection], packet: Packet): Unit = {
     super.relayPacket(sourceSide, packet)
     if (strength > 0 && (sourceSide.isDefined || isRepeater)) {
       val cost = Settings.get.wirelessCostPerRange(Tier.Two)
@@ -103,7 +103,7 @@ class AccessPoint extends Switch with WirelessEndpoint with traits.PowerAcceptor
     withConnector(math.round(Settings.get.bufferAccessPoint)).
     create()
 
-  override protected def onPlugConnect(plug: Plug, node: Node) {
+  override protected def onPlugConnect(plug: Plug, node: Node): Unit = {
     super.onPlugConnect(plug, node)
     if (node == plug.node) {
       api.Network.joinWirelessNetwork(this)
@@ -114,7 +114,7 @@ class AccessPoint extends Switch with WirelessEndpoint with traits.PowerAcceptor
       componentNodes(plug.side.ordinal).remove()
   }
 
-  override protected def onPlugDisconnect(plug: Plug, node: Node) {
+  override protected def onPlugDisconnect(plug: Plug, node: Node): Unit = {
     super.onPlugDisconnect(plug, node)
     if (node == plug.node) {
       api.Network.leaveWirelessNetwork(this)

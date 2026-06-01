@@ -26,7 +26,7 @@ object BlockChangeHandler {
   private val changeListeners = mutable.WeakHashMap.empty[ChangeListener, BlockPosition]
 
   @SubscribeEvent
-  def onWorldLoad(e: WorldEvent.Load) {
+  def onWorldLoad(e: WorldEvent.Load): Unit = {
     e.world.addWorldAccess(new Listener(e.world))
   }
 
@@ -43,29 +43,29 @@ object BlockChangeHandler {
       }
     }
 
-    override def playRecord(recordName: String, x: Int, y: Int, z: Int) {}
+    override def playRecord(recordName: String, x: Int, y: Int, z: Int): Unit = {}
 
-    override def playAuxSFX(player: EntityPlayer, sfxType: Int, x: Int, y: Int, z: Int, data: Int) {}
+    override def playAuxSFX(player: EntityPlayer, sfxType: Int, x: Int, y: Int, z: Int, data: Int): Unit = {}
 
-    override def onEntityDestroy(entity: Entity) {}
+    override def onEntityDestroy(entity: Entity): Unit = {}
 
-    override def destroyBlockPartially(breakerId: Int, x: Int, y: Int, z: Int, progress: Int) {}
+    override def destroyBlockPartially(breakerId: Int, x: Int, y: Int, z: Int, progress: Int): Unit = {}
 
-    override def markBlockForRenderUpdate(x: Int, y: Int, z: Int) {}
+    override def markBlockForRenderUpdate(x: Int, y: Int, z: Int): Unit = {}
 
-    override def spawnParticle(particleType: String, x: Double, y: Double, z: Double, velX: Double, velY: Double, velZ: Double) {}
+    override def spawnParticle(particleType: String, x: Double, y: Double, z: Double, velX: Double, velY: Double, velZ: Double): Unit = {}
 
-    override def playSound(soundName: String, x: Double, y: Double, z: Double, volume: Float, pitch: Float) {}
+    override def playSound(soundName: String, x: Double, y: Double, z: Double, volume: Float, pitch: Float): Unit = {}
 
-    override def broadcastSound(soundID: Int, x: Int, y: Int, z: Int, data: Int) {}
+    override def broadcastSound(soundID: Int, x: Int, y: Int, z: Int, data: Int): Unit = {}
 
-    override def playSoundToNearExcept(player: EntityPlayer, soundName: String, x: Double, y: Double, z: Double, volume: Float, pitch: Float) {}
+    override def playSoundToNearExcept(player: EntityPlayer, soundName: String, x: Double, y: Double, z: Double, volume: Float, pitch: Float): Unit = {}
 
-    override def markBlockRangeForRenderUpdate(x1: Int, y1: Int, z1: Int, x2: Int, y2: Int, z2: Int) {}
+    override def markBlockRangeForRenderUpdate(x1: Int, y1: Int, z1: Int, x2: Int, y2: Int, z2: Int): Unit = {}
 
-    override def onEntityCreate(entity: Entity) {}
+    override def onEntityCreate(entity: Entity): Unit = {}
 
-    override def onStaticEntitiesChanged() {}
+    override def onStaticEntitiesChanged(): Unit = {}
   }
 
 }

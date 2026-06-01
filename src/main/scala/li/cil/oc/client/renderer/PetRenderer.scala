@@ -15,7 +15,7 @@ import net.minecraftforge.client.event.RenderPlayerEvent
 import org.lwjgl.opengl.GL11
 import org.lwjgl.opengl.GL12
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 
 object PetRenderer {
@@ -46,7 +46,7 @@ object PetRenderer {
   private var rendering: Option[(Double, Double, Double)] = None
 
   @SubscribeEvent
-  def onPlayerRender(e: RenderPlayerEvent.Pre) {
+  def onPlayerRender(e: RenderPlayerEvent.Pre): Unit = {
     val uuid = e.entityPlayer.getUniqueID.toString
     if (hidden.contains(uuid) || !entitledPlayers.contains(uuid)) return
     rendering = Some(entitledPlayers(uuid))
@@ -91,7 +91,7 @@ object PetRenderer {
   }
 
   @SubscribeEvent(priority = EventPriority.LOWEST)
-  def onRobotRender(e: RobotRenderEvent) {
+  def onRobotRender(e: RobotRenderEvent): Unit = {
     rendering match {
       case Some((r, g, b)) => GL11.glColor3d(r, g, b)
       case _ =>
@@ -109,7 +109,7 @@ object PetRenderer {
     var lastZ = z
     var lastYaw = yaw
 
-    def update() {
+    def update(): Unit = {
       val dx = owner.lastTickPosX - owner.posX
       val dy = owner.lastTickPosY - owner.posY
       val dz = owner.lastTickPosZ - owner.posZ
@@ -127,7 +127,7 @@ object PetRenderer {
       yaw += dYaw * 0.2f
     }
 
-    def applyInterpolatedTransformations(dt: Float) {
+    def applyInterpolatedTransformations(dt: Float): Unit = {
       val ix = lastX + (x - lastX) * dt
       val iy = lastY + (y - lastY) * dt
       val iz = lastZ + (z - lastZ) * dt
@@ -147,7 +147,7 @@ object PetRenderer {
   }
 
   @SubscribeEvent
-  def tickStart(e: ClientTickEvent) {
+  def tickStart(e: ClientTickEvent): Unit = {
     petLocations.cleanUp()
     for (pet <- petLocations.asMap.values) {
       pet.update()

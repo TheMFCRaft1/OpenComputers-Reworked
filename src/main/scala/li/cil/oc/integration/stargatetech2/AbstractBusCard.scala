@@ -12,7 +12,7 @@ import lordfokas.stargatetech2.api.StargateTechAPI
 import lordfokas.stargatetech2.api.bus._
 import net.minecraft.nbt.NBTTagCompound
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 class AbstractBusCard(val device: IBusDevice) extends prefab.ManagedEnvironment with IBusDriver {
   override val node = Network.newNode(this, Visibility.Neighbors).
@@ -38,7 +38,7 @@ class AbstractBusCard(val device: IBusDevice) extends prefab.ManagedEnvironment 
 
   override def canHandlePacket(sender: Short, protocolID: Int, hasLIP: Boolean) = hasLIP
 
-  override def handlePacket(packet: BusPacket[_]) {
+  override def handlePacket(packet: BusPacket[_]): Unit = {
     val lip = packet.getPlainText
     val data = Map(lip.getEntryList.map(key => (key, lip.get(key))): _*)
     val metadata = Map("mod" -> lip.getMetadata.modID, "device" -> lip.getMetadata.deviceName, "player" -> lip.getMetadata.playerName)
@@ -82,7 +82,7 @@ class AbstractBusCard(val device: IBusDevice) extends prefab.ManagedEnvironment 
     if (node.tryChangeBuffer(-Settings.get.abstractBusPacketCost)) {
       val packet = new BusPacketLIP(address.toShort, target.toShort)
       var size = 0
-      def checkSize(add: Int) {
+      def checkSize(add: Int): Unit = {
         size += add
         if (size > Settings.get.maxNetworkPacketSize) {
           throw new IllegalArgumentException("packet too big (max " + Settings.get.maxNetworkPacketSize + ")")
@@ -121,21 +121,21 @@ class AbstractBusCard(val device: IBusDevice) extends prefab.ManagedEnvironment 
 
   // ----------------------------------------------------------------------- //
 
-  override def onConnect(node: Node) {
+  override def onConnect(node: Node): Unit = {
     super.onConnect(node)
     if (owner.isEmpty && node.host.isInstanceOf[Context]) {
       owner = Some(node.host.asInstanceOf[Context])
     }
   }
 
-  override def onDisconnect(node: Node) {
+  override def onDisconnect(node: Node): Unit = {
     super.onDisconnect(node)
     if (owner.isDefined && node.host.isInstanceOf[Context] && (node.host.asInstanceOf[Context] == owner.get)) {
       owner = None
     }
   }
 
-  override def load(nbt: NBTTagCompound) {
+  override def load(nbt: NBTTagCompound): Unit = {
     super.load(nbt)
     busInterface.readFromNBT(nbt, "bus")
     // Don't default to false.
@@ -145,7 +145,7 @@ class AbstractBusCard(val device: IBusDevice) extends prefab.ManagedEnvironment 
     address = nbt.getInteger("address") & 0xFFFF
   }
 
-  override def save(nbt: NBTTagCompound) {
+  override def save(nbt: NBTTagCompound): Unit = {
     super.save(nbt)
     busInterface.writeToNBT(nbt, "bus")
     nbt.setBoolean("enabled", isEnabled)

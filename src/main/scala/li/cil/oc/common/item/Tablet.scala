@@ -53,8 +53,8 @@ import net.minecraft.world.World
 import net.minecraftforge.common.util.ForgeDirection
 import net.minecraftforge.event.world.WorldEvent
 
-import scala.collection.convert.WrapAsJava._
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
+import scala.jdk.CollectionConverters._
 
 class Tablet(val parent: Delegator) extends traits.Delegate with Chargeable {
   final val TimeToAnalyze = 10
@@ -252,7 +252,7 @@ class TabletWrapper(var stack: ItemStack, var player: EntityPlayer) extends Comp
   override def toGlobal(value: ForgeDirection) =
     RotationHelper.toGlobal(ForgeDirection.NORTH, facing, value)
 
-  def readFromNBT() {
+  def readFromNBT(): Unit = {
     if (stack.hasTagCompound) {
       val data = stack.getTagCompound
       load(data)
@@ -294,7 +294,7 @@ class TabletWrapper(var stack: ItemStack, var player: EntityPlayer) extends Comp
 
   // ----------------------------------------------------------------------- //
 
-  override def onConnect(node: Node) {
+  override def onConnect(node: Node): Unit = {
     if (node == this.node) {
       connectComponents()
       node.connect(tablet.node)
@@ -307,7 +307,7 @@ class TabletWrapper(var stack: ItemStack, var player: EntityPlayer) extends Comp
     }
   }
 
-  override protected def connectItemNode(node: Node) {
+  override protected def connectItemNode(node: Node): Unit = {
     super.connectItemNode(node)
     if (node != null) node.host match {
       case buffer: api.internal.TextBuffer => components collect {
@@ -320,14 +320,14 @@ class TabletWrapper(var stack: ItemStack, var player: EntityPlayer) extends Comp
     }
   }
 
-  override def onDisconnect(node: Node) {
+  override def onDisconnect(node: Node): Unit = {
     if (node == this.node) {
       disconnectComponents()
       tablet.node.remove()
     }
   }
 
-  override def onMessage(message: Message) {}
+  override def onMessage(message: Message): Unit = {}
 
   override def host = this
 
@@ -358,7 +358,7 @@ class TabletWrapper(var stack: ItemStack, var player: EntityPlayer) extends Comp
 
   override def zPosition = player.posZ
 
-  override def markChanged() {}
+  override def markChanged(): Unit = {}
 
   // ----------------------------------------------------------------------- //
 
@@ -390,7 +390,7 @@ class TabletWrapper(var stack: ItemStack, var player: EntityPlayer) extends Comp
 
   // ----------------------------------------------------------------------- //
 
-  def update(world: World, player: EntityPlayer, slot: Int, selected: Boolean) {
+  def update(world: World, player: EntityPlayer, slot: Int, selected: Boolean): Unit = {
     this.player = player
     if (!isInitialized) {
       isInitialized = true
@@ -431,11 +431,11 @@ class TabletWrapper(var stack: ItemStack, var player: EntityPlayer) extends Comp
 
   // ----------------------------------------------------------------------- //
 
-  override def load(nbt: NBTTagCompound) {
+  override def load(nbt: NBTTagCompound): Unit = {
     data.load(nbt)
   }
 
-  override def save(nbt: NBTTagCompound) {
+  override def save(nbt: NBTTagCompound): Unit = {
     saveComponents()
     data.save(nbt)
   }
@@ -463,18 +463,18 @@ object Tablet {
   }
 
   @SubscribeEvent
-  def onWorldSave(e: WorldEvent.Save) {
+  def onWorldSave(e: WorldEvent.Save): Unit = {
     Server.saveAll(e.world)
   }
 
   @SubscribeEvent
-  def onWorldUnload(e: WorldEvent.Unload) {
+  def onWorldUnload(e: WorldEvent.Unload): Unit = {
     Client.clear(e.world)
     Server.clear(e.world)
   }
 
   @SubscribeEvent
-  def onClientTick(e: ClientTickEvent) {
+  def onClientTick(e: ClientTickEvent): Unit = {
     Client.cleanUp()
     MinecraftServer.getServer match {
       case integrated: IntegratedServer if Minecraft.getMinecraft.isGamePaused =>
@@ -487,7 +487,7 @@ object Tablet {
   }
 
   @SubscribeEvent
-  def onServerTick(e: ServerTickEvent) {
+  def onServerTick(e: ServerTickEvent): Unit = {
     Server.cleanUp()
   }
 
@@ -532,7 +532,7 @@ object Tablet {
       new TabletWrapper(currentStack, currentHolder)
     }
 
-    def onRemoval(e: RemovalNotification[String, TabletWrapper]) {
+    def onRemoval(e: RemovalNotification[String, TabletWrapper]): Unit = {
       val tablet = e.getValue
       if (tablet.node != null) {
         // Server.
@@ -545,7 +545,7 @@ object Tablet {
       }
     }
 
-    def clear(world: World) {
+    def clear(world: World): Unit = {
       cache.synchronized {
         val tabletsInWorld = cache.asMap.filter(_._2.world == world)
         cache.invalidateAll(asJavaIterable(tabletsInWorld.keys))
@@ -553,7 +553,7 @@ object Tablet {
       }
     }
 
-    def cleanUp() {
+    def cleanUp(): Unit = {
       cache.synchronized(cache.cleanUp())
     }
 
@@ -576,7 +576,7 @@ object Tablet {
   }
 
   object Server extends Cache {
-    def saveAll(world: World) {
+    def saveAll(world: World): Unit = {
       cache.synchronized {
         for (tablet <- cache.asMap.values if tablet.world == world) {
           tablet.writeToNBT()

@@ -21,8 +21,8 @@ import net.minecraft.potion.Potion
 import net.minecraft.util.AxisAlignedBB
 import net.minecraft.util.Vec3
 
-import scala.collection.convert.WrapAsJava._
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 
 class MotionSensor(val host: EnvironmentHost) extends prefab.ManagedEnvironment with DeviceInfo {
@@ -61,7 +61,7 @@ class MotionSensor(val host: EnvironmentHost) extends prefab.ManagedEnvironment 
 
   override def canUpdate: Boolean = isServer
 
-  override def update() {
+  override def update(): Unit = {
     super.update()
     if (world.getTotalWorldTime % 10 == 0) {
       // Get a list of all living entities we could possibly detect, using a rough
@@ -115,7 +115,7 @@ class MotionSensor(val host: EnvironmentHost) extends prefab.ManagedEnvironment 
       isClearPath(target) || isClearPath(target.addVector(0, entity.getEyeHeight, 0))
     }
 
-  private def sendSignal(entity: EntityLivingBase) {
+  private def sendSignal(entity: EntityLivingBase): Unit = {
     if (Settings.get.inputUsername) {
       node.sendToReachable("computer.signal", "motion", Double.box(entity.posX - (x + 0.5)), Double.box(entity.posY - (y + 0.5)), Double.box(entity.posZ - (z + 0.5)), entity.getCommandSenderName)
     }
@@ -140,12 +140,12 @@ class MotionSensor(val host: EnvironmentHost) extends prefab.ManagedEnvironment 
 
   private final val SensitivityTag = Settings.namespace + "sensitivity"
 
-  override def load(nbt: NBTTagCompound) {
+  override def load(nbt: NBTTagCompound): Unit = {
     super.load(nbt)
     sensitivity = nbt.getDouble(SensitivityTag)
   }
 
-  override def save(nbt: NBTTagCompound) {
+  override def save(nbt: NBTTagCompound): Unit = {
     super.save(nbt)
     nbt.setDouble(SensitivityTag, sensitivity)
   }

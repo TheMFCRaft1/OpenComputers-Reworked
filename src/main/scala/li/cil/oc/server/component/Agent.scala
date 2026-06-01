@@ -22,7 +22,7 @@ import net.minecraft.util.Vec3
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.common.util.ForgeDirection
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 trait Agent extends traits.WorldControl with traits.InventoryControl with traits.InventoryWorldControl with traits.TankAware with traits.TankControl with traits.TankWorldControl {
   def agent: internal.Agent
@@ -180,7 +180,7 @@ trait Agent extends traits.WorldControl with traits.InventoryControl with traits
       if (args.isDouble(3)) args.checkDouble(3)
       else 0.0
 
-    def triggerDelay() {
+    def triggerDelay(): Unit = {
       onWorldInteraction(context, Settings.get.useDelay)
     }
     def activationResult(activationType: ActivationType.Value) =
@@ -284,12 +284,12 @@ trait Agent extends traits.WorldControl with traits.InventoryControl with traits
 
   // ----------------------------------------------------------------------- //
 
-  protected def beginConsumeDrops(entity: Entity) {
+  protected def beginConsumeDrops(entity: Entity): Unit = {
     entity.captureDrops = true
   }
 
 
-  protected def endConsumeDrops(player: Player, entity: Entity) {
+  protected def endConsumeDrops(player: Player, entity: Entity): Unit = {
     entity.captureDrops = false
     // this inventory size check is a HACK to preserve old behavior that a agent can suck items out
     // of the capturedDrops. Ideally, we'd only pick up items off the ground. We could clear the

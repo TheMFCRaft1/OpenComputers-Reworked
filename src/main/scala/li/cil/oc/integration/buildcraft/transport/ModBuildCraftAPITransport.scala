@@ -7,7 +7,7 @@ import li.cil.oc.integration.Mods
 object ModBuildCraftAPITransport extends ModProxy {
   override def getMod = Mods.BuildCraftTransport
 
-  override def initialize() {
+  override def initialize(): Unit = {
     Driver.add(new DriverPipeTile)
   }
 }

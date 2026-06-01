@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraftforge.common.util.Constants.NBT
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 object ConverterRecord extends Converter {
   final val UrlRecordClassName = "com.codingforcookies.betterrecords.src.items.ItemURLRecord"

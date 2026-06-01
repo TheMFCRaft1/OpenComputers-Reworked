@@ -7,7 +7,7 @@ import org.lwjgl.opengl.GL11
 object DroneRenderer extends Render {
   val model = new ModelQuadcopter()
 
-  override def doRender(entity: Entity, x: Double, y: Double, z: Double, yaw: Float, dt: Float) {
+  override def doRender(entity: Entity, x: Double, y: Double, z: Double, yaw: Float, dt: Float): Unit = {
     bindEntityTexture(entity)
     GL11.glPushMatrix()
     GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS)

@@ -6,7 +6,7 @@ import codechicken.multipart.TMultiPart
 import li.cil.oc.Settings
 
 object MultipartFactory extends IPartFactory {
-  def init() {
+  def init(): Unit = {
     MultiPartRegistry.registerParts(MultipartFactory, Array(
       Settings.namespace + "cable",
       Settings.namespace + "print"

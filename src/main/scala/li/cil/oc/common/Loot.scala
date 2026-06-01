@@ -22,7 +22,7 @@ import net.minecraftforge.common.DimensionManager
 import net.minecraftforge.common.util.Constants.NBT
 import net.minecraftforge.event.world.WorldEvent
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 
 class Loot extends WeightedRandomChestContent(api.Items.get(Constants.ItemName.Floppy).createItemStack(1), 1, 1, Settings.get.lootProbability) {
@@ -87,7 +87,7 @@ object Loot {
     stack.copy()
   }
 
-  def init() {
+  def init(): Unit = {
     for (container <- containers) {
       ChestGenHooks.addItem(container, new Loot())
     }
@@ -129,7 +129,7 @@ object Loot {
     }
   }
 
-  private def parseLootDisks(list: java.util.Properties, acc: mutable.ArrayBuffer[(ItemStack, Int)], external: Boolean) {
+  private def parseLootDisks(list: java.util.Properties, acc: mutable.ArrayBuffer[(ItemStack, Int)], external: Boolean): Unit = {
     for (key <- list.stringPropertyNames) {
       val value = list.getProperty(key)
       try value.split(":") match {

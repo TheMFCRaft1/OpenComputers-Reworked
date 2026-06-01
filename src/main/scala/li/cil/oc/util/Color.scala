@@ -3,7 +3,7 @@ package li.cil.oc.util
 import net.minecraft.item.ItemStack
 import net.minecraftforge.oredict.OreDictionary
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 object Color {
   val Black = 0x444444

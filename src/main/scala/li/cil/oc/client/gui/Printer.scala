@@ -35,7 +35,7 @@ class Printer(playerInventory: InventoryPlayer, val printer: tileentity.Printer)
     override def barTexture = Textures.guiPrinterProgress
   })
 
-  override def initGui() {
+  override def initGui(): Unit = {
     super.initGui()
   }
 
@@ -58,7 +58,7 @@ class Printer(playerInventory: InventoryPlayer, val printer: tileentity.Printer)
     GL11.glPopAttrib()
   }
 
-  override def drawGuiContainerBackgroundLayer(dt: Float, mouseX: Int, mouseY: Int) {
+  override def drawGuiContainerBackgroundLayer(dt: Float, mouseX: Int, mouseY: Int): Unit = {
     GL11.glColor3f(1, 1, 1) // Required under Linux.
     mc.renderEngine.bindTexture(Textures.guiPrinter)
     drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize)
@@ -69,5 +69,5 @@ class Printer(playerInventory: InventoryPlayer, val printer: tileentity.Printer)
     drawInventorySlots()
   }
 
-  override protected def drawDisabledSlot(slot: ComponentSlot) {}
+  override protected def drawDisabledSlot(slot: ComponentSlot): Unit = {}
 }

@@ -6,7 +6,7 @@ import li.cil.oc.api
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 object TemplateBlacklist {
   private lazy val TheBlacklist = {

@@ -5,7 +5,7 @@ import java.util
 import li.cil.oc.api
 import lordfokas.stargatetech2.api.bus.BusPacketNetScan
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 object ConverterBusPacketNetScanDevice extends api.driver.Converter {
   override def convert(value: scala.Any, output: util.Map[AnyRef, AnyRef]) =

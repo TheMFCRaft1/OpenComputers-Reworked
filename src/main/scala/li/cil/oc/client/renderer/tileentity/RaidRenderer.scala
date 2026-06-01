@@ -56,7 +56,7 @@ object RaidRenderer extends TileEntitySpecialRenderer {
   private val u1 = 2 / 16f
   private val fs = 4 / 16f
 
-  private def renderSlot(slot: Int) {
+  private def renderSlot(slot: Int): Unit = {
     val l = u1 + slot * fs
     val h = u1 + (slot + 1) * fs
     val t = Tessellator.instance

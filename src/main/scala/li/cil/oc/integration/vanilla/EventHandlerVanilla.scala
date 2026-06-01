@@ -10,11 +10,11 @@ import net.minecraft.block.BlockCrops
 import net.minecraft.init.Blocks
 import net.minecraftforge.fluids.FluidRegistry
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 object EventHandlerVanilla {
   @SubscribeEvent
-  def onGeolyzerScan(e: GeolyzerEvent.Scan) {
+  def onGeolyzerScan(e: GeolyzerEvent.Scan): Unit = {
     val world = e.host.world
     val blockPos = BlockPosition(e.host)
     val includeReplaceable = e.options.get("includeReplaceable") match {
@@ -52,7 +52,7 @@ object EventHandlerVanilla {
   private def isFluid(block: Block) = FluidRegistry.lookupFluidForBlock(block) != null
 
   @SubscribeEvent
-  def onGeolyzerAnalyze(e: GeolyzerEvent.Analyze) {
+  def onGeolyzerAnalyze(e: GeolyzerEvent.Analyze): Unit = {
     val world = e.host.world
     val blockPos = BlockPosition(e.x, e.y, e.z, world)
     val block = world.getBlock(blockPos)

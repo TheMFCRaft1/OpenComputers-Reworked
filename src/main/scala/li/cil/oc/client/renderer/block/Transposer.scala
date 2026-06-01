@@ -4,7 +4,7 @@ import net.minecraft.block.Block
 import net.minecraft.client.renderer.RenderBlocks
 
 object Transposer {
-  def render(block: Block, x: Int, y: Int, z: Int, renderer: RenderBlocks) {
+  def render(block: Block, x: Int, y: Int, z: Int, renderer: RenderBlocks): Unit = {
     val previousRenderAllFaces = renderer.renderAllFaces
     renderer.renderAllFaces = true
 
@@ -61,7 +61,7 @@ object Transposer {
     renderer.renderAllFaces = previousRenderAllFaces
   }
 
-  def render(block: Block, metadata: Int, renderer: RenderBlocks) {
+  def render(block: Block, metadata: Int, renderer: RenderBlocks): Unit = {
     // Corners.
     renderer.setRenderBounds(0 / 16f, 0 / 16f, 0 / 16f, 7 / 16f, 7 / 16f, 7 / 16f)
     renderAllFaces(block, metadata, renderer)

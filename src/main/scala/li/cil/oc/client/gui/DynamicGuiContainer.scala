@@ -20,20 +20,20 @@ import net.minecraft.item.ItemStack
 import net.minecraft.util.IIcon
 import org.lwjgl.opengl.GL11
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 abstract class DynamicGuiContainer[C <: Container](container: C) extends CustomGuiContainer(container) {
   protected var hoveredSlot: Option[Slot] = None
 
   protected var hoveredStackNEI: Option[ItemStack] = None
 
-  protected def drawSecondaryForegroundLayer(mouseX: Int, mouseY: Int) {
+  protected def drawSecondaryForegroundLayer(mouseX: Int, mouseY: Int): Unit = {
     fontRendererObj.drawString(
       Localization.localizeImmediately("container.inventory"),
       8, ySize - 96 + 2, 0x404040)
   }
 
-  override protected def drawGuiContainerForegroundLayer(mouseX: Int, mouseY: Int) {
+  override protected def drawGuiContainerForegroundLayer(mouseX: Int, mouseY: Int): Unit = {
     GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS)
 
     drawSecondaryForegroundLayer(mouseX, mouseY)
@@ -45,9 +45,9 @@ abstract class DynamicGuiContainer[C <: Container](container: C) extends CustomG
     GL11.glPopAttrib()
   }
 
-  protected def drawSecondaryBackgroundLayer() {}
+  protected def drawSecondaryBackgroundLayer(): Unit = {}
 
-  override protected def drawGuiContainerBackgroundLayer(dt: Float, mouseX: Int, mouseY: Int) {
+  override protected def drawGuiContainerBackgroundLayer(dt: Float, mouseX: Int, mouseY: Int): Unit = {
     GL11.glColor4f(1, 1, 1, 1)
     mc.renderEngine.bindTexture(Textures.guiBackground)
     drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize)
@@ -69,7 +69,7 @@ abstract class DynamicGuiContainer[C <: Container](container: C) extends CustomG
     RenderState.makeItBlend()
   }
 
-  override def drawScreen(mouseX: Int, mouseY: Int, dt: Float) {
+  override def drawScreen(mouseX: Int, mouseY: Int, dt: Float): Unit = {
     hoveredSlot = (inventorySlots.inventorySlots collect {
       case slot: Slot if isPointInRegion(slot.xDisplayPosition, slot.yDisplayPosition, 16, 16, mouseX, mouseY) => slot
     }).headOption
@@ -84,7 +84,7 @@ abstract class DynamicGuiContainer[C <: Container](container: C) extends CustomG
     }
   }
 
-  protected def drawSlotInventory(slot: Slot) {
+  protected def drawSlotInventory(slot: Slot): Unit = {
     slot match {
       case component: ComponentSlot if component.slot == common.Slot.None || component.tier == common.Tier.None =>
         if (!slot.getHasStack && slot.xDisplayPosition >= 0 && slot.yDisplayPosition >= 0 && component.tierIcon != null) {
@@ -105,7 +105,7 @@ abstract class DynamicGuiContainer[C <: Container](container: C) extends CustomG
     }
   }
 
-  protected def drawSlotHighlight(slot: Slot) {
+  protected def drawSlotHighlight(slot: Slot): Unit = {
     if (mc.thePlayer.inventory.getItemStack == null) slot match {
       case component: ComponentSlot if component.slot == common.Slot.None || component.tier == common.Tier.None => // Ignore.
       case _ =>
@@ -137,13 +137,13 @@ abstract class DynamicGuiContainer[C <: Container](container: C) extends CustomG
     case _ => false
   }
 
-  protected def drawDisabledSlot(slot: ComponentSlot) {
+  protected def drawDisabledSlot(slot: ComponentSlot): Unit = {
     GL11.glColor4f(1, 1, 1, 1)
     mc.getTextureManager.bindTexture(TextureMap.locationItemsTexture)
     drawTexturedModelRectFromIcon(slot.xDisplayPosition, slot.yDisplayPosition, slot.tierIcon, 16, 16)
   }
 
-  protected def drawSlotBackground(x: Int, y: Int) {
+  protected def drawSlotBackground(x: Int, y: Int): Unit = {
     GL11.glColor4f(1, 1, 1, 1)
     mc.getTextureManager.bindTexture(Textures.guiSlot)
     val t = Tessellator.instance
@@ -155,13 +155,13 @@ abstract class DynamicGuiContainer[C <: Container](container: C) extends CustomG
     t.draw()
   }
 
-  protected override def drawGradientRect(par1: Int, par2: Int, par3: Int, par4: Int, par5: Int, par6: Int) {
+  protected override def drawGradientRect(par1: Int, par2: Int, par3: Int, par4: Int, par5: Int, par6: Int): Unit = {
     super.drawGradientRect(par1, par2, par3, par4, par5, par6)
     RenderState.makeItBlend()
     GL11.glDisable(GL11.GL_LIGHTING)
   }
 
-  override def drawTexturedModelRectFromIcon(x: Int, y: Int, icon: IIcon, width: Int, height: Int) {
+  override def drawTexturedModelRectFromIcon(x: Int, y: Int, icon: IIcon, width: Int, height: Int): Unit = {
     GL11.glColor4f(1, 1, 1, 1)
     RenderState.makeItBlend()
     GL11.glDisable(GL11.GL_LIGHTING)

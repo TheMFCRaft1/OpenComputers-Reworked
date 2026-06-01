@@ -18,7 +18,7 @@ object BlockRenderer extends ISimpleBlockRenderingHandler {
 
   override def shouldRender3DInInventory(modelID: Int) = true
 
-  override def renderInventoryBlock(block: Block, metadata: Int, modelID: Int, realRenderer: RenderBlocks) {
+  override def renderInventoryBlock(block: Block, metadata: Int, modelID: Int, realRenderer: RenderBlocks): Unit = {
     RenderState.checkError(getClass.getName + ".renderInventoryBlock: entering (aka: wasntme)")
 
     val renderer = patchedRenderer(realRenderer, block)
@@ -193,45 +193,45 @@ object BlockRenderer extends ISimpleBlockRenderingHandler {
     else renderer
 
   object PatchedRenderBlocks extends RenderBlocks {
-    override def renderFaceXPos(block: Block, x: Double, y: Double, z: Double, texture: IIcon) {
+    override def renderFaceXPos(block: Block, x: Double, y: Double, z: Double, texture: IIcon): Unit = {
       flipTexture = !flipTexture
       super.renderFaceXPos(block, x, y, z, texture)
       flipTexture = !flipTexture
     }
 
-    override def renderFaceZNeg(block: Block, x: Double, y: Double, z: Double, texture: IIcon) {
+    override def renderFaceZNeg(block: Block, x: Double, y: Double, z: Double, texture: IIcon): Unit = {
       flipTexture = !flipTexture
       super.renderFaceZNeg(block, x, y, z, texture)
       flipTexture = !flipTexture
     }
   }
 
-  def renderFaceXPos(block: Block, metadata: Int, renderer: RenderBlocks) {
+  def renderFaceXPos(block: Block, metadata: Int, renderer: RenderBlocks): Unit = {
     Tessellator.instance.setNormal(1, 0, 0)
     renderer.renderFaceXPos(block, 0, 0, 0, renderer.getBlockIconFromSideAndMetadata(block, ForgeDirection.EAST.ordinal, metadata))
   }
 
-  def renderFaceXNeg(block: Block, metadata: Int, renderer: RenderBlocks) {
+  def renderFaceXNeg(block: Block, metadata: Int, renderer: RenderBlocks): Unit = {
     Tessellator.instance.setNormal(-1, 0, 0)
     renderer.renderFaceXNeg(block, 0, 0, 0, renderer.getBlockIconFromSideAndMetadata(block, ForgeDirection.WEST.ordinal, metadata))
   }
 
-  def renderFaceYPos(block: Block, metadata: Int, renderer: RenderBlocks) {
+  def renderFaceYPos(block: Block, metadata: Int, renderer: RenderBlocks): Unit = {
     Tessellator.instance.setNormal(0, 1, 0)
     renderer.renderFaceYPos(block, 0, 0, 0, renderer.getBlockIconFromSideAndMetadata(block, ForgeDirection.UP.ordinal, metadata))
   }
 
-  def renderFaceYNeg(block: Block, metadata: Int, renderer: RenderBlocks) {
+  def renderFaceYNeg(block: Block, metadata: Int, renderer: RenderBlocks): Unit = {
     Tessellator.instance.setNormal(0, -1, 0)
     renderer.renderFaceYNeg(block, 0, 0, 0, renderer.getBlockIconFromSideAndMetadata(block, ForgeDirection.DOWN.ordinal, metadata))
   }
 
-  def renderFaceZPos(block: Block, metadata: Int, renderer: RenderBlocks) {
+  def renderFaceZPos(block: Block, metadata: Int, renderer: RenderBlocks): Unit = {
     Tessellator.instance.setNormal(0, 0, 1)
     renderer.renderFaceZPos(block, 0, 0, 0, renderer.getBlockIconFromSideAndMetadata(block, ForgeDirection.SOUTH.ordinal, metadata))
   }
 
-  def renderFaceZNeg(block: Block, metadata: Int, renderer: RenderBlocks) {
+  def renderFaceZNeg(block: Block, metadata: Int, renderer: RenderBlocks): Unit = {
     Tessellator.instance.setNormal(0, 0, -1)
     renderer.renderFaceZNeg(block, 0, 0, 0, renderer.getBlockIconFromSideAndMetadata(block, ForgeDirection.NORTH.ordinal, metadata))
   }

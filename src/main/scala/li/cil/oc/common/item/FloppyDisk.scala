@@ -23,7 +23,7 @@ class FloppyDisk(val parent: Delegator) extends traits.Delegate with traits.File
     else
       Some(icons(8))
 
-  override def registerIcons(iconRegister: IconRegister) {
+  override def registerIcons(iconRegister: IconRegister): Unit = {
     val baseTextureName = Settings.resourceDomain + ":" + unlocalizedName + "_"
     Color.dyes.zipWithIndex.foreach {
       case (color, index) =>

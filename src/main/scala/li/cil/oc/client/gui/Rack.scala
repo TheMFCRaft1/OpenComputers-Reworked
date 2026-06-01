@@ -100,7 +100,7 @@ class Rack(playerInventory: InventoryPlayer, val rack: tileentity.Rack) extends 
     (mountable, connectable, bus)
   }
 
-  protected override def actionPerformed(button: GuiButton) {
+  protected override def actionPerformed(button: GuiButton): Unit = {
     if (button.id == 0) {
       ClientPacketSender.sendRackRelayState(rack, !rack.isRelayEnabled)
     }
@@ -115,7 +115,7 @@ class Rack(playerInventory: InventoryPlayer, val rack: tileentity.Rack) extends 
     }
   }
 
-  override def drawScreen(mouseX: Int, mouseY: Int, dt: Float) {
+  override def drawScreen(mouseX: Int, mouseY: Int, dt: Float): Unit = {
     for (bus <- 0 until 5) {
       for (mountable <- 0 until rack.getSizeInventory) {
         val presence = inventoryContainer.nodePresence(mountable)
@@ -128,7 +128,7 @@ class Rack(playerInventory: InventoryPlayer, val rack: tileentity.Rack) extends 
     super.drawScreen(mouseX, mouseY, dt)
   }
 
-  override def initGui() {
+  override def initGui(): Unit = {
     super.initGui()
 
     relayButton = new ImageButton(0, guiLeft + 101, guiTop + 96, 65, 18, Textures.guiButtonRelay, Localization.Rack.RelayDisabled, textIndent = 18)
@@ -266,7 +266,7 @@ class Rack(playerInventory: InventoryPlayer, val rack: tileentity.Rack) extends 
     GL11.glPopAttrib()
   }
 
-  override def drawSecondaryBackgroundLayer() {
+  override def drawSecondaryBackgroundLayer(): Unit = {
     GL11.glColor3f(1, 1, 1) // Required under Linux.
     mc.renderEngine.bindTexture(Textures.guiRack)
     drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize)

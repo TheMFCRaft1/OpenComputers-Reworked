@@ -52,7 +52,7 @@ trait Inventory extends SimpleInventory {
 
   // ----------------------------------------------------------------------- //
 
-  def load(nbt: NBTTagCompound) {
+  def load(nbt: NBTTagCompound): Unit = {
     // Implicit slot numbers are compatibility code for loading old server save format.
     // TODO 1.7 remove compat code.
     var count = 0
@@ -73,7 +73,7 @@ trait Inventory extends SimpleInventory {
     })
   }
 
-  def save(nbt: NBTTagCompound) {
+  def save(nbt: NBTTagCompound): Unit = {
     nbt.setNewTagList(Settings.namespace + "items",
       items.zipWithIndex collect {
         case (Some(stack), slot) => (stack, slot)
@@ -87,7 +87,7 @@ trait Inventory extends SimpleInventory {
 
   // ----------------------------------------------------------------------- //
 
-  protected def onItemAdded(slot: Int, stack: ItemStack) {}
+  protected def onItemAdded(slot: Int, stack: ItemStack): Unit = {}
 
-  protected def onItemRemoved(slot: Int, stack: ItemStack) {}
+  protected def onItemRemoved(slot: Int, stack: ItemStack): Unit = {}
 }

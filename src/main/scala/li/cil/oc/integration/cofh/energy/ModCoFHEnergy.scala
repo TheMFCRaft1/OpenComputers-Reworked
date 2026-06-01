@@ -8,14 +8,14 @@ import li.cil.oc.integration.ModProxy
 import li.cil.oc.integration.Mods
 import net.minecraftforge.common.MinecraftForge
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 object ModCoFHEnergy extends ModProxy {
   override def getMod = Mods.CoFHEnergy
 
   private val versionsUsingSplitEnergyAPI = VersionRange.createFromVersionSpec("[1.0.0,)")
 
-  override def initialize() {
+  override def initialize(): Unit = {
     api.IMC.registerToolDurabilityProvider("li.cil.oc.integration.cofh.energy.EventHandlerRedstoneFlux.getDurability")
     api.IMC.registerItemCharge(
       "RedstoneFlux",

@@ -16,7 +16,7 @@ class NEIOpenComputersConfig extends IConfigureNEI {
 
   override def getVersion = OpenComputers.Version
 
-  override def loadConfig() {
+  override def loadConfig(): Unit = {
     // Non-alphabetic order haunts my OCD, but I want the "Manual" to show up
     // before the API doc.
     API.registerUsageHandler(new ManualUsageHandler())

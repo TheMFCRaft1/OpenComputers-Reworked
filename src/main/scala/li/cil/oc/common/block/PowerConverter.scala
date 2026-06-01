@@ -33,7 +33,7 @@ class PowerConverter extends SimpleBlock with traits.PowerAcceptor {
 
   // ----------------------------------------------------------------------- //
 
-  override protected def tooltipTail(metadata: Int, stack: ItemStack, player: EntityPlayer, tooltip: util.List[String], advanced: Boolean) {
+  override protected def tooltipTail(metadata: Int, stack: ItemStack, player: EntityPlayer, tooltip: util.List[String], advanced: Boolean): Unit = {
     super.tooltipTail(metadata, stack, player, tooltip, advanced)
 
     if (Mods.Factorization.isAvailable) {
@@ -56,7 +56,7 @@ class PowerConverter extends SimpleBlock with traits.PowerAcceptor {
     else if (x >= 1e3) formatter.format(x / 1e3) + "K"
     else formatter.format(x)
 
-  private def addRatio(tooltip: util.List[String], name: String, ratio: Double) {
+  private def addRatio(tooltip: util.List[String], name: String, ratio: Double): Unit = {
     val (a, b) =
       if (ratio > 1) (1.0, ratio)
       else (1.0 / ratio, 1.0)

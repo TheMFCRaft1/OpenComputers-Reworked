@@ -25,7 +25,7 @@ import net.minecraft.item.crafting.CraftingManager
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.event.entity.player.PlayerDestroyItemEvent
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 import scala.util.control.Breaks._
 
@@ -103,7 +103,7 @@ class UpgradeCrafting(val host: EnvironmentHost with internal.Robot) extends pre
       Seq(originalCraft != null, countCrafted)
     }
 
-    def load(inventory: IInventory) {
+    def load(inventory: IInventory): Unit = {
       amountPossible = Int.MaxValue
       for (slot <- 0 until getSizeInventory) {
         val stack = inventory.getStackInSlot(toParentSlot(slot))
@@ -114,7 +114,7 @@ class UpgradeCrafting(val host: EnvironmentHost with internal.Robot) extends pre
       }
     }
 
-    def save(inventory: IInventory) {
+    def save(inventory: IInventory): Unit = {
       for (slot <- 0 until getSizeInventory) {
         inventory.setInventorySlotContents(toParentSlot(slot), getStackInSlot(slot))
       }

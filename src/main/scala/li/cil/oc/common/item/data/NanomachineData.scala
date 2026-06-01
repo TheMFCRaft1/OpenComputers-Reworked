@@ -6,12 +6,12 @@ import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 
 class NanomachineData extends ItemData(Constants.ItemName.Nanomachines) {
-  def this(stack: ItemStack) {
+  def this(stack: ItemStack): Unit = {
     this()
     load(stack)
   }
 
-  def this(controller: ControllerImpl) {
+  def this(controller: ControllerImpl): Unit = {
     this()
     uuid = controller.uuid
     val nbt = new NBTTagCompound()

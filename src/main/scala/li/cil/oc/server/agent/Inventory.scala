@@ -24,15 +24,15 @@ class Inventory(val agent: internal.Agent) extends InventoryPlayer(null) {
 
   override def func_146030_a(p_146030_1_ : Item, p_146030_2_ : Int, p_146030_3_ : Boolean, p_146030_4_ : Boolean) = setCurrentItem(p_146030_1_, p_146030_2_, p_146030_3_, p_146030_4_)
 
-  def setCurrentItem(item: Item, itemDamage: Int, checkDamage: Boolean, create: Boolean) {}
+  def setCurrentItem(item: Item, itemDamage: Int, checkDamage: Boolean, create: Boolean): Unit = {}
 
-  override def changeCurrentItem(direction: Int) {}
+  override def changeCurrentItem(direction: Int): Unit = {}
 
   override def clearInventory(item: Item, itemDamage: Int) = 0
 
-  override def func_70439_a(item: Item, itemDamage: Int) {}
+  override def func_70439_a(item: Item, itemDamage: Int): Unit = {}
 
-  override def decrementAnimations() {
+  override def decrementAnimations(): Unit = {
     for (slot <- 0 until getSizeInventory) {
       Option(getStackInSlot(slot)) match {
         case Some(stack) => try stack.updateAnimation(agent.world, if (!agent.world.isRemote) agent.player else null, slot, slot == 0) catch {
@@ -71,13 +71,13 @@ class Inventory(val agent: internal.Agent) extends InventoryPlayer(null) {
 
   override def writeToNBT(nbt: NBTTagList) = nbt
 
-  override def readFromNBT(nbt: NBTTagList) {}
+  override def readFromNBT(nbt: NBTTagList): Unit = {}
 
   override def armorItemInSlot(slot: Int) = null
 
   override def getTotalArmorValue = 0
 
-  override def damageArmor(damage: Float) {}
+  override def damageArmor(damage: Float): Unit = {}
 
   override def dropAllItems() = {}
 
@@ -85,7 +85,7 @@ class Inventory(val agent: internal.Agent) extends InventoryPlayer(null) {
 
   override def hasItemStack(stack: ItemStack) = (0 until getSizeInventory).map(getStackInSlot).filter(_ != null).exists(_.isItemEqual(stack))
 
-  override def copyInventory(from: InventoryPlayer) {}
+  override def copyInventory(from: InventoryPlayer): Unit = {}
 
   // IInventory
 

@@ -37,7 +37,7 @@ class Screen(val tier: Int) extends RedstoneAware {
 
   override def rarity(stack: ItemStack) = Rarity.byTier(tier)
 
-  override protected def tooltipBody(metadata: Int, stack: ItemStack, player: EntityPlayer, tooltip: util.List[String], advanced: Boolean) {
+  override protected def tooltipBody(metadata: Int, stack: ItemStack, player: EntityPlayer, tooltip: util.List[String], advanced: Boolean): Unit = {
     val (w, h) = Settings.screenResolutionsByTier(tier)
     val depth = PackedColor.Depth.bits(Settings.screenDepthsByTier(tier))
     tooltip.addAll(Tooltip.get(getClass.getSimpleName, w, h, depth))
@@ -322,7 +322,7 @@ class Screen(val tier: Int) extends RedstoneAware {
 
   // ----------------------------------------------------------------------- //
 
-  override def onBlockPlacedBy(world: World, x: Int, y: Int, z: Int, player: EntityLivingBase, stack: ItemStack) {
+  override def onBlockPlacedBy(world: World, x: Int, y: Int, z: Int, player: EntityLivingBase, stack: ItemStack): Unit = {
     super.onBlockPlacedBy(world, x, y, z, player, stack)
     world.getTileEntity(x, y, z) match {
       case screen: tileentity.Screen => screen.delayUntilCheckForMultiBlock = 0

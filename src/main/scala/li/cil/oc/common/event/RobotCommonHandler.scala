@@ -13,7 +13,7 @@ import net.minecraftforge.common.util.ForgeDirection
 
 object RobotCommonHandler {
   @SubscribeEvent
-  def onRobotApplyDamageRate(e: RobotUsedToolEvent.ApplyDamageRate) {
+  def onRobotApplyDamageRate(e: RobotUsedToolEvent.ApplyDamageRate): Unit = {
     if (e.toolAfterUse.isItemStackDamageable) {
       val damage = e.toolAfterUse.getItemDamage - e.toolBeforeUse.getItemDamage
       if (damage > 0) {

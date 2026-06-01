@@ -10,11 +10,11 @@ import li.cil.oc.api.network.Node
 import li.cil.oc.server.component
 import org.lwjgl.opengl.GL11
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 object ExperienceUpgradeHandler {
   @SubscribeEvent
-  def onRobotAnalyze(e: RobotAnalyzeEvent) {
+  def onRobotAnalyze(e: RobotAnalyzeEvent): Unit = {
     val (level, experience) = getLevelAndExperience(e.agent)
     // This is basically a 'does it have an experience upgrade' check.
     if (experience != 0.0) {
@@ -23,18 +23,18 @@ object ExperienceUpgradeHandler {
   }
 
   @SubscribeEvent
-  def onRobotComputeDamageRate(e: RobotUsedToolEvent.ComputeDamageRate) {
+  def onRobotComputeDamageRate(e: RobotUsedToolEvent.ComputeDamageRate): Unit = {
     e.setDamageRate(e.getDamageRate * math.max(0, 1 - getLevel(e.agent) * Settings.get.toolEfficiencyPerLevel))
   }
 
   @SubscribeEvent
-  def onRobotBreakBlockPre(e: RobotBreakBlockEvent.Pre) {
+  def onRobotBreakBlockPre(e: RobotBreakBlockEvent.Pre): Unit = {
     val boost = math.max(0, 1 - getLevel(e.agent) * Settings.get.harvestSpeedBoostPerLevel)
     e.setBreakTime(e.getBreakTime * boost)
   }
 
   @SubscribeEvent
-  def onRobotAttackEntityPost(e: RobotAttackEntityEvent.Post) {
+  def onRobotAttackEntityPost(e: RobotAttackEntityEvent.Post): Unit = {
     e.agent match {
       case robot: Robot =>
         if (robot.equipmentInventory.getStackInSlot(0) != null && e.target.isDead) {
@@ -45,27 +45,27 @@ object ExperienceUpgradeHandler {
   }
 
   @SubscribeEvent
-  def onRobotBreakBlockPost(e: RobotBreakBlockEvent.Post) {
+  def onRobotBreakBlockPost(e: RobotBreakBlockEvent.Post): Unit = {
     addExperience(e.agent, e.experience * Settings.get.robotOreXpRate + Settings.get.robotActionXp)
   }
 
   @SubscribeEvent
-  def onRobotPlaceBlockPost(e: RobotPlaceBlockEvent.Post) {
+  def onRobotPlaceBlockPost(e: RobotPlaceBlockEvent.Post): Unit = {
     addExperience(e.agent, Settings.get.robotActionXp)
   }
 
   @SubscribeEvent
-  def onRobotMovePost(e: RobotMoveEvent.Post) {
+  def onRobotMovePost(e: RobotMoveEvent.Post): Unit = {
     addExperience(e.agent, Settings.get.robotExhaustionXpRate * 0.01)
   }
 
   @SubscribeEvent
-  def onRobotExhaustion(e: RobotExhaustionEvent) {
+  def onRobotExhaustion(e: RobotExhaustionEvent): Unit = {
     addExperience(e.agent, Settings.get.robotExhaustionXpRate * e.exhaustion)
   }
 
   @SubscribeEvent
-  def onRobotRender(e: RobotRenderEvent) {
+  def onRobotRender(e: RobotRenderEvent): Unit = {
     val level = e.agent match {
       case robot: Robot =>
         var acc = 0
@@ -106,7 +106,7 @@ object ExperienceUpgradeHandler {
     (level, experience)
   }
 
-  private def addExperience(agent: Agent, amount: Double) {
+  private def addExperience(agent: Agent, amount: Double): Unit = {
     foreachUpgrade(agent.machine.node, upgrade => upgrade.addExperience(amount))
   }
 

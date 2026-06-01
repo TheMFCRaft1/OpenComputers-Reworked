@@ -10,7 +10,7 @@ import net.minecraft.nbt.CompressedStreamTools
 import net.minecraft.nbt.NBTSizeTracker
 import net.minecraft.nbt.NBTTagCompound
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 
 class ArgumentsImpl(val args: Seq[AnyRef]) extends Arguments {

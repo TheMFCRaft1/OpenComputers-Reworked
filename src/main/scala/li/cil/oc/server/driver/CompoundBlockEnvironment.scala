@@ -29,15 +29,15 @@ class CompoundBlockEnvironment(val name: String, val environments: (String, Mana
 
   override def canUpdate = environments.exists(_._2.canUpdate)
 
-  override def update() {
+  override def update(): Unit = {
     for (environment <- updatingEnvironments) {
       environment.update()
     }
   }
 
-  override def onMessage(message: Message) {}
+  override def onMessage(message: Message): Unit = {}
 
-  override def onConnect(node: Node) {
+  override def onConnect(node: Node): Unit = {
     if (node == this.node) {
       for ((_, environment) <- environments if environment.node != null) {
         node.connect(environment.node)
@@ -45,7 +45,7 @@ class CompoundBlockEnvironment(val name: String, val environments: (String, Mana
     }
   }
 
-  override def onDisconnect(node: Node) {
+  override def onDisconnect(node: Node): Unit = {
     if (node == this.node) {
       for ((_, environment) <- environments if environment.node != null) {
         environment.node.remove()
@@ -53,7 +53,7 @@ class CompoundBlockEnvironment(val name: String, val environments: (String, Mana
     }
   }
 
-  override def load(nbt: NBTTagCompound) {
+  override def load(nbt: NBTTagCompound): Unit = {
     // Ignore existing data if the underlying type is different.
     if (nbt.hasKey("typeHash") && nbt.getLong("typeHash") != typeHash) return
     node.load(nbt)
@@ -68,7 +68,7 @@ class CompoundBlockEnvironment(val name: String, val environments: (String, Mana
     }
   }
 
-  override def save(nbt: NBTTagCompound) {
+  override def save(nbt: NBTTagCompound): Unit = {
     nbt.setLong("typeHash", typeHash)
     node.save(nbt)
     for ((driver, environment) <- environments) {

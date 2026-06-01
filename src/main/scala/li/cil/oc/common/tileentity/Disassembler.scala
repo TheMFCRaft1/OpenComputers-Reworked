@@ -23,7 +23,7 @@ import net.minecraft.nbt.NBTTagCompound
 import net.minecraftforge.common.util.Constants.NBT
 import net.minecraftforge.common.util.ForgeDirection
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 
 class Disassembler extends traits.Environment with traits.PowerAcceptor with traits.Inventory with traits.StateAware with traits.PlayerInputAware with DeviceInfo {
@@ -79,7 +79,7 @@ class Disassembler extends traits.Environment with traits.PowerAcceptor with tra
 
   override def canUpdate = isServer
 
-  override def updateEntity() {
+  override def updateEntity(): Unit = {
     super.updateEntity()
     if (world.getTotalWorldTime % Settings.get.tickFrequency == 0) {
       if (queue.isEmpty) {
@@ -129,7 +129,7 @@ class Disassembler extends traits.Environment with traits.PowerAcceptor with tra
     }
   }
 
-  private def drop(stack: ItemStack) {
+  private def drop(stack: ItemStack): Unit = {
     if (stack != null) {
       for (side <- ForgeDirection.VALID_DIRECTIONS if stack.stackSize > 0) {
         InventoryUtils.insertIntoInventoryAt(stack, BlockPosition(this).offset(side), Some(side.getOpposite))
@@ -142,7 +142,7 @@ class Disassembler extends traits.Environment with traits.PowerAcceptor with tra
 
   // ----------------------------------------------------------------------- //
 
-  override def readFromNBTForServer(nbt: NBTTagCompound) {
+  override def readFromNBTForServer(nbt: NBTTagCompound): Unit = {
     super.readFromNBTForServer(nbt)
     queue.clear()
     queue ++= nbt.getTagList(Settings.namespace + "queue", NBT.TAG_COMPOUND).
@@ -152,7 +152,7 @@ class Disassembler extends traits.Environment with traits.PowerAcceptor with tra
     isActive = queue.nonEmpty
   }
 
-  override def writeToNBTForServer(nbt: NBTTagCompound) {
+  override def writeToNBTForServer(nbt: NBTTagCompound): Unit = {
     super.writeToNBTForServer(nbt)
     nbt.setNewTagList(Settings.namespace + "queue", queue)
     nbt.setDouble(Settings.namespace + "buffer", buffer)
@@ -160,12 +160,12 @@ class Disassembler extends traits.Environment with traits.PowerAcceptor with tra
   }
 
   @SideOnly(Side.CLIENT)
-  override def readFromNBTForClient(nbt: NBTTagCompound) {
+  override def readFromNBTForClient(nbt: NBTTagCompound): Unit = {
     super.readFromNBTForClient(nbt)
     isActive = nbt.getBoolean("isActive")
   }
 
-  override def writeToNBTForClient(nbt: NBTTagCompound) {
+  override def writeToNBTForClient(nbt: NBTTagCompound): Unit = {
     super.writeToNBTForClient(nbt)
     nbt.setBoolean("isActive", isActive)
   }

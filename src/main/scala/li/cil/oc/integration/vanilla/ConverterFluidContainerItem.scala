@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack
 import net.minecraftforge.fluids.IFluidContainerItem
 
 import java.util
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 object ConverterFluidContainerItem extends api.driver.Converter {
   override def convert(value: scala.Any, output: util.Map[AnyRef, AnyRef]) =

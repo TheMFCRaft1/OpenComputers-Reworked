@@ -41,8 +41,8 @@ import net.minecraft.util.Vec3
 import net.minecraftforge.common.util.ForgeDirection
 import org.lwjgl.opengl.GL11
 
-import scala.collection.convert.WrapAsJava._
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
+import scala.jdk.CollectionConverters._
 
 object PrintPart {
   private val q0 = 0 / 16f
@@ -275,7 +275,7 @@ class PrintPart(val original: Option[tileentity.Print] = None) extends SimpleBlo
 
   // ----------------------------------------------------------------------- //
 
-  override def load(nbt: NBTTagCompound) {
+  override def load(nbt: NBTTagCompound): Unit = {
     super.load(nbt)
     facing = nbt.getDirection("facing").getOrElse(facing)
     data.load(nbt.getCompoundTag("data"))
@@ -283,14 +283,14 @@ class PrintPart(val original: Option[tileentity.Print] = None) extends SimpleBlo
     updateBounds()
   }
 
-  override def save(nbt: NBTTagCompound) {
+  override def save(nbt: NBTTagCompound): Unit = {
     super.save(nbt)
     nbt.setDirection("facing", Option(facing))
     nbt.setNewCompoundTag("data", data.save)
     nbt.setBoolean("state", state)
   }
 
-  override def readDesc(packet: MCDataInput) {
+  override def readDesc(packet: MCDataInput): Unit = {
     super.readDesc(packet)
     facing = ForgeDirection.getOrientation(packet.readUByte())
     data.load(packet.readNBTTagCompound())
@@ -301,7 +301,7 @@ class PrintPart(val original: Option[tileentity.Print] = None) extends SimpleBlo
     }
   }
 
-  override def writeDesc(packet: MCDataOutput) {
+  override def writeDesc(packet: MCDataOutput): Unit = {
     super.writeDesc(packet)
     packet.writeByte(facing.ordinal().toByte)
     val nbt = new NBTTagCompound()

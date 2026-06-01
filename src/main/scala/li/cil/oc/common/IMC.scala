@@ -19,7 +19,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagString
 import net.minecraftforge.common.util.Constants.NBT
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 object IMC {
   def handleEvent(e: IMCEvent): Unit = {

@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack
 import net.minecraftforge.common.util.Constants.NBT
 import powercrystals.minefactoryreloaded.item.ItemSafariNet
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 object ConverterSafariNet extends Converter {
   override def convert(value: scala.Any, output: util.Map[AnyRef, AnyRef]): Unit = value match {

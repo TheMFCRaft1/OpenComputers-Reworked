@@ -42,7 +42,7 @@ import net.minecraft.world.World
 import net.minecraftforge.common.util.ForgeDirection
 import net.minecraftforge.fluids.IFluidTank
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 
 // internal.Rotatable is also in internal.Drone, but it wasn't since the start
 // so this is to ensure it is implemented here, in the very unlikely case that
@@ -82,7 +82,7 @@ class Drone(val world: World) extends Entity(world) with MachineHost with intern
 
     override def getSizeInventory = info.components.length
 
-    override def markDirty() {}
+    override def markDirty(): Unit = {}
 
     override def isItemValidForSlot(slot: Int, stack: ItemStack) = true
 
@@ -90,11 +90,11 @@ class Drone(val world: World) extends Entity(world) with MachineHost with intern
 
     override def node = Option(machine).map(_.node).orNull
 
-    override def onConnect(node: Node) {}
+    override def onConnect(node: Node): Unit = {}
 
-    override def onDisconnect(node: Node) {}
+    override def onDisconnect(node: Node): Unit = {}
 
-    override def onMessage(message: Message) {}
+    override def onMessage(message: Message): Unit = {}
   }
   val equipmentInventory = new Inventory {
     val items = Array.empty[Option[ItemStack]]
@@ -116,7 +116,7 @@ class Drone(val world: World) extends Entity(world) with MachineHost with intern
 
     override def getInventoryStackLimit = 64
 
-    override def markDirty() {} // TODO update client GUI?
+    override def markDirty(): Unit = {} // TODO update client GUI?
 
     override def isItemValidForSlot(slot: Int, stack: ItemStack) = slot >= 0 && slot < getSizeInventory
 
@@ -206,7 +206,7 @@ class Drone(val world: World) extends Entity(world) with MachineHost with intern
 
   override def zPosition = posZ
 
-  override def markChanged() {}
+  override def markChanged(): Unit = {}
 
   // ----------------------------------------------------------------------- //
 
@@ -226,9 +226,9 @@ class Drone(val world: World) extends Entity(world) with MachineHost with intern
 
   override def componentSlot(address: String) = components.components.indexWhere(_.exists(env => env.node != null && env.node.address == address))
 
-  override def onMachineConnect(node: Node) {}
+  override def onMachineConnect(node: Node): Unit = {}
 
-  override def onMachineDisconnect(node: Node) {}
+  override def onMachineDisconnect(node: Node): Unit = {}
 
   def computeInventorySize() = math.min(maxInventorySize, info.components.foldLeft(0)((acc, component) => acc + (Option(component) match {
     case Some(stack) => Option(Driver.driverFor(stack, getClass)) match {
@@ -240,7 +240,7 @@ class Drone(val world: World) extends Entity(world) with MachineHost with intern
 
   // ----------------------------------------------------------------------- //
 
-  override def entityInit() {
+  override def entityInit(): Unit = {
     // Running or not.
     dataWatcher.addObject(2, Byte.box(0: Byte))
     // Target position.
@@ -262,7 +262,7 @@ class Drone(val world: World) extends Entity(world) with MachineHost with intern
     dataWatcher.addObject(12, Int.box(0x66DD55))
   }
 
-  def initializeAfterPlacement(stack: ItemStack, player: EntityPlayer, position: Vec3) {
+  def initializeAfterPlacement(stack: ItemStack, player: EntityPlayer, position: Vec3): Unit = {
     info.load(stack)
     control.node.changeBuffer(info.storedEnergy - control.node.localBuffer)
     wireThingsTogether()
@@ -270,7 +270,7 @@ class Drone(val world: World) extends Entity(world) with MachineHost with intern
     setPosition(position.xCoord, position.yCoord, position.zCoord)
   }
 
-  def preparePowerUp() {
+  def preparePowerUp(): Unit = {
     targetX = math.floor(posX).toFloat + 0.5f
     targetY = math.round(posY).toFloat + 0.5f
     targetZ = math.floor(posZ).toFloat + 0.5f
@@ -332,7 +332,7 @@ class Drone(val world: World) extends Entity(world) with MachineHost with intern
   def lightColor_=(value: Int) = dataWatcher.updateObject(12, Int.box(value))
 
   @SideOnly(Side.CLIENT)
-  override def setPositionAndRotation2(x: Double, y: Double, z: Double, yaw: Float, pitch: Float, data: Int) {
+  override def setPositionAndRotation2(x: Double, y: Double, z: Double, yaw: Float, pitch: Float, data: Int): Unit = {
     // Only set exact position if we're too far away from the server's
     // position, otherwise keep interpolating. This removes jitter and
     // is good enough for drones.
@@ -346,7 +346,7 @@ class Drone(val world: World) extends Entity(world) with MachineHost with intern
     }
   }
 
-  override def onUpdate() {
+  override def onUpdate(): Unit = {
     super.onUpdate()
 
     if (!world.isRemote) {
@@ -498,7 +498,7 @@ class Drone(val world: World) extends Entity(world) with MachineHost with intern
 
   private var isChangingDimension = false
 
-  override def travelToDimension(dimension: Int) {
+  override def travelToDimension(dimension: Int): Unit = {
     // Store relative target as target, to allow adding that in our "new self"
     // (entities get re-created after changing dimension).
     targetX = (targetX - posX).toFloat
@@ -532,7 +532,7 @@ class Drone(val world: World) extends Entity(world) with MachineHost with intern
     }
   }
 
-  override def setDead() {
+  override def setDead(): Unit = {
     super.setDead()
     if (!world.isRemote && !isChangingDimension) {
       machine.stop()
@@ -563,7 +563,7 @@ class Drone(val world: World) extends Entity(world) with MachineHost with intern
     inWater
   }
 
-  override def readEntityFromNBT(nbt: NBTTagCompound) {
+  override def readEntityFromNBT(nbt: NBTTagCompound): Unit = {
     info.load(nbt.getCompoundTag("info"))
     inventorySize = computeInventorySize()
     if (!world.isRemote) {
@@ -590,7 +590,7 @@ class Drone(val world: World) extends Entity(world) with MachineHost with intern
     }
   }
 
-  override def writeEntityToNBT(nbt: NBTTagCompound) {
+  override def writeEntityToNBT(nbt: NBTTagCompound): Unit = {
     if (worldObj.isRemote) return
     components.saveComponents()
     info.storedEnergy = control.node.localBuffer.toInt

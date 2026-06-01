@@ -31,31 +31,31 @@ trait TileEntity extends net.minecraft.tileentity.TileEntity {
 
   // ----------------------------------------------------------------------- //
 
-  override def updateEntity() {
+  override def updateEntity(): Unit = {
     super.updateEntity()
     if (Settings.get.periodicallyForceLightUpdate && world.getTotalWorldTime % 40 == 0 && block.getLightValue(world, x, y, z) > 0) {
       world.markBlockForUpdate(x, y, z)
     }
   }
 
-  override def validate() {
+  override def validate(): Unit = {
     super.validate()
     initialize()
   }
 
-  override def invalidate() {
+  override def invalidate(): Unit = {
     super.invalidate()
     dispose()
   }
 
-  override def onChunkUnload() {
+  override def onChunkUnload(): Unit = {
     super.onChunkUnload()
     dispose()
   }
 
-  protected def initialize() {}
+  protected def initialize(): Unit = {}
 
-  def dispose() {
+  def dispose(): Unit = {
     if (isClient) {
       // Note: chunk unload is handled by sound via event handler.
       Sound.stopLoop(this)
@@ -69,9 +69,9 @@ trait TileEntity extends net.minecraft.tileentity.TileEntity {
   def writeToNBTForServer(nbt: NBTTagCompound): Unit = super.writeToNBT(nbt)
 
   @SideOnly(Side.CLIENT)
-  def readFromNBTForClient(nbt: NBTTagCompound) {}
+  def readFromNBTForClient(nbt: NBTTagCompound): Unit = {}
 
-  def writeToNBTForClient(nbt: NBTTagCompound) {}
+  def writeToNBTForClient(nbt: NBTTagCompound): Unit = {}
 
   // ----------------------------------------------------------------------- //
 
@@ -102,7 +102,7 @@ trait TileEntity extends net.minecraft.tileentity.TileEntity {
     }
   }
 
-  override def onDataPacket(manager: NetworkManager, packet: S35PacketUpdateTileEntity) {
+  override def onDataPacket(manager: NetworkManager, packet: S35PacketUpdateTileEntity): Unit = {
     try readFromNBTForClient(packet.func_148857_g()) catch {
       case e: Throwable => OpenComputers.log.warn("There was a problem reading a TileEntity description packet. Please report this if you see it!", e)
     }

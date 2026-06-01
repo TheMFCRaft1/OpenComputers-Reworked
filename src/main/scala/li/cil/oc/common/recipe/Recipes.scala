@@ -29,7 +29,7 @@ import net.minecraftforge.oredict.RecipeSorter
 import net.minecraftforge.oredict.RecipeSorter.Category
 import org.apache.commons.io.FileUtils
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 
 object Recipes {
@@ -76,17 +76,17 @@ object Recipes {
     stack
   }
 
-  def addRecipe(stack: ItemStack, name: String) {
+  def addRecipe(stack: ItemStack, name: String): Unit = {
     list += stack -> name
   }
 
-  private def register(item: ItemStack, names: String*) {
+  private def register(item: ItemStack, names: String*): Unit = {
     for (name <- names if name != null) {
       oreDictEntries += name -> item
     }
   }
 
-  def init() {
+  def init(): Unit = {
     RecipeSorter.register(Settings.namespace + "extshaped", classOf[ExtendedShapedOreRecipe], Category.SHAPED, "after:forge:shapedore")
     RecipeSorter.register(Settings.namespace + "extshapeless", classOf[ExtendedShapelessOreRecipe], Category.SHAPELESS, "after:forge:shapelessore")
     RecipeSorter.register(Settings.namespace + "colorizer", classOf[ColorizeRecipe], Category.SHAPELESS, "after:forge:shapelessore")
@@ -466,7 +466,7 @@ object Recipes {
     item
   }
 
-  private def hide(value: ItemStack) {
+  private def hide(value: ItemStack): Unit = {
     Delegator.subItem(value) match {
       case Some(stack) => stack.showInItemList = false
       case _ => value.getItem match {

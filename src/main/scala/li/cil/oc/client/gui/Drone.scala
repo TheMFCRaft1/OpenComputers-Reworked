@@ -17,7 +17,7 @@ import net.minecraft.client.renderer.Tessellator
 import net.minecraft.entity.player.InventoryPlayer
 import org.lwjgl.opengl.GL11
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 
 class Drone(playerInventory: InventoryPlayer, val drone: entity.Drone) extends DynamicGuiContainer(new container.Drone(playerInventory, drone)) with traits.DisplayBuffer {
   xSize = 176
@@ -52,13 +52,13 @@ class Drone(playerInventory: InventoryPlayer, val drone: entity.Drone) extends D
   private val selectionsStates = 17
   private val selectionStepV = 1 / selectionsStates.toDouble
 
-  protected override def actionPerformed(button: GuiButton) {
+  protected override def actionPerformed(button: GuiButton): Unit = {
     if (button.id == 0) {
       ClientPacketSender.sendDronePower(drone, !drone.isRunning)
     }
   }
 
-  override def drawScreen(mouseX: Int, mouseY: Int, dt: Float) {
+  override def drawScreen(mouseX: Int, mouseY: Int, dt: Float): Unit = {
     powerButton.toggled = drone.isRunning
     bufferRenderer.dirty = drone.statusText.lines.zipWithIndex.exists {
       case (line, i) => buffer.set(0, i, line, vertical = false)
@@ -66,13 +66,13 @@ class Drone(playerInventory: InventoryPlayer, val drone: entity.Drone) extends D
     super.drawScreen(mouseX, mouseY, dt)
   }
 
-  override def initGui() {
+  override def initGui(): Unit = {
     super.initGui()
     powerButton = new ImageButton(0, guiLeft + 7, guiTop + 45, 18, 18, Textures.guiButtonPower, canToggle = true)
     add(buttonList, powerButton)
   }
 
-  override protected def drawBuffer() {
+  override protected def drawBuffer(): Unit = {
     GL11.glTranslatef(bufferX, bufferY, 0)
     RenderState.disableLighting()
     RenderState.makeItBlend()
@@ -86,7 +86,7 @@ class Drone(playerInventory: InventoryPlayer, val drone: entity.Drone) extends D
 
   override protected def changeSize(w: Double, h: Double, recompile: Boolean) = 2.0
 
-  override protected def drawSecondaryForegroundLayer(mouseX: Int, mouseY: Int) {
+  override protected def drawSecondaryForegroundLayer(mouseX: Int, mouseY: Int): Unit = {
     drawBufferLayer()
     GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS) // Me lazy... prevents NEI render glitch.
     if (func_146978_c(power.x, power.y, power.width, power.height, mouseX, mouseY)) {
@@ -106,7 +106,7 @@ class Drone(playerInventory: InventoryPlayer, val drone: entity.Drone) extends D
     GL11.glPopAttrib()
   }
 
-  override protected def drawGuiContainerBackgroundLayer(dt: Float, mouseX: Int, mouseY: Int) {
+  override protected def drawGuiContainerBackgroundLayer(dt: Float, mouseX: Int, mouseY: Int): Unit = {
     GL11.glColor3f(1, 1, 1) // Required under Linux.
     mc.renderEngine.bindTexture(Textures.guiDrone)
     drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize)
@@ -119,15 +119,15 @@ class Drone(playerInventory: InventoryPlayer, val drone: entity.Drone) extends D
     drawInventorySlots()
   }
 
-  protected override def drawGradientRect(par1: Int, par2: Int, par3: Int, par4: Int, par5: Int, par6: Int) {
+  protected override def drawGradientRect(par1: Int, par2: Int, par3: Int, par4: Int, par5: Int, par6: Int): Unit = {
     super.drawGradientRect(par1, par2, par3, par4, par5, par6)
     RenderState.makeItBlend()
   }
 
   // No custom slots, we just extend DynamicGuiContainer for the highlighting.
-  override protected def drawSlotBackground(x: Int, y: Int) {}
+  override protected def drawSlotBackground(x: Int, y: Int): Unit = {}
 
-  private def drawSelection() {
+  private def drawSelection(): Unit = {
     val slot = drone.selectedSlot
     if (slot >= 0 && slot < 16) {
       RenderState.makeItBlend()

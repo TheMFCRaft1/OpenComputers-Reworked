@@ -30,7 +30,7 @@ import net.minecraft.util.AxisAlignedBB
 import net.minecraft.util.MovingObjectPosition
 
 import scala.collection.convert.WrapAsJava
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 class CablePart(val original: Option[tileentity.Cable] = None) extends SimpleBlockPart with TCuboidPart with TSlottedPart with ISidedHollowConnect with TNormalOcclusion with network.Environment {
   val node = api.Network.newNode(this, Visibility.None).create()
@@ -48,7 +48,7 @@ class CablePart(val original: Option[tileentity.Cable] = None) extends SimpleBlo
     onColorChanged()
   }
 
-  protected def onColorChanged() {
+  protected def onColorChanged(): Unit = {
     if (world != null && !world.isRemote) {
       sendDescUpdate()
       api.Network.joinOrCreateNetwork(tile)
@@ -88,29 +88,29 @@ class CablePart(val original: Option[tileentity.Cable] = None) extends SimpleBlo
 
   // ----------------------------------------------------------------------- //
 
-  override def invalidateConvertedTile() {
+  override def invalidateConvertedTile(): Unit = {
     super.invalidateConvertedTile()
     original.foreach(_.node.neighbors.foreach(_.connect(this.node)))
   }
 
-  override def onPartChanged(part: TMultiPart) {
+  override def onPartChanged(part: TMultiPart): Unit = {
     super.onPartChanged(part)
     api.Network.joinOrCreateNetwork(tile)
   }
 
-  override def onWorldJoin() {
+  override def onWorldJoin(): Unit = {
     super.onWorldJoin()
     common.EventHandler.scheduleFMP(() => tile)
   }
 
-  override def onWorldSeparate() {
+  override def onWorldSeparate(): Unit = {
     super.onWorldSeparate()
     Option(node).foreach(_.remove)
   }
 
   // ----------------------------------------------------------------------- //
 
-  override def load(nbt: NBTTagCompound) {
+  override def load(nbt: NBTTagCompound): Unit = {
     super.load(nbt)
     node.load(nbt.getCompoundTag(Settings.namespace + "node"))
     if (nbt.hasKey(Settings.namespace + "renderColor")) {
@@ -118,7 +118,7 @@ class CablePart(val original: Option[tileentity.Cable] = None) extends SimpleBlo
     }
   }
 
-  override def save(nbt: NBTTagCompound) {
+  override def save(nbt: NBTTagCompound): Unit = {
     super.save(nbt)
     // Null check for Waila (and other mods that may call this client side).
     if (node != null) {
@@ -127,12 +127,12 @@ class CablePart(val original: Option[tileentity.Cable] = None) extends SimpleBlo
     nbt.setInteger(Settings.namespace + "renderColor", _color)
   }
 
-  override def readDesc(packet: MCDataInput) {
+  override def readDesc(packet: MCDataInput): Unit = {
     super.readDesc(packet)
     _color = packet.readInt()
   }
 
-  override def writeDesc(packet: MCDataOutput) {
+  override def writeDesc(packet: MCDataOutput): Unit = {
     super.writeDesc(packet)
     packet.writeInt(_color)
   }
@@ -152,9 +152,9 @@ class CablePart(val original: Option[tileentity.Cable] = None) extends SimpleBlo
 
   // ----------------------------------------------------------------------- //
 
-  override def onMessage(message: Message) {}
+  override def onMessage(message: Message): Unit = {}
 
-  override def onDisconnect(node: Node) {}
+  override def onDisconnect(node: Node): Unit = {}
 
-  override def onConnect(node: Node) {}
+  override def onConnect(node: Node): Unit = {}
 }

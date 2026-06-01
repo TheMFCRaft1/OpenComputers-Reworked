@@ -17,7 +17,7 @@ import net.minecraft.nbt.NBTBase
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraftforge.common.util.FakePlayer
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 abstract class Player(val playerInventory: InventoryPlayer, val otherInventory: IInventory) extends Container {
   /** Number of player inventory slots to display horizontally. */
@@ -108,7 +108,7 @@ abstract class Player(val playerInventory: InventoryPlayer, val otherInventory: 
     })
   }
 
-  protected def tryTransferStackInSlot(from: Slot, intoPlayerInventory: Boolean) {
+  protected def tryTransferStackInSlot(from: Slot, intoPlayerInventory: Boolean): Unit = {
     for (i <- fillOrder(intoPlayerInventory)) {
       if (inventorySlots.get(i) match { case slot: Slot => tryMoveAllSlotToSlot(from, slot) case _ => false })
         return
@@ -152,7 +152,7 @@ abstract class Player(val playerInventory: InventoryPlayer, val otherInventory: 
     }
   }
 
-  protected def sendProgressBarUpdate(id: Int, value: Int) {
+  protected def sendProgressBarUpdate(id: Int, value: Int): Unit = {
     for (entry <- crafters) entry match {
       case player: ICrafting => player.sendProgressBarUpdate(this, id, value)
       case _ =>

@@ -22,7 +22,7 @@ trait IndustrialCraft2Classic extends Common with IndustrialCraft2Common {
 
   // ----------------------------------------------------------------------- //
 
-  override def updateEntity() {
+  override def updateEntity(): Unit = {
     super.updateEntity()
     if (useIndustrialCraft2ClassicPower() && world.getTotalWorldTime % Settings.get.tickFrequency == 0) {
       updateEnergy()
@@ -30,7 +30,7 @@ trait IndustrialCraft2Classic extends Common with IndustrialCraft2Common {
   }
 
   @Optional.Method(modid = Mods.IDs.IndustrialCraft2Classic)
-  private def updateEnergy() {
+  private def updateEnergy(): Unit = {
     tryAllSides((demand, _) => {
       val result = math.min(demand, conversionBuffer)
       conversionBuffer -= result
@@ -38,22 +38,22 @@ trait IndustrialCraft2Classic extends Common with IndustrialCraft2Common {
     }, Power.fromEU, Power.toEU)
   }
 
-  override def validate() {
+  override def validate(): Unit = {
     super.validate()
     if (useIndustrialCraft2ClassicPower() && !addedToIC2PowerGrid) EventHandler.scheduleIC2Add(this)
   }
 
-  override def invalidate() {
+  override def invalidate(): Unit = {
     super.invalidate()
     if (useIndustrialCraft2ClassicPower() && addedToIC2PowerGrid) removeFromIC2Grid()
   }
 
-  override def onChunkUnload() {
+  override def onChunkUnload(): Unit = {
     super.onChunkUnload()
     if (useIndustrialCraft2ClassicPower() && addedToIC2PowerGrid) removeFromIC2Grid()
   }
 
-  private def removeFromIC2Grid() {
+  private def removeFromIC2Grid(): Unit = {
     try MinecraftForge.EVENT_BUS.post(Class.forName("ic2classic.api.energy.event.EnergyTileUnloadEvent").getConstructor(Class.forName("ic2classic.api.energy.tile.IEnergyTile")).newInstance(this).asInstanceOf[Event]) catch {
       case t: Throwable => OpenComputers.log.warn("Error removing node from IC2 grid.", t)
     }
@@ -62,12 +62,12 @@ trait IndustrialCraft2Classic extends Common with IndustrialCraft2Common {
 
   // ----------------------------------------------------------------------- //
 
-  override def readFromNBTForServer(nbt: NBTTagCompound) {
+  override def readFromNBTForServer(nbt: NBTTagCompound): Unit = {
     super.readFromNBTForServer(nbt)
     conversionBuffer = nbt.getDouble(Settings.namespace + "ic2cpower")
   }
 
-  override def writeToNBTForServer(nbt: NBTTagCompound) {
+  override def writeToNBTForServer(nbt: NBTTagCompound): Unit = {
     super.writeToNBTForServer(nbt)
     nbt.setDouble(Settings.namespace + "ic2cpower", conversionBuffer)
   }

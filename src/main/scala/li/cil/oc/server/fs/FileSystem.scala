@@ -173,9 +173,9 @@ object FileSystem extends api.detail.FileSystemAPI {
 
     def getLabel = label
 
-    override def load(nbt: NBTTagCompound) {}
+    override def load(nbt: NBTTagCompound): Unit = {}
 
-    override def save(nbt: NBTTagCompound) {
+    override def save(nbt: NBTTagCompound): Unit = {
       if (label != null) {
         nbt.setString(Settings.namespace + "fs.label", label)
       }

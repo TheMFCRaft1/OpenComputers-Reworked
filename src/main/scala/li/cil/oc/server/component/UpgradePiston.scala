@@ -21,7 +21,7 @@ import li.cil.oc.util.ExtendedWorld._
 import net.minecraft.init.Blocks
 import net.minecraftforge.common.util.ForgeDirection
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 
 abstract class UpgradePiston(val host: EnvironmentHost) extends prefab.ManagedEnvironment with DeviceInfo {
   override val node = Network.newNode(this, Visibility.Network).

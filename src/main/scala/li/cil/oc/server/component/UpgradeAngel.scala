@@ -11,7 +11,7 @@ import li.cil.oc.api.driver.DeviceInfo
 import li.cil.oc.api.network.Visibility
 import li.cil.oc.api.prefab
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 
 // Note-to-self: this has a component to allow the robot telling it has the
 // upgrade.

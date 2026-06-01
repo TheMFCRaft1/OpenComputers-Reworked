@@ -10,7 +10,7 @@ import net.minecraft.tileentity.TileEntity
 import org.lwjgl.opengl.GL11
 
 object SwitchRenderer extends TileEntitySpecialRenderer {
-  override def renderTileEntityAt(tileEntity: TileEntity, x: Double, y: Double, z: Double, f: Float) {
+  override def renderTileEntityAt(tileEntity: TileEntity, x: Double, y: Double, z: Double, f: Float): Unit = {
     RenderState.checkError(getClass.getName + ".renderTileEntityAt: entering (aka: wasntme)")
 
     val switch = tileEntity.asInstanceOf[tileentity.traits.SwitchLike]

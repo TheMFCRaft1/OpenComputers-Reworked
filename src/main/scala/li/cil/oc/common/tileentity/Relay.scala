@@ -106,7 +106,7 @@ class Relay extends traits.SwitchLike with traits.ComponentInventory with traits
 
   // ----------------------------------------------------------------------- //
 
-  protected def queueMessage(source: String, destination: String, port: Int, answerPort: Int, args: Array[AnyRef]) {
+  protected def queueMessage(source: String, destination: String, port: Int, answerPort: Int, args: Array[AnyRef]): Unit = {
     for (computer <- computers.map(_.asInstanceOf[IComputerAccess])) {
       val address = s"cc${computer.getID}_${computer.getAttachmentName}"
       if (source != address && Option(destination).forall(_ == address) && openPorts(computer).contains(port))
@@ -177,7 +177,7 @@ class Relay extends traits.SwitchLike with traits.ComponentInventory with traits
     withConnector(math.round(Settings.get.bufferAccessPoint)).
     create()
 
-  override protected def onPlugConnect(plug: Plug, node: Node) {
+  override protected def onPlugConnect(plug: Plug, node: Node): Unit = {
     super.onPlugConnect(plug, node)
     if (node == plug.node) {
       api.Network.joinWirelessNetwork(this)
@@ -188,7 +188,7 @@ class Relay extends traits.SwitchLike with traits.ComponentInventory with traits
       componentNodes(plug.side.ordinal).remove()
   }
 
-  override protected def onPlugDisconnect(plug: Plug, node: Node) {
+  override protected def onPlugDisconnect(plug: Plug, node: Node): Unit = {
     super.onPlugDisconnect(plug, node)
     if (node == plug.node) {
       api.Network.leaveWirelessNetwork(this)
@@ -201,12 +201,12 @@ class Relay extends traits.SwitchLike with traits.ComponentInventory with traits
 
   // ----------------------------------------------------------------------- //
 
-  override protected def onItemAdded(slot: Int, stack: ItemStack) {
+  override protected def onItemAdded(slot: Int, stack: ItemStack): Unit = {
     super.onItemAdded(slot, stack)
     updateLimits(slot, stack)
   }
   
-  private def updateLimits(slot: Int, stack: ItemStack) {
+  private def updateLimits(slot: Int, stack: ItemStack): Unit = {
     Option(Driver.driverFor(stack, getClass)) match {
       case Some(driver) if driver.slot(stack) == Slot.CPU =>
         relayDelay = math.max(1, relayBaseDelay - ((driver.tier(stack) + 1) * relayDelayPerUpgrade).toInt)
@@ -233,7 +233,7 @@ class Relay extends traits.SwitchLike with traits.ComponentInventory with traits
     }
   }
 
-  override protected def onItemRemoved(slot: Int, stack: ItemStack) {
+  override protected def onItemRemoved(slot: Int, stack: ItemStack): Unit = {
     super.onItemRemoved(slot, stack)
     Driver.driverFor(stack, getClass) match {
       case driver if driver.slot(stack) == Slot.CPU => relayDelay = relayBaseDelay
@@ -259,7 +259,7 @@ class Relay extends traits.SwitchLike with traits.ComponentInventory with traits
 
   // ----------------------------------------------------------------------- //
 
-  override def readFromNBTForServer(nbt: NBTTagCompound) {
+  override def readFromNBTForServer(nbt: NBTTagCompound): Unit = {
     super.readFromNBTForServer(nbt)
     for (slot <- items.indices) items(slot) collect {
       case stack => updateLimits(slot, stack)

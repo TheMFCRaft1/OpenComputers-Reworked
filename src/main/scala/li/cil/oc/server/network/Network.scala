@@ -22,8 +22,8 @@ import net.minecraft.nbt._
 import net.minecraft.tileentity.TileEntity
 import net.minecraftforge.common.util.ForgeDirection
 
-import scala.collection.JavaConverters._
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 import scala.collection.mutable.ArrayBuffer
 
@@ -52,7 +52,7 @@ private class Network private(private val data: mutable.Map[String, Network.Vert
   })
 
   // Called by nodes when they want to change address from loading.
-  def remap(remappedNode: MutableNode, newAddress: String) {
+  def remap(remappedNode: MutableNode, newAddress: String): Unit = {
     data.get(remappedNode.address) match {
       case Some(node) =>
         val neighbors = node.edges.map(_.other(node))
@@ -371,14 +371,14 @@ private class Network private(private val data: mutable.Map[String, Network.Vert
       }
     }
 
-  private def send(source: ImmutableNode, targets: Iterable[ImmutableNode], name: String, args: AnyRef*) {
+  private def send(source: ImmutableNode, targets: Iterable[ImmutableNode], name: String, args: AnyRef*): Unit = {
     val message = new Network.Message(source, name, Array(args: _*))
     targets.foreach(_.host.onMessage(message))
   }
 
   // ----------------------------------------------------------------------- //
 
-  def addConnector(connector: Connector) {
+  def addConnector(connector: Connector): Unit = {
     if (connector.localBufferSize > 0) {
       assert(!connectors.contains(connector))
       connectors += connector
@@ -388,7 +388,7 @@ private class Network private(private val data: mutable.Map[String, Network.Vert
     connector.distributor = Some(wrapper)
   }
 
-  def removeConnector(connector: Connector) {
+  def removeConnector(connector: Connector): Unit = {
     if (connector.localBufferSize > 0) {
       assert(connectors.contains(connector))
       connectors -= connector
@@ -548,25 +548,25 @@ object Network extends api.detail.NetworkAPI {
 
   // ----------------------------------------------------------------------- //
 
-  override def joinWirelessNetwork(endpoint: WirelessEndpoint) {
+  override def joinWirelessNetwork(endpoint: WirelessEndpoint): Unit = {
     WirelessNetwork.add(endpoint)
   }
 
-  override def updateWirelessNetwork(endpoint: WirelessEndpoint) {
+  override def updateWirelessNetwork(endpoint: WirelessEndpoint): Unit = {
     WirelessNetwork.update(endpoint)
   }
 
-  override def leaveWirelessNetwork(endpoint: WirelessEndpoint) {
+  override def leaveWirelessNetwork(endpoint: WirelessEndpoint): Unit = {
     WirelessNetwork.remove(endpoint)
   }
 
-  override def leaveWirelessNetwork(endpoint: WirelessEndpoint, dimension: Int) {
+  override def leaveWirelessNetwork(endpoint: WirelessEndpoint, dimension: Int): Unit = {
     WirelessNetwork.remove(endpoint, dimension)
   }
 
   // ----------------------------------------------------------------------- //
 
-  override def sendWirelessPacket(source: WirelessEndpoint, strength: Double, packet: network.Packet) {
+  override def sendWirelessPacket(source: WirelessEndpoint, strength: Double, packet: network.Packet): Unit = {
     for (endpoint <- WirelessNetwork.computeReachableFrom(source, strength)) {
       endpoint.receivePacket(packet, source)
     }
@@ -747,7 +747,7 @@ object Network extends api.detail.NetworkAPI {
 
     override def hop() = new Packet(source, destination, port, data, ttl - 1)
 
-    override def save(nbt: NBTTagCompound) {
+    override def save(nbt: NBTTagCompound): Unit = {
       nbt.setString("source", source)
       if (destination != null && !destination.isEmpty) {
         nbt.setString("dest", destination)

@@ -35,7 +35,7 @@ class DynamicFontRenderer extends TextureFontRenderer with IResourceManagerReloa
     case _ =>
   }
 
-  def initialize() {
+  def initialize(): Unit = {
     for (texture <- textures) {
       texture.delete()
     }
@@ -46,7 +46,7 @@ class DynamicFontRenderer extends TextureFontRenderer with IResourceManagerReloa
     generateChars(basicChars.toCharArray)
   }
 
-  def onResourceManagerReload(manager: IResourceManager) {
+  def onResourceManagerReload(manager: IResourceManager): Unit = {
     glyphProvider.initialize()
     initialize()
   }
@@ -57,17 +57,17 @@ class DynamicFontRenderer extends TextureFontRenderer with IResourceManagerReloa
 
   override protected def textureCount = textures.length
 
-  override protected def bindTexture(index: Int) {
+  override protected def bindTexture(index: Int): Unit = {
     activeTexture = textures(index)
     activeTexture.bind()
     RenderState.checkError(getClass.getName + ".bindTexture")
   }
 
-  override protected def generateChar(char: Int) {
+  override protected def generateChar(char: Int): Unit = {
     charMap.getOrElseUpdate(char, createCharIcon(char))
   }
 
-  override protected def drawChar(tx: Float, ty: Float, char: Int) {
+  override protected def drawChar(tx: Float, ty: Float, char: Int): Unit = {
     charMap.get(char) match {
       case Some(icon) if icon.texture == activeTexture => icon.draw(tx, ty)
       case _ =>
@@ -117,11 +117,11 @@ object DynamicFontRenderer {
 
     private var chars = 0
 
-    def delete() {
+    def delete(): Unit = {
       GL11.glDeleteTextures(id)
     }
 
-    def bind() {
+    def bind(): Unit = {
       GL11.glBindTexture(GL11.GL_TEXTURE_2D, id)
     }
 
@@ -148,7 +148,7 @@ object DynamicFontRenderer {
   }
 
   class CharIcon(val texture: CharTexture, val w: Int, val h: Int, val u1: Double, val v1: Double, val u2: Double, val v2: Double) {
-    def draw(tx: Float, ty: Float) {
+    def draw(tx: Float, ty: Float): Unit = {
       GL11.glTexCoord2d(u1, v2)
       GL11.glVertex2f(tx, ty + h)
       GL11.glTexCoord2d(u2, v2)

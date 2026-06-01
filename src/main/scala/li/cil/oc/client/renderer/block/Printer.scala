@@ -4,7 +4,7 @@ import net.minecraft.block.Block
 import net.minecraft.client.renderer.RenderBlocks
 
 object Printer {
-  def render(block: Block, x: Int, y: Int, z: Int, renderer: RenderBlocks) {
+  def render(block: Block, x: Int, y: Int, z: Int, renderer: RenderBlocks): Unit = {
     val previousRenderAllFaces = renderer.renderAllFaces
     renderer.renderAllFaces = true
 
@@ -33,7 +33,7 @@ object Printer {
     renderer.renderAllFaces = previousRenderAllFaces
   }
 
-  def render(block: Block, metadata: Int, renderer: RenderBlocks) {
+  def render(block: Block, metadata: Int, renderer: RenderBlocks): Unit = {
     // Bottom.
     renderer.setRenderBounds(0, 0, 0, 1, 8 / 16f, 1)
     renderAllFaces(block, metadata, renderer)

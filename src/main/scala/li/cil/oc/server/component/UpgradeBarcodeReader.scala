@@ -19,7 +19,7 @@ import net.minecraft.util.EnumFacing
 import net.minecraft.world.WorldServer
 import net.minecraftforge.common.util.ForgeDirection
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 
 class UpgradeBarcodeReader(val host: EnvironmentHost) extends prefab.ManagedEnvironment with DeviceInfo {
   override val node = api.Network.newNode(this, Visibility.Network).

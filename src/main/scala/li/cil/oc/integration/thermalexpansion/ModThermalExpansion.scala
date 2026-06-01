@@ -7,7 +7,7 @@ import li.cil.oc.integration.Mods
 object ModThermalExpansion extends ModProxy {
   override def getMod = Mods.ThermalExpansion
 
-  override def initialize() {
+  override def initialize(): Unit = {
     Driver.add(new DriverLamp)
   }
 }

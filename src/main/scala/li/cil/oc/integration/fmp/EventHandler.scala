@@ -27,7 +27,7 @@ object EventHandler {
   private val yaw2Direction = Array(ForgeDirection.SOUTH, ForgeDirection.WEST, ForgeDirection.NORTH, ForgeDirection.EAST)
 
   @SubscribeEvent
-  def playerInteract(event: PlayerInteractEvent) {
+  def playerInteract(event: PlayerInteractEvent): Unit = {
     this.synchronized {
       if (currentlyPlacing) return
       try {

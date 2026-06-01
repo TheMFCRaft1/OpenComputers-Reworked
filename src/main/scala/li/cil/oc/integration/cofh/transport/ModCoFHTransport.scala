@@ -7,7 +7,7 @@ import li.cil.oc.integration.Mods
 object ModCoFHTransport extends ModProxy {
   override def getMod = Mods.CoFHTransport
 
-  override def initialize() {
+  override def initialize(): Unit = {
     Driver.add(new DriverEnderEnergy)
     Driver.add(new DriverEnderFluid)
     Driver.add(new DriverEnderItem)

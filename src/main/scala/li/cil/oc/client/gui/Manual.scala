@@ -15,8 +15,8 @@ import net.minecraft.client.gui.GuiScreen
 import org.lwjgl.input.Mouse
 import org.lwjgl.opengl.GL11
 
-import scala.collection.convert.WrapAsJava._
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
+import scala.jdk.CollectionConverters._
 
 class Manual extends GuiScreen with traits.Window {
   final val documentMaxWidth = 230
@@ -168,21 +168,21 @@ class Manual extends GuiScreen with traits.Window {
     else if (button == 1) popPage()
   }
 
-  override protected def mouseClickMove(mouseX: Int, mouseY: Int, lastButtonClicked: Int, timeSinceMouseClick: Long) {
+  override protected def mouseClickMove(mouseX: Int, mouseY: Int, lastButtonClicked: Int, timeSinceMouseClick: Long): Unit = {
     super.mouseClickMove(mouseX, mouseY, lastButtonClicked, timeSinceMouseClick)
     if (isDragging) {
       scrollMouse(mouseY)
     }
   }
 
-  override protected def mouseMovedOrUp(mouseX: Int, mouseY: Int, button: Int) {
+  override protected def mouseMovedOrUp(mouseX: Int, mouseY: Int, button: Int): Unit = {
     super.mouseMovedOrUp(mouseX, mouseY, button)
     if (button == 0) {
       isDragging = false
     }
   }
 
-  private def scrollMouse(mouseY: Int) {
+  private def scrollMouse(mouseY: Int): Unit = {
     scrollTo(math.round((mouseY - guiTop - scrollPosY - 6.5) * maxOffset / (scrollHeight - 13.0)).toInt)
   }
 

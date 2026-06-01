@@ -5,11 +5,11 @@ import li.cil.oc.api.event.RobotPlaceInAirEvent
 import li.cil.oc.api.network.Node
 import li.cil.oc.server.component.UpgradeAngel
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 object AngelUpgradeHandler {
   @SubscribeEvent
-  def onPlaceInAir(e: RobotPlaceInAirEvent) {
+  def onPlaceInAir(e: RobotPlaceInAirEvent): Unit = {
     val machineNode = e.agent.machine.node
     e.setAllowed(machineNode.reachableNodes.exists {
       case node: Node if node.canBeReachedFrom(machineNode) =>

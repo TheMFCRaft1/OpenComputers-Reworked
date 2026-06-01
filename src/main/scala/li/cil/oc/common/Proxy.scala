@@ -22,11 +22,11 @@ import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraftforge.oredict.OreDictionary
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 import scala.reflect.ClassTag
 
 class Proxy {
-  def preInit(e: FMLPreInitializationEvent) {
+  def preInit(e: FMLPreInitializationEvent): Unit = {
     checkForBrokenJavaVersion()
 
     Settings.load(e.getSuggestedConfigurationFile)
@@ -91,7 +91,7 @@ class Proxy {
       else api.Machine.architectures.head
   }
 
-  def init(e: FMLInitializationEvent) {
+  def init(e: FMLInitializationEvent): Unit = {
     OpenComputers.channel = NetworkRegistry.INSTANCE.newEventDrivenChannel("OpenComputers")
     OpenComputers.channel.register(server.PacketHandler)
 
@@ -109,7 +109,7 @@ class Proxy {
     api.API.isPowerEnabled = !Settings.get.ignorePower
   }
 
-  def postInit(e: FMLPostInitializationEvent) {
+  def postInit(e: FMLPostInitializationEvent): Unit = {
     // Don't allow driver registration after this point, to avoid issues.
     driver.Registry.locked = true
   }
@@ -132,7 +132,7 @@ class Proxy {
     }
   }
 
-  private def registerExclusive(name: String, items: ItemStack*) {
+  private def registerExclusive(name: String, items: ItemStack*): Unit = {
     if (OreDictionary.getOres(name).isEmpty) {
       for (item <- items) {
         OreDictionary.registerOre(name, item)
@@ -159,7 +159,7 @@ class Proxy {
     OpenComputers.ID + ":wlanCard" -> Constants.ItemName.WirelessNetworkCardTier2
   )
 
-  def missingMappings(e: FMLMissingMappingsEvent) {
+  def missingMappings(e: FMLMissingMappingsEvent): Unit = {
     for (missing <- e.get()) {
       if (missing.`type` == GameRegistry.Type.BLOCK) {
         blockRenames.get(missing.name) match {

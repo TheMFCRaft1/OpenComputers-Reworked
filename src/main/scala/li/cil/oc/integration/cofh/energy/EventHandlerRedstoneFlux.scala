@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack
 
 object EventHandlerRedstoneFlux {
   @SubscribeEvent
-  def onRobotApplyDamageRate(e: RobotUsedToolEvent.ApplyDamageRate) {
+  def onRobotApplyDamageRate(e: RobotUsedToolEvent.ApplyDamageRate): Unit = {
     (e.toolBeforeUse.getItem, e.toolAfterUse.getItem) match {
       case (energyBefore: IEnergyContainerItem, energyAfter: IEnergyContainerItem) =>
         val damage = energyBefore.getEnergyStored(e.toolBeforeUse) - energyAfter.getEnergyStored(e.toolAfterUse)

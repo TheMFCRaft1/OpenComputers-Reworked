@@ -126,6 +126,13 @@ Erwartet: `./gradlew build` schlägt fehl, bis Registry/BlockEntity/API-Migratio
 
 Alte `block/Capacitor.scala`, `tileentity/Capacitor.scala`, `Blocks.init()`, `Items.init()` bleiben im Repo, werden aber **nicht mehr aufgerufen**. Schrittweise Migration blockweise.
 
+### Phase 4 — Compat-Schicht & Massenmigration (2026-05-29, laufend)
+
+- **`src/compat/java`**: ForgeDirection, World, TileEntity, NBT-Tags, GameRegistry, OreDictionary, init Blocks/Items
+- **Scala 3**: Procedure-Syntax in ~337 Dateien automatisch → `: Unit =`
+- **Gradle excludes**: alle optionalen Mod-Integrationen, Client-Renderer/GUI, ASM/Launch, alte Proxy-Klassen
+- **Fehlerstand**: ~5907 → ~3700 (Kompilierung noch nicht grün)
+
 ### Nächste Schritte (Phase 3 Fortsetzung)
 
 - [ ] Cable + Case als nächste Blocks (Computer platzieren)

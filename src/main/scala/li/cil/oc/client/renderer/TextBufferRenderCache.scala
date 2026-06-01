@@ -33,7 +33,7 @@ object TextBufferRenderCache extends Callable[Int] with RemovalListener[TileEnti
   // Rendering
   // ----------------------------------------------------------------------- //
 
-  def render(buffer: TextBufferRenderData) {
+  def render(buffer: TextBufferRenderData): Unit = {
     currentBuffer = buffer
     compileOrDraw(cache.get(currentBuffer, this))
   }
@@ -91,7 +91,7 @@ object TextBufferRenderCache extends Callable[Int] with RemovalListener[TileEnti
     list
   }
 
-  def onRemoval(e: RemovalNotification[TileEntity, Int]) {
+  def onRemoval(e: RemovalNotification[TileEntity, Int]): Unit = {
     RenderState.checkError(getClass.getName + ".onRemoval: entering (aka: wasntme)")
 
     GLAllocation.deleteDisplayLists(e.getValue)

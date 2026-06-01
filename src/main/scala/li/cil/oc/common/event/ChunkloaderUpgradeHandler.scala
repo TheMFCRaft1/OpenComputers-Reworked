@@ -15,13 +15,13 @@ import net.minecraftforge.common.ForgeChunkManager.Ticket
 import net.minecraftforge.event.world.WorldEvent
 import net.minecraft.entity.Entity
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 
 object ChunkloaderUpgradeHandler extends LoadingCallback {
   val restoredTickets = mutable.Map.empty[String, Ticket]
 
-  override def ticketsLoaded(tickets: util.List[Ticket], world: World) {
+  override def ticketsLoaded(tickets: util.List[Ticket], world: World): Unit = {
     for (ticket <- tickets) {
       val data = ticket.getModData
       val address = data.getString("address")
@@ -37,7 +37,7 @@ object ChunkloaderUpgradeHandler extends LoadingCallback {
   }
 
   @SubscribeEvent
-  def onWorldSave(e: WorldEvent.Save) {
+  def onWorldSave(e: WorldEvent.Save): Unit = {
     // Any tickets that were not reassigned by the time the world gets saved
     // again can be considered orphaned, so we release them.
     // TODO figure out a better event *after* tile entities were restored
@@ -66,7 +66,7 @@ object ChunkloaderUpgradeHandler extends LoadingCallback {
   // the chunk it might move into to get loaded.
 
   @SubscribeEvent
-  def onMove(e: RobotMoveEvent.Post) {
+  def onMove(e: RobotMoveEvent.Post): Unit = {
     val machineNode = e.agent.machine.node
     machineNode.reachableNodes.foreach(_.host match {
       case loader: UpgradeChunkloader => updateLoadedChunk(loader)
@@ -74,7 +74,7 @@ object ChunkloaderUpgradeHandler extends LoadingCallback {
     })
   }
 
-  def updateLoadedChunk(loader: UpgradeChunkloader) {
+  def updateLoadedChunk(loader: UpgradeChunkloader): Unit = {
     val blockPos = BlockPosition(loader.host)
     val centerChunk = new ChunkCoordIntPair(blockPos.x >> 4, blockPos.z >> 4)
     val robotChunks = (for (x <- -1 to 1; z <- -1 to 1) yield new ChunkCoordIntPair(centerChunk.chunkXPos + x, centerChunk.chunkZPos + z)).toSet

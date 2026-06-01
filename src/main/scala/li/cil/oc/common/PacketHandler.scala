@@ -22,7 +22,7 @@ import scala.reflect.classTag
 
 abstract class PacketHandler {
   /** Top level dispatcher based on packet type. */
-  protected def onPacketData(data: ByteBuf, player: EntityPlayer) {
+  protected def onPacketData(data: ByteBuf, player: EntityPlayer): Unit = {
     // Don't crash on badly formatted packets (may have been altered by a
     // malicious client, in which case we don't want to allow it to kill the
     // server like this). Just spam the log a bit... ;)

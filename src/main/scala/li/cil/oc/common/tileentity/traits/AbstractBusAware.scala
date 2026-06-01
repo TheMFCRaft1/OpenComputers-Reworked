@@ -61,17 +61,17 @@ trait AbstractBusAware extends TileEntity with network.Environment {
   }
 
   @SideOnly(Side.CLIENT)
-  override def readFromNBTForClient(nbt: NBTTagCompound) {
+  override def readFromNBTForClient(nbt: NBTTagCompound): Unit = {
     super.readFromNBTForClient(nbt)
     isAbstractBusAvailable = nbt.getBoolean("isAbstractBusAvailable")
   }
 
-  override def writeToNBTForClient(nbt: NBTTagCompound) {
+  override def writeToNBTForClient(nbt: NBTTagCompound): Unit = {
     super.writeToNBTForClient(nbt)
     nbt.setBoolean("isAbstractBusAvailable", isAbstractBusAvailable)
   }
 
-  abstract override def onDisconnect(node: network.Node) {
+  abstract override def onDisconnect(node: network.Node): Unit = {
     super.onDisconnect(node)
     if (node == this.node) {
       isAbstractBusAvailable = false

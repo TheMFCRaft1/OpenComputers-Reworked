@@ -31,8 +31,8 @@ import li.cil.oc.api.prefab.AbstractValue
 import li.cil.oc.util.ThreadPoolFactory
 import net.minecraft.server.MinecraftServer
 
-import scala.collection.convert.WrapAsJava._
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 
 class InternetCard extends prefab.ManagedEnvironment with DeviceInfo {
@@ -110,7 +110,7 @@ class InternetCard extends prefab.ManagedEnvironment with DeviceInfo {
     result(socket)
   }
 
-  private def checkOwner(context: Context) {
+  private def checkOwner(context: Context): Unit = {
     if (owner.isEmpty || context.node != owner.get.node) {
       throw new IllegalArgumentException("can only be used by the owning computer")
     }
@@ -118,7 +118,7 @@ class InternetCard extends prefab.ManagedEnvironment with DeviceInfo {
 
   // ----------------------------------------------------------------------- //
 
-  override def onConnect(node: Node) {
+  override def onConnect(node: Node): Unit = {
     super.onConnect(node)
     if (owner.isEmpty && node.host.isInstanceOf[Context] && node.isNeighborOf(this.node)) {
       owner = Some(node.host.asInstanceOf[Context])
@@ -242,7 +242,7 @@ object InternetCard {
   TCPNotifier.start()
 
   class TCPSocket extends AbstractValue with Closable {
-    def this(owner: InternetCard, uri: URI, port: Int) {
+    def this(owner: InternetCard, uri: URI, port: Int): Unit = {
       this()
       this.owner = Some(owner)
       channel = SocketChannel.open()
@@ -256,7 +256,7 @@ object InternetCard {
     private var isAddressResolved = false
     private val id = UUID.randomUUID()
 
-    private def setupSelector() {
+    private def setupSelector(): Unit = {
       if (channel == null) return
       TCPNotifier.add((channel, () => {
         owner match {
@@ -404,7 +404,7 @@ object InternetCard {
   }
 
   class HTTPRequest extends AbstractValue with Closable {
-    def this(owner: InternetCard, url: URL, post: Option[String], headers: Map[String, String], method: Option[String]) {
+    def this(owner: InternetCard, url: URL, post: Option[String], headers: Map[String, String], method: Option[String]): Unit = {
       this()
       this.owner = Some(owner)
       this.stream = threadPool.submit(new RequestSender(url, post, headers, method))

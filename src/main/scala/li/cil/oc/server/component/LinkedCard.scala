@@ -17,8 +17,8 @@ import li.cil.oc.common.Tier
 import li.cil.oc.server.network.QuantumNetwork
 import net.minecraft.nbt.NBTTagCompound
 
-import scala.collection.convert.WrapAsJava._
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
+import scala.jdk.CollectionConverters._
 
 class LinkedCard extends prefab.ManagedEnvironment with QuantumNetwork.QuantumNode with DeviceInfo with traits.WakeMessageAware {
   override val node = Network.newNode(this, Visibility.Network).
@@ -69,14 +69,14 @@ class LinkedCard extends prefab.ManagedEnvironment with QuantumNetwork.QuantumNo
 
   // ----------------------------------------------------------------------- //
 
-  override def onConnect(node: Node) {
+  override def onConnect(node: Node): Unit = {
     super.onConnect(node)
     if (node == this.node) {
       QuantumNetwork.add(this)
     }
   }
 
-  override def onDisconnect(node: Node) {
+  override def onDisconnect(node: Node): Unit = {
     super.onDisconnect(node)
     if (node == this.node) {
       QuantumNetwork.remove(this)
@@ -85,7 +85,7 @@ class LinkedCard extends prefab.ManagedEnvironment with QuantumNetwork.QuantumNo
 
   // ----------------------------------------------------------------------- //
 
-  override def load(nbt: NBTTagCompound) {
+  override def load(nbt: NBTTagCompound): Unit = {
     super.load(nbt)
     if (nbt.hasKey(Settings.namespace + "tunnel")) {
       tunnel = nbt.getString(Settings.namespace + "tunnel")
@@ -93,7 +93,7 @@ class LinkedCard extends prefab.ManagedEnvironment with QuantumNetwork.QuantumNo
     loadWakeMessage(nbt)
   }
 
-  override def save(nbt: NBTTagCompound) {
+  override def save(nbt: NBTTagCompound): Unit = {
     super.save(nbt)
     nbt.setString(Settings.namespace + "tunnel", tunnel)
     saveWakeMessage(nbt)

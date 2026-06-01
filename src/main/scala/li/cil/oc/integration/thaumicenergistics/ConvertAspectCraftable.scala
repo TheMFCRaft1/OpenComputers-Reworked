@@ -3,7 +3,7 @@ import java.util
 import cpw.mods.fml.common.registry.GameRegistry
 import li.cil.oc.api.driver.Converter
 import net.minecraft.item.ItemStack
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 object ConvertAspectCraftable extends Converter {
   private val DistillationPattern = GameRegistry.findItem("thaumicenergistics", "crafting.aspect")

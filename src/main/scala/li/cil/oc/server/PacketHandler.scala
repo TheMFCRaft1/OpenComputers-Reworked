@@ -39,7 +39,7 @@ object PacketHandler extends CommonPacketHandler {
   override protected def world(player: EntityPlayer, dimension: Int) =
     Option(DimensionManager.getWorld(dimension))
 
-  override def dispatch(p: PacketParser) {
+  override def dispatch(p: PacketParser): Unit = {
     p.packetType match {
       case PacketType.ComputerPower => onComputerPower(p)
       case PacketType.CopyToAnalyzer => onCopyToAnalyzer(p)
@@ -106,7 +106,7 @@ object PacketHandler extends CommonPacketHandler {
     }
   }
 
-  def onCopyToAnalyzer(p: PacketParser) {
+  def onCopyToAnalyzer(p: PacketParser): Unit = {
     val text = p.readUTF()
     val line = p.readInt()
     ComponentTracker.get(p.player.worldObj, text) match {
@@ -155,7 +155,7 @@ object PacketHandler extends CommonPacketHandler {
     }
   }
 
-  private def trySetComputerPower(computer: Machine, value: Boolean, player: EntityPlayerMP) {
+  private def trySetComputerPower(computer: Machine, value: Boolean, player: EntityPlayerMP): Unit = {
     if (computer.canInteract(player.getCommandSenderName)) {
       if (value) {
         if (!computer.isPaused) {
@@ -199,7 +199,7 @@ object PacketHandler extends CommonPacketHandler {
     }
   }
 
-  def onMouseClick(p: PacketParser) {
+  def onMouseClick(p: PacketParser): Unit = {
     val address = p.readUTF()
     val x = p.readFloat()
     val y = p.readFloat()
@@ -214,7 +214,7 @@ object PacketHandler extends CommonPacketHandler {
     }
   }
 
-  def onMouseUp(p: PacketParser) {
+  def onMouseUp(p: PacketParser): Unit = {
     val address = p.readUTF()
     val x = p.readFloat()
     val y = p.readFloat()
@@ -227,7 +227,7 @@ object PacketHandler extends CommonPacketHandler {
     }
   }
 
-  def onMouseScroll(p: PacketParser) {
+  def onMouseScroll(p: PacketParser): Unit = {
     val address = p.readUTF()
     val x = p.readFloat()
     val y = p.readFloat()
@@ -240,14 +240,14 @@ object PacketHandler extends CommonPacketHandler {
     }
   }
 
-  def onMultiPartPlace(p: PacketParser) {
+  def onMultiPartPlace(p: PacketParser): Unit = {
     p.player match {
       case player: EntityPlayerMP => EventHandler.place(player)
       case _ => // Invalid packet.
     }
   }
 
-  def onPetVisibility(p: PacketParser) {
+  def onPetVisibility(p: PacketParser): Unit = {
     val value = p.readBoolean()
     p.player match {
       case player: EntityPlayerMP =>
@@ -312,7 +312,7 @@ object PacketHandler extends CommonPacketHandler {
     }
   }
 
-  def onTextBufferInit(p: PacketParser) {
+  def onTextBufferInit(p: PacketParser): Unit = {
     val address = p.readUTF()
     p.player match {
       case entity: EntityPlayerMP =>

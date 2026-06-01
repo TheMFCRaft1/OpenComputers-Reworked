@@ -9,7 +9,7 @@ import net.minecraftforge.common.MinecraftForge
 object ModGregtech extends ModProxy {
   override def getMod = Mods.GregTech
 
-  override def initialize() {
+  override def initialize(): Unit = {
     api.IMC.registerToolDurabilityProvider("li.cil.oc.integration.gregtech.EventHandlerGregTech.getDurability")
 
     MinecraftForge.EVENT_BUS.register(EventHandlerGregTech)

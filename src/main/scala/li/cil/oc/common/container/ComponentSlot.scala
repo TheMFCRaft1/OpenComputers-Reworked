@@ -8,7 +8,7 @@ import net.minecraft.inventory.Slot
 import net.minecraft.item.ItemStack
 import net.minecraft.util.IIcon
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 trait ComponentSlot extends Slot {
   def container: Player
@@ -28,7 +28,7 @@ trait ComponentSlot extends Slot {
 
   override def isItemValid(stack: ItemStack) = inventory.isItemValidForSlot(getSlotIndex, stack)
 
-  override def onPickupFromSlot(player: EntityPlayer, stack: ItemStack) {
+  override def onPickupFromSlot(player: EntityPlayer, stack: ItemStack): Unit = {
     super.onPickupFromSlot(player, stack)
     for (slot <- container.inventorySlots) slot match {
       case dynamic: ComponentSlot => dynamic.clearIfInvalid(player)
@@ -45,7 +45,7 @@ trait ComponentSlot extends Slot {
     }
   }
 
-  override def onSlotChanged() {
+  override def onSlotChanged(): Unit = {
     super.onSlotChanged()
     for (slot <- container.inventorySlots) slot match {
       case dynamic: ComponentSlot => dynamic.clearIfInvalid(container.playerInventory.player)
@@ -54,5 +54,5 @@ trait ComponentSlot extends Slot {
     changeListener.foreach(_(this))
   }
 
-  protected def clearIfInvalid(player: EntityPlayer) {}
+  protected def clearIfInvalid(player: EntityPlayer): Unit = {}
 }

@@ -20,5 +20,5 @@ class TransformerLoader extends IFMLLoadingPlugin {
 
   override def getSetupClass = null
 
-  override def injectData(data: util.Map[String, AnyRef]) {}
+  override def injectData(data: util.Map[String, AnyRef]): Unit = {}
 }

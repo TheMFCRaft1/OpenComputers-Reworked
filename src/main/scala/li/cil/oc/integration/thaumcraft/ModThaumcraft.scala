@@ -7,7 +7,7 @@ import li.cil.oc.integration.Mods
 object ModThaumcraft extends ModProxy {
   override def getMod = Mods.Thaumcraft
 
-  override def initialize() {
+  override def initialize(): Unit = {
     Driver.add(new DriverAspectContainer)
 
     Driver.add(new ConverterIAspectContainer)

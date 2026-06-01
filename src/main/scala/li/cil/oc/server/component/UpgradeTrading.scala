@@ -20,8 +20,8 @@ import net.minecraft.entity.Entity
 import net.minecraft.entity.IMerchant
 import net.minecraft.util.Vec3
 
-import scala.collection.convert.WrapAsJava._
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 
 class UpgradeTrading(val host: EnvironmentHost) extends prefab.ManagedEnvironment with traits.WorldAware with DeviceInfo {

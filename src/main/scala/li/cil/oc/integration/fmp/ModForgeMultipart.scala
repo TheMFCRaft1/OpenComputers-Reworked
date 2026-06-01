@@ -7,7 +7,7 @@ import net.minecraftforge.common.MinecraftForge
 object ModForgeMultipart extends ModProxy {
   override def getMod = Mods.ForgeMultipart
 
-  override def initialize() {
+  override def initialize(): Unit = {
     MultipartConverter.init()
     MultipartFactory.init()
 

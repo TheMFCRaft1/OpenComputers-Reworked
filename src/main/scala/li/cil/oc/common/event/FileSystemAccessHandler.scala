@@ -12,7 +12,7 @@ import li.cil.oc.server.component.Server
 
 object FileSystemAccessHandler {
   @SubscribeEvent
-  def onFileSystemAccess(e: FileSystemAccessEvent.Server) {
+  def onFileSystemAccess(e: FileSystemAccessEvent.Server): Unit = {
     e.getTileEntity match {
       case t: Rack =>
         for (slot <- 0 until t.getSizeInventory) {
@@ -37,7 +37,7 @@ object FileSystemAccessHandler {
   }
 
   @SubscribeEvent
-  def onFileSystemAccess(e: FileSystemAccessEvent.Client) {
+  def onFileSystemAccess(e: FileSystemAccessEvent.Client): Unit = {
     val volume = Settings.get.soundVolume
     e.getWorld.playSound(e.getX, e.getY, e.getZ, e.getSound, volume, 1, false)
     e.getTileEntity match {

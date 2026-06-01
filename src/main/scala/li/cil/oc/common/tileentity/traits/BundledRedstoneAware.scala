@@ -161,12 +161,12 @@ trait BundledRedstoneAware extends RedstoneAware with IBundledEmitter with IBund
 
   // ----------------------------------------------------------------------- //
 
-  override def updateRedstoneInput(side: ForgeDirection) {
+  override def updateRedstoneInput(side: ForgeDirection): Unit = {
     super.updateRedstoneInput(side)
     setBundledInput(side, BundledRedstone.computeBundledInput(position, side))
   }
 
-  override def readFromNBTForServer(nbt: NBTTagCompound) {
+  override def readFromNBTForServer(nbt: NBTTagCompound): Unit = {
     super.readFromNBTForServer(nbt)
 
     nbt.getTagList(Settings.namespace + "rs.bundledInput", NBT.TAG_INT_ARRAY).toArray[NBTTagIntArray].
@@ -193,7 +193,7 @@ trait BundledRedstoneAware extends RedstoneAware with IBundledEmitter with IBund
     }
   }
 
-  override def writeToNBTForServer(nbt: NBTTagCompound) {
+  override def writeToNBTForServer(nbt: NBTTagCompound): Unit = {
     super.writeToNBTForServer(nbt)
 
     nbt.setNewTagList(Settings.namespace + "rs.bundledInput", _bundledInput.view)
@@ -204,7 +204,7 @@ trait BundledRedstoneAware extends RedstoneAware with IBundledEmitter with IBund
 
   // ----------------------------------------------------------------------- //
 
-  override protected def onRedstoneOutputEnabledChanged() {
+  override protected def onRedstoneOutputEnabledChanged(): Unit = {
     if (Mods.MineFactoryReloaded.isAvailable) {
       for (side <- ForgeDirection.VALID_DIRECTIONS) {
         val blockPos = BlockPosition(x, y, z).offset(side)

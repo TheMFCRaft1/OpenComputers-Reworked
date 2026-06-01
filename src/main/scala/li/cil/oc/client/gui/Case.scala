@@ -9,23 +9,23 @@ import net.minecraft.client.gui.GuiButton
 import net.minecraft.entity.player.InventoryPlayer
 import org.lwjgl.opengl.GL11
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 
 class Case(playerInventory: InventoryPlayer, val computer: tileentity.Case) extends DynamicGuiContainer(new container.Case(playerInventory, computer)) {
   protected var powerButton: ImageButton = _
 
-  protected override def actionPerformed(button: GuiButton) {
+  protected override def actionPerformed(button: GuiButton): Unit = {
     if (button.id == 0) {
       ClientPacketSender.sendComputerPower(computer, !computer.isRunning)
     }
   }
 
-  override def drawScreen(mouseX: Int, mouseY: Int, dt: Float) {
+  override def drawScreen(mouseX: Int, mouseY: Int, dt: Float): Unit = {
     powerButton.toggled = computer.isRunning
     super.drawScreen(mouseX, mouseY, dt)
   }
 
-  override def initGui() {
+  override def initGui(): Unit = {
     super.initGui()
     powerButton = new ImageButton(0, guiLeft + 70, guiTop + 33, 18, 18, Textures.guiButtonPower, canToggle = true)
     add(buttonList, powerButton)
@@ -43,7 +43,7 @@ class Case(playerInventory: InventoryPlayer, val computer: tileentity.Case) exte
     }
   }
 
-  override def drawSecondaryBackgroundLayer() {
+  override def drawSecondaryBackgroundLayer(): Unit = {
     GL11.glColor3f(1, 1, 1) // Required under Linux.
     mc.renderEngine.bindTexture(Textures.guiComputer)
     drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize)

@@ -7,7 +7,7 @@ import com.google.common.hash.Hashing
 import li.cil.oc.api
 import net.minecraft.world
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 object ConverterWorldProvider extends api.driver.Converter {
   override def convert(value: AnyRef, output: util.Map[AnyRef, AnyRef]) =

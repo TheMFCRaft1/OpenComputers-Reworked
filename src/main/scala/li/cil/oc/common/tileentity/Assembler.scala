@@ -21,7 +21,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraftforge.common.util.ForgeDirection
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 
 class Assembler extends traits.Environment with traits.PowerAcceptor with traits.Inventory with SidedEnvironment with traits.StateAware with DeviceInfo {
   val node = api.Network.newNode(this, Visibility.Network).
@@ -123,7 +123,7 @@ class Assembler extends traits.Environment with traits.PowerAcceptor with traits
 
   override def canUpdate = isServer
 
-  override def updateEntity() {
+  override def updateEntity(): Unit = {
     super.updateEntity()
     if (output.isDefined && world.getTotalWorldTime % Settings.get.tickFrequency == 0) {
       val want = math.max(1, math.min(requiredEnergy, Settings.get.assemblerTickAmount * Settings.get.tickFrequency))
@@ -138,7 +138,7 @@ class Assembler extends traits.Environment with traits.PowerAcceptor with traits
     }
   }
 
-  override def readFromNBTForServer(nbt: NBTTagCompound) {
+  override def readFromNBTForServer(nbt: NBTTagCompound): Unit = {
     super.readFromNBTForServer(nbt)
     if (nbt.hasKey(Settings.namespace + "output")) {
       output = Option(ItemStack.loadItemStackFromNBT(nbt.getCompoundTag(Settings.namespace + "output")))
@@ -151,7 +151,7 @@ class Assembler extends traits.Environment with traits.PowerAcceptor with traits
     requiredEnergy = nbt.getDouble(Settings.namespace + "remaining")
   }
 
-  override def writeToNBTForServer(nbt: NBTTagCompound) {
+  override def writeToNBTForServer(nbt: NBTTagCompound): Unit = {
     super.writeToNBTForServer(nbt)
     output.foreach(stack => nbt.setNewCompoundTag(Settings.namespace + "output", stack.writeToNBT))
     nbt.setDouble(Settings.namespace + "total", totalRequiredEnergy)
@@ -159,12 +159,12 @@ class Assembler extends traits.Environment with traits.PowerAcceptor with traits
   }
 
   @SideOnly(Side.CLIENT) override
-  def readFromNBTForClient(nbt: NBTTagCompound) {
+  def readFromNBTForClient(nbt: NBTTagCompound): Unit = {
     super.readFromNBTForClient(nbt)
     requiredEnergy = nbt.getDouble("remaining")
   }
 
-  override def writeToNBTForClient(nbt: NBTTagCompound) {
+  override def writeToNBTForClient(nbt: NBTTagCompound): Unit = {
     super.writeToNBTForClient(nbt)
     nbt.setDouble("remaining", requiredEnergy)
   }

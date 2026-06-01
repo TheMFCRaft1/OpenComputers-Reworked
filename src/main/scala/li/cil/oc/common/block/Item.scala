@@ -27,7 +27,7 @@ class Item(value: Block) extends ItemBlock(value) {
 
   def block = field_150939_a
 
-  override def addInformation(stack: ItemStack, player: EntityPlayer, tooltip: util.List[_], advanced: Boolean) {
+  override def addInformation(stack: ItemStack, player: EntityPlayer, tooltip: util.List[_], advanced: Boolean): Unit = {
     super.addInformation(stack, player, tooltip, advanced)
     (block, tooltip) match {
       case (simple: SimpleBlock, lines: util.List[String]@unchecked) =>

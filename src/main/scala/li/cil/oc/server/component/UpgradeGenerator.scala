@@ -21,7 +21,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.tileentity.TileEntityFurnace
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 
 class UpgradeGenerator(val host: EnvironmentHost with internal.Agent) extends prefab.ManagedEnvironment with DeviceInfo {
   override val node = Network.newNode(this, Visibility.Network).
@@ -174,7 +174,7 @@ class UpgradeGenerator(val host: EnvironmentHost with internal.Agent) extends pr
 
   override val canUpdate = true
 
-  override def update() {
+  override def update(): Unit = {
     super.update()
     if (remainingTicks <= 0 && inventory.isDefined) {
       val stack = inventory.get
@@ -204,7 +204,7 @@ class UpgradeGenerator(val host: EnvironmentHost with internal.Agent) extends pr
 
   // ----------------------------------------------------------------------- //
 
-  override def onDisconnect(node: Node) {
+  override def onDisconnect(node: Node): Unit = {
     super.onDisconnect(node)
     if (node == this.node) {
       inventory match {
@@ -221,7 +221,7 @@ class UpgradeGenerator(val host: EnvironmentHost with internal.Agent) extends pr
     }
   }
 
-  override def load(nbt: NBTTagCompound) {
+  override def load(nbt: NBTTagCompound): Unit = {
     super.load(nbt)
     if (nbt.hasKey("inventory")) {
       inventory = Option(ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("inventory")))
@@ -229,7 +229,7 @@ class UpgradeGenerator(val host: EnvironmentHost with internal.Agent) extends pr
     remainingTicks = nbt.getInteger("remainingTicks")
   }
 
-  override def save(nbt: NBTTagCompound) {
+  override def save(nbt: NBTTagCompound): Unit = {
     super.save(nbt)
     inventory match {
       case Some(stack) => nbt.setNewCompoundTag("inventory", stack.writeToNBT)

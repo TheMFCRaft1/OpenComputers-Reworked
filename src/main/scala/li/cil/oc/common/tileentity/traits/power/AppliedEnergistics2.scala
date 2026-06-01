@@ -19,7 +19,7 @@ import li.cil.oc.integration.util.Power
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraftforge.common.util.ForgeDirection
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 
 @Injectable.Interface(value = "appeng.api.networking.IGridHost", modid = Mods.IDs.AppliedEnergistics2)
 trait AppliedEnergistics2 extends Common {
@@ -28,7 +28,7 @@ trait AppliedEnergistics2 extends Common {
   // 'Manual' lazy val, because lazy vals mess up the class loader, leading to class not found exceptions.
   private var node: Option[AnyRef] = None
 
-  override def updateEntity() {
+  override def updateEntity(): Unit = {
     super.updateEntity()
     if (useAppliedEnergistics2Power && world.getTotalWorldTime % Settings.get.tickFrequency == 0) {
       updateEnergy()
@@ -36,7 +36,7 @@ trait AppliedEnergistics2 extends Common {
   }
 
   @Optional.Method(modid = Mods.IDs.AppliedEnergistics2)
-  private def updateEnergy() {
+  private def updateEnergy(): Unit = {
     tryAllSides((demand, side) => {
       val grid = getGridNode(side).getGrid
       if (grid != null) {
@@ -50,24 +50,24 @@ trait AppliedEnergistics2 extends Common {
     }, Power.fromAE, Power.toAE)
   }
 
-  override def validate() {
+  override def validate(): Unit = {
     super.validate()
     if (useAppliedEnergistics2Power()) EventHandler.scheduleAE2Add(this)
   }
 
-  override def invalidate() {
+  override def invalidate(): Unit = {
     super.invalidate()
     if (useAppliedEnergistics2Power()) securityBreak()
   }
 
-  override def onChunkUnload() {
+  override def onChunkUnload(): Unit = {
     super.onChunkUnload()
     if (useAppliedEnergistics2Power()) securityBreak()
   }
 
   // ----------------------------------------------------------------------- //
 
-  override def readFromNBTForServer(nbt: NBTTagCompound) {
+  override def readFromNBTForServer(nbt: NBTTagCompound): Unit = {
     super.readFromNBTForServer(nbt)
     if (useAppliedEnergistics2Power()) loadNode(nbt)
   }
@@ -77,7 +77,7 @@ trait AppliedEnergistics2 extends Common {
     getGridNode(ForgeDirection.UNKNOWN).loadFromNBT(Settings.namespace + "ae2power", nbt)
   }
 
-  override def writeToNBTForServer(nbt: NBTTagCompound) {
+  override def writeToNBTForServer(nbt: NBTTagCompound): Unit = {
     super.writeToNBTForServer(nbt)
     if (useAppliedEnergistics2Power()) saveNode(nbt)
   }
@@ -103,7 +103,7 @@ trait AppliedEnergistics2 extends Common {
   def getCableConnectionType(side: ForgeDirection) = AECableType.SMART
 
   @Optional.Method(modid = Mods.IDs.AppliedEnergistics2)
-  def securityBreak() {
+  def securityBreak(): Unit = {
     getGridNode(ForgeDirection.UNKNOWN).destroy()
   }
 }
@@ -123,15 +123,15 @@ class AppliedEnergistics2GridBlock(val tileEntity: AppliedEnergistics2) extends 
 
   override def getGridColor = AEColor.Transparent
 
-  override def onGridNotification(p1: GridNotification) {}
+  override def onGridNotification(p1: GridNotification): Unit = {}
 
-  override def setNetworkStatus(p1: IGrid, p2: Int) {}
+  override def setNetworkStatus(p1: IGrid, p2: Int): Unit = {}
 
   override def getConnectableSides = util.EnumSet.copyOf(ForgeDirection.VALID_DIRECTIONS.filter(tileEntity.canConnectPower).toList)
 
   override def getMachine = tileEntity.asInstanceOf[IGridHost]
 
-  override def gridChanged() {}
+  override def gridChanged(): Unit = {}
 
   override def getMachineRepresentation = null
 }

@@ -39,14 +39,14 @@ class Keyboard extends traits.Environment with traits.Rotatable with traits.Immi
 
   override def canUpdate = false
 
-  override def readFromNBTForServer(nbt: NBTTagCompound) {
+  override def readFromNBTForServer(nbt: NBTTagCompound): Unit = {
     super.readFromNBTForServer(nbt)
     if (isServer) {
       keyboard.load(nbt.getCompoundTag(Settings.namespace + "keyboard"))
     }
   }
 
-  override def writeToNBTForServer(nbt: NBTTagCompound) {
+  override def writeToNBTForServer(nbt: NBTTagCompound): Unit = {
     super.writeToNBTForServer(nbt)
     if (isServer) {
       nbt.setNewCompoundTag(Settings.namespace + "keyboard", keyboard.save)

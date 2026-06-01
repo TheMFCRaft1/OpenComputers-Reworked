@@ -7,7 +7,7 @@ import li.cil.oc.integration.Mods
 object ModStargateTech2 extends ModProxy {
   override def getMod = Mods.StargateTech2
 
-  override def initialize() {
+  override def initialize(): Unit = {
     api.Driver.add(DriverAbstractBusCard)
 
     api.Driver.add(ConverterBusPacketNetScanDevice)

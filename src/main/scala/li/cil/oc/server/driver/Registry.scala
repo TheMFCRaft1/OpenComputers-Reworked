@@ -17,8 +17,8 @@ import net.minecraft.item.ItemStack
 import net.minecraft.world.World
 import net.minecraftforge.common.util.ForgeDirection
 
-import scala.collection.convert.WrapAsJava._
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 import scala.math.ScalaNumber
 
@@ -54,7 +54,7 @@ private[oc] object Registry extends api.detail.DriverAPI {
   /** Used to keep track of whether we're past the init phase. */
   var locked = false
 
-  override def add(driver: api.driver.Block) {
+  override def add(driver: api.driver.Block): Unit = {
     if (locked) throw new IllegalStateException("Please register all drivers in the init phase.")
     if (!blocks.contains(driver)) {
       OpenComputers.log.debug(s"Registering block driver ${driver.getClass.getName}.")
@@ -62,7 +62,7 @@ private[oc] object Registry extends api.detail.DriverAPI {
     }
   }
 
-  override def add(driver: api.driver.SidedBlock) {
+  override def add(driver: api.driver.SidedBlock): Unit = {
     if (locked) throw new IllegalStateException("Please register all drivers in the init phase.")
     if (!sidedBlocks.contains(driver)) {
       OpenComputers.log.debug(s"Registering block driver ${driver.getClass.getName}.")
@@ -70,7 +70,7 @@ private[oc] object Registry extends api.detail.DriverAPI {
     }
   }
 
-  override def add(driver: api.driver.Item) {
+  override def add(driver: api.driver.Item): Unit = {
     if (locked) throw new IllegalStateException("Please register all drivers in the init phase.")
     if (!items.contains(driver)) {
       OpenComputers.log.debug(s"Registering item driver ${driver.getClass.getName}.")
@@ -78,7 +78,7 @@ private[oc] object Registry extends api.detail.DriverAPI {
     }
   }
 
-  override def add(converter: Converter) {
+  override def add(converter: Converter): Unit = {
     if (locked) throw new IllegalStateException("Please register all converters in the init phase.")
     if (!converters.contains(converter)) {
       OpenComputers.log.debug(s"Registering converter ${converter.getClass.getName}.")
@@ -155,7 +155,7 @@ private[oc] object Registry extends api.detail.DriverAPI {
 
   override def itemDrivers = items.toSeq
 
-  def blacklistHost(stack: ItemStack, host: Class[_]) {
+  def blacklistHost(stack: ItemStack, host: Class[_]): Unit = {
     blacklist.find(_._1.isItemEqual(stack)) match {
       case Some((_, hosts)) => hosts += host
       case _ => blacklist.append((stack, mutable.Set(host)))

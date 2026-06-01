@@ -17,7 +17,7 @@ trait WidgetContainer {
 
   def windowZ = 0f
 
-  def drawWidgets() {
+  def drawWidgets(): Unit = {
     widgets.foreach(_.draw())
   }
 }

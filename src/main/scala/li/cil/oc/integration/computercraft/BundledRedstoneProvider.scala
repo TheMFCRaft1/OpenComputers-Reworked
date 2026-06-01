@@ -10,7 +10,7 @@ import net.minecraft.world.World
 import net.minecraftforge.common.util.ForgeDirection
 
 object BundledRedstoneProvider extends IBundledRedstoneProvider with RedstoneProvider {
-  def init() {
+  def init(): Unit = {
     ComputerCraftAPI.registerBundledRedstoneProvider(this)
     BundledRedstone.addProvider(this)
   }

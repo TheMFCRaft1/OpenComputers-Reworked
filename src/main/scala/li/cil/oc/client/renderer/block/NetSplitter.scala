@@ -5,7 +5,7 @@ import net.minecraft.client.renderer.RenderBlocks
 import net.minecraftforge.common.util.ForgeDirection
 
 object NetSplitter {
-  def render(openSides: Array[Boolean], block: Block, x: Int, y: Int, z: Int, renderer: RenderBlocks) {
+  def render(openSides: Array[Boolean], block: Block, x: Int, y: Int, z: Int, renderer: RenderBlocks): Unit = {
     val previousRenderAllFaces = renderer.renderAllFaces
     renderer.renderAllFaces = true
 
@@ -65,7 +65,7 @@ object NetSplitter {
     renderer.renderAllFaces = previousRenderAllFaces
   }
 
-  def render(block: Block, metadata: Int, renderer: RenderBlocks) {
+  def render(block: Block, metadata: Int, renderer: RenderBlocks): Unit = {
     // Bottom.
     renderer.setRenderBounds(0 / 16f, 0 / 16f, 5 / 16f, 5 / 16f, 5 / 16f, 11 / 16f)
     renderAllFaces(block, metadata, renderer)

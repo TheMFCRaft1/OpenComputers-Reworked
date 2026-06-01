@@ -23,7 +23,58 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 sourceSets {
     main {
         scala {
-            srcDirs = ['src/main/scala', 'src/main/java']
+            srcDirs = ['src/compat/java', 'src/compat/scala', 'src/main/scala', 'src/main/java']
+            // Optional third-party integrations — re-enable when ported
+            exclude '**/integration/agricraft/**'
+            exclude '**/integration/appeng/**'
+            exclude '**/integration/betterrecords/**'
+            exclude '**/integration/bloodmagic/**'
+            exclude '**/integration/bluepower/**'
+            exclude '**/integration/buildcraft/**'
+            exclude '**/integration/cofh/**'
+            exclude '**/integration/coloredlights/**'
+            exclude '**/integration/computercraft/**'
+            exclude '**/integration/dsu/**'
+            exclude '**/integration/ec/**'
+            exclude '**/integration/enderio/**'
+            exclude '**/integration/enderstorage/**'
+            exclude '**/integration/fmp/**'
+            exclude '**/integration/forestry/**'
+            exclude '**/integration/gc/**'
+            exclude '**/integration/gregtech/**'
+            exclude '**/integration/ic2/**'
+            exclude '**/integration/igw/**'
+            exclude '**/integration/magtools/**'
+            exclude '**/integration/mekanism/**'
+            exclude '**/integration/mfr/**'
+            exclude '**/integration/mystcraft/**'
+            exclude '**/integration/nei/**'
+            exclude '**/integration/nek/**'
+            exclude '**/integration/projectred/**'
+            exclude '**/integration/railcraft/**'
+            exclude '**/integration/redlogic/**'
+            exclude '**/integration/rotarycraft/**'
+            exclude '**/integration/stargatetech2/**'
+            exclude '**/integration/tcon/**'
+            exclude '**/integration/thaumcraft/**'
+            exclude '**/integration/thaumicenergistics/**'
+            exclude '**/integration/thermalexpansion/**'
+            exclude '**/integration/tis3d/**'
+            exclude '**/integration/tmechworks/**'
+            exclude '**/integration/versionchecker/**'
+            exclude '**/integration/waila/**'
+            exclude '**/integration/wrcbe/**'
+            exclude '**/integration/wrsve/**'
+            // Legacy client rendering — Phase 5
+            exclude '**/client/renderer/**'
+            exclude '**/client/gui/**'
+            // Core mod / access transformer bootstrap
+            exclude '**/common/asm/**'
+            exclude '**/common/launch/**'
+            // Superseded by NeoForge entry point
+            exclude '**/common/Proxy.scala'
+            exclude '**/client/Proxy.scala'
+            exclude '**/server/Proxy.scala'
         }
         java {
             srcDirs = []
@@ -154,6 +205,11 @@ tasks.withType(JavaCompile).configureEach {
 tasks.withType(ScalaCompile).configureEach {
     options.encoding = 'UTF-8'
     scalaCompileOptions.forkOptions.memoryMaximumSize = '2g'
+    scalaCompileOptions.additionalParameters = [
+        '-Wconf:cat=scala3-migration:s',
+        '-rewrite',
+        '-source:3.4-migration'
+    ]
     dependsOn generateModMetadata
 }
 

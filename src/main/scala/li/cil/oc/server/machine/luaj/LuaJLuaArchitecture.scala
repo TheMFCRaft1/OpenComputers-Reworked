@@ -19,7 +19,7 @@ import li.cil.repack.org.luaj.vm2.lib.jse.JsePlatform
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 @Architecture.Name("LuaJ")
 class LuaJLuaArchitecture(val machine: api.machine.Machine) extends Architecture {
@@ -109,7 +109,7 @@ class LuaJLuaArchitecture(val machine: api.machine.Machine) extends Architecture
 
   // ----------------------------------------------------------------------- //
 
-  override def runSynchronized() {
+  override def runSynchronized(): Unit = {
     synchronizedResult = synchronizedCall.call()
     synchronizedCall = null
   }
@@ -238,7 +238,7 @@ class LuaJLuaArchitecture(val machine: api.machine.Machine) extends Architecture
     true
   }
 
-  override def onConnect() {
+  override def onConnect(): Unit = {
   }
 
   override def close() = {
@@ -251,12 +251,12 @@ class LuaJLuaArchitecture(val machine: api.machine.Machine) extends Architecture
 
   // ----------------------------------------------------------------------- //
 
-  override def load(nbt: NBTTagCompound) {
+  override def load(nbt: NBTTagCompound): Unit = {
     if (machine.isRunning) {
       machine.stop()
       machine.start()
     }
   }
 
-  override def save(nbt: NBTTagCompound) {}
+  override def save(nbt: NBTTagCompound): Unit = {}
 }

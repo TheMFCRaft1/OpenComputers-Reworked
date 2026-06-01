@@ -18,7 +18,7 @@ class Server(playerInventory: InventoryPlayer, serverInventory: ServerInventory,
 
   override def lockedStack = serverInventory.container
 
-  protected override def actionPerformed(button: GuiButton) {
+  protected override def actionPerformed(button: GuiButton): Unit = {
     if (button.id == 0) {
       rack match {
         case Some(t) => ClientPacketSender.sendServerPower(t, slot, !inventoryContainer.isRunning)
@@ -27,7 +27,7 @@ class Server(playerInventory: InventoryPlayer, serverInventory: ServerInventory,
     }
   }
 
-  override def drawScreen(mouseX: Int, mouseY: Int, dt: Float) {
+  override def drawScreen(mouseX: Int, mouseY: Int, dt: Float): Unit = {
     // Close GUI if item is removed from rack.
     rack match {
       case Some(t) if t.getStackInSlot(slot) != serverInventory.container =>
@@ -41,13 +41,13 @@ class Server(playerInventory: InventoryPlayer, serverInventory: ServerInventory,
     super.drawScreen(mouseX, mouseY, dt)
   }
 
-  override def initGui() {
+  override def initGui(): Unit = {
     super.initGui()
     powerButton = new ImageButton(0, guiLeft + 48, guiTop + 33, 18, 18, Textures.guiButtonPower, canToggle = true)
     add(buttonList, powerButton)
   }
 
-  override def drawSecondaryForegroundLayer(mouseX: Int, mouseY: Int) {
+  override def drawSecondaryForegroundLayer(mouseX: Int, mouseY: Int): Unit = {
     super.drawSecondaryForegroundLayer(mouseX, mouseY)
     fontRendererObj.drawString(
       Localization.localizeImmediately(serverInventory.getInventoryName),
@@ -59,7 +59,7 @@ class Server(playerInventory: InventoryPlayer, serverInventory: ServerInventory,
     }
   }
 
-  override def drawSecondaryBackgroundLayer() {
+  override def drawSecondaryBackgroundLayer(): Unit = {
     GL11.glColor3f(1, 1, 1) // Required under Linux.
     mc.renderEngine.bindTexture(Textures.guiServer)
     drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize)

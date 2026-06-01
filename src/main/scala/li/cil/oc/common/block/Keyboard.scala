@@ -37,7 +37,7 @@ class Keyboard extends SimpleBlock(Material.rock) with traits.SpecialBlock {
 
   override def setBlockBoundsForItemRender(metadata: Int) = setBlockBounds(ForgeDirection.NORTH, ForgeDirection.WEST)
 
-  override def preItemRender(metadata: Int) {
+  override def preItemRender(metadata: Int): Unit = {
     GL11.glTranslatef(-0.75f, 0, 0)
     GL11.glScalef(1.5f, 1.5f, 1.5f)
   }
@@ -70,7 +70,7 @@ class Keyboard extends SimpleBlock(Material.rock) with traits.SpecialBlock {
       case _ =>
     }
 
-  private def setBlockBounds(pitch: ForgeDirection, yaw: ForgeDirection) {
+  private def setBlockBounds(pitch: ForgeDirection, yaw: ForgeDirection): Unit = {
     val (forward, up) = pitch match {
       case side@(ForgeDirection.DOWN | ForgeDirection.UP) => (side, yaw)
       case _ => (yaw, ForgeDirection.UP)

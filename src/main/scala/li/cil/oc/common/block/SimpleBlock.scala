@@ -66,7 +66,7 @@ class SimpleBlock(material: Material = Material.iron) extends Block(material) {
   def getIcon(world: IBlockAccess, x: Int, y: Int, z: Int, globalSide: ForgeDirection, localSide: ForgeDirection) = icons(localSide.ordinal())
 
   @SideOnly(Side.CLIENT)
-  override def registerBlockIcons(iconRegister: IIconRegister) {
+  override def registerBlockIcons(iconRegister: IIconRegister): Unit = {
     icons(ForgeDirection.DOWN.ordinal) = iconRegister.registerIcon(Settings.resourceDomain + ":GenericTop")
     icons(ForgeDirection.UP.ordinal) = icons(ForgeDirection.DOWN.ordinal)
     icons(ForgeDirection.NORTH.ordinal) = iconRegister.registerIcon(Settings.resourceDomain + ":GenericSide")
@@ -86,7 +86,7 @@ class SimpleBlock(material: Material = Material.iron) extends Block(material) {
   }
 
   @SideOnly(Side.CLIENT)
-  def preItemRender(metadata: Int) {}
+  def preItemRender(metadata: Int): Unit = {}
 
   final override def setBlockBoundsForItemRender() = setBlockBoundsForItemRender(0)
 
@@ -103,20 +103,20 @@ class SimpleBlock(material: Material = Material.iron) extends Block(material) {
   def rarity(stack: ItemStack) = EnumRarity.common
 
   @SideOnly(Side.CLIENT)
-  def addInformation(metadata: Int, stack: ItemStack, player: EntityPlayer, tooltip: java.util.List[String], advanced: Boolean) {
+  def addInformation(metadata: Int, stack: ItemStack, player: EntityPlayer, tooltip: java.util.List[String], advanced: Boolean): Unit = {
     tooltipHead(metadata, stack, player, tooltip, advanced)
     tooltipBody(metadata, stack, player, tooltip, advanced)
     tooltipTail(metadata, stack, player, tooltip, advanced)
   }
 
-  protected def tooltipHead(metadata: Int, stack: ItemStack, player: EntityPlayer, tooltip: java.util.List[String], advanced: Boolean) {
+  protected def tooltipHead(metadata: Int, stack: ItemStack, player: EntityPlayer, tooltip: java.util.List[String], advanced: Boolean): Unit = {
   }
 
-  protected def tooltipBody(metadata: Int, stack: ItemStack, player: EntityPlayer, tooltip: java.util.List[String], advanced: Boolean) {
+  protected def tooltipBody(metadata: Int, stack: ItemStack, player: EntityPlayer, tooltip: java.util.List[String], advanced: Boolean): Unit = {
     tooltip.addAll(Tooltip.get(getClass.getSimpleName))
   }
 
-  protected def tooltipTail(metadata: Int, stack: ItemStack, player: EntityPlayer, tooltip: java.util.List[String], advanced: Boolean) {
+  protected def tooltipTail(metadata: Int, stack: ItemStack, player: EntityPlayer, tooltip: java.util.List[String], advanced: Boolean): Unit = {
   }
 
   // ----------------------------------------------------------------------- //
@@ -198,7 +198,7 @@ class SimpleBlock(material: Material = Material.iron) extends Block(material) {
   protected def doSetBlockBoundsBasedOnState(world: IBlockAccess, x: Int, y: Int, z: Int): Unit =
     super.setBlockBoundsBasedOnState(world, x, y, z)
 
-  protected def setBlockBounds(bounds: AxisAlignedBB) {
+  protected def setBlockBounds(bounds: AxisAlignedBB): Unit = {
     setBlockBounds(
       bounds.minX.toFloat,
       bounds.minY.toFloat,

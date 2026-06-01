@@ -58,7 +58,7 @@ class Charger extends RedstoneAware with traits.PowerAcceptor with traits.StateA
     }
     else super.onBlockActivated(world, x, y, z, player, side, hitX, hitY, hitZ)
 
-  override def onNeighborBlockChange(world: World, x: Int, y: Int, z: Int, block: Block) {
+  override def onNeighborBlockChange(world: World, x: Int, y: Int, z: Int, block: Block): Unit = {
     world.getTileEntity(x, y, z) match {
       case charger: tileentity.Charger => charger.onNeighborChanged()
       case _ =>

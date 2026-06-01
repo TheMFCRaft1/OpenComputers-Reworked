@@ -9,7 +9,7 @@ import li.cil.oc.api.machine.Context
 import li.cil.oc.util.ResultWrapper._
 import net.minecraft.tileentity.TileEntity
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 // Note to self: this class is used by ExtraCells (and potentially others), do not rename / drastically change it.
 trait NetworkControl[AETile >: Null <: TileEntity with IGridProxyable with IActionHost] {

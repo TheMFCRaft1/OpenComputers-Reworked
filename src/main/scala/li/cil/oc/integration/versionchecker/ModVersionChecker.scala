@@ -12,7 +12,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 object ModVersionChecker extends ModProxy {
   override def getMod = Mods.VersionChecker
 
-  override def initialize() {
+  override def initialize(): Unit = {
     UpdateCheck.info onSuccess {
       case Some(release) =>
         val nbt = new NBTTagCompound()

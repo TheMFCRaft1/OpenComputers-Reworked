@@ -12,7 +12,7 @@ trait PowerAcceptor extends SimpleBlock {
 
   // ----------------------------------------------------------------------- //
 
-  override protected def tooltipTail(metadata: Int, stack: ItemStack, player: EntityPlayer, tooltip: util.List[String], advanced: Boolean) {
+  override protected def tooltipTail(metadata: Int, stack: ItemStack, player: EntityPlayer, tooltip: util.List[String], advanced: Boolean): Unit = {
     super.tooltipTail(metadata, stack, player, tooltip, advanced)
     tooltip.addAll(Tooltip.extended("PowerAcceptor", energyThroughput.toInt))
   }

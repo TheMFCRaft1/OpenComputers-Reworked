@@ -7,7 +7,7 @@ import li.cil.oc.integration.Mods
 object ModTMechworks extends ModProxy {
   override def getMod = Mods.TMechWorks
 
-  override def initialize() {
+  override def initialize(): Unit = {
     Driver.add(new DriverDrawBridge)
   }
 }

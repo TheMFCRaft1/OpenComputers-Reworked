@@ -25,58 +25,58 @@ trait Factorization extends Common {
 
   // ----------------------------------------------------------------------- //
 
-  override def updateEntity() {
+  override def updateEntity(): Unit = {
     if (useFactorizationPower()) updateEnergy()
     super.updateEntity()
   }
 
   @Optional.Method(modid = Mods.IDs.Factorization)
-  private def updateEnergy() {
+  private def updateEnergy(): Unit = {
     getCharge.update()
     if (world.getTotalWorldTime % Settings.get.tickFrequency == 0) {
       tryAllSides((demand, _) => getCharge.deplete(demand.toInt), Power.fromCharge, Power.toCharge)
     }
   }
 
-  override def invalidate() {
+  override def invalidate(): Unit = {
     if (useFactorizationPower()) invalidateCharge()
     super.invalidate()
   }
 
   @Optional.Method(modid = Mods.IDs.Factorization)
-  private def invalidateCharge() {
+  private def invalidateCharge(): Unit = {
     getCharge.invalidate()
   }
 
-  override def onChunkUnload() {
+  override def onChunkUnload(): Unit = {
     if (useFactorizationPower()) removeCharge()
     super.onChunkUnload()
   }
 
   @Optional.Method(modid = Mods.IDs.Factorization)
-  private def removeCharge() {
+  private def removeCharge(): Unit = {
     if (!isInvalid) getCharge.remove()
   }
 
   // ----------------------------------------------------------------------- //
 
-  override def readFromNBTForServer(nbt: NBTTagCompound) {
+  override def readFromNBTForServer(nbt: NBTTagCompound): Unit = {
     super.readFromNBTForServer(nbt)
     if (useFactorizationPower()) loadCharge(nbt)
   }
 
   @Optional.Method(modid = Mods.IDs.Factorization)
-  private def loadCharge(nbt: NBTTagCompound) {
+  private def loadCharge(nbt: NBTTagCompound): Unit = {
     getCharge.readFromNBT(nbt, "fzpower")
   }
 
-  override def writeToNBTForServer(nbt: NBTTagCompound) {
+  override def writeToNBTForServer(nbt: NBTTagCompound): Unit = {
     super.writeToNBTForServer(nbt)
     if (useFactorizationPower()) saveCharge(nbt)
   }
 
   @Optional.Method(modid = Mods.IDs.Factorization)
-  private def saveCharge(nbt: NBTTagCompound) {
+  private def saveCharge(nbt: NBTTagCompound): Unit = {
     getCharge.writeToNBT(nbt, "fzpower")
   }
 

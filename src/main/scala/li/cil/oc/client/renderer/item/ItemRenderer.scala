@@ -25,7 +25,7 @@ import net.minecraftforge.client.IItemRenderer.ItemRenderType
 import net.minecraftforge.client.IItemRenderer.ItemRendererHelper
 import org.lwjgl.opengl.GL11
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 object ItemRenderer extends IItemRenderer {
   val renderItem = new RenderItem()
@@ -58,7 +58,7 @@ object ItemRenderer extends IItemRenderer {
     // the code that applies if no helper is used...
     else helper == ItemRendererHelper.EQUIPPED_BLOCK
 
-  override def renderItem(renderType: ItemRenderType, stack: ItemStack, data: AnyRef*) {
+  override def renderItem(renderType: ItemRenderType, stack: ItemStack, data: AnyRef*): Unit = {
     RenderState.checkError(getClass.getName + ".renderItem: entering (aka: wasntme)")
 
     val mc = Minecraft.getMinecraft
@@ -173,7 +173,7 @@ object ItemRenderer extends IItemRenderer {
     RenderState.checkError("ItemRenderer.renderItem: leaving")
   }
 
-  private def drawShape(shape: PrintData.Shape) {
+  private def drawShape(shape: PrintData.Shape): Unit = {
     val bounds = shape.bounds
     val texture = Print.resolveTexture(shape.texture)
 

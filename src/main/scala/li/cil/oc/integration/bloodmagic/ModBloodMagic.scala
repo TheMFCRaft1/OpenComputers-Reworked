@@ -6,7 +6,7 @@ import li.cil.oc.integration.{Mods, ModProxy}
 object ModBloodMagic extends ModProxy {
   override def getMod = Mods.BloodMagic
 
-  override def initialize() {
+  override def initialize(): Unit = {
     Driver.add(new DriverBloodAltar)
     Driver.add(new DriverMasterRitualStone)
 

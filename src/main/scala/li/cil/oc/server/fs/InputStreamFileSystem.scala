@@ -53,7 +53,7 @@ trait InputStreamFileSystem extends api.fs.FileSystem {
 
   // ----------------------------------------------------------------------- //
 
-  override def load(nbt: NBTTagCompound) {
+  override def load(nbt: NBTTagCompound): Unit = {
     val handlesNbt = nbt.getTagList("input", NBT.TAG_COMPOUND)
     (0 until handlesNbt.tagCount).map(handlesNbt.getCompoundTagAt).foreach(handleNbt => {
       val handle = handleNbt.getInteger("handle")

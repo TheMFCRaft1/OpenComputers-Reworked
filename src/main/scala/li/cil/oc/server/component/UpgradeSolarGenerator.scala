@@ -15,7 +15,7 @@ import li.cil.oc.util.BlockPosition
 import net.minecraft.world.biome.BiomeGenDesert
 import net.minecraftforge.common.util.ForgeDirection
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 
 class UpgradeSolarGenerator(val host: EnvironmentHost) extends prefab.ManagedEnvironment with DeviceInfo {
   override val node = Network.newNode(this, Visibility.Network).
@@ -39,7 +39,7 @@ class UpgradeSolarGenerator(val host: EnvironmentHost) extends prefab.ManagedEnv
 
   override val canUpdate = true
 
-  override def update() {
+  override def update(): Unit = {
     super.update()
 
     ticksUntilCheck -= 1

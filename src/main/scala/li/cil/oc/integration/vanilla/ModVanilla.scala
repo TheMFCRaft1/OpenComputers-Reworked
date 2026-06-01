@@ -15,7 +15,7 @@ import net.minecraftforge.common.util.ForgeDirection
 object ModVanilla extends ModProxy with RedstoneProvider {
   def getMod = Mods.Minecraft
 
-  def initialize() {
+  def initialize(): Unit = {
     Driver.add(DriverBeacon)
     Driver.add(DriverBrewingStand)
     Driver.add(DriverComparator)

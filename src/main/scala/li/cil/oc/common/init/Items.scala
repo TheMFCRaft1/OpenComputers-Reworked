@@ -315,7 +315,7 @@ object Items extends ItemAPI {
   // ----------------------------------------------------------------------- //
   // Crafting
 
-  def init() {
+  def init(): Unit = {
     val multi = new item.Delegator() {
       def additionalItems = Array(
         createConfiguredDrone(),
@@ -325,7 +325,7 @@ object Items extends ItemAPI {
         createChargedHoverBoots()
       ) ++ Loot.disksForClient ++ registeredItems
 
-      override def getSubItems(item: Item, tab: CreativeTabs, list: java.util.List[_]) {
+      override def getSubItems(item: Item, tab: CreativeTabs, list: java.util.List[_]): Unit = {
         // Workaround for MC's untyped lists...
         def add[T](list: java.util.List[T], value: Any) = list.add(value.asInstanceOf[T])
         super.getSubItems(item, tab, list)

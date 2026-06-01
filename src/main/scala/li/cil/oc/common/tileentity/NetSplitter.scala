@@ -14,7 +14,7 @@ import li.cil.oc.server.{PacketSender => ServerPacketSender}
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraftforge.common.util.ForgeDirection
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 
 class NetSplitter extends traits.Environment with traits.OpenSides with traits.RedstoneAware with api.network.SidedEnvironment with DeviceInfo {
@@ -39,7 +39,7 @@ class NetSplitter extends traits.Environment with traits.OpenSides with traits.R
 
   override def isSideOpen(side: ForgeDirection): Boolean =  if (isInverted) !super.isSideOpen(side) else super.isSideOpen(side)
 
-  override def setSideOpen(side: ForgeDirection, value: Boolean) {
+  override def setSideOpen(side: ForgeDirection, value: Boolean): Unit = {
     val previous = isSideOpen(side)
     super.setSideOpen(side, value)
     if (previous != isSideOpen(side)) {

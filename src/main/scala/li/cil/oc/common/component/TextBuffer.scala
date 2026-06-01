@@ -36,8 +36,8 @@ import net.minecraft.nbt.NBTTagCompound
 import net.minecraftforge.event.world.ChunkEvent
 import net.minecraftforge.event.world.WorldEvent
 
-import scala.collection.convert.WrapAsJava._
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 
 class TextBuffer(val host: EnvironmentHost) extends prefab.ManagedEnvironment with traits.TextBufferProxy with VideoRamRasterizer with DeviceInfo {
@@ -119,7 +119,7 @@ class TextBuffer(val host: EnvironmentHost) extends prefab.ManagedEnvironment wi
 
   override val canUpdate = true
 
-  override def update() {
+  override def update(): Unit = {
     super.update()
     if (isDisplaying && host.world.getTotalWorldTime % Settings.get.tickFrequency == 0) {
       if (relativeLitArea < 0) {
@@ -221,14 +221,14 @@ class TextBuffer(val host: EnvironmentHost) extends prefab.ManagedEnvironment wi
 
   // ----------------------------------------------------------------------- //
 
-  override def setEnergyCostPerTick(value: Double) {
+  override def setEnergyCostPerTick(value: Double): Unit = {
     powerConsumptionPerTick = value
     fullyLitCost = computeFullyLitCost()
   }
 
   override def getEnergyCostPerTick: Double = powerConsumptionPerTick
 
-  override def setPowerState(value: Boolean) {
+  override def setPowerState(value: Boolean): Unit = {
     if (isDisplaying != value) {
       isDisplaying = value
       if (isDisplaying) {
@@ -241,7 +241,7 @@ class TextBuffer(val host: EnvironmentHost) extends prefab.ManagedEnvironment wi
 
   override def getPowerState: Boolean = isDisplaying
 
-  override def setMaximumResolution(width: Int, height: Int) {
+  override def setMaximumResolution(width: Int, height: Int): Unit = {
     if (width < 1) throw new IllegalArgumentException("width must be larger or equal to one")
     if (height < 1) throw new IllegalArgumentException("height must be larger or equal to one")
     maxResolution = (width, height)
@@ -399,14 +399,14 @@ class TextBuffer(val host: EnvironmentHost) extends prefab.ManagedEnvironment wi
 
   // ----------------------------------------------------------------------- //
 
-  override def onConnect(node: Node) {
+  override def onConnect(node: Node): Unit = {
     super.onConnect(node)
     if (node == this.node) {
       ServerComponentTracker.add(host.world, node.address, this)
     }
   }
 
-  override def onDisconnect(node: Node) {
+  override def onDisconnect(node: Node): Unit = {
     super.onDisconnect(node)
     if (node == this.node) {
       ServerComponentTracker.remove(host.world, this)
@@ -415,7 +415,7 @@ class TextBuffer(val host: EnvironmentHost) extends prefab.ManagedEnvironment wi
 
   // ----------------------------------------------------------------------- //
 
-  override def load(nbt: NBTTagCompound) {
+  override def load(nbt: NBTTagCompound): Unit = {
     super.load(nbt)
     if (SideTracker.isClient) {
       if (!Strings.isNullOrEmpty(proxy.nodeAddress)) return // Only load once.
@@ -488,7 +488,7 @@ object TextBuffer {
   var clientBuffers = mutable.ListBuffer.empty[TextBuffer]
 
   @SubscribeEvent
-  def onChunkUnload(e: ChunkEvent.Unload) {
+  def onChunkUnload(e: ChunkEvent.Unload): Unit = {
     val chunk = e.getChunk
     clientBuffers = clientBuffers.filter(t => {
       val blockPos = BlockPosition(t.host)
@@ -501,7 +501,7 @@ object TextBuffer {
   }
 
   @SubscribeEvent
-  def onWorldUnload(e: WorldEvent.Unload) {
+  def onWorldUnload(e: WorldEvent.Unload): Unit = {
     clientBuffers = clientBuffers.filter(t => {
       val keep = t.host.world != e.world
       if (!keep) {
@@ -511,7 +511,7 @@ object TextBuffer {
     })
   }
 
-  def registerClientBuffer(t: TextBuffer) {
+  def registerClientBuffer(t: TextBuffer): Unit = {
     ClientPacketSender.sendTextBufferInit(t.proxy.nodeAddress)
     ClientComponentTracker.add(t.host.world, t.proxy.nodeAddress, t)
     clientBuffers += t
@@ -524,7 +524,7 @@ object TextBuffer {
 
     var nodeAddress = ""
 
-    def markDirty() {
+    def markDirty(): Unit = {
       dirty = true
     }
 
@@ -532,30 +532,30 @@ object TextBuffer {
 
     def onBufferColorChange(): Unit
 
-    def onBufferCopy(col: Int, row: Int, w: Int, h: Int, tx: Int, ty: Int) {
+    def onBufferCopy(col: Int, row: Int, w: Int, h: Int, tx: Int, ty: Int): Unit = {
       owner.relativeLitArea = -1
     }
 
     def onBufferDepthChange(depth: api.internal.TextBuffer.ColorDepth): Unit
 
-    def onBufferFill(col: Int, row: Int, w: Int, h: Int, c: Int) {
+    def onBufferFill(col: Int, row: Int, w: Int, h: Int, c: Int): Unit = {
       owner.relativeLitArea = -1
     }
 
     def onBufferPaletteChange(index: Int): Unit
 
-    def onBufferResolutionChange(w: Int, h: Int) {
+    def onBufferResolutionChange(w: Int, h: Int): Unit = {
       owner.relativeLitArea = -1
     }
 
-    def onBufferViewportResolutionChange(w: Int, h: Int) {
+    def onBufferViewportResolutionChange(w: Int, h: Int): Unit = {
       owner.relativeLitArea = -1
     }
 
-    def onBufferMaxResolutionChange(w: Int, h: Int) {
+    def onBufferMaxResolutionChange(w: Int, h: Int): Unit = {
     }
 
-    def onBufferSet(col: Int, row: Int, s: String, vertical: Boolean) {
+    def onBufferSet(col: Int, row: Int, s: String, vertical: Boolean): Unit = {
       owner.relativeLitArea = -1
     }
 
@@ -571,15 +571,15 @@ object TextBuffer {
       owner.relativeLitArea = -1
     }
 
-    def onBufferRawSetText(col: Int, row: Int, text: Array[Array[Int]]) {
+    def onBufferRawSetText(col: Int, row: Int, text: Array[Array[Int]]): Unit = {
       owner.relativeLitArea = -1
     }
 
-    def onBufferRawSetBackground(col: Int, row: Int, color: Array[Array[Int]]) {
+    def onBufferRawSetBackground(col: Int, row: Int, color: Array[Array[Int]]): Unit = {
       owner.relativeLitArea = -1
     }
 
-    def onBufferRawSetForeground(col: Int, row: Int, color: Array[Array[Int]]) {
+    def onBufferRawSetForeground(col: Int, row: Int, color: Array[Array[Int]]): Unit = {
       owner.relativeLitArea = -1
     }
 
@@ -617,39 +617,39 @@ object TextBuffer {
       wasDirty
     }
 
-    override def onBufferColorChange() {
+    override def onBufferColorChange(): Unit = {
       markDirty()
     }
 
-    override def onBufferCopy(col: Int, row: Int, w: Int, h: Int, tx: Int, ty: Int) {
+    override def onBufferCopy(col: Int, row: Int, w: Int, h: Int, tx: Int, ty: Int): Unit = {
       super.onBufferCopy(col, row, w, h, tx, ty)
       markDirty()
     }
 
-    override def onBufferDepthChange(depth: api.internal.TextBuffer.ColorDepth) {
+    override def onBufferDepthChange(depth: api.internal.TextBuffer.ColorDepth): Unit = {
       markDirty()
     }
 
-    override def onBufferFill(col: Int, row: Int, w: Int, h: Int, c: Int) {
+    override def onBufferFill(col: Int, row: Int, w: Int, h: Int, c: Int): Unit = {
       super.onBufferFill(col, row, w, h, c)
       markDirty()
     }
 
-    override def onBufferPaletteChange(index: Int) {
+    override def onBufferPaletteChange(index: Int): Unit = {
       markDirty()
     }
 
-    override def onBufferResolutionChange(w: Int, h: Int) {
+    override def onBufferResolutionChange(w: Int, h: Int): Unit = {
       super.onBufferResolutionChange(w, h)
       markDirty()
     }
 
-    override def onBufferViewportResolutionChange(w: Int, h: Int) {
+    override def onBufferViewportResolutionChange(w: Int, h: Int): Unit = {
       super.onBufferViewportResolutionChange(w, h)
       markDirty()
     }
 
-    override def onBufferSet(col: Int, row: Int, s: String, vertical: Boolean) {
+    override def onBufferSet(col: Int, row: Int, s: String, vertical: Boolean): Unit = {
       super.onBufferSet(col, row, s, vertical)
       markDirty()
     }
@@ -667,37 +667,37 @@ object TextBuffer {
       super.onBufferRamDestroy(ram)
     }
 
-    override def keyDown(character: Char, code: Int, player: EntityPlayer) {
+    override def keyDown(character: Char, code: Int, player: EntityPlayer): Unit = {
       debug(s"{type = keyDown, char = $character, code = $code}")
       ClientPacketSender.sendKeyDown(nodeAddress, character, code)
     }
 
-    override def keyUp(character: Char, code: Int, player: EntityPlayer) {
+    override def keyUp(character: Char, code: Int, player: EntityPlayer): Unit = {
       debug(s"{type = keyUp, char = $character, code = $code}")
       ClientPacketSender.sendKeyUp(nodeAddress, character, code)
     }
 
-    override def clipboard(value: String, player: EntityPlayer) {
+    override def clipboard(value: String, player: EntityPlayer): Unit = {
       debug(s"{type = clipboard}")
       ClientPacketSender.sendClipboard(nodeAddress, value)
     }
 
-    override def mouseDown(x: Double, y: Double, button: Int, player: EntityPlayer) {
+    override def mouseDown(x: Double, y: Double, button: Int, player: EntityPlayer): Unit = {
       debug(s"{type = mouseDown, x = $x, y = $y, button = $button}")
       ClientPacketSender.sendMouseClick(nodeAddress, x, y, drag = false, button)
     }
 
-    override def mouseDrag(x: Double, y: Double, button: Int, player: EntityPlayer) {
+    override def mouseDrag(x: Double, y: Double, button: Int, player: EntityPlayer): Unit = {
       debug(s"{type = mouseDrag, x = $x, y = $y, button = $button}")
       ClientPacketSender.sendMouseClick(nodeAddress, x, y, drag = true, button)
     }
 
-    override def mouseUp(x: Double, y: Double, button: Int, player: EntityPlayer) {
+    override def mouseUp(x: Double, y: Double, button: Int, player: EntityPlayer): Unit = {
       debug(s"{type = mouseUp, x = $x, y = $y, button = $button}")
       ClientPacketSender.sendMouseUp(nodeAddress, x, y, button)
     }
 
-    override def mouseScroll(x: Double, y: Double, delta: Int, player: EntityPlayer) {
+    override def mouseScroll(x: Double, y: Double, delta: Int, player: EntityPlayer): Unit = {
       debug(s"{type = mouseScroll, x = $x, y = $y, delta = $delta}")
       ClientPacketSender.sendMouseScroll(nodeAddress, x, y, delta)
     }
@@ -708,7 +708,7 @@ object TextBuffer {
 
     private lazy val Debugger = api.Items.get(Constants.ItemName.Debugger)
 
-    private def debug(message: String) {
+    private def debug(message: String): Unit = {
       if (Minecraft.getMinecraft != null && Minecraft.getMinecraft.thePlayer != null && api.Items.get(Minecraft.getMinecraft.thePlayer.getHeldItem) == Debugger) {
         OpenComputers.log.info(s"[NETWORK DEBUGGER] Sending packet to node $nodeAddress: " + message)
       }
@@ -716,46 +716,46 @@ object TextBuffer {
   }
 
   class ServerProxy(val owner: TextBuffer) extends Proxy {
-    override def onBufferColorChange() {
+    override def onBufferColorChange(): Unit = {
       owner.host.markChanged()
       owner.synchronized(ServerPacketSender.appendTextBufferColorChange(owner.pendingCommands, owner.data.foreground, owner.data.background))
     }
 
-    override def onBufferCopy(col: Int, row: Int, w: Int, h: Int, tx: Int, ty: Int) {
+    override def onBufferCopy(col: Int, row: Int, w: Int, h: Int, tx: Int, ty: Int): Unit = {
       super.onBufferCopy(col, row, w, h, tx, ty)
       owner.host.markChanged()
       owner.synchronized(ServerPacketSender.appendTextBufferCopy(owner.pendingCommands, col, row, w, h, tx, ty))
     }
 
-    override def onBufferDepthChange(depth: api.internal.TextBuffer.ColorDepth) {
+    override def onBufferDepthChange(depth: api.internal.TextBuffer.ColorDepth): Unit = {
       owner.host.markChanged()
       owner.synchronized(ServerPacketSender.appendTextBufferDepthChange(owner.pendingCommands, depth))
     }
 
-    override def onBufferFill(col: Int, row: Int, w: Int, h: Int, c: Int) {
+    override def onBufferFill(col: Int, row: Int, w: Int, h: Int, c: Int): Unit = {
       super.onBufferFill(col, row, w, h, c)
       owner.host.markChanged()
       owner.synchronized(ServerPacketSender.appendTextBufferFill(owner.pendingCommands, col, row, w, h, c))
     }
 
-    override def onBufferPaletteChange(index: Int) {
+    override def onBufferPaletteChange(index: Int): Unit = {
       owner.host.markChanged()
       owner.synchronized(ServerPacketSender.appendTextBufferPaletteChange(owner.pendingCommands, index, owner.getPaletteColor(index)))
     }
 
-    override def onBufferResolutionChange(w: Int, h: Int) {
+    override def onBufferResolutionChange(w: Int, h: Int): Unit = {
       super.onBufferResolutionChange(w, h)
       owner.host.markChanged()
       owner.synchronized(ServerPacketSender.appendTextBufferResolutionChange(owner.pendingCommands, w, h))
     }
 
-    override def onBufferViewportResolutionChange(w: Int, h: Int) {
+    override def onBufferViewportResolutionChange(w: Int, h: Int): Unit = {
       super.onBufferViewportResolutionChange(w, h)
       owner.host.markChanged()
       owner.synchronized(ServerPacketSender.appendTextBufferViewportResolutionChange(owner.pendingCommands, w, h))
     }
 
-    override def onBufferMaxResolutionChange(w: Int, h: Int) {
+    override def onBufferMaxResolutionChange(w: Int, h: Int): Unit = {
       if (owner.node.network != null) {
         super.onBufferMaxResolutionChange(w, h)
         owner.host.markChanged()
@@ -763,7 +763,7 @@ object TextBuffer {
       }
     }
 
-    override def onBufferSet(col: Int, row: Int, s: String, vertical: Boolean) {
+    override def onBufferSet(col: Int, row: Int, s: String, vertical: Boolean): Unit = {
       super.onBufferSet(col, row, s, vertical)
       owner.host.markChanged()
       owner.synchronized(ServerPacketSender.appendTextBufferSet(owner.pendingCommands, col, row, s, vertical))
@@ -789,49 +789,49 @@ object TextBuffer {
       owner.synchronized(ServerPacketSender.appendTextBufferRamDestroy(owner.pendingCommands, ram.owner, ram.id))
     }
 
-    override def onBufferRawSetText(col: Int, row: Int, text: Array[Array[Int]]) {
+    override def onBufferRawSetText(col: Int, row: Int, text: Array[Array[Int]]): Unit = {
       super.onBufferRawSetText(col, row, text)
       owner.host.markChanged()
       owner.synchronized(ServerPacketSender.appendTextBufferRawSetText(owner.pendingCommands, col, row, text))
     }
 
-    override def onBufferRawSetBackground(col: Int, row: Int, color: Array[Array[Int]]) {
+    override def onBufferRawSetBackground(col: Int, row: Int, color: Array[Array[Int]]): Unit = {
       super.onBufferRawSetBackground(col, row, color)
       owner.host.markChanged()
       owner.synchronized(ServerPacketSender.appendTextBufferRawSetBackground(owner.pendingCommands, col, row, color))
     }
 
-    override def onBufferRawSetForeground(col: Int, row: Int, color: Array[Array[Int]]) {
+    override def onBufferRawSetForeground(col: Int, row: Int, color: Array[Array[Int]]): Unit = {
       super.onBufferRawSetForeground(col, row, color)
       owner.host.markChanged()
       owner.synchronized(ServerPacketSender.appendTextBufferRawSetForeground(owner.pendingCommands, col, row, color))
     }
 
-    override def keyDown(character: Char, code: Int, player: EntityPlayer) {
+    override def keyDown(character: Char, code: Int, player: EntityPlayer): Unit = {
       sendToKeyboards("keyboard.keyDown", player, Char.box(character), Int.box(code))
     }
 
-    override def keyUp(character: Char, code: Int, player: EntityPlayer) {
+    override def keyUp(character: Char, code: Int, player: EntityPlayer): Unit = {
       sendToKeyboards("keyboard.keyUp", player, Char.box(character), Int.box(code))
     }
 
-    override def clipboard(value: String, player: EntityPlayer) {
+    override def clipboard(value: String, player: EntityPlayer): Unit = {
       sendToKeyboards("keyboard.clipboard", player, value)
     }
 
-    override def mouseDown(x: Double, y: Double, button: Int, player: EntityPlayer) {
+    override def mouseDown(x: Double, y: Double, button: Int, player: EntityPlayer): Unit = {
       sendMouseEvent(player, "touch", x, y, button)
     }
 
-    override def mouseDrag(x: Double, y: Double, button: Int, player: EntityPlayer) {
+    override def mouseDrag(x: Double, y: Double, button: Int, player: EntityPlayer): Unit = {
       sendMouseEvent(player, "drag", x, y, button)
     }
 
-    override def mouseUp(x: Double, y: Double, button: Int, player: EntityPlayer) {
+    override def mouseUp(x: Double, y: Double, button: Int, player: EntityPlayer): Unit = {
       sendMouseEvent(player, "drop", x, y, button)
     }
 
-    override def mouseScroll(x: Double, y: Double, delta: Int, player: EntityPlayer) {
+    override def mouseScroll(x: Double, y: Double, delta: Int, player: EntityPlayer): Unit = {
       sendMouseEvent(player, "scroll", x, y, delta)
     }
 
@@ -877,7 +877,7 @@ object TextBuffer {
       owner.node.sendToReachable("computer.checked_signal", args: _*)
     }
 
-    private def sendToKeyboards(name: String, values: AnyRef*) {
+    private def sendToKeyboards(name: String, values: AnyRef*): Unit = {
       owner.host match {
         case screen: tileentity.Screen =>
           screen.screens.foreach(_.node.sendToNeighbors(name, values: _*))

@@ -16,7 +16,7 @@ import li.cil.oc.api.network.Visibility
 import li.cil.oc.api.prefab
 import net.minecraft.entity.player.EntityPlayer
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 
 // TODO key up when screen is disconnected from which the key down came
@@ -46,7 +46,7 @@ class Keyboard(val host: EnvironmentHost) extends prefab.ManagedEnvironment with
 
   // ----------------------------------------------------------------------- //
 
-  def releasePressedKeys(player: EntityPlayer) {
+  def releasePressedKeys(player: EntityPlayer): Unit = {
     pressedKeys.get(player) match {
       case Some(keys) => for ((code, char) <- keys) {
         if (Settings.get.inputUsername) {

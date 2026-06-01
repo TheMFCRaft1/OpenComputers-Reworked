@@ -17,7 +17,7 @@ abstract class PagedUsageHandler(val pages: Option[Array[String]]) extends IUsag
 
   override def numRecipes = pages.fold(0)(_.length)
 
-  override def drawForeground(recipe: Int) {
+  override def drawForeground(recipe: Int): Unit = {
     pages match {
       case Some(data) =>
         for ((text, line) <- data(recipe).lines.zipWithIndex) {
@@ -27,7 +27,7 @@ abstract class PagedUsageHandler(val pages: Option[Array[String]]) extends IUsag
     }
   }
 
-  override def drawBackground(recipe: Int) {}
+  override def drawBackground(recipe: Int): Unit = {}
 
   override def getIngredientStacks(recipe: Int) = new util.ArrayList[PositionedStack]()
 
@@ -35,7 +35,7 @@ abstract class PagedUsageHandler(val pages: Option[Array[String]]) extends IUsag
 
   override def getResultStack(recipe: Int) = null
 
-  override def onUpdate() {}
+  override def onUpdate(): Unit = {}
 
   override def hasOverlay(gui: GuiContainer, container: Container, recipe: Int) = false
 

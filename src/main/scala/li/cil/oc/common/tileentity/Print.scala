@@ -11,7 +11,7 @@ import li.cil.oc.util.ExtendedAABB._
 import li.cil.oc.util.ExtendedNBT._
 import net.minecraft.nbt.NBTTagCompound
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 
 class Print extends traits.TileEntity with traits.RedstoneAware with traits.Rotatable {
   val data = new PrintData()

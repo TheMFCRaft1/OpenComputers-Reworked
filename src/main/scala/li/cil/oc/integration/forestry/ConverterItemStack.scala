@@ -7,7 +7,7 @@ import forestry.api.genetics.AlleleManager
 import li.cil.oc.api.driver.Converter
 import net.minecraft.item.ItemStack
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 object ConverterItemStack extends Converter {
   override def convert(value: scala.Any, output: util.Map[AnyRef, AnyRef]): Unit = value match {

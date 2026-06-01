@@ -7,7 +7,7 @@ import li.cil.oc.server.fs
 import net.minecraft.entity.player.EntityPlayer
 
 class DriveData extends ItemData(null) {
-  def this(stack: ItemStack) {
+  def this(stack: ItemStack): Unit = {
     this()
     load(stack)
   }
@@ -22,14 +22,14 @@ class DriveData extends ItemData(null) {
   private val UnmanagedKey = Settings.namespace + "unmanaged"
   private val LockKey = Settings.namespace + "lock"
 
-  override def load(nbt: NBTTagCompound) {
+  override def load(nbt: NBTTagCompound): Unit = {
     isUnmanaged = nbt.getBoolean(UnmanagedKey)
     lockInfo = if (nbt.hasKey(LockKey)) {
       nbt.getString(LockKey)
     } else ""
   }
 
-  override def save(nbt: NBTTagCompound) {
+  override def save(nbt: NBTTagCompound): Unit = {
     nbt.setBoolean(UnmanagedKey, isUnmanaged)
     nbt.setString(LockKey, lockInfo)
   }

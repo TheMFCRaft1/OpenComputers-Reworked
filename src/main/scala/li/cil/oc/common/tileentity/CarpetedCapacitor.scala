@@ -11,8 +11,8 @@ import net.minecraft.entity.passive.{EntityOcelot, EntitySheep}
 import net.minecraft.util.{AxisAlignedBB, DamageSource}
 import net.minecraftforge.common.util.ForgeDirection
 
-import scala.collection.convert.WrapAsJava._
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
+import scala.jdk.CollectionConverters._
 
 class CarpetedCapacitor extends Capacitor {
   private final lazy val deviceInfo = Map(
@@ -51,7 +51,7 @@ class CarpetedCapacitor extends Capacitor {
     power
   }
 
-  override def updateEntity() {
+  override def updateEntity(): Unit = {
     if (node != null && (world.getTotalWorldTime + hashCode) % 20 == 0) {
       val entities = world.getEntitiesWithinAABB(classOf[EntityLivingBase], capacitorPowerBounds)
         .map(_.asInstanceOf[EntityLivingBase])

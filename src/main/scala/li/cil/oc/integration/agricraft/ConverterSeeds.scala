@@ -6,7 +6,7 @@ import com.InfinityRaider.AgriCraft.api.v1.ISeedStats
 import li.cil.oc.api.driver.Converter
 import net.minecraft.item.ItemStack
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 object ConverterSeeds extends Converter {
   override def convert(value: scala.Any, output: util.Map[AnyRef, AnyRef]): Unit = {

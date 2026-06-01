@@ -10,7 +10,7 @@ object NetworkProfilingCommand extends SimpleCommand("oc_profileNetwork") {
 
   override def getCommandUsage(source: ICommandSender) = name + " <boolean>"
 
-  override def processCommand(source: ICommandSender, command: Array[String]) {
+  override def processCommand(source: ICommandSender, command: Array[String]): Unit = {
     PacketBuilder.isProfilingEnabled =
       if (command != null && command.length > 0)
         CommandBase.parseBoolean(source, command(0))

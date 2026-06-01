@@ -5,7 +5,7 @@ import java.util
 import li.cil.oc.api
 import net.minecraft.nbt._
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 object ConverterNBT extends api.driver.Converter {
   override def convert(value: AnyRef, output: util.Map[AnyRef, AnyRef]) =

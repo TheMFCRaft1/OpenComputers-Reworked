@@ -17,7 +17,7 @@ object Cable {
 
   private val plugSize = 6.0 / 16.0 / 2.0 - 10e-5
 
-  def render(world: IBlockAccess, x: Int, y: Int, z: Int, block: Block, renderer: RenderBlocks) {
+  def render(world: IBlockAccess, x: Int, y: Int, z: Int, block: Block, renderer: RenderBlocks): Unit = {
     // Center part.
     val bounds = AxisAlignedBB.getBoundingBox(-baseSize, -baseSize, -baseSize, baseSize, baseSize, baseSize)
     bounds.offset(0.5, 0.5, 0.5)
@@ -53,7 +53,7 @@ object Cable {
     }
   }
 
-  def render(stack: ItemStack, renderer: RenderBlocks) {
+  def render(stack: ItemStack, renderer: RenderBlocks): Unit = {
     val block = stack.getItem.asInstanceOf[ItemBlock].field_150939_a
     val metadata = 0
 
@@ -93,7 +93,7 @@ object Cable {
     tileEntity.isInstanceOf[TileMultipart]
   }
 
-  private def utilForTrickingTheRendererIntoUsingUnclampedTextureCoordinates(renderer: RenderBlocks, value: Int) {
+  private def utilForTrickingTheRendererIntoUsingUnclampedTextureCoordinates(renderer: RenderBlocks, value: Int): Unit = {
     renderer.uvRotateBottom = value
     renderer.uvRotateEast = value
     renderer.uvRotateNorth = value
@@ -102,7 +102,7 @@ object Cable {
     renderer.uvRotateWest = value
   }
 
-  private def setConnectedBounds(bounds: AxisAlignedBB, side: ForgeDirection) {
+  private def setConnectedBounds(bounds: AxisAlignedBB, side: ForgeDirection): Unit = {
     bounds.minX = math.min(bounds.minX, side.offsetX * 0.5)
     bounds.maxX = math.max(bounds.maxX, side.offsetX * 0.5)
     bounds.minY = math.min(bounds.minY, side.offsetY * 0.5)
@@ -111,7 +111,7 @@ object Cable {
     bounds.maxZ = math.max(bounds.maxZ, side.offsetZ * 0.5)
   }
 
-  private def setPlugBounds(bounds: AxisAlignedBB, side: ForgeDirection) {
+  private def setPlugBounds(bounds: AxisAlignedBB, side: ForgeDirection): Unit = {
     bounds.minX = math.max(math.min(bounds.minX + side.offsetX * 10.0 / 16.0, 7.0 / 16.0), -0.5 - 10e-5)
     bounds.maxX = math.min(math.max(bounds.maxX + side.offsetX * 10.0 / 16.0, -7.0 / 16.0), 0.5 + 10e-5)
     bounds.minY = math.max(math.min(bounds.minY + side.offsetY * 10.0 / 16.0, 7.0 / 16.0), -0.5 - 10e-5)
@@ -120,7 +120,7 @@ object Cable {
     bounds.maxZ = math.min(math.max(bounds.maxZ + side.offsetZ * 10.0 / 16.0, -7.0 / 16.0), 0.5 + 10e-5)
   }
 
-  private def setUnconnectedBounds(bounds: AxisAlignedBB, side: ForgeDirection) {
+  private def setUnconnectedBounds(bounds: AxisAlignedBB, side: ForgeDirection): Unit = {
     bounds.minX = math.max(bounds.minX, -plugSize)
     bounds.maxX = math.min(bounds.maxX, plugSize)
     bounds.minY = math.max(bounds.minY, -plugSize)

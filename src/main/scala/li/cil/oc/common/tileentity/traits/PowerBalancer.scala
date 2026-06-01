@@ -10,7 +10,7 @@ trait PowerBalancer extends PowerInformation with SidedEnvironment {
 
   protected def isConnected: Boolean
 
-  override def updateEntity() {
+  override def updateEntity(): Unit = {
     super.updateEntity()
     if (isServer && isConnected && world.getTotalWorldTime % Settings.get.tickFrequency == 0) {
       val nodes = connectors

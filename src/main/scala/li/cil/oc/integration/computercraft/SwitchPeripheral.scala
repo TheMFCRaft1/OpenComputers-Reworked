@@ -12,8 +12,8 @@ import li.cil.oc.common.tileentity.traits.SwitchLike
 import li.cil.oc.util.ResultWrapper._
 import net.minecraftforge.common.util.ForgeDirection
 
-import scala.collection.convert.WrapAsJava._
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 
 class SwitchPeripheral(val switch: SwitchLike) extends IPeripheral {
@@ -99,12 +99,12 @@ class SwitchPeripheral(val switch: SwitchLike) extends IPeripheral {
 
   override def getType = "modem"
 
-  override def attach(computer: IComputerAccess) {
+  override def attach(computer: IComputerAccess): Unit = {
     switch.computers += computer
     switch.openPorts += computer -> mutable.Set.empty
   }
 
-  override def detach(computer: IComputerAccess) {
+  override def detach(computer: IComputerAccess): Unit = {
     switch.computers -= computer
     switch.openPorts -= computer
   }

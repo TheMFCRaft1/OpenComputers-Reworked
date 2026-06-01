@@ -8,7 +8,7 @@ object EventHandlerTinkersConstruct {
   def isTinkerTool(stack: ItemStack) = stack.hasTagCompound && stack.getTagCompound.hasKey("InfiTool")
 
   @SubscribeEvent
-  def onRobotApplyDamageRate(e: RobotUsedToolEvent.ApplyDamageRate) {
+  def onRobotApplyDamageRate(e: RobotUsedToolEvent.ApplyDamageRate): Unit = {
     if (isTinkerTool(e.toolBeforeUse)) {
       val nbtBefore = e.toolBeforeUse.getTagCompound.getCompoundTag("InfiTool")
       val nbtAfter = e.toolAfterUse.getTagCompound.getCompoundTag("InfiTool")

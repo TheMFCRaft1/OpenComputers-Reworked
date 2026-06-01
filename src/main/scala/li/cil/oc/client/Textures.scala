@@ -130,7 +130,7 @@ object Textures {
     var iconOn: IIcon = _
   }
 
-  def init(tm: TextureManager) {
+  def init(tm: TextureManager): Unit = {
     tm.bindTexture(fontAntiAliased)
     tm.bindTexture(fontAliased)
 

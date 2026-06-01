@@ -23,7 +23,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.world.World
 import net.minecraftforge.common.util.ForgeDirection
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 object DriverExportBus extends driver.SidedBlock {
   override def worksWith(world: World, x: Int, y: Int, z: Int, side: ForgeDirection) =

@@ -7,7 +7,7 @@ import li.cil.oc.integration.Mods
 object ModGalacticraft extends ModProxy {
   override def getMod = Mods.Galacticraft
 
-  override def initialize() {
+  override def initialize(): Unit = {
     api.Driver.add(DriverWorldSensorCard)
 
     api.Driver.add(DriverWorldSensorCard.Provider)

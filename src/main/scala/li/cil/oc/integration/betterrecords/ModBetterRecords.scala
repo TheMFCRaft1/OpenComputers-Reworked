@@ -7,7 +7,7 @@ import li.cil.oc.integration.Mods
 object ModBetterRecords extends ModProxy {
   override def getMod = Mods.BetterRecords
 
-  override def initialize() {
+  override def initialize(): Unit = {
     Driver.add(ConverterRecord)
   }
 }

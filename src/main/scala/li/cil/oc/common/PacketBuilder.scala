@@ -21,17 +21,17 @@ import net.minecraft.world.{World, WorldServer}
 import net.minecraftforge.common.util.ForgeDirection
 import org.apache.logging.log4j.LogManager
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 abstract class PacketBuilder(stream: OutputStream) extends DataOutputStream(stream) {
-  def writeTileEntity(t: TileEntity) {
+  def writeTileEntity(t: TileEntity): Unit = {
     writeInt(t.getWorldObj.provider.dimensionId)
     writeInt(t.xCoord)
     writeInt(t.yCoord)
     writeInt(t.zCoord)
   }
 
-  def writeEntity(e: Entity) {
+  def writeEntity(e: Entity): Unit = {
     writeInt(e.worldObj.provider.dimensionId)
     writeInt(e.getEntityId)
   }
@@ -101,7 +101,7 @@ abstract class PacketBuilder(stream: OutputStream) extends DataOutputStream(stre
     }
   }
 
-  def sendToNearbyPlayers(world: World, x: Double, y: Double, z: Double, range: Option[Double]) {
+  def sendToNearbyPlayers(world: World, x: Double, y: Double, z: Double, range: Option[Double]): Unit = {
     val dimension = world.provider.dimensionId
     val server = FMLCommonHandler.instance.getMinecraftServerInstance
     val manager = server.getConfigurationManager

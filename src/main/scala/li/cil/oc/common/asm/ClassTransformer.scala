@@ -12,8 +12,8 @@ import org.objectweb.asm.Opcodes
 import org.objectweb.asm.tree._
 
 import scala.annotation.tailrec
-import scala.collection.convert.WrapAsJava._
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
+import scala.jdk.CollectionConverters._
 
 object ObfNames {
   final val Class_EntityHanging = Array("net/minecraft/entity/EntityHanging", "ss")
@@ -294,7 +294,7 @@ class ClassTransformer extends IClassTransformer {
     inject("onMessage", "(Lli/cil/oc/api/network/Message;)V")
 
     log.trace("Injecting / wrapping overrides for required tile entity methods.")
-    def replace(methodName: String, methodNameSrg: String, desc: String) {
+    def replace(methodName: String, methodNameSrg: String, desc: String): Unit = {
       val mapper = FMLDeobfuscatingRemapper.INSTANCE
       def filter(method: MethodNode) = {
         val descDeObf = mapper.mapMethodDesc(method.desc)
@@ -312,7 +312,7 @@ class ClassTransformer extends IClassTransformer {
           method.name = methodName + SimpleComponentImpl.PostFix
         case _ =>
           log.trace(s"No original implementation of '$methodName', will inject override.")
-          @tailrec def ensureNonFinalIn(name: String) {
+          @tailrec def ensureNonFinalIn(name: String): Unit = {
             if (name != null) {
               val node = classNodeFor(name)
               if (node != null) {

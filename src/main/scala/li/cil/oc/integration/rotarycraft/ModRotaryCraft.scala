@@ -7,7 +7,7 @@ import li.cil.oc.integration.Mods
 object ModRotaryCraft extends ModProxy {
   override def getMod = Mods.RotaryCraft
 
-  override def initialize() {
+  override def initialize(): Unit = {
     Driver.add(new ConverterJetpackItem)
     Driver.add(new ConverterPumpItem)
   }

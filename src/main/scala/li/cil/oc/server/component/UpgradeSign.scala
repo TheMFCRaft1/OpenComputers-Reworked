@@ -26,7 +26,7 @@ import net.minecraftforge.common.util.FakePlayerFactory
 import net.minecraftforge.common.util.ForgeDirection
 import net.minecraftforge.event.world.BlockEvent
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 
 abstract class UpgradeSign extends prefab.ManagedEnvironment with DeviceInfo {
   private final lazy val deviceInfo = Map(

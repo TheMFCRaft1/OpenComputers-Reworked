@@ -19,7 +19,7 @@ class Raid(playerInventory: InventoryPlayer, val raid: tileentity.Raid) extends 
       8, 46, 0x404040, width - 16)
   }
 
-  override def drawGuiContainerBackgroundLayer(dt: Float, mouseX: Int, mouseY: Int) {
+  override def drawGuiContainerBackgroundLayer(dt: Float, mouseX: Int, mouseY: Int): Unit = {
     GL11.glColor3f(1, 1, 1) // Required under Linux.
     mc.renderEngine.bindTexture(Textures.guiRaid)
     drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize)

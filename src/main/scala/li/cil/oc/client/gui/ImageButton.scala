@@ -23,7 +23,7 @@ class ImageButton(id: Int, x: Int, y: Int, w: Int, h: Int,
 
   var hoverOverride = false
 
-  override def drawButton(mc: Minecraft, mouseX: Int, mouseY: Int) {
+  override def drawButton(mc: Minecraft, mouseX: Int, mouseY: Int): Unit = {
     if (visible) {
       if (image != null) {
         mc.renderEngine.bindTexture(image)

@@ -27,22 +27,22 @@ object WirelessRedstoneSVE extends WirelessRedstoneSystem {
     case _: Throwable => None
   }
 
-  def removeTransmitter(rs: RedstoneWireless) {
+  def removeTransmitter(rs: RedstoneWireless): Unit = {
     val blockPos = BlockPosition(rs.redstone)
     ether.foreach(_.remTransmitter(rs.redstone.world, blockPos.x, blockPos.y, blockPos.z, rs.wirelessFrequency.toString))
   }
 
-  def addReceiver(rs: RedstoneWireless) {
+  def addReceiver(rs: RedstoneWireless): Unit = {
     val blockPos = BlockPosition(rs.redstone)
     ether.foreach(_.addReceiver(rs.redstone.world, blockPos.x, blockPos.y, blockPos.z, rs.wirelessFrequency.toString))
   }
 
-  def removeReceiver(rs: RedstoneWireless) {
+  def removeReceiver(rs: RedstoneWireless): Unit = {
     val blockPos = BlockPosition(rs.redstone)
     ether.foreach(_.remReceiver(rs.redstone.world, blockPos.x, blockPos.y, blockPos.z, rs.wirelessFrequency.toString))
   }
 
-  def updateOutput(rs: RedstoneWireless) {
+  def updateOutput(rs: RedstoneWireless): Unit = {
     val blockPos = BlockPosition(rs.redstone)
     ether.foreach(_.addTransmitter(rs.redstone.world, blockPos.x, blockPos.y, blockPos.z, rs.wirelessFrequency.toString))
     ether.foreach(_.setTransmitterState(rs.redstone.world, blockPos.x, blockPos.y, blockPos.z, rs.wirelessFrequency.toString, rs.wirelessOutput))

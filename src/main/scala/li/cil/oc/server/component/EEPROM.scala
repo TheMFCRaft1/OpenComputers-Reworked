@@ -16,7 +16,7 @@ import li.cil.oc.api.network._
 import li.cil.oc.api.prefab
 import net.minecraft.nbt.NBTTagCompound
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 
 class EEPROM extends prefab.ManagedEnvironment with DeviceInfo {
   override val node = Network.newNode(this, Visibility.Neighbors).
@@ -115,7 +115,7 @@ class EEPROM extends prefab.ManagedEnvironment with DeviceInfo {
 
   // ----------------------------------------------------------------------- //
 
-  override def load(nbt: NBTTagCompound) {
+  override def load(nbt: NBTTagCompound): Unit = {
     super.load(nbt)
     codeData = nbt.getByteArray(Settings.namespace + "eeprom")
     if (nbt.hasKey(Settings.namespace + "label")) {
@@ -125,7 +125,7 @@ class EEPROM extends prefab.ManagedEnvironment with DeviceInfo {
     volatileData = nbt.getByteArray(Settings.namespace + "userdata")
   }
 
-  override def save(nbt: NBTTagCompound) {
+  override def save(nbt: NBTTagCompound): Unit = {
     super.save(nbt)
     nbt.setByteArray(Settings.namespace + "eeprom", codeData)
     nbt.setString(Settings.namespace + "label", label)

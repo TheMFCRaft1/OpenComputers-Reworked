@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack
 
 object EventHandlerGregTech {
   @SubscribeEvent
-  def onRobotApplyDamageRate(e: RobotUsedToolEvent.ApplyDamageRate) {
+  def onRobotApplyDamageRate(e: RobotUsedToolEvent.ApplyDamageRate): Unit = {
     (e.toolBeforeUse.getItem, e.toolAfterUse.getItem) match {
       case (itemBefore: IDamagableItem, itemAfter: IDamagableItem) =>
         val damage = GT_MetaGenerated_Tool.getToolDamage(e.toolAfterUse) - GT_MetaGenerated_Tool.getToolDamage(e.toolBeforeUse)

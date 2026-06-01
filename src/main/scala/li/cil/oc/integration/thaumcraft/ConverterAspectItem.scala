@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack
 import thaumcraft.api.aspects.AspectList
 
 import java.util
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 object ConverterAspectItem extends Converter {
   override def convert(value: scala.Any, output: util.Map[AnyRef, AnyRef]): Unit = value match {

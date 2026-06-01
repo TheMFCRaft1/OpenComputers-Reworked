@@ -14,7 +14,7 @@ import net.minecraft.nbt.{NBTTagCompound, NBTTagList}
 import li.cil.oc.common.component
 import li.cil.oc.common.component.GpuTextBuffer
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 import scala.util.matching.Regex
 
 // IMPORTANT: usually methods with side effects should *not* be direct
@@ -535,7 +535,7 @@ class GraphicsCard(val tier: Int) extends prefab.ManagedEnvironment with DeviceI
 
   // ----------------------------------------------------------------------- //
 
-  override def onMessage(message: Message) {
+  override def onMessage(message: Message): Unit = {
     super.onMessage(message)
     if (node.isNeighborOf(message.source)) {
       if (message.name == "computer.stopped" || message.name == "computer.started") {
@@ -597,7 +597,7 @@ class GraphicsCard(val tier: Int) extends prefab.ManagedEnvironment with DeviceI
     }
   }
 
-  override def onDisconnect(node: Node) {
+  override def onDisconnect(node: Node): Unit = {
     super.onDisconnect(node)
     if (node == this.node || screenAddress.contains(node.address)) {
       screenAddress = None
@@ -615,7 +615,7 @@ class GraphicsCard(val tier: Int) extends prefab.ManagedEnvironment with DeviceI
   private final val NBT_PAGE_DATA: String = "page_data"
   private val COMPOUND_ID = (new NBTTagCompound).getId
 
-  override def load(nbt: NBTTagCompound) {
+  override def load(nbt: NBTTagCompound): Unit = {
     super.load(nbt)
 
     if (nbt.hasKey(SCREEN_KEY)) {
@@ -643,7 +643,7 @@ class GraphicsCard(val tier: Int) extends prefab.ManagedEnvironment with DeviceI
     }
   }
 
-  override def save(nbt: NBTTagCompound) {
+  override def save(nbt: NBTTagCompound): Unit = {
     super.save(nbt)
 
     if (screenAddress.isDefined) {

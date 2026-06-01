@@ -4,11 +4,11 @@ import com.InfinityRaider.AgriCraft.api.v1.ISeedStats
 import cpw.mods.fml.common.eventhandler.SubscribeEvent
 import li.cil.oc.api.event.GeolyzerEvent
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 object EventHandlerAgriCraft {
   @SubscribeEvent
-  def onGeolyzerAnalyze(e: GeolyzerEvent.Analyze) {
+  def onGeolyzerAnalyze(e: GeolyzerEvent.Analyze): Unit = {
     val world = e.host.world
 
     ApiHandler.Api.foreach(api => if (api.isCrops(world, e.x, e.y, e.z)) {

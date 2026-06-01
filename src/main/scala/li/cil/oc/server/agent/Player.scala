@@ -50,7 +50,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action
 import net.minecraftforge.event.world.BlockEvent
 import net.minecraftforge.fluids.FluidRegistry
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 import scala.reflect.ClassTag
 import scala.reflect.classTag
 
@@ -76,7 +76,7 @@ object Player {
     }
   }
 
-  def updatePositionAndRotation(player: Player, facing: ForgeDirection, side: ForgeDirection) {
+  def updatePositionAndRotation(player: Player, facing: ForgeDirection, side: ForgeDirection): Unit = {
     player.facing = facing
     player.side = side
     val direction = Vec3.createVectorHelper(
@@ -184,7 +184,7 @@ class Player(val agent: internal.Agent) extends FakePlayer(agent.world.asInstanc
     world.getEntitiesWithinAABB(classOf[EntityItem], BlockPosition(agent).bounds.expand(2, 2, 2)).map(_.asInstanceOf[EntityItem])
   }
 
-  private def collectDroppedItems(itemsBefore: Iterable[EntityItem]) {
+  private def collectDroppedItems(itemsBefore: Iterable[EntityItem]): Unit = {
     val itemsAfter = adjacentItems
     val itemsDropped = itemsAfter -- itemsBefore
     if (itemsDropped.nonEmpty) {
@@ -197,7 +197,7 @@ class Player(val agent: internal.Agent) extends FakePlayer(agent.world.asInstanc
 
   // ----------------------------------------------------------------------- //
 
-  override def attackTargetEntityWithCurrentItem(entity: Entity) {
+  override def attackTargetEntityWithCurrentItem(entity: Entity): Unit = {
     callUsingItemInSlot(agent.equipmentInventory, 0, stack => entity match {
       case player: EntityPlayer if !canAttackPlayer(player) => // Avoid player damage.
       case _ =>
@@ -480,7 +480,7 @@ class Player(val agent: internal.Agent) extends FakePlayer(agent.world.asInstanc
     }
   }
 
-  private def tryRepair(stack: ItemStack, oldStack: ItemStack) {
+  private def tryRepair(stack: ItemStack, oldStack: ItemStack): Unit = {
     // Only if the underlying type didn't change.
     if (stack != null && oldStack != null && stack.getItem == oldStack.getItem) {
       val damageRate = new RobotUsedToolEvent.ComputeDamageRate(agent, oldStack, stack, Settings.get.itemDamageRate)
@@ -521,17 +521,17 @@ class Player(val agent: internal.Agent) extends FakePlayer(agent.world.asInstanc
 
   // ----------------------------------------------------------------------- //
 
-  override def setItemInUse(stack: ItemStack, useDuration: Int) {
+  override def setItemInUse(stack: ItemStack, useDuration: Int): Unit = {
     super.setItemInUse(stack, useDuration)
     customItemInUseBecauseMinecraftIsBloodyStupidAndMakesRandomMethodsClientSided = stack
   }
 
-  override def clearItemInUse() {
+  override def clearItemInUse(): Unit = {
     super.clearItemInUse()
     customItemInUseBecauseMinecraftIsBloodyStupidAndMakesRandomMethodsClientSided = null
   }
 
-  override def addExhaustion(amount: Float) {
+  override def addExhaustion(amount: Float): Unit = {
     if (Settings.get.robotExhaustionCost > 0) {
       agent.machine.node match {
         case connector: Connector => connector.changeBuffer(-Settings.get.robotExhaustionCost * amount)
@@ -541,13 +541,13 @@ class Player(val agent: internal.Agent) extends FakePlayer(agent.world.asInstanc
     MinecraftForge.EVENT_BUS.post(new RobotExhaustionEvent(agent, amount))
   }
 
-  override def displayGUIMerchant(merchant: IMerchant, name: String) {
+  override def displayGUIMerchant(merchant: IMerchant, name: String): Unit = {
     merchant.setCustomer(null)
   }
 
-  override def closeScreen() {}
+  override def closeScreen(): Unit = {}
 
-  override def swingItem() {}
+  override def swingItem(): Unit = {}
 
   override def canCommandSenderUseCommand(level: Int, command: String): Boolean = {
     ("seed" == command && !mcServer.isDedicatedServer) ||
@@ -574,15 +574,15 @@ class Player(val agent: internal.Agent) extends FakePlayer(agent.world.asInstanc
 
   override def attackEntityFrom(source: DamageSource, damage: Float) = false
 
-  override def heal(amount: Float) {}
+  override def heal(amount: Float): Unit = {}
 
-  override def setHealth(value: Float) {}
+  override def setHealth(value: Float): Unit = {}
 
   override def setDead() = isDead = true
 
-  override def onLivingUpdate() {}
+  override def onLivingUpdate(): Unit = {}
 
-  override def onItemPickup(entity: Entity, count: Int) {}
+  override def onItemPickup(entity: Entity, count: Int): Unit = {}
 
   override def setCurrentItemOrArmor(slot: Int, stack: ItemStack): Unit = {
     if (slot == 0 && agent.equipmentInventory.getSizeInventory > 0) {
@@ -591,37 +591,37 @@ class Player(val agent: internal.Agent) extends FakePlayer(agent.world.asInstanc
     // else: armor slots, which are unsupported in agents.
   }
 
-  override def setRevengeTarget(entity: EntityLivingBase) {}
+  override def setRevengeTarget(entity: EntityLivingBase): Unit = {}
 
-  override def setLastAttacker(entity: Entity) {}
+  override def setLastAttacker(entity: Entity): Unit = {}
 
-  override def mountEntity(entity: Entity) {}
+  override def mountEntity(entity: Entity): Unit = {}
 
   override def sleepInBedAt(x: Int, y: Int, z: Int) = EnumStatus.OTHER_PROBLEM
 
-  override def addChatMessage(message: IChatComponent) {}
+  override def addChatMessage(message: IChatComponent): Unit = {}
 
-  override def displayGUIWorkbench(x: Int, y: Int, z: Int) {}
+  override def displayGUIWorkbench(x: Int, y: Int, z: Int): Unit = {}
 
-  override def displayGUIEnchantment(x: Int, y: Int, z: Int, idk: String) {}
+  override def displayGUIEnchantment(x: Int, y: Int, z: Int, idk: String): Unit = {}
 
-  override def displayGUIAnvil(x: Int, y: Int, z: Int) {}
+  override def displayGUIAnvil(x: Int, y: Int, z: Int): Unit = {}
 
-  override def displayGUIChest(inventory: IInventory) {}
+  override def displayGUIChest(inventory: IInventory): Unit = {}
 
-  override def displayGUIHopperMinecart(cart: EntityMinecartHopper) {}
+  override def displayGUIHopperMinecart(cart: EntityMinecartHopper): Unit = {}
 
-  override def displayGUIHorse(horse: EntityHorse, inventory: IInventory) {}
+  override def displayGUIHorse(horse: EntityHorse, inventory: IInventory): Unit = {}
 
-  override def func_146104_a(tileEntity: TileEntityBeacon) {}
+  override def func_146104_a(tileEntity: TileEntityBeacon): Unit = {}
 
-  override def func_146098_a(tileEntity: TileEntityBrewingStand) {}
+  override def func_146098_a(tileEntity: TileEntityBrewingStand): Unit = {}
 
-  override def func_146102_a(tileEntity: TileEntityDispenser) {}
+  override def func_146102_a(tileEntity: TileEntityDispenser): Unit = {}
 
-  override def func_146101_a(tileEntity: TileEntityFurnace) {}
+  override def func_146101_a(tileEntity: TileEntityFurnace): Unit = {}
 
-  override def func_146093_a(tileEntity: TileEntityHopper) {}
+  override def func_146093_a(tileEntity: TileEntityHopper): Unit = {}
 
   // ----------------------------------------------------------------------- //
 

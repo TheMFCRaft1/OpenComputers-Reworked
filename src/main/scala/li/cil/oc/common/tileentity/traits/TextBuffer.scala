@@ -21,7 +21,7 @@ trait TextBuffer extends Environment {
 
   def tier: Int
 
-  override def updateEntity() {
+  override def updateEntity(): Unit = {
     super.updateEntity()
     if (isClient || isConnected) {
       buffer.update()
@@ -41,12 +41,12 @@ trait TextBuffer extends Environment {
   }
 
   @SideOnly(Side.CLIENT)
-  override def readFromNBTForClient(nbt: NBTTagCompound) {
+  override def readFromNBTForClient(nbt: NBTTagCompound): Unit = {
     super.readFromNBTForClient(nbt)
     buffer.load(nbt)
   }
 
-  override def writeToNBTForClient(nbt: NBTTagCompound) {
+  override def writeToNBTForClient(nbt: NBTTagCompound): Unit = {
     super.writeToNBTForClient(nbt)
     buffer.save(nbt)
   }

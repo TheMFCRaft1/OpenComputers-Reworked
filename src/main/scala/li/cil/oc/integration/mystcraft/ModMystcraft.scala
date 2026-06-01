@@ -7,7 +7,7 @@ import li.cil.oc.integration.Mods
 object ModMystcraft extends ModProxy {
   override def getMod = Mods.Mystcraft
 
-  override def initialize() {
+  override def initialize(): Unit = {
     Driver.add(new ConverterAgebook)
     Driver.add(new ConverterLinkbook)
     Driver.add(new ConverterPage)

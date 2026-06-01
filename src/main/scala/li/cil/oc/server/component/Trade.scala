@@ -18,7 +18,7 @@ import net.minecraft.village.MerchantRecipe
 import net.minecraftforge.common.DimensionManager
 import net.minecraftforge.common.util.ForgeDirection
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 import scala.ref.WeakReference
 
 class Trade(val info: TradeInfo) extends AbstractValue {

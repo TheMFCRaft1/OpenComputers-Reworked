@@ -9,7 +9,7 @@ import net.minecraftforge.common.MinecraftForge
 object ModTinkersConstruct extends ModProxy {
   override def getMod = Mods.TinkersConstruct
 
-  override def initialize() {
+  override def initialize(): Unit = {
     api.IMC.registerToolDurabilityProvider("li.cil.oc.integration.tcon.EventHandlerTinkersConstruct.getDurability")
 
     MinecraftForge.EVENT_BUS.register(EventHandlerTinkersConstruct)

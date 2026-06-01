@@ -6,7 +6,7 @@ import li.cil.oc.api.manual.InteractiveImageRenderer
 import li.cil.oc.client.Textures
 import net.minecraftforge.oredict.OreDictionary
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 object OreDictImageProvider extends ImageProvider {
   override def getImage(data: String): ImageRenderer = {

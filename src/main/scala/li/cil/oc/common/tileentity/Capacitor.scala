@@ -12,7 +12,7 @@ import li.cil.oc.api.network.Node
 import li.cil.oc.api.network.Visibility
 import net.minecraftforge.common.util.ForgeDirection
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 
 class Capacitor extends traits.Environment with DeviceInfo {
   // Start with maximum theoretical capacity, gets reduced after validation.
@@ -35,7 +35,7 @@ class Capacitor extends traits.Environment with DeviceInfo {
 
   override def canUpdate = false
 
-  override def dispose() {
+  override def dispose(): Unit = {
     super.dispose()
     if (isServer) {
       indirectNeighbors.map(coordinate => {
@@ -48,7 +48,7 @@ class Capacitor extends traits.Environment with DeviceInfo {
     }
   }
 
-  override def onConnect(node: Node) {
+  override def onConnect(node: Node): Unit = {
     super.onConnect(node)
     if (node == this.node) {
       recomputeCapacity(updateSecondGradeNeighbors = true)

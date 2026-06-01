@@ -12,7 +12,7 @@ import li.cil.oc.common.tileentity.Print
 import net.minecraft.world.World
 
 object MultipartConverter extends IPartConverter {
-  def init() {
+  def init(): Unit = {
     MultiPartRegistry.registerConverter(this)
   }
 

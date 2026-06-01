@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 
 abstract class ItemData(val itemName: String) extends Persistable {
-  def load(stack: ItemStack) {
+  def load(stack: ItemStack): Unit = {
     if (stack.hasTagCompound) {
       // Because ItemStack's load function doesn't copy the compound tag,
       // but keeps it as is, leading to oh so fun bugs!
@@ -14,7 +14,7 @@ abstract class ItemData(val itemName: String) extends Persistable {
     }
   }
 
-  def save(stack: ItemStack) {
+  def save(stack: ItemStack): Unit = {
     if (!stack.hasTagCompound) {
       stack.setTagCompound(new NBTTagCompound())
     }

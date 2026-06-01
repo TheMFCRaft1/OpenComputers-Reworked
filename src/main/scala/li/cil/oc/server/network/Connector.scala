@@ -84,7 +84,7 @@ trait Connector extends network.Connector with Node {
     }
   }
 
-  def setLocalBufferSize(size: Double) {
+  def setLocalBufferSize(size: Double): Unit = {
     val clampedSize = math.max(size, 0)
     this.synchronized(distributor match {
       case Some(d) => d.synchronized {
@@ -109,7 +109,7 @@ trait Connector extends network.Connector with Node {
 
   // ----------------------------------------------------------------------- //
 
-  override def onDisconnect(node: ImmutableNode) {
+  override def onDisconnect(node: ImmutableNode): Unit = {
     super.onDisconnect(node)
     if (node == this) {
       this.synchronized(distributor = None)
@@ -118,12 +118,12 @@ trait Connector extends network.Connector with Node {
 
   // ----------------------------------------------------------------------- //
 
-  override def load(nbt: NBTTagCompound) {
+  override def load(nbt: NBTTagCompound): Unit = {
     super.load(nbt)
     localBuffer = nbt.getDouble("buffer")
   }
 
-  override def save(nbt: NBTTagCompound) {
+  override def save(nbt: NBTTagCompound): Unit = {
     super.save(nbt)
     nbt.setDouble("buffer", math.min(localBuffer, localBufferSize))
   }

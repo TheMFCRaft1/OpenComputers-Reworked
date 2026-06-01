@@ -8,21 +8,21 @@ import net.minecraft.util.Vec3
 import net.minecraftforge.event.world.ChunkEvent
 import net.minecraftforge.event.world.WorldEvent
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 
 object WirelessNetwork {
   val dimensions = mutable.Map.empty[Int, RTree[WirelessEndpoint]]
 
   @SubscribeEvent
-  def onWorldUnload(e: WorldEvent.Unload) {
+  def onWorldUnload(e: WorldEvent.Unload): Unit = {
     if (!e.world.isRemote) {
       dimensions.remove(e.world.provider.dimensionId)
     }
   }
 
   @SubscribeEvent
-  def onWorldLoad(e: WorldEvent.Load) {
+  def onWorldLoad(e: WorldEvent.Load): Unit = {
     if (!e.world.isRemote) {
       dimensions.remove(e.world.provider.dimensionId)
     }
@@ -30,18 +30,18 @@ object WirelessNetwork {
 
   // Safety clean up, in case some tile entities didn't properly leave the net.
   @SubscribeEvent
-  def onChunkUnload(e: ChunkEvent.Unload) {
+  def onChunkUnload(e: ChunkEvent.Unload): Unit = {
     e.getChunk.chunkTileEntityMap.values.foreach {
       case endpoint: WirelessEndpoint => remove(endpoint)
       case _ =>
     }
   }
 
-  def add(endpoint: WirelessEndpoint) {
+  def add(endpoint: WirelessEndpoint): Unit = {
     dimensions.getOrElseUpdate(dimension(endpoint), new RTree[WirelessEndpoint](Settings.get.rTreeMaxEntries)((endpoint) => (endpoint.x + 0.5, endpoint.y + 0.5, endpoint.z + 0.5))).add(endpoint)
   }
 
-  def update(endpoint: WirelessEndpoint) {
+  def update(endpoint: WirelessEndpoint): Unit = {
     dimensions.get(dimension(endpoint)) match {
       case Some(tree) =>
         tree(endpoint) match {

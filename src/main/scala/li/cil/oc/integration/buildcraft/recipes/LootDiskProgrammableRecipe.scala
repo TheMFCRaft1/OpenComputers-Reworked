@@ -12,7 +12,7 @@ import li.cil.oc.common.Loot
 import li.cil.oc.integration.util.Power
 import net.minecraft.item.ItemStack
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 
 object LootDiskProgrammableRecipe extends IProgrammingRecipe {

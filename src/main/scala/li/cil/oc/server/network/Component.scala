@@ -14,8 +14,8 @@ import li.cil.oc.server.machine.Machine
 import li.cil.oc.util.SideTracker
 import net.minecraft.nbt.NBTTagCompound
 
-import scala.collection.convert.WrapAsJava._
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
+import scala.jdk.CollectionConverters._
 
 trait Component extends network.Component with Node {
   val name: String
@@ -119,14 +119,14 @@ trait Component extends network.Component with Node {
 
   // ----------------------------------------------------------------------- //
 
-  override def load(nbt: NBTTagCompound) {
+  override def load(nbt: NBTTagCompound): Unit = {
     super.load(nbt)
     if (nbt.hasKey("visibility")) {
       _visibility = Visibility.values()(nbt.getInteger("visibility"))
     }
   }
 
-  override def save(nbt: NBTTagCompound) {
+  override def save(nbt: NBTTagCompound): Unit = {
     super.save(nbt)
     nbt.setInteger("visibility", _visibility.ordinal())
   }

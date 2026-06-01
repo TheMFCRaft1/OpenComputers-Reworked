@@ -57,9 +57,9 @@ trait Delegate {
 
   def onEaten(stack: ItemStack, world: World, player: EntityPlayer): ItemStack = stack
 
-  def onPlayerStoppedUsing(stack: ItemStack, player: EntityPlayer, duration: Int) {}
+  def onPlayerStoppedUsing(stack: ItemStack, player: EntityPlayer, duration: Int): Unit = {}
 
-  def update(stack: ItemStack, world: World, player: Entity, slot: Int, selected: Boolean) {}
+  def update(stack: ItemStack, world: World, player: Entity, slot: Int, selected: Boolean): Unit = {}
 
   // ----------------------------------------------------------------------- //
 
@@ -80,7 +80,7 @@ trait Delegate {
   def displayName(stack: ItemStack): Option[String] = None
 
   @SideOnly(Side.CLIENT)
-  def tooltipLines(stack: ItemStack, player: EntityPlayer, tooltip: java.util.List[String], advanced: Boolean) {
+  def tooltipLines(stack: ItemStack, player: EntityPlayer, tooltip: java.util.List[String], advanced: Boolean): Unit = {
     if (tooltipName.isDefined) {
       tooltip.addAll(Tooltip.get(tooltipName.get, tooltipData: _*))
       tooltipExtended(stack, tooltip)
@@ -89,9 +89,9 @@ trait Delegate {
   }
 
   // For stuff that goes to the normal 'extended' tooltip, before the costs.
-  protected def tooltipExtended(stack: ItemStack, tooltip: java.util.List[String]) {}
+  protected def tooltipExtended(stack: ItemStack, tooltip: java.util.List[String]): Unit = {}
 
-  protected def tooltipCosts(stack: ItemStack, tooltip: java.util.List[String]) {
+  protected def tooltipCosts(stack: ItemStack, tooltip: java.util.List[String]): Unit = {
     if (ItemCosts.hasCosts(stack)) {
       if (KeyBindings.showMaterialCosts) {
         ItemCosts.addTooltip(stack, tooltip.asInstanceOf[util.List[String]])
@@ -126,7 +126,7 @@ trait Delegate {
   def icon(stack: ItemStack, pass: Int): Option[Icon] = icon
 
   @SideOnly(Side.CLIENT)
-  def registerIcons(iconRegister: IconRegister) {
+  def registerIcons(iconRegister: IconRegister): Unit = {
     icon = iconRegister.registerIcon(Settings.resourceDomain + ":" + unlocalizedName)
   }
 

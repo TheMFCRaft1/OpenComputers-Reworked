@@ -9,7 +9,7 @@ import li.cil.oc.integration.Mods
 object ModDeepStorageUnit extends ModProxy {
   override def getMod = Mods.DeepStorageUnit
 
-  override def initialize() {
+  override def initialize(): Unit = {
     Driver.add(DriverDeepStorageUnit)
   }
 }

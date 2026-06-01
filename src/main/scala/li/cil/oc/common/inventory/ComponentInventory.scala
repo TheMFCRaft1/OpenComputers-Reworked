@@ -13,7 +13,7 @@ import li.cil.oc.integration.opencomputers.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 
 trait ComponentInventory extends Inventory with network.Environment {
@@ -35,7 +35,7 @@ trait ComponentInventory extends Inventory with network.Environment {
 
   // ----------------------------------------------------------------------- //
 
-  def updateComponents() {
+  def updateComponents(): Unit = {
     if (updatingComponents.nonEmpty) {
       var i = 0
       // ArrayBuffer.foreach caches the size for performance reasons, but that
@@ -52,7 +52,7 @@ trait ComponentInventory extends Inventory with network.Environment {
 
   // ----------------------------------------------------------------------- //
 
-  def connectComponents() {
+  def connectComponents(): Unit = {
     for (slot <- 0 until getSizeInventory if slot >= 0 && slot < components.length) {
       val stack = getStackInSlot(slot)
       if (stack != null && components(slot).isEmpty && isComponentSlot(slot, stack)) {
@@ -88,7 +88,7 @@ trait ComponentInventory extends Inventory with network.Environment {
     }
   }
 
-  def disconnectComponents() {
+  def disconnectComponents(): Unit = {
     components collect {
       case Some(component) =>
         applyLifecycleState(component, Lifecycle.LifecycleState.Disposing)
@@ -104,7 +104,7 @@ trait ComponentInventory extends Inventory with network.Environment {
     super.save(nbt) // Save items after updating their tags.
   }
 
-  def saveComponents() {
+  def saveComponents(): Unit = {
     for (slot <- 0 until getSizeInventory) {
       val stack = getStackInSlot(slot)
       if (stack != null) {
@@ -180,7 +180,7 @@ trait ComponentInventory extends Inventory with network.Environment {
 
   def isComponentSlot(slot: Int, stack: ItemStack) = true
 
-  protected def connectItemNode(node: Node) {
+  protected def connectItemNode(node: Node): Unit = {
     if (this.node != null && node != null) {
       this.node.connect(node)
     }

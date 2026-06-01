@@ -6,5 +6,5 @@ import net.minecraft.network.NetworkManager
 import net.minecraft.network.Packet
 
 object FakeNetworkManager extends NetworkManager(false) {
-  override def scheduleOutboundPacket(packet: Packet, listener: GenericFutureListener[_ <: Future[_]]*) {}
+  override def scheduleOutboundPacket(packet: Packet, listener: GenericFutureListener[_ <: Future[_]]*): Unit = {}
 }

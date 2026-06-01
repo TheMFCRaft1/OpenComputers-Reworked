@@ -32,7 +32,7 @@ import net.minecraftforge.common.util.ForgeDirection
 import org.lwjgl.opengl.GL11
 import org.lwjgl.opengl.GL12
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 
 object RobotRenderer extends TileEntitySpecialRenderer {
@@ -58,12 +58,12 @@ object RobotRenderer extends TileEntitySpecialRenderer {
   private val gt = 0.5f + gap
   private val gb = 0.5f - gap
 
-  private def normal(v: Vec3) {
+  private def normal(v: Vec3): Unit = {
     val n = v.normalize()
     GL11.glNormal3f(n.xCoord.toFloat, n.yCoord.toFloat, n.zCoord.toFloat)
   }
 
-  def compileList() {
+  def compileList(): Unit = {
     val t = Tessellator.instance
 
     val size = 0.4f
@@ -135,7 +135,7 @@ object RobotRenderer extends TileEntitySpecialRenderer {
 
   compileList()
 
-  def resetMountPoints(running: Boolean) {
+  def resetMountPoints(running: Boolean): Unit = {
     val offset = if (running) 0 else -0.06f
 
     // Left top.
@@ -276,7 +276,7 @@ object RobotRenderer extends TileEntitySpecialRenderer {
     }
   }
 
-  override def renderTileEntityAt(entity: TileEntity, x: Double, y: Double, z: Double, f: Float) {
+  override def renderTileEntityAt(entity: TileEntity, x: Double, y: Double, z: Double, f: Float): Unit = {
     RenderState.checkError(getClass.getName + ".renderTileEntityAt: entering (aka: wasntme)")
 
     val proxy = entity.asInstanceOf[tileentity.RobotProxy]

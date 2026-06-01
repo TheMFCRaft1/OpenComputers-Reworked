@@ -15,7 +15,7 @@ object Icons {
   private val byTier = mutable.Map.empty[Int, IIcon]
 
   @SubscribeEvent
-  def onItemIconRegister(e: TextureStitchEvent) {
+  def onItemIconRegister(e: TextureStitchEvent): Unit = {
     val iconRegister = e.map
     if (iconRegister.getTextureType == 1) {
       for (name <- Slot.All) {

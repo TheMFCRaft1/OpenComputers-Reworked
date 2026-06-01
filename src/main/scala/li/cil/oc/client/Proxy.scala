@@ -33,7 +33,7 @@ import net.minecraftforge.common.MinecraftForge
 import org.lwjgl.opengl.GLContext
 
 private[oc] class Proxy extends CommonProxy {
-  override def preInit(e: FMLPreInitializationEvent) {
+  override def preInit(e: FMLPreInitializationEvent): Unit = {
     super.preInit(e)
 
     api.API.manual = client.Manual
@@ -43,7 +43,7 @@ private[oc] class Proxy extends CommonProxy {
     MinecraftForge.EVENT_BUS.register(gui.Icons)
   }
 
-  override def init(e: FMLInitializationEvent) {
+  override def init(e: FMLInitializationEvent): Unit = {
     super.init(e)
 
     OpenComputers.channel.register(client.PacketHandler)

@@ -23,7 +23,7 @@ class Switch extends traits.SwitchLike with traits.NotAnalyzable with traits.Com
 
   // ----------------------------------------------------------------------- //
 
-  protected def queueMessage(source: String, destination: String, port: Int, answerPort: Int, args: Array[AnyRef]) {
+  protected def queueMessage(source: String, destination: String, port: Int, answerPort: Int, args: Array[AnyRef]): Unit = {
     for (computer <- computers.map(_.asInstanceOf[IComputerAccess])) {
       val address = s"cc${computer.getID}_${computer.getAttachmentName}"
       if (source != address && Option(destination).forall(_ == address) && openPorts(computer).contains(port))
@@ -46,19 +46,19 @@ class Switch extends traits.SwitchLike with traits.NotAnalyzable with traits.Com
     super.tryEnqueuePacket(sourceSide, packet)
   }
 
-  override protected def relayPacket(sourceSide: Option[ForgeDirection], packet: Packet) {
+  override protected def relayPacket(sourceSide: Option[ForgeDirection], packet: Packet): Unit = {
     super.relayPacket(sourceSide, packet)
     onSwitchActivity()
   }
 
   // ----------------------------------------------------------------------- //
 
-  override protected def onItemAdded(slot: Int, stack: ItemStack) {
+  override protected def onItemAdded(slot: Int, stack: ItemStack): Unit = {
     super.onItemAdded(slot, stack)
     updateLimits(slot, stack)
   }
 
-  private def updateLimits(slot: Int, stack: ItemStack) {
+  private def updateLimits(slot: Int, stack: ItemStack): Unit = {
     Option(Driver.driverFor(stack, getClass)) match {
       case Some(driver) if driver.slot(stack) == Slot.CPU =>
         relayDelay = math.max(1, relayBaseDelay - ((driver.tier(stack) + 1) * relayDelayPerUpgrade).toInt)
@@ -73,7 +73,7 @@ class Switch extends traits.SwitchLike with traits.NotAnalyzable with traits.Com
     }
   }
 
-  override protected def onItemRemoved(slot: Int, stack: ItemStack) {
+  override protected def onItemRemoved(slot: Int, stack: ItemStack): Unit = {
     super.onItemRemoved(slot, stack)
     Driver.driverFor(stack, getClass) match {
       case driver if driver.slot(stack) == Slot.CPU => relayDelay = relayBaseDelay
@@ -92,7 +92,7 @@ class Switch extends traits.SwitchLike with traits.NotAnalyzable with traits.Com
 
   // ----------------------------------------------------------------------- //
 
-  override def readFromNBTForServer(nbt: NBTTagCompound) {
+  override def readFromNBTForServer(nbt: NBTTagCompound): Unit = {
     super.readFromNBTForServer(nbt)
     for (slot <- items.indices) items(slot) collect {
       case stack => updateLimits(slot, stack)

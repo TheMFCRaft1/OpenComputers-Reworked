@@ -275,7 +275,7 @@ class Robot extends traits.Computer with traits.PowerInformation with IFluidHand
     ServerPacketSender.sendRobotAnimateTurn(this)
   }
 
-  def setAnimateMove(fromPosition: BlockPosition, ticks: Int) {
+  def setAnimateMove(fromPosition: BlockPosition, ticks: Int): Unit = {
     animationTicksTotal = ticks + 2
     prepareForAnimation()
     moveFromX = fromPosition.x
@@ -283,19 +283,19 @@ class Robot extends traits.Computer with traits.PowerInformation with IFluidHand
     moveFromZ = fromPosition.z
   }
 
-  def setAnimateSwing(ticks: Int) {
+  def setAnimateSwing(ticks: Int): Unit = {
     animationTicksTotal = math.max(ticks, 5)
     prepareForAnimation()
     swingingTool = true
   }
 
-  def setAnimateTurn(axis: Int, ticks: Int) {
+  def setAnimateTurn(axis: Int, ticks: Int): Unit = {
     animationTicksTotal = ticks
     prepareForAnimation()
     turnAxis = axis
   }
 
-  private def prepareForAnimation() {
+  private def prepareForAnimation(): Unit = {
     animationTicksLeft = animationTicksTotal
     moveFromX = Int.MaxValue
     moveFromY = Int.MaxValue
@@ -313,7 +313,7 @@ class Robot extends traits.Computer with traits.PowerInformation with IFluidHand
 
   // ----------------------------------------------------------------------- //
 
-  override def updateEntity() {
+  override def updateEntity(): Unit = {
     if (animationTicksLeft > 0) {
       animationTicksLeft -= 1
       if (animationTicksLeft == 0) {
@@ -368,7 +368,7 @@ class Robot extends traits.Computer with traits.PowerInformation with IFluidHand
     else EventHandler.onRobotStopped(this)
   }
 
-  override protected def initialize() {
+  override protected def initialize(): Unit = {
     if (isServer) {
       // Ensure we have a node address, because the proxy needs this to initialize
       // its own node to the same address ours has.
@@ -376,7 +376,7 @@ class Robot extends traits.Computer with traits.PowerInformation with IFluidHand
     }
   }
 
-  override def dispose() {
+  override def dispose(): Unit = {
     super.dispose()
     if (isClient) {
       Minecraft.getMinecraft.currentScreen match {
@@ -390,7 +390,7 @@ class Robot extends traits.Computer with traits.PowerInformation with IFluidHand
 
   // ----------------------------------------------------------------------- //
 
-  override def readFromNBTForServer(nbt: NBTTagCompound) {
+  override def readFromNBTForServer(nbt: NBTTagCompound): Unit = {
     updateInventorySize()
     machine.onHostChanged()
 
@@ -445,7 +445,7 @@ class Robot extends traits.Computer with traits.PowerInformation with IFluidHand
   }
 
   @SideOnly(Side.CLIENT)
-  override def readFromNBTForClient(nbt: NBTTagCompound) {
+  override def readFromNBTForClient(nbt: NBTTagCompound): Unit = {
     super.readFromNBTForClient(nbt)
     load(nbt)
     info.load(nbt)
@@ -484,7 +484,7 @@ class Robot extends traits.Computer with traits.PowerInformation with IFluidHand
 
   // ----------------------------------------------------------------------- //
 
-  override def onMachineConnect(node: Node) {
+  override def onMachineConnect(node: Node): Unit = {
     super.onConnect(node)
     if (node == this.node) {
       node.connect(bot.node)
@@ -492,7 +492,7 @@ class Robot extends traits.Computer with traits.PowerInformation with IFluidHand
     }
   }
 
-  override def onMachineDisconnect(node: Node) {
+  override def onMachineDisconnect(node: Node): Unit = {
     super.onDisconnect(node)
     if (node == this.node) {
       node.remove()
@@ -505,7 +505,7 @@ class Robot extends traits.Computer with traits.PowerInformation with IFluidHand
 
   // ----------------------------------------------------------------------- //
 
-  override protected def onItemAdded(slot: Int, stack: ItemStack) {
+  override protected def onItemAdded(slot: Int, stack: ItemStack): Unit = {
     if (isServer) {
       if (isToolSlot(slot)) {
         player_.getAttributeMap.applyAttributeModifiers(stack.getAttributeModifiers)
@@ -528,7 +528,7 @@ class Robot extends traits.Computer with traits.PowerInformation with IFluidHand
     else super.onItemAdded(slot, stack)
   }
 
-  override protected def onItemRemoved(slot: Int, stack: ItemStack) {
+  override protected def onItemRemoved(slot: Int, stack: ItemStack): Unit = {
     super.onItemRemoved(slot, stack)
     if (isServer) {
       if (isToolSlot(slot)) {
@@ -550,7 +550,7 @@ class Robot extends traits.Computer with traits.PowerInformation with IFluidHand
     }
   }
 
-  override def markDirty() {
+  override def markDirty(): Unit = {
     super.markDirty()
     // Avoid getting into a bad state on the client when updating before we
     // got the descriptor packet from the server. If we manage to open the
@@ -569,7 +569,7 @@ class Robot extends traits.Computer with traits.PowerInformation with IFluidHand
     renderingErrored = false
   }
 
-  override protected def connectItemNode(node: Node) {
+  override protected def connectItemNode(node: Node): Unit = {
     super.connectItemNode(node)
     if (node != null) node.host match {
       case buffer: api.internal.TextBuffer =>
@@ -689,7 +689,7 @@ class Robot extends traits.Computer with traits.PowerInformation with IFluidHand
     else super.getStackInSlot(slot)
   }
 
-  override def setInventorySlotContents(slot: Int, stack: ItemStack) {
+  override def setInventorySlotContents(slot: Int, stack: ItemStack): Unit = {
     if (slot < getSizeInventory - componentCount && (isItemValidForSlot(slot, stack) || stack == null)) {
       if (stack != null && stack.stackSize > 1 && isComponentSlot(slot, stack)) {
         super.setInventorySlotContents(slot, stack.splitStack(1))

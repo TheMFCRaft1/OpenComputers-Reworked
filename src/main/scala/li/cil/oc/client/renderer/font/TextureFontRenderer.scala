@@ -22,19 +22,19 @@ abstract class TextureFontRenderer {
    * beforehand, outside the display list, to ensure no characters have to
    * be generated inside the draw call.
    */
-  def generateChars(chars: Array[Char]) {
+  def generateChars(chars: Array[Char]): Unit = {
     for (char <- chars) {
       generateChar(char)
     }
   }
 
-  def generateChars(chars: Array[Int]) {
+  def generateChars(chars: Array[Int]): Unit = {
     for (char <- chars) {
       generateChar(char)
     }
   }
 
-  def drawBuffer(buffer: TextBuffer, viewportWidth: Int, viewportHeight: Int) {
+  def drawBuffer(buffer: TextBuffer, viewportWidth: Int, viewportHeight: Int): Unit = {
     val format = buffer.format
 
     GL11.glPushMatrix()

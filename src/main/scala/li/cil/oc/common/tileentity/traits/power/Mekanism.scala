@@ -23,5 +23,5 @@ trait Mekanism extends Common {
   def getEnergy = Power.toJoules(ForgeDirection.VALID_DIRECTIONS.map(globalBuffer).max)
 
   @Optional.Method(modid = Mods.IDs.Mekanism)
-  def setEnergy(energy: Double) {}
+  def setEnergy(energy: Double): Unit = {}
 }

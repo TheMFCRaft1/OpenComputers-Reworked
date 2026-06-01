@@ -6,18 +6,18 @@ import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 
 class HoverBootsData extends ItemData(Constants.ItemName.HoverBoots) {
-  def this(stack: ItemStack) {
+  def this(stack: ItemStack): Unit = {
     this()
     load(stack)
   }
 
   var charge = 0.0
 
-  override def load(nbt: NBTTagCompound) {
+  override def load(nbt: NBTTagCompound): Unit = {
     charge = nbt.getDouble(Settings.namespace + "charge")
   }
 
-  override def save(nbt: NBTTagCompound) {
+  override def save(nbt: NBTTagCompound): Unit = {
     nbt.setDouble(Settings.namespace + "charge", charge)
   }
 }

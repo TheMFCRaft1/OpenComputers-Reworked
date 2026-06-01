@@ -28,7 +28,7 @@ import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 
 class DiskDriveMountable(val rack: api.internal.Rack, val slot: Int) extends prefab.ManagedEnvironment with ItemStackInventory with ComponentInventory with RackMountable with Analyzable with DeviceInfo {
   // Stored for filling data packet when queried.
@@ -115,7 +115,7 @@ class DiskDriveMountable(val rack: api.internal.Rack, val slot: Int) extends pre
 
   override def container: ItemStack = rack.getStackInSlot(slot)
 
-  override protected def onItemAdded(slot: Int, stack: ItemStack) {
+  override protected def onItemAdded(slot: Int, stack: ItemStack): Unit = {
     super.onItemAdded(slot, stack)
     components(slot) match {
       case Some(environment) => environment.node match {
@@ -129,7 +129,7 @@ class DiskDriveMountable(val rack: api.internal.Rack, val slot: Int) extends pre
     }
   }
 
-  override protected def onItemRemoved(slot: Int, stack: ItemStack) {
+  override protected def onItemRemoved(slot: Int, stack: ItemStack): Unit = {
     super.onItemRemoved(slot, stack)
     Sound.playDiskEject(rack)
     if (!rack.world.isRemote) {
@@ -145,13 +145,13 @@ class DiskDriveMountable(val rack: api.internal.Rack, val slot: Int) extends pre
   // ----------------------------------------------------------------------- //
   // Persistable
 
-  override def load(nbt: NBTTagCompound) {
+  override def load(nbt: NBTTagCompound): Unit = {
     super[ManagedEnvironment].load(nbt)
     super[ComponentInventory].load(nbt)
     connectComponents()
   }
 
-  override def save(nbt: NBTTagCompound) {
+  override def save(nbt: NBTTagCompound): Unit = {
     super[ManagedEnvironment].save(nbt)
     super[ComponentInventory].save(nbt)
   }

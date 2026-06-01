@@ -7,7 +7,7 @@ import li.cil.oc.integration.Mods
 object ModBuildCraftAPITiles extends ModProxy {
   override def getMod = Mods.BuildCraftTiles
 
-  override def initialize() {
+  override def initialize(): Unit = {
     Driver.add(new DriverControllable)
   }
 }

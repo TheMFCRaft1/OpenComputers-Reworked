@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack
 trait LockedHotbar extends GuiContainer {
   def lockedStack: ItemStack
 
-  protected override def handleMouseClick(slot: Slot, slotNumber: Int, button: Int, shift: Int) {
+  protected override def handleMouseClick(slot: Slot, slotNumber: Int, button: Int, shift: Int): Unit = {
     if (slot == null || slot.getStack != lockedStack) {
       super.handleMouseClick(slot, slotNumber, button, shift)
     }

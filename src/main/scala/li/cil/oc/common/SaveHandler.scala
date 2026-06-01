@@ -77,7 +77,7 @@ object SaveHandler {
 
   def statePath = new io.File(savePath, "state")
 
-  def scheduleSave(host: MachineHost, nbt: NBTTagCompound, name: String, data: Array[Byte]) {
+  def scheduleSave(host: MachineHost, nbt: NBTTagCompound, name: String, data: Array[Byte]): Unit = {
     scheduleSave(BlockPosition(host), nbt, name, data)
   }
 
@@ -89,7 +89,7 @@ object SaveHandler {
     scheduleSave(BlockPosition(host), nbt, name, writeNBT(save))
   }
 
-  def scheduleSave(world: World, x: Double, z: Double, nbt: NBTTagCompound, name: String, data: Array[Byte]) {
+  def scheduleSave(world: World, x: Double, z: Double, nbt: NBTTagCompound, name: String, data: Array[Byte]): Unit = {
     scheduleSave(BlockPosition(x, 0, z, world), nbt, name, data)
   }
 
@@ -97,7 +97,7 @@ object SaveHandler {
     scheduleSave(world, x, z, nbt, name, writeNBT(save))
   }
 
-  def scheduleSave(position: BlockPosition, nbt: NBTTagCompound, name: String, data: Array[Byte]) {
+  def scheduleSave(position: BlockPosition, nbt: NBTTagCompound, name: String, data: Array[Byte]): Unit = {
     val world = position.world.get
     
     // Try to exclude wrapped/client-side worlds.
@@ -220,7 +220,7 @@ object SaveHandler {
   }
 
   @SubscribeEvent(priority = EventPriority.HIGHEST)
-  def onWorldLoad(e: WorldEvent.Load) {
+  def onWorldLoad(e: WorldEvent.Load): Unit = {
     // Touch all externally saved data when loading, to avoid it getting
     // deleted in the next save (because the now - save time will usually
     // be larger than the time out after loading a world again).
@@ -228,10 +228,10 @@ object SaveHandler {
     else visitJava16()
   }
 
-  private def visitJava16() {
+  private def visitJava16(): Unit = {
     // This may run into infinite loops if there are evil symlinks.
     // But that's really not something I'm bothered by, it's a fallback.
-    def recurse(file: File) {
+    def recurse(file: File): Unit = {
       file.setLastModified(System.currentTimeMillis())
       if (file.exists() && file.isDirectory && file.list() != null) file.listFiles().foreach(recurse)
     }
@@ -239,7 +239,7 @@ object SaveHandler {
   }
 
   @SubscribeEvent(priority = EventPriority.LOWEST)
-  def onWorldSave(e: WorldEvent.Save) {
+  def onWorldSave(e: WorldEvent.Save): Unit = {
     stateSaveHandler.withPool(_.submit(new Runnable {
       override def run(): Unit = cleanSaveData()
     }))
@@ -247,7 +247,7 @@ object SaveHandler {
 }
 
 object SaveHandlerJava17Functionality {
-  def visitJava17(statePath: File) {
+  def visitJava17(statePath: File): Unit = {
     Files.walkFileTree(statePath.toPath, new FileVisitor[Path] {
       override def visitFile(file: Path, attrs: BasicFileAttributes) = {
         file.toFile.setLastModified(System.currentTimeMillis())

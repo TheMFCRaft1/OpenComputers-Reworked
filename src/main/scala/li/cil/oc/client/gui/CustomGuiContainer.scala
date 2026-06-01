@@ -10,7 +10,7 @@ import net.minecraft.inventory.Container
 import org.lwjgl.opengl.GL11
 import org.lwjgl.opengl.GL12
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 // Workaround because certain other mods *cough*TMI*cough* do base class
 // transformations that break things! Such fun. Many annoyed. And yes, this
@@ -28,11 +28,11 @@ abstract class CustomGuiContainer[C <: Container](val inventoryContainer: C) ext
   protected def add[T](list: util.List[T], value: Any) = list.add(value.asInstanceOf[T])
 
   // Pretty much Scalaified copy-pasta from base-class.
-  override def drawHoveringText(text: util.List[_], x: Int, y: Int, font: FontRenderer) {
+  override def drawHoveringText(text: util.List[_], x: Int, y: Int, font: FontRenderer): Unit = {
     copiedDrawHoveringText(text, x, y, font)
   }
 
-  protected def copiedDrawHoveringText(text: util.List[_], x: Int, y: Int, font: FontRenderer) {
+  protected def copiedDrawHoveringText(text: util.List[_], x: Int, y: Int, font: FontRenderer): Unit = {
     if (!text.isEmpty) {
       GL11.glDisable(GL12.GL_RESCALE_NORMAL)
       RenderHelper.disableStandardItemLighting()

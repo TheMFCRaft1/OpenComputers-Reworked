@@ -49,7 +49,7 @@ import net.minecraftforge.fluids.FluidRegistry
 import net.minecraftforge.fluids.FluidStack
 import net.minecraftforge.fluids.IFluidHandler
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 
 class DebugCard(host: EnvironmentHost) extends prefab.ManagedEnvironment with DebugNode {
@@ -265,7 +265,7 @@ class DebugCard(host: EnvironmentHost) extends prefab.ManagedEnvironment with De
     result()
   }
 
-  override def receivePacket(packet: Packet) {
+  override def receivePacket(packet: Packet): Unit = {
     val distance = 0
     node.sendToReachable("computer.signal", Seq("debug_message", packet.source, Int.box(packet.port), Double.box(distance)) ++ packet.data: _*)
   }
@@ -413,13 +413,13 @@ object DebugCard {
 
     // ----------------------------------------------------------------------- //
 
-    override def load(nbt: NBTTagCompound) {
+    override def load(nbt: NBTTagCompound): Unit = {
       super.load(nbt)
       ctx = AccessContext.load(nbt)
       name = nbt.getString("name")
     }
 
-    override def save(nbt: NBTTagCompound) {
+    override def save(nbt: NBTTagCompound): Unit = {
       super.save(nbt)
       ctx.foreach(_.save(nbt))
       nbt.setString("name", name)
@@ -679,13 +679,13 @@ object DebugCard {
 
     // ----------------------------------------------------------------------- //
 
-    override def load(nbt: NBTTagCompound) {
+    override def load(nbt: NBTTagCompound): Unit = {
       super.load(nbt)
       ctx = AccessContext.load(nbt)
       world = DimensionManager.getWorld(nbt.getInteger("dimension"))
     }
 
-    override def save(nbt: NBTTagCompound) {
+    override def save(nbt: NBTTagCompound): Unit = {
       super.save(nbt)
       ctx.foreach(_.save(nbt))
       nbt.setInteger("dimension", world.provider.dimensionId)
@@ -707,7 +707,7 @@ object DebugCard {
 
     override def getEntityWorld = host.world
 
-    override def addChatMessage(message: IChatComponent) {
+    override def addChatMessage(message: IChatComponent): Unit = {
       messages = Option(messages.fold("")(_ + "\n") + message.getUnformattedText)
     }
 

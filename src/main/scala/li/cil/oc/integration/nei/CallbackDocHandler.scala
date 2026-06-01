@@ -10,7 +10,7 @@ import li.cil.oc.server.machine.Callbacks
 import net.minecraft.item.ItemStack
 import net.minecraft.util.EnumChatFormatting
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 class CallbackDocHandler(pages: Option[Array[String]]) extends PagedUsageHandler(pages) {
   def this() = this(None)

@@ -22,7 +22,7 @@ import net.minecraft.util.AxisAlignedBB
 import net.minecraft.util.Vec3
 import net.minecraftforge.common.util.ForgeDirection
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 
 class Hologram(var tier: Int) extends traits.Environment with SidedEnvironment with Analyzable with traits.Rotatable with DeviceInfo {
@@ -102,7 +102,7 @@ class Hologram(var tier: Int) extends traits.Environment with SidedEnvironment w
     lbit | (hbit << 1)
   }
 
-  def setColor(x: Int, y: Int, z: Int, value: Int) {
+  def setColor(x: Int, y: Int, z: Int, value: Int): Unit = {
     if ((value & 3) != getColor(x, y, z)) {
       val lbit = value & 1
       val hbit = (value >>> 1) & 1
@@ -112,7 +112,7 @@ class Hologram(var tier: Int) extends traits.Environment with SidedEnvironment w
     }
   }
 
-  private def setDirty(x: Int, z: Int) {
+  private def setDirty(x: Int, z: Int): Unit = {
     dirty += ((x.toByte << 8) | z.toByte).toShort
     dirtyFromX = math.min(dirtyFromX, x)
     dirtyUntilX = math.max(dirtyUntilX, x + 1)
@@ -121,7 +121,7 @@ class Hologram(var tier: Int) extends traits.Environment with SidedEnvironment w
     litRatio = -1
   }
 
-  private def resetDirtyFlag() {
+  private def resetDirtyFlag(): Unit = {
     dirty.clear()
     dirtyFromX = Int.MaxValue
     dirtyUntilX = -1
@@ -393,7 +393,7 @@ class Hologram(var tier: Int) extends traits.Environment with SidedEnvironment w
 
   override def canUpdate = isServer
 
-  override def updateEntity() {
+  override def updateEntity(): Unit = {
     super.updateEntity()
     if (isServer) {
       if (dirty.nonEmpty) this.synchronized {
@@ -460,7 +460,7 @@ class Hologram(var tier: Int) extends traits.Environment with SidedEnvironment w
 
   // ----------------------------------------------------------------------- //
 
-  override def readFromNBTForServer(nbt: NBTTagCompound) {
+  override def readFromNBTForServer(nbt: NBTTagCompound): Unit = {
     tier = nbt.getByte(Settings.namespace + "tier") max 0 min 1
     super.readFromNBTForServer(nbt)
     val tag = SaveHandler.loadNBT(nbt, node.address + "_data")
@@ -504,7 +504,7 @@ class Hologram(var tier: Int) extends traits.Environment with SidedEnvironment w
   }
 
   @SideOnly(Side.CLIENT)
-  override def readFromNBTForClient(nbt: NBTTagCompound) {
+  override def readFromNBTForClient(nbt: NBTTagCompound): Unit = {
     super.readFromNBTForClient(nbt)
     nbt.getIntArray("volume").copyToArray(volume)
     nbt.getIntArray("colors").copyToArray(colors)
@@ -523,7 +523,7 @@ class Hologram(var tier: Int) extends traits.Environment with SidedEnvironment w
     rotationSpeedZ = nbt.getFloat("rotationSpeedZ")
   }
 
-  override def writeToNBTForClient(nbt: NBTTagCompound) {
+  override def writeToNBTForClient(nbt: NBTTagCompound): Unit = {
     super.writeToNBTForClient(nbt)
     nbt.setIntArray("volume", volume)
     nbt.setIntArray("colors", colors)

@@ -101,7 +101,7 @@ trait Rotatable extends RotationAware with internal.Rotatable {
 
   // ----------------------------------------------------------------------- //
 
-  protected def onRotationChanged() {
+  protected def onRotationChanged(): Unit = {
     if (isServer) {
       ServerPacketSender.sendRotatableState(this)
     }
@@ -132,7 +132,7 @@ trait Rotatable extends RotationAware with internal.Rotatable {
   }
 
   @SideOnly(Side.CLIENT)
-  override def readFromNBTForClient(nbt: NBTTagCompound) {
+  override def readFromNBTForClient(nbt: NBTTagCompound): Unit = {
     super.readFromNBTForClient(nbt)
     pitch = ForgeDirection.getOrientation(nbt.getInteger("pitch"))
     yaw = ForgeDirection.getOrientation(nbt.getInteger("yaw"))
@@ -140,13 +140,13 @@ trait Rotatable extends RotationAware with internal.Rotatable {
     updateTranslation()
   }
 
-  override def writeToNBTForClient(nbt: NBTTagCompound) {
+  override def writeToNBTForClient(nbt: NBTTagCompound): Unit = {
     super.writeToNBTForClient(nbt)
     nbt.setInteger("pitch", pitch.ordinal)
     nbt.setInteger("yaw", yaw.ordinal)
   }
 
-  private def validatePitchAndYaw() {
+  private def validatePitchAndYaw(): Unit = {
     if (!Set(ForgeDirection.UP, ForgeDirection.DOWN, ForgeDirection.NORTH).contains(_pitch)) {
       _pitch = ForgeDirection.NORTH
     }

@@ -17,7 +17,7 @@ class Disassembler(playerInventory: InventoryPlayer, val disassembler: tileentit
       8, 6, 0x404040)
   }
 
-  override def drawGuiContainerBackgroundLayer(dt: Float, mouseX: Int, mouseY: Int) {
+  override def drawGuiContainerBackgroundLayer(dt: Float, mouseX: Int, mouseY: Int): Unit = {
     GL11.glColor3f(1, 1, 1) // Required under Linux.
     mc.renderEngine.bindTexture(Textures.guiDisassembler)
     drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize)

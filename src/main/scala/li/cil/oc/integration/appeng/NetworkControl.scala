@@ -31,8 +31,8 @@ import net.minecraftforge.common.DimensionManager
 import net.minecraftforge.common.util.Constants.NBT
 import net.minecraftforge.common.util.ForgeDirection
 
-import scala.collection.convert.WrapAsJava._
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
@@ -193,7 +193,7 @@ object NetworkControl {
 
     override def getRequestedJobs = ImmutableSet.copyOf(links.toIterable)
 
-    override def jobStateChange(link: ICraftingLink) {
+    override def jobStateChange(link: ICraftingLink): Unit = {
       links -= link
     }
 
@@ -264,7 +264,7 @@ object NetworkControl {
 
     // ----------------------------------------------------------------------- //
 
-    override def load(nbt: NBTTagCompound) {
+    override def load(nbt: NBTTagCompound): Unit = {
       super.load(nbt)
       stack = AEItemStack.loadItemStackFromNBT(nbt)
       if (nbt.hasKey("dimension")) {
@@ -284,7 +284,7 @@ object NetworkControl {
         (nbt: NBTTagCompound) => AEApi.instance.storage.loadCraftingLink(nbt, this))
     }
 
-    override def save(nbt: NBTTagCompound) {
+    override def save(nbt: NBTTagCompound): Unit = {
       super.save(nbt)
       stack.writeToNBT(nbt)
       if (controller != null && !controller.isInvalid) {
@@ -303,12 +303,12 @@ object NetworkControl {
     private var failed = false
     private var reason = "no link"
 
-    def setLink(value: ICraftingLink) {
+    def setLink(value: ICraftingLink): Unit = {
       isComputing = false
       link = Option(value)
     }
 
-    def fail(reason: String) {
+    def fail(reason: String): Unit = {
       isComputing = false
       failed = true
       this.reason = s"request failed ($reason)"
@@ -326,7 +326,7 @@ object NetworkControl {
       link.fold(result(!failed, reason))(l => result(l.isDone))
     }
 
-    override def save(nbt: NBTTagCompound) {
+    override def save(nbt: NBTTagCompound): Unit = {
       super.save(nbt)
       failed = link.fold(true)(!_.isDone)
       nbt.setBoolean("failed", failed)
@@ -335,7 +335,7 @@ object NetworkControl {
       }
     }
 
-    override def load(nbt: NBTTagCompound) {
+    override def load(nbt: NBTTagCompound): Unit = {
       super.load(nbt)
       isComputing = false
       failed = nbt.getBoolean("failed")

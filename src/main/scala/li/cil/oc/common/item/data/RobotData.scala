@@ -30,7 +30,7 @@ object RobotData {
 }
 
 class RobotData extends ItemData(Constants.BlockName.Robot) {
-  def this(stack: ItemStack) {
+  def this(stack: ItemStack): Unit = {
     this()
     load(stack)
   }
@@ -51,7 +51,7 @@ class RobotData extends ItemData(Constants.BlockName.Robot) {
 
   var lightColor = 0xF23030
 
-  override def load(nbt: NBTTagCompound) {
+  override def load(nbt: NBTTagCompound): Unit = {
     if (nbt.hasKey("display") && nbt.getCompoundTag("display").hasKey("Name")) {
       name = nbt.getCompoundTag("display").getString("Name")
     }
@@ -70,7 +70,7 @@ class RobotData extends ItemData(Constants.BlockName.Robot) {
     }
   }
 
-  override def save(nbt: NBTTagCompound) {
+  override def save(nbt: NBTTagCompound): Unit = {
     if (!Strings.isNullOrEmpty(name)) {
       if (!nbt.hasKey("display")) {
         nbt.setTag("display", new NBTTagCompound())

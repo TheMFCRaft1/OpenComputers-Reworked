@@ -21,7 +21,7 @@ class Terminal(val parent: Delegator) extends traits.Delegate {
   def hasServer(stack: ItemStack) = stack.hasTagCompound && stack.getTagCompound.hasKey(Settings.namespace + "server")
 
   @SideOnly(Side.CLIENT)
-  override def tooltipLines(stack: ItemStack, player: EntityPlayer, tooltip: util.List[String], advanced: Boolean) {
+  override def tooltipLines(stack: ItemStack, player: EntityPlayer, tooltip: util.List[String], advanced: Boolean): Unit = {
     super.tooltipLines(stack, player, tooltip, advanced)
     if (hasServer(stack)) {
       val server = stack.getTagCompound.getString(Settings.namespace + "server")

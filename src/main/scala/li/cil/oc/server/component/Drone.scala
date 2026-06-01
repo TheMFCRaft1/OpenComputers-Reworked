@@ -19,7 +19,7 @@ import li.cil.oc.util.InventoryUtils
 import net.minecraft.entity.item.EntityItem
 import net.minecraftforge.common.util.ForgeDirection
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 
 class Drone(val agent: entity.Drone) extends prefab.ManagedEnvironment with Agent with DeviceInfo {
   override val node = Network.newNode(this, Visibility.Network).

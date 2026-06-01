@@ -54,5 +54,5 @@ class Drone(val parent: Delegator) extends traits.Delegate {
 
   // We no item (rendering using model only).
   @SideOnly(Side.CLIENT)
-  override def registerIcons(iconRegister: IconRegister) {}
+  override def registerIcons(iconRegister: IconRegister): Unit = {}
 }

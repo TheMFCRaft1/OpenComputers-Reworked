@@ -8,8 +8,8 @@ import li.cil.oc.api.network.Visibility
 import li.cil.oc.api.network.{Node => ImmutableNode}
 import net.minecraft.nbt.NBTTagCompound
 
-import scala.collection.convert.WrapAsJava._
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
+import scala.jdk.CollectionConverters._
 
 trait Node extends ImmutableNode {
   def host: Environment
@@ -52,7 +52,7 @@ trait Node extends ImmutableNode {
 
   // ----------------------------------------------------------------------- //
 
-  def onConnect(node: ImmutableNode) {
+  def onConnect(node: ImmutableNode): Unit = {
     try {
       host.onConnect(node)
     } catch {
@@ -60,7 +60,7 @@ trait Node extends ImmutableNode {
     }
   }
 
-  def onDisconnect(node: ImmutableNode) {
+  def onDisconnect(node: ImmutableNode): Unit = {
     try {
       host.onDisconnect(node)
     } catch {

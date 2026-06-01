@@ -9,7 +9,7 @@ import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.world.World
 
 class NavigationUpgradeData extends ItemData(Constants.ItemName.NavigationUpgrade) {
-  def this(stack: ItemStack) {
+  def this(stack: ItemStack): Unit = {
     this()
     load(stack)
   }
@@ -25,26 +25,26 @@ class NavigationUpgradeData extends ItemData(Constants.ItemName.NavigationUpgrad
     128 * (1 << info.scale)
   }
 
-  override def load(stack: ItemStack) {
+  override def load(stack: ItemStack): Unit = {
     if (stack.hasTagCompound) {
       load(stack.getTagCompound.getCompoundTag(Settings.namespace + "data"))
     }
   }
 
-  override def save(stack: ItemStack) {
+  override def save(stack: ItemStack): Unit = {
     if (!stack.hasTagCompound) {
       stack.setTagCompound(new NBTTagCompound())
     }
     save(stack.getCompoundTag(Settings.namespace + "data"))
   }
 
-  override def load(nbt: NBTTagCompound) {
+  override def load(nbt: NBTTagCompound): Unit = {
     if (nbt.hasKey(Settings.namespace + "map")) {
       map = ItemStack.loadItemStackFromNBT(nbt.getCompoundTag(Settings.namespace + "map"))
     }
   }
 
-  override def save(nbt: NBTTagCompound) {
+  override def save(nbt: NBTTagCompound): Unit = {
     if (map != null) {
       nbt.setNewCompoundTag(Settings.namespace + "map", map.writeToNBT)
     }

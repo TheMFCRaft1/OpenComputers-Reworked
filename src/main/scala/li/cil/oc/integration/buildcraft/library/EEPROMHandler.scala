@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.util.EnumChatFormatting
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 
 object EEPROMHandler extends LibraryTypeHandlerNBT("ocrom") {
   override def isHandler(stack: ItemStack, handlerType: HandlerType) = api.Items.get(stack) == api.Items.get("eeprom")

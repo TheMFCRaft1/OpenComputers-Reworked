@@ -46,7 +46,7 @@ class RobotProxy extends RedstoneAware with traits.SpecialBlock with traits.Stat
   // ----------------------------------------------------------------------- //
 
   @SideOnly(Side.CLIENT)
-  override def registerBlockIcons(iconRegister: IIconRegister) {
+  override def registerBlockIcons(iconRegister: IIconRegister): Unit = {
     super.registerBlockIcons(iconRegister)
     icon = iconRegister.registerIcon(Settings.resourceDomain + ":GenericTop")
   }
@@ -73,16 +73,16 @@ class RobotProxy extends RedstoneAware with traits.SpecialBlock with traits.Stat
     Rarity.byTier(data.tier)
   }
 
-  override protected def tooltipHead(metadata: Int, stack: ItemStack, player: EntityPlayer, tooltip: util.List[String], advanced: Boolean) {
+  override protected def tooltipHead(metadata: Int, stack: ItemStack, player: EntityPlayer, tooltip: util.List[String], advanced: Boolean): Unit = {
     super.tooltipHead(metadata, stack, player, tooltip, advanced)
     addLines(stack, tooltip)
   }
 
-  override protected def tooltipBody(metadata: Int, stack: ItemStack, player: EntityPlayer, tooltip: util.List[String], advanced: Boolean) {
+  override protected def tooltipBody(metadata: Int, stack: ItemStack, player: EntityPlayer, tooltip: util.List[String], advanced: Boolean): Unit = {
     tooltip.addAll(Tooltip.get("Robot"))
   }
 
-  override protected def tooltipTail(metadata: Int, stack: ItemStack, player: EntityPlayer, tooltip: util.List[String], advanced: Boolean) {
+  override protected def tooltipTail(metadata: Int, stack: ItemStack, player: EntityPlayer, tooltip: util.List[String], advanced: Boolean): Unit = {
     super.tooltipTail(metadata, stack, player, tooltip, advanced)
     if (KeyBindings.showExtendedTooltips) {
       val info = new RobotData(stack)
@@ -96,7 +96,7 @@ class RobotProxy extends RedstoneAware with traits.SpecialBlock with traits.Stat
     }
   }
 
-  private def addLines(stack: ItemStack, tooltip: util.List[String]) {
+  private def addLines(stack: ItemStack, tooltip: util.List[String]): Unit = {
     if (stack.hasTagCompound) {
       if (stack.getTagCompound.hasKey(Settings.namespace + "xp")) {
         val xp = stack.getTagCompound.getDouble(Settings.namespace + "xp")
@@ -175,7 +175,7 @@ class RobotProxy extends RedstoneAware with traits.SpecialBlock with traits.Stat
     }
   }
 
-  override def doSetBlockBoundsBasedOnState(world: IBlockAccess, x: Int, y: Int, z: Int) {
+  override def doSetBlockBoundsBasedOnState(world: IBlockAccess, x: Int, y: Int, z: Int): Unit = {
     world.getTileEntity(x, y, z) match {
       case proxy: tileentity.RobotProxy =>
         val robot = proxy.robot
@@ -222,7 +222,7 @@ class RobotProxy extends RedstoneAware with traits.SpecialBlock with traits.Stat
     else false
   }
 
-  override def onBlockPlacedBy(world: World, x: Int, y: Int, z: Int, entity: EntityLivingBase, stack: ItemStack) {
+  override def onBlockPlacedBy(world: World, x: Int, y: Int, z: Int, entity: EntityLivingBase, stack: ItemStack): Unit = {
     super.onBlockPlacedBy(world, x, y, z, entity, stack)
     if (!world.isRemote) ((entity, world.getTileEntity(x, y, z)) match {
       case (player: agent.Player, proxy: tileentity.RobotProxy) =>
@@ -264,7 +264,7 @@ class RobotProxy extends RedstoneAware with traits.SpecialBlock with traits.Stat
     super.removedByPlayer(world, player, x, y, z, willHarvest)
   }
 
-  override def onBlockPreDestroy(world: World, x: Int, y: Int, z: Int, metadata: Int) {
+  override def onBlockPreDestroy(world: World, x: Int, y: Int, z: Int, metadata: Int): Unit = {
     if (moving.get.isEmpty) {
       super.onBlockPreDestroy(world, x, y, z, metadata)
     }

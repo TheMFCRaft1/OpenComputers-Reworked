@@ -46,7 +46,7 @@ trait OutputStreamFileSystem extends InputStreamFileSystem {
 
   // ----------------------------------------------------------------------- //
 
-  override def load(nbt: NBTTagCompound) {
+  override def load(nbt: NBTTagCompound): Unit = {
     super.load(nbt)
 
     val handlesNbt = nbt.getTagList("output", NBT.TAG_COMPOUND)

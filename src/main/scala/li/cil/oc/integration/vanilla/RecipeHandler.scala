@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.item.crafting.FurnaceRecipes
 import net.minecraftforge.oredict.OreDictionary
 
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 
 object RecipeHandler {
@@ -20,7 +20,7 @@ object RecipeHandler {
     Recipes.registerRecipeHandler("furnace", addFurnaceRecipe)
   }
 
-  def addShapedRecipe(output: ItemStack, recipe: Config) {
+  def addShapedRecipe(output: ItemStack, recipe: Config): Unit = {
     val rows = recipe.getList("input").unwrapped().map {
       case row: java.util.List[AnyRef]@unchecked => row.map(Recipes.parseIngredient)
       case other => throw new RecipeException(s"Invalid row entry for shaped recipe (not a list: $other).")
@@ -48,7 +48,7 @@ object RecipeHandler {
     }
   }
 
-  def addShapelessRecipe(output: ItemStack, recipe: Config) {
+  def addShapelessRecipe(output: ItemStack, recipe: Config): Unit = {
     val input = recipe.getValue("input").unwrapped() match {
       case list: java.util.List[AnyRef]@unchecked => list.map(Recipes.parseIngredient)
       case other => Seq(Recipes.parseIngredient(other))
@@ -60,7 +60,7 @@ object RecipeHandler {
     }
   }
 
-  def addFurnaceRecipe(output: ItemStack, recipe: Config) {
+  def addFurnaceRecipe(output: ItemStack, recipe: Config): Unit = {
     val input = Recipes.parseIngredient(recipe.getValue("input").unwrapped())
     output.stackSize = Recipes.tryGetCount(recipe)
 

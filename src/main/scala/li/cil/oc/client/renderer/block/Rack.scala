@@ -25,7 +25,7 @@ object Rack {
 
     // Sides.
     val front = rack.facing
-    def renderSide(side: ForgeDirection, lx: Double, lz: Double, hx: Double, hz: Double) {
+    def renderSide(side: ForgeDirection, lx: Double, lz: Double, hx: Double, hz: Double): Unit = {
       if (side == front) {
         for (i <- 0 until 4 if rack.getStackInSlot(i) != null) {
           side match {

@@ -26,8 +26,8 @@ import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.util.Vec3
 import net.minecraftforge.common.util.ForgeDirection
 
-import scala.collection.convert.WrapAsJava._
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 
 class Charger extends traits.Environment with traits.PowerAcceptor with traits.RedstoneAware with traits.Rotatable with traits.ComponentInventory with Analyzable with traits.StateAware with DeviceInfo {
@@ -88,7 +88,7 @@ class Charger extends traits.Environment with traits.PowerAcceptor with traits.R
     }
   }
 
-  override def updateEntity() {
+  override def updateEntity(): Unit = {
     super.updateEntity()
 
     // Offset by hashcode to avoid all chargers ticking at the same time.
@@ -149,7 +149,7 @@ class Charger extends traits.Environment with traits.PowerAcceptor with traits.R
     }
   }
 
-  override def onConnect(node: Node) {
+  override def onConnect(node: Node): Unit = {
     super.onConnect(node)
     if (node == this.node) {
       onNeighborChanged()
@@ -158,14 +158,14 @@ class Charger extends traits.Environment with traits.PowerAcceptor with traits.R
 
   // ----------------------------------------------------------------------- //
 
-  override def readFromNBTForServer(nbt: NBTTagCompound) {
+  override def readFromNBTForServer(nbt: NBTTagCompound): Unit = {
     super.readFromNBTForServer(nbt)
     chargeSpeed = nbt.getDouble("chargeSpeed") max 0 min 1
     hasPower = nbt.getBoolean("hasPower")
     invertSignal = nbt.getBoolean("invertSignal")
   }
 
-  override def writeToNBTForServer(nbt: NBTTagCompound) {
+  override def writeToNBTForServer(nbt: NBTTagCompound): Unit = {
     super.writeToNBTForServer(nbt)
     nbt.setDouble("chargeSpeed", chargeSpeed)
     nbt.setBoolean("hasPower", hasPower)
@@ -173,13 +173,13 @@ class Charger extends traits.Environment with traits.PowerAcceptor with traits.R
   }
 
   @SideOnly(Side.CLIENT)
-  override def readFromNBTForClient(nbt: NBTTagCompound) {
+  override def readFromNBTForClient(nbt: NBTTagCompound): Unit = {
     super.readFromNBTForClient(nbt)
     chargeSpeed = nbt.getDouble("chargeSpeed")
     hasPower = nbt.getBoolean("hasPower")
   }
 
-  override def writeToNBTForClient(nbt: NBTTagCompound) {
+  override def writeToNBTForClient(nbt: NBTTagCompound): Unit = {
     super.writeToNBTForClient(nbt)
     nbt.setDouble("chargeSpeed", chargeSpeed)
     nbt.setBoolean("hasPower", hasPower)
@@ -202,7 +202,7 @@ class Charger extends traits.Environment with traits.PowerAcceptor with traits.R
 
   // ----------------------------------------------------------------------- //
 
-  override def updateRedstoneInput(side: ForgeDirection) {
+  override def updateRedstoneInput(side: ForgeDirection): Unit = {
     super.updateRedstoneInput(side)
     val signal = getInput.max min 15
 
@@ -213,12 +213,12 @@ class Charger extends traits.Environment with traits.PowerAcceptor with traits.R
     }
   }
 
-  def onNeighborChanged() {
+  def onNeighborChanged(): Unit = {
     checkRedstoneInputChanged()
     updateConnectors()
   }
 
-  def updateConnectors() {
+  def updateConnectors(): Unit = {
     val robots = ForgeDirection.VALID_DIRECTIONS.map(side => {
       val blockPos = BlockPosition(this).offset(side)
       if (world.blockExists(blockPos)) Option(world.getTileEntity(blockPos))

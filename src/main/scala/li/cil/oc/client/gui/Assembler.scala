@@ -14,8 +14,8 @@ import net.minecraft.inventory.Slot
 import net.minecraft.util.IChatComponent
 import org.lwjgl.opengl.GL11
 
-import scala.collection.convert.WrapAsJava._
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
+import scala.jdk.CollectionConverters._
 
 class Assembler(playerInventory: InventoryPlayer, val assembler: tileentity.Assembler) extends DynamicGuiContainer(new container.Assembler(playerInventory, assembler)) {
   xSize = 176
@@ -26,7 +26,7 @@ class Assembler(playerInventory: InventoryPlayer, val assembler: tileentity.Asse
     case _ =>
   }
 
-  private def onSlotChanged(slot: Slot) {
+  private def onSlotChanged(slot: Slot): Unit = {
     runButton.enabled = canBuild
     runButton.toggled = !runButton.enabled
     info = validate
@@ -42,13 +42,13 @@ class Assembler(playerInventory: InventoryPlayer, val assembler: tileentity.Asse
 
   private def canBuild = !inventoryContainer.isAssembling && validate.exists(_._1)
 
-  protected override def actionPerformed(button: GuiButton) {
+  protected override def actionPerformed(button: GuiButton): Unit = {
     if (button.id == 0 && canBuild) {
       ClientPacketSender.sendRobotAssemblerStart(assembler)
     }
   }
 
-  override def initGui() {
+  override def initGui(): Unit = {
     super.initGui()
     runButton = new ImageButton(0, guiLeft + 7, guiTop + 89, 18, 18, Textures.guiButtonRun, canToggle = true)
     add(buttonList, runButton)
@@ -93,7 +93,7 @@ class Assembler(playerInventory: InventoryPlayer, val assembler: tileentity.Asse
     else f"${seconds / 60}:${seconds % 60}%02d"
   }
 
-  override def drawGuiContainerBackgroundLayer(dt: Float, mouseX: Int, mouseY: Int) {
+  override def drawGuiContainerBackgroundLayer(dt: Float, mouseX: Int, mouseY: Int): Unit = {
     GL11.glColor3f(1, 1, 1) // Required under Linux.
     mc.renderEngine.bindTexture(Textures.guiRobotAssembler)
     drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize)
@@ -103,5 +103,5 @@ class Assembler(playerInventory: InventoryPlayer, val assembler: tileentity.Asse
     drawInventorySlots()
   }
 
-  override protected def drawDisabledSlot(slot: ComponentSlot) {}
+  override protected def drawDisabledSlot(slot: ComponentSlot): Unit = {}
 }

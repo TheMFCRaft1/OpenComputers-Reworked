@@ -35,8 +35,8 @@ import net.minecraft.nbt.NBTTagIntArray
 import net.minecraftforge.common.util.Constants.NBT
 import net.minecraftforge.common.util.ForgeDirection
 
-import scala.collection.convert.WrapAsJava._
-import scala.collection.convert.WrapAsScala._
+import scala.jdk.CollectionConverters._
+import scala.jdk.CollectionConverters._
 
 class Rack extends traits.PowerAcceptor with traits.Hub with traits.PowerBalancer with traits.ComponentInventory with traits.Rotatable with traits.BundledRedstoneAware with traits.AbstractBusAware with Analyzable with internal.Rack with traits.StateAware {
   var isRelayEnabled = false
@@ -319,7 +319,7 @@ class Rack extends traits.PowerAcceptor with traits.Hub with traits.PowerBalance
   // ----------------------------------------------------------------------- //
   // Rotatable
 
-  override protected def onRotationChanged() {
+  override protected def onRotationChanged(): Unit = {
     super.onRotationChanged()
     checkRedstoneInputChanged()
   }
@@ -327,7 +327,7 @@ class Rack extends traits.PowerAcceptor with traits.Hub with traits.PowerBalance
   // ----------------------------------------------------------------------- //
   // RedstoneAware
 
-  override protected def onRedstoneInputChanged(args: RedstoneChangedEventArgs) {
+  override protected def onRedstoneInputChanged(args: RedstoneChangedEventArgs): Unit = {
     super.onRedstoneInputChanged(args)
     components.collect {
       case Some(mountable: RackMountable) if mountable.node != null =>
@@ -348,7 +348,7 @@ class Rack extends traits.PowerAcceptor with traits.Hub with traits.PowerBalance
     case _ => false
   }
 
-  override def markDirty() {
+  override def markDirty(): Unit = {
     super.markDirty()
     if (isServer) {
       setOutputEnabled(hasRedstoneCard)
@@ -393,7 +393,7 @@ class Rack extends traits.PowerAcceptor with traits.Hub with traits.PowerBalance
   // ----------------------------------------------------------------------- //
   // TileEntity
 
-  override def updateEntity() {
+  override def updateEntity(): Unit = {
     super.updateEntity()
     if (isServer && isConnected) {
       lazy val connectors = ForgeDirection.VALID_DIRECTIONS.map(sidedNode).collect {

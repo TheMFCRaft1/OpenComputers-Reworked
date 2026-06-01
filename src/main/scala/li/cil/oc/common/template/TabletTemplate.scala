@@ -11,7 +11,7 @@ import li.cil.oc.util.ItemUtils
 import net.minecraft.inventory.IInventory
 import net.minecraft.item.ItemStack
 
-import scala.collection.convert.WrapAsJava._
+import scala.jdk.CollectionConverters._
 
 object TabletTemplate extends Template {
   override protected val suggestedComponents = Array(
@@ -62,7 +62,7 @@ object TabletTemplate extends Template {
     }.drop(1) /* Screen */).filter(_ != null)
   }
 
-  def register() {
+  def register(): Unit = {
     // Tier 1
     api.IMC.registerAssemblerTemplate(
       "Tablet (Tier 1)",

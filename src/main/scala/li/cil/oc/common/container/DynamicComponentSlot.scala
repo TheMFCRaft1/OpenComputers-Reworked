@@ -33,7 +33,7 @@ class DynamicComponentSlot(val container: Player, inventory: IInventory, index: 
       case _ => 1
     }
 
-  override protected def clearIfInvalid(player: EntityPlayer) {
+  override protected def clearIfInvalid(player: EntityPlayer): Unit = {
     if (SideTracker.isServer && getHasStack && !isItemValid(getStack)) {
       val stack = getStack
       putStack(null)
