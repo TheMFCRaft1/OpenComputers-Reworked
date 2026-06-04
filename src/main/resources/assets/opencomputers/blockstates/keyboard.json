@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": { "model": "opencomputers:block/keyboard" }
+    "": {
+      "model": "opencomputers:block/keyboard"
+    }
   }
 }

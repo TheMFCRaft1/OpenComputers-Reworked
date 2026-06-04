@@ -1,11 +1,8 @@
 {
-  "parent": "minecraft:block/cube",
+  "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "down": "opencomputers:block/generic_top",
-    "up": "opencomputers:block/hologram_top0",
-    "north": "opencomputers:block/hologram_side",
-    "south": "opencomputers:block/hologram_side",
-    "west": "opencomputers:block/hologram_side",
-    "east": "opencomputers:block/hologram_side"
+    "side": "opencomputers:block/hologram_side",
+    "bottom": "opencomputers:block/generic_top",
+    "top": "opencomputers:block/hologram_top0"
   }
 }

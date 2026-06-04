@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": { "model": "opencomputers:block/cable" }
+    "": {
+      "model": "opencomputers:block/cable"
+    }
   }
 }

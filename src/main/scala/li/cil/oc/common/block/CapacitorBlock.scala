@@ -8,7 +8,7 @@ import net.minecraft.core.BlockPos
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.util.RandomSource
 import net.minecraft.world.level.Level
-import net.minecraft.world.level.block.{BaseEntityBlock, Block}
+import net.minecraft.world.level.block.{BaseEntityBlock, Block, RenderShape}
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.state.{BlockBehaviour, BlockState}
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties
@@ -19,6 +19,8 @@ class CapacitorBlock(props: Properties) extends BaseEntityBlock(props) {
 
   override protected def codec: MapCodec[CapacitorBlock] =
     BlockBehaviour.simpleCodec(new CapacitorBlock(_))
+
+  override def getRenderShape(state: BlockState): RenderShape = RenderShape.MODEL
 
   override def newBlockEntity(pos: BlockPos, state: BlockState): BlockEntity =
     new CapacitorBlockEntity(ModBlockEntities.CAPACITOR.get(), pos, state)

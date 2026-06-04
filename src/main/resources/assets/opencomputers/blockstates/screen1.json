@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": { "model": "opencomputers:block/screen1" }
+    "": {
+      "model": "opencomputers:block/screen1"
+    }
   }
 }

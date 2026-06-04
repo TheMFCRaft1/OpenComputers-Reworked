@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": { "model": "opencomputers:block/case1" }
+    "": {
+      "model": "opencomputers:block/case1"
+    }
   }
 }

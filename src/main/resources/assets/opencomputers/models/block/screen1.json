@@ -1,11 +1,7 @@
 {
-  "parent": "minecraft:block/cube",
+  "parent": "minecraft:block/thin_block",
   "textures": {
-    "down": "opencomputers:block/generic_top",
-    "up": "opencomputers:block/generic_top",
-    "north": "opencomputers:block/generic_side",
-    "south": "opencomputers:block/screen/b",
-    "west": "opencomputers:block/generic_side",
-    "east": "opencomputers:block/generic_side"
+    "particle": "opencomputers:block/screen/b",
+    "texture": "opencomputers:block/screen/b"
   }
 }

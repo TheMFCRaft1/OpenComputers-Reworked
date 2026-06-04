@@ -1,11 +1,6 @@
 {
-  "parent": "minecraft:block/cube",
+  "parent": "minecraft:block/cube_all",
   "textures": {
-    "down": "opencomputers:block/cable_part",
-    "up": "opencomputers:block/cable_part",
-    "north": "opencomputers:block/cable_part",
-    "south": "opencomputers:block/cable_part",
-    "west": "opencomputers:block/cable_part",
-    "east": "opencomputers:block/cable_part"
+    "all": "opencomputers:block/cable_part"
   }
 }
